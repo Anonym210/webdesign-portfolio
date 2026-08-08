@@ -25,38 +25,44 @@
     });
   }
 
-  /* ---------- 2. Mobiles Menue ---------- */
+  /* ---------- 2. Mobiles Menue ----------
+     Ein einziger Zustandsschalter statt classList.toggle an mehreren Stellen —
+     so koennen Menue, Body-Sperre und die ARIA-Angaben nicht auseinanderlaufen.
+     Das Menue liegt per CSS unter dem Header, damit der Burger-Button immer
+     anklickbar bleibt und das Menue auch wieder schliesst. */
   var burger = document.getElementById('burger');
   var menu   = document.getElementById('mobilemenu');
 
-  function closeMenu() {
+  function setMenu(open) {
     if (!menu) return;
-    menu.classList.remove('is-open');
-    document.body.classList.remove('is-locked');
-    if (burger) burger.setAttribute('aria-expanded', 'false');
+    menu.classList.toggle('is-open', open);
+    document.body.classList.toggle('is-locked', open);
+    if (burger) {
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      burger.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
+    }
+    var links = menu.querySelectorAll('a');
+    for (var i = 0; i < links.length; i++) {
+      links[i].style.transitionDelay = open ? (0.06 * i + 0.1) + 's' : '0s';
+    }
   }
+  function closeMenu() { setMenu(false); }
 
   if (burger && menu) {
     burger.addEventListener('click', function () {
-      var open = menu.classList.toggle('is-open');
-      document.body.classList.toggle('is-locked', open);
-      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-      burger.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
-
-      // Links gestaffelt einblenden
-      var links = menu.querySelectorAll('a');
-      for (var i = 0; i < links.length; i++) {
-        links[i].style.transitionDelay = open ? (0.06 * i + 0.1) + 's' : '0s';
-      }
+      setMenu(!menu.classList.contains('is-open'));
     });
-
     menu.addEventListener('click', function (e) {
-      if (e.target.tagName === 'A') closeMenu();
+      if (e.target.closest('a')) closeMenu();
+    });
+    // Beim Wechsel auf Desktopbreite darf keine gesperrte Seite zurueckbleiben
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 900 && menu.classList.contains('is-open')) closeMenu();
     });
   }
 
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeMenu();
+    if (e.key === 'Escape' || e.key === 'Esc') closeMenu();
   });
 
   /* ---------- 3. Sanftes Scrollen zu Ankern ---------- */
@@ -210,8 +216,23 @@
   }
 
   /* ---------- 8. Formular ---------- */
+  /* ===== ANPASSEN: Adresse des Formular-Dienstes ==========================
+     1. Kostenloses Konto auf formspree.io anlegen
+     2. Neues Formular anlegen — Sie erhalten eine Adresse wie
+        https://formspree.io/f/xayzabcd
+     3. Diese Adresse hier unten eintragen (die Zeile mit FORM_ENDPOINT)
+     4. Die allererste Testanfrage einmal per E-Mail bestaetigen
+
+     Bis dahin zeigt das Formular eine Fehlermeldung mit E-Mail und Telefon
+     an — statt einer falschen Erfolgsmeldung.
+     ====================================================================== */
+  var FORM_ENDPOINT = 'https://formspree.io/f/DEINE-FORM-ID';
+  var IS_CONFIGURED = FORM_ENDPOINT.indexOf('DEINE-FORM-ID') === -1;
+
   var form = document.getElementById('bookingForm');
   if (form) {
+    var SUBMIT_LABEL = form.querySelector('button[type="submit"]').textContent;
+    if (IS_CONFIGURED) { form.setAttribute('action', FORM_ENDPOINT); form.setAttribute('method', 'POST'); }
     // Wunschtermin: Vergangenheit ausschliessen
     var dateInput = document.getElementById('f-date');
     if (dateInput) dateInput.min = new Date().toISOString().split('T')[0];
@@ -248,39 +269,64 @@
         return;
       }
 
-      /* --------------------------------------------------------------
-         DEMO-VERSION: Die Anfrage wird hier nur bestaetigt, nicht
-         versendet. Fuer den Livebetrieb eine der Varianten waehlen:
+      /* ================= Versand =================
+         Solange bei FORM_ENDPOINT noch die Beispieladresse steht, meldet das
+         Formular BEWUSST einen Fehler statt "gesendet". Eine Anfrage, die
+         niemand bekommt, darf nicht als erfolgreich bestaetigt werden. */
+      var okBox  = document.getElementById('formOk');
+      var errBox = document.getElementById('formErr');
+      var btn    = form.querySelector('button[type="submit"]');
 
-         a) Formspree / Getform / Basin (kein eigener Server noetig):
-            <form action="https://formspree.io/f/DEINE-ID" method="POST">
-            und diesen preventDefault-Block entfernen.
+      okBox.classList.remove('is-visible');
+      errBox.classList.remove('is-visible');
 
-         b) Eigenes PHP-Skript auf dem Webspace:
-            fetch('kontakt.php', { method:'POST', body:new FormData(form) })
+      function fail(grund) {
+        errBox.classList.add('is-visible');
+        btn.disabled = false;
+        btn.textContent = SUBMIT_LABEL;
+        errBox.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+        if (window.console) window.console.error('Formularversand fehlgeschlagen:', grund);
+      }
 
-         c) Netlify: dem <form>-Tag  netlify  als Attribut hinzufuegen.
-         -------------------------------------------------------------- */
+      if (!IS_CONFIGURED) {
+        fail('FORM_ENDPOINT ist noch nicht eingetragen (assets/js/main.js).');
+        return;
+      }
 
-      var okBox = document.getElementById('formOk');
-      var btn   = form.querySelector('button[type="submit"]');
       btn.disabled = true;
       btn.textContent = 'Wird gesendet …';
 
-      setTimeout(function () {
+      window.fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res;
+      }).then(function () {
         okBox.classList.add('is-visible');
-        btn.textContent = 'Anfrage gesendet';
         form.reset();
+        btn.textContent = 'Anfrage gesendet';
         okBox.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
-        setTimeout(function () {
+        window.setTimeout(function () {
           btn.disabled = false;
-          btn.textContent = 'Anfrage senden';
-        }, 4000);
-      }, 800);
+          btn.textContent = SUBMIT_LABEL;
+        }, 5000);
+      })['catch'](fail);
     });
   }
 
   /* ---------- 9. Jahreszahl im Footer ---------- */
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
+
+  /* ---------- 10. Kennzeichnung als Beispielwebsite ----------
+     In der eingebetteten Vorschau auf der Portfolio-Website ausblenden —
+     dort steht der Hinweis schon neben dem Rahmen. */
+  var demoflag = document.getElementById('demoflag');
+  if (demoflag) {
+    var embedded = false;
+    try { embedded = window.self !== window.top; } catch (e) { embedded = true; }
+    if (embedded) demoflag.hidden = true;
+  }
 })();

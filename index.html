@@ -3,133 +3,944 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Webdesign — Portfolio &amp; Demo</title>
-<meta name="description" content="Drei Websites: die Portfolio-Seite und zwei Demo-Websites für Massagepraxen.">
-<meta name="robots" content="noindex">
+
+<!-- =====================================================================
+     VOR DEM LIVEGANG AUSFÜLLEN  —  alles an einer Stelle gesammelt
+     ---------------------------------------------------------------------
+     Suchen Sie im Editor nach dem Text in eckigen Klammern; das sind alle
+     offenen Punkte. Die Reihenfolge entspricht der Dringlichkeit.
+
+     1. DOMAIN        Die Seite läuft aktuell unter
+                      https://anonym210.github.io/webdesign-portfolio/
+                      Sobald eine eigene Domain da ist, die Adresse an fünf
+                      Stellen ersetzen: canonical und og:url (hier unten),
+                      og:image, robots.txt und sitemap.xml.
+     2. E-MAIL        Aktuell: ejdin.aliti@greenecoservice.ch
+                      Empfohlen: eine Adresse auf der eigenen Domain,
+                      z. B. hallo@envyweb.ch. Kommt 4× vor:
+                      Kontaktbereich, Fehlermeldung des Formulars, Footer,
+                      Impressum.
+     3. FORMULAR      Formspree-Adresse in assets/js/main.js eintragen
+                      (Abschnitt 8, Zeile FORM_ENDPOINT). Bis dahin meldet
+                      das Formular bewusst einen Fehler statt "gesendet".
+     4. ORT / REGION  [Ort] und [Region] ersetzen — kommt im Hero, im
+                      Über-mich-Abschnitt, im Kontaktbereich und im
+                      Impressum vor.
+     5. PORTRAITFOTO  assets/img/portrait.jpg ablegen (hochkant, ca.
+                      900 × 1100 px). Solange die Datei fehlt, zeigt der
+                      Abschnitt einen Hinweiskasten statt eines Fotos.
+     6. IMPRESSUM     impressum.html und datenschutz.html vollständig
+                      ausfüllen — dort steht, was rechtlich verlangt ist.
+
+     Telefon und WhatsApp sind bereits eingetragen: 076 522 05 25
+     ===================================================================== -->
+
+<title>Envy Web — Webseiten für lokale Betriebe in der Schweiz</title>
+<meta name="description" content="Individuelle Webseiten für lokale Schweizer Betriebe, die über Google mehr Anrufe und Anfragen gewinnen wollen. Festpreis, in 2–3 Wochen online, ohne Baukasten-Optik.">
 <meta name="theme-color" content="#FAF8F5">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Ejdin Aliti">
+
+<!-- ANPASSEN: Sobald eine eigene Domain läuft, hier, in og:url, in og:image,
+     in robots.txt und in sitemap.xml die neue Adresse eintragen. -->
+<link rel="canonical" href="https://anonym210.github.io/webdesign-portfolio/">
+<meta property="og:url" content="https://anonym210.github.io/webdesign-portfolio/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Envy Web">
+<meta property="og:title" content="Envy Web — Webseiten für lokale Betriebe in der Schweiz">
+<meta property="og:description" content="Individuelle Webseiten zum Festpreis. Vom Entwurf bis zum Livegang in 2–3 Wochen.">
+<meta property="og:image" content="https://anonym210.github.io/webdesign-portfolio/assets/img/social-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Envy Web — Websites, um die man Sie beneidet.">
+<meta property="og:locale" content="de_CH">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://anonym210.github.io/webdesign-portfolio/assets/img/social-preview.png">
+
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='11' fill='%231B1424'/%3E%3Ctext x='24' y='33' font-family='Georgia,serif' font-size='23' fill='%23fff' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E">
-<style>
-  :root{
-    --bg:#FAF8F5; --card:#FFFFFF; --line:#E5DFE7;
-    --ink:#1F1826; --soft:#5C5266; --mute:#8F869B;
-    --accent:#6A4A9C; --accent-soft:#EEE7F6;
-    --ease:cubic-bezier(.22,.61,.36,1);
-  }
-  *,*::before,*::after{ box-sizing:border-box; }
-  body{
-    margin:0; background:var(--bg); color:var(--ink);
-    font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-    font-size:1rem; line-height:1.7; -webkit-font-smoothing:antialiased;
-    display:flex; align-items:center; justify-content:center;
-    min-height:100svh; padding:clamp(1.5rem,5vw,4rem);
-  }
-  a{ color:inherit; text-decoration:none; }
-  .wrap{ width:min(100%,1120px); }
 
-  .eyebrow{
-    display:inline-flex; align-items:center; gap:.6rem; margin:0 0 1rem;
-    font-size:.7rem; font-weight:500; letter-spacing:.22em; text-transform:uppercase;
-    color:var(--accent);
-  }
-  .eyebrow::before{ content:""; width:22px; height:1px; background:currentColor; }
+<!-- Schriften: lokal eingebunden, keine Verbindung zu Google -->
+<link rel="preload" href="assets/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
 
-  h1{
-    font-family:Georgia,"Iowan Old Style",serif; font-weight:400;
-    font-size:clamp(2rem,1.4rem + 2.6vw,3.1rem); line-height:1.1;
-    letter-spacing:-.015em; margin:0 0 .8rem; text-wrap:balance;
-  }
-  .lead{ color:var(--soft); max-width:58ch; margin:0 0 clamp(2rem,4vw,3rem); }
+<link rel="stylesheet" href="assets/css/style.css">
 
-  .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
-  .card{
-    display:flex; flex-direction:column; gap:.5rem;
-    background:var(--card); border:1px solid var(--line); border-radius:16px;
-    padding:1.8rem 1.7rem 1.9rem;
-    transition:transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
-  }
-  .card:hover{ transform:translateY(-4px); box-shadow:0 20px 45px -22px rgba(20,23,26,.28); border-color:transparent; }
-  .card:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
-  .tag{
-    align-self:flex-start; font-size:.68rem; font-weight:500; letter-spacing:.14em;
-    text-transform:uppercase; color:var(--accent); background:var(--accent-soft);
-    padding:.3rem .7rem; border-radius:100px; margin-bottom:.4rem;
-  }
-  .card h2{
-    font-family:Georgia,"Iowan Old Style",serif; font-weight:400; font-size:1.5rem;
-    line-height:1.15; margin:0;
-  }
-  .card p{ color:var(--soft); font-size:.94rem; margin:0; flex:1; }
-  .go{
-    display:inline-flex; align-items:center; gap:.45rem; margin-top:1rem;
-    color:var(--accent); font-weight:500; font-size:.92rem;
-    transition:gap .3s var(--ease);
-  }
-  .card:hover .go{ gap:.85rem; }
+<!-- Die Einblend-Animationen greifen nur, wenn JavaScript wirklich laeuft.
+     Ohne dieses Signal bleibt der gesamte Inhalt sichtbar — sonst waere bei
+     einem Skriptfehler ein grosser Teil der Seite unsichtbar. -->
+<script>
+  document.documentElement.className += ' js';
+  window.addEventListener('error', function () {
+    document.documentElement.className = document.documentElement.className.replace(/\bjs\b/, '');
+  });
+</script>
 
-  footer{ margin-top:clamp(2rem,4vw,3rem); color:var(--mute); font-size:.86rem; }
-  footer a{ color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
-
-  @media (max-width:980px){ .grid{ grid-template-columns:1fr 1fr; } }
-  @media (max-width:720px){ .grid{ grid-template-columns:1fr; } }
-  @media (prefers-reduced-motion:reduce){ *{ transition-duration:.001ms !important; } }
-</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Envy Web",
+  "slogan": "Websites, um die man Sie beneidet.",
+  "description": "Webdesign und Webentwicklung für lokale Unternehmen in der Schweiz.",
+  "areaServed": { "@type": "Country", "name": "Schweiz" },
+  "priceRange": "CHF 890–2900",
+  "currenciesAccepted": "CHF",
+  "email": "ejdin.aliti@greenecoservice.ch",
+  "telephone": "+41765220525",
+  "founder": { "@type": "Person", "name": "Ejdin Aliti" },
+  "knowsLanguage": ["de-CH", "de"]
+}
+</script>
 </head>
 <body>
-  <main class="wrap">
-    <p class="eyebrow">Übersicht</p>
-    <h1>Drei Websites in diesem Projekt</h1>
-    <p class="lead">
-      Alle drei sind reines HTML, CSS und JavaScript — ohne Baukasten, ohne Datenbank,
-      ohne externe Bibliotheken.
-    </p>
 
-    <div class="grid">
-      <a class="card" href="portfolio/">
-        <span class="tag">Verkaufsseite</span>
-        <h2>Envy Web — Portfolio</h2>
-        <p>
-          Leistungen, Referenzen, Ablauf, Pakete und Kontaktformular —
-          die Seite, mit der Aufträge gewonnen werden.
-        </p>
-        <span class="go">
-          Öffnen
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </span>
-      </a>
+<!-- ============================ HEADER ============================ -->
+<header class="header" id="header">
+  <div class="wrap header__inner">
+    <a class="brand" href="#top" aria-label="Startseite">
+      <span class="brand__mark">E</span>
+      <span>ENVY<small>Web</small></span>
+    </a>
 
-      <a class="card" href="demo-massage/">
-        <span class="tag">Arbeitsbeispiel</span>
-        <h2>AURELIA Massage &amp; Wellness</h2>
-        <p>
-          Demo-Website für eine Massagepraxis: Behandlungen, Preisliste,
-          Galerie mit Lightbox und Terminanfrage. Alle Inhalte sind erfunden.
-        </p>
-        <span class="go">
-          Öffnen
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </span>
-      </a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="#referenzen">Arbeiten</a>
+      <a href="#person">Über mich</a>
+      <a href="#leistungen">Leistungen</a>
+      <a href="#pakete">Preise</a>
+      <a href="#faq">FAQ</a>
+    </nav>
 
-      <a class="card" href="demo-thai/">
-        <span class="tag">Arbeitsbeispiel</span>
-        <h2>SABAI Thai Massage</h2>
-        <p>
-          Demo für eine Thai-Massage-Praxis in warmen Farben: sechs Rituale,
-          Kräuterstempel, Sportmassage, Galerie und Terminanfrage.
-          Alle Inhalte sind erfunden.
+    <div class="header__actions">
+      <a class="btn btn--accent btn--sm" href="#kontakt">Kostenloses Erstgespräch</a>
+      <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobilemenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobilemenu" id="mobilemenu">
+  <a href="#referenzen">Arbeiten</a>
+  <a href="#person">Über mich</a>
+  <a href="#leistungen">Leistungen</a>
+  <a href="#ablauf">Ablauf</a>
+  <a href="#pakete">Preise</a>
+  <a href="#faq">FAQ</a>
+  <a href="#kontakt">Kontakt</a>
+  <a class="btn btn--accent" href="#kontakt">Kostenloses Erstgespräch</a>
+</div>
+
+<main id="top">
+
+<!-- ============================ HERO ============================ -->
+<section class="hero">
+  <div class="wrap hero__inner">
+    <div class="hero__grid">
+      <div>
+        <p class="eyebrow">Webdesign aus [Ort] · für Betriebe in der ganzen Schweiz</p>
+        <h1>Ihre Kunden suchen online.<br><em>Werden Sie gefunden?</em></h1>
+        <p class="hero__sub">
+          Ich baue Webseiten für lokale Schweizer Betriebe, die über Google mehr
+          Anrufe und Anfragen bekommen wollen. Individuell gestaltet, auf dem Handy
+          genauso gut wie am Rechner — zum Festpreis und ohne Baukasten-Optik.
         </p>
-        <span class="go">
-          Öffnen
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </span>
-      </a>
+
+        <div class="hero__cta">
+          <a class="btn btn--accent btn--lg" href="#kontakt">Kostenloses Erstgespräch</a>
+          <a class="btn btn--ghost btn--lg" href="#kontakt">Bestehende Seite prüfen lassen</a>
+        </div>
+
+        <div class="hero__facts">
+          <span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Festpreis, schriftlich, bevor etwas beginnt
+          </span>
+          <span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            In der Regel 2–3 Wochen bis zum Livegang
+          </span>
+          <span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Ohne Tracking, ohne Cookie-Banner
+          </span>
+        </div>
+
+        <!-- Wer hinter dem Angebot steht — direkt im Hero, nicht erst weit unten -->
+        <a class="herowho" href="#person">
+          <span class="herowho__img" aria-hidden="true">EA</span>
+          <span>
+            <b>Ejdin Aliti</b>
+            Sie sprechen vom ersten Anruf bis nach dem Livegang mit derselben Person — mit mir.
+          </span>
+        </a>
+      </div>
+
+      <!-- Live-Vorschau einer gebauten Website, direkt neben der Überschrift -->
+      <div class="showcase reveal">
+        <div class="mock">
+          <div class="mock__bar">
+            <span class="mock__dots"><i></i><i></i><i></i></span>
+            <span class="mock__url">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+              Beispiel: SABAI Thai Massage
+            </span>
+          </div>
+          <div class="mock__body livepreview" data-preview>
+            <iframe src="demo-thai/index.html" title="Vorschau der Beispielwebsite SABAI Thai Massage" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+            <a class="livepreview__veil" href="demo-thai/index.html" target="_blank" rel="noopener" aria-label="Beispielwebsite SABAI in neuem Tab öffnen"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ BRANCHEN ============================ -->
+<section class="branches">
+  <div class="wrap">
+    <p class="branches__title">Passend für</p>
+    <div class="branches__row">
+      <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 3v18M4 8h6a3 3 0 0 0 0-6H4M16 3v18M20 3v7a4 4 0 0 1-4 0"/></svg>Restaurants &amp; Cafés</span>
+      <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m14 7 3-3 4 4-3 3M3 21l4-1 11-11-3-3L4 17Z"/></svg>Handwerksbetriebe</span>
+      <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9M12 3v9h9"/></svg>Praxen &amp; Studios</span>
+      <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 9h18M3 9l2-5h14l2 5M5 9v11h14V9"/></svg>Einzelhandel</span>
+      <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>Selbstständige</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ REFERENZEN ============================ -->
+<section class="section section--alt" id="referenzen">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="eyebrow">Arbeiten</p>
+      <h2>So sieht das Ergebnis aus</h2>
+      <p class="lead" style="margin-top:1.2rem;">
+        Zwei vollständig gebaute Beispielwebsites — anklickbar, nicht nur als Bild.
+        Jedes Projekt beginnt mit derselben Frage: Was soll ein Besucher innerhalb
+        von zehn Sekunden verstanden haben?
+      </p>
     </div>
 
-    <footer>
-      Einrichtung, Anpassung und Veröffentlichung sind in der
-      <a href="README.md">README</a> beschrieben. Bildquellen und Lizenzen stehen in
-      <a href="CREDITS.md">CREDITS</a>.
-    </footer>
-  </main>
+    <div class="projects">
+
+      <!-- ---------------- Beispiel 1 ---------------- -->
+      <article class="project reveal">
+        <div class="project__visual">
+          <span class="project__tag project__tag--live">Beispielwebsite</span>
+          <div class="livepreview" data-preview>
+            <iframe src="demo-massage/index.html" title="Vorschau AURELIA Massage &amp; Wellness" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+            <a class="livepreview__veil" href="demo-massage/index.html" target="_blank" rel="noopener" aria-label="AURELIA Massage &amp; Wellness öffnen"></a>
+          </div>
+        </div>
+        <div class="project__body">
+          <span class="project__meta">Massage &amp; Wellness · Onepager</span>
+          <h3>AURELIA Massage &amp; Wellness</h3>
+          <p>
+            Ruhige, helle Gestaltung für eine kleine Praxis. Behandlungen, Preisliste,
+            Galerie und ein Anfrageformular mit Wunschtermin — alles auf einer Seite,
+            damit Besucher nirgends hin klicken müssen.
+          </p>
+          <div class="project__tags">
+            <span>Onepager</span><span>Galerie</span><span>Terminanfrage</span><span>Preisliste</span>
+          </div>
+          <div class="project__foot">
+            <a class="textlink" href="demo-massage/index.html" target="_blank" rel="noopener">
+              Website öffnen
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+            <span class="muted" style="font-size:.84rem;">Inhalte erfunden</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---------------- Beispiel 2 ---------------- -->
+      <article class="project reveal" data-delay="1">
+        <div class="project__visual">
+          <span class="project__tag project__tag--live">Beispielwebsite</span>
+          <div class="livepreview" data-preview>
+            <iframe src="demo-thai/index.html" title="Vorschau SABAI Thai Massage" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+            <a class="livepreview__veil" href="demo-thai/index.html" target="_blank" rel="noopener" aria-label="SABAI Thai Massage öffnen"></a>
+          </div>
+        </div>
+        <div class="project__body">
+          <span class="project__meta">Thai Massage · Onepager</span>
+          <h3>SABAI Thai Massage</h3>
+          <p>
+            Warme Farbwelt aus Sand, Teakholz und Gold. Sechs Rituale als
+            grossformatige Bildstrecke — vom klassischen Nuad Boran über
+            Sportmassage bis zum Kräuterstempel, dazu Preisliste und Terminanfrage.
+          </p>
+          <div class="project__tags">
+            <span>Onepager</span><span>Bildstrecke</span><span>Galerie</span><span>Terminanfrage</span>
+          </div>
+          <div class="project__foot">
+            <a class="textlink" href="demo-thai/index.html" target="_blank" rel="noopener">
+              Website öffnen
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+            <span class="muted" style="font-size:.84rem;">Inhalte erfunden</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---------------- Platz für das erste echte Kundenprojekt ----------------
+           So ersetzen Sie diese Karte durch eine echte Referenz:
+             1. Screenshot der fertigen Seite machen (Breite ca. 1440 px)
+             2. Als JPG unter  assets/img/referenz-1.jpg  ablegen
+             3. Den Kommentar-Block darunter einkommentieren und ausfüllen
+             4. Diese Platzhalter-Karte löschen
+           -->
+      <article class="project project--empty reveal" data-delay="2">
+        <div class="project__visual">
+          <div>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            <b style="font-weight:600;color:var(--ink);">Ihr Projekt</b>
+            <span style="font-size:.9rem;">Der nächste Platz ist frei.</span>
+          </div>
+        </div>
+        <div class="project__body">
+          <span class="project__meta">Ihre Branche · Ihr Auftritt</span>
+          <h3>Hier könnte Ihr Betrieb stehen</h3>
+          <p>
+            Ich nehme bewusst wenige Projekte gleichzeitig an, damit jedes die
+            Aufmerksamkeit bekommt, die es braucht. Schreiben Sie mir, was Sie
+            vorhaben — im Erstgespräch sage ich Ihnen ehrlich, ob ich der Richtige bin.
+          </p>
+          <div class="project__foot">
+            <a class="textlink" href="#kontakt">
+              Projekt besprechen
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- =====================================================================
+           VORLAGE FÜR EINE ECHTE REFERENZ — Kommentarzeichen entfernen und ausfüllen
+
+      <article class="project reveal">
+        <div class="project__visual">
+          <span class="project__tag">Kundenprojekt</span>
+          <img class="project__shot" src="assets/img/referenz-1.jpg" alt="Screenshot der Website von ..." loading="lazy">
+        </div>
+        <div class="project__body">
+          <span class="project__meta">Branche · Art des Projekts</span>
+          <h3>Name des Unternehmens</h3>
+          <p>Ausgangslage in einem Satz. Was ich gemacht habe in einem Satz. Ergebnis in einem Satz — am besten mit Zahl, z. B. "seither 3–4 Anfragen pro Woche über das Formular".</p>
+          <div class="project__tags">
+            <span>Webdesign</span><span>Mobil optimiert</span><span>Kontaktformular</span>
+          </div>
+          <div class="project__foot">
+            <a class="textlink" href="https://www.kundendomain.ch" target="_blank" rel="noopener">
+              Website öffnen
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+            <span class="muted" style="font-size:.84rem;">2026</span>
+          </div>
+        </div>
+      </article>
+
+           ===================================================================== -->
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ÜBER MICH ============================ -->
+<section class="section" id="person">
+  <div class="wrap">
+    <div class="about">
+      <figure class="about__photo reveal">
+        <!-- ANPASSEN: Portraitfoto unter assets/img/portrait.jpg ablegen.
+             Solange die Datei fehlt, erscheint automatisch ein Hinweiskasten. -->
+        <img src="assets/img/portrait.jpg"
+             alt="Ejdin Aliti, Webdesigner"
+             width="900" height="1100" loading="lazy"
+             onerror="this.closest('.about__photo').className += ' is-empty'; this.remove();">
+        <figcaption class="about__missing">
+          <b>Hier fehlt noch Ihr Foto.</b>
+          Ein hochkantes Portrait, ungefähr 900 × 1100 Pixel, unter
+          <code>assets/img/portrait.jpg</code> ablegen. Ein freundliches, gut
+          belichtetes Bild wirkt stärker als jedes Logo.
+        </figcaption>
+      </figure>
+
+      <div class="about__text reveal" data-delay="1">
+        <p class="eyebrow">Wer dahintersteckt</p>
+        <h2>Ich heisse Ejdin Aliti und baue Ihre Seite selbst.</h2>
+
+        <p class="lead" style="margin-top:1.4rem;">
+          Kein Team, keine Agentur, keine Weitergabe an Dritte. Sie schildern mir
+          im Erstgespräch, was Ihr Betrieb macht — und bekommen von derselben Person
+          Entwurf, Umsetzung, Livegang und später die Änderungen.
+        </p>
+
+        <p>
+          Ich arbeite von [Ort] aus und betreue vor allem Betriebe in [Region] und der
+          übrigen Deutschschweiz. Ich schreibe jede Seite von Hand statt sie in einem
+          Baukasten zusammenzuklicken — deshalb laden meine Seiten schnell, funktionieren
+          auf jedem Gerät und enthalten nichts, was Sie nicht brauchen.
+        </p>
+
+        <p>
+          Warum lokale Betriebe? Weil dort der Unterschied am grössten ist. Eine
+          Handwerkerin, ein Restaurant oder eine Praxis gewinnt mit einer guten Seite
+          spürbar mehr Anrufe — bei einem Grosskonzern geht dieselbe Arbeit im Rauschen unter.
+          Und weil ich lieber mit Menschen rede, die ihr Handwerk kennen, als mit
+          drei Abteilungen gleichzeitig.
+        </p>
+
+        <ul class="about__facts">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <span><b>Sie sprechen immer mit mir.</b> Kein Ticketsystem, keine Warteschleife, keine wechselnden Ansprechpartner.</span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <span><b>Ich erkläre, was ich tue.</b> Keine Fachbegriffe, die Sie googeln müssen — Sie sollen verstehen, wofür Sie zahlen.</span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <span><b>Antwort innerhalb eines Werktags.</b> Anfragen bis 18 Uhr beantworte ich spätestens am nächsten Werktag.</span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <span><b>Handgeschriebener Code.</b> Kein Baukasten, kein WordPress-Ballast, keine 40 Plugins, die gewartet werden wollen.</span>
+          </li>
+        </ul>
+
+        <div class="pledge">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+          <p>
+            „Wenn Sie nach der ersten Entwurfsrunde das Gefühl haben, das wird
+            nichts, steigen Sie aus — ohne Rechnung. Das ist mir lieber als ein
+            Projekt, hinter dem keiner von uns beiden steht."
+          </p>
+          <span>Mein Versprechen an jeden neuen Kunden</span>
+        </div>
+
+        <div class="about__cta">
+          <a class="btn btn--accent" href="#kontakt">Lernen wir uns kennen</a>
+          <a class="btn btn--ghost" href="tel:+41765220525">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+            076 522 05 25
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ LEISTUNGEN ============================ -->
+<section class="section section--alt" id="leistungen">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="eyebrow">Leistungen</p>
+      <h2>Was ich für Sie mache</h2>
+      <p class="lead" style="margin-top:1.2rem;">
+        Von der ersten Skizze bis zur Domain, die auf Ihren Namen läuft — Sie müssen
+        sich um nichts kümmern und bekommen am Ende alle Zugänge.
+      </p>
+    </div>
+
+    <div class="grid-3">
+      <article class="tile reveal">
+        <span class="tile__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 22h8"/></svg></span>
+        <h3>Neue Webseite</h3>
+        <p>Individuell gestaltet, nicht aus der Vorlage. Von der Onepager-Visitenkarte bis zur mehrseitigen Firmenseite.</p>
+      </article>
+
+      <article class="tile reveal" data-delay="1">
+        <span class="tile__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></span>
+        <h3>Relaunch &amp; Auffrischung</h3>
+        <p>Sie haben schon eine Seite, aber sie sieht aus wie 2011? Ich baue sie neu — Texte und Bilder können bleiben.</p>
+      </article>
+
+      <article class="tile reveal" data-delay="2">
+        <span class="tile__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
+        <h3>Lokale Sichtbarkeit</h3>
+        <p>Saubere Technik, sinnvolle Seitentitel und ein gepflegtes Google-Unternehmensprofil, damit Sie in Ihrer Umgebung gefunden werden.</p>
+      </article>
+
+      <article class="tile reveal">
+        <span class="tile__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg></span>
+        <h3>Technik &amp; Einrichtung</h3>
+        <p>Domain, Hosting, SSL, E-Mail-Adresse mit Ihrem Namen, Kontaktformular mit Spamschutz und die Einbindung von Impressum und Datenschutz — alles aus einer Hand.</p>
+      </article>
+
+      <article class="tile reveal" data-delay="1">
+        <span class="tile__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 20h9M3 20l1-4 11-11 3 3L7 19Z"/></svg></span>
+        <h3>Texte &amp; Bildauswahl</h3>
+        <p>Auf Wunsch formuliere ich die Texte und suche passende, lizenzfreie Bilder — oder wir nutzen Ihre eigenen Fotos.</p>
+      </article>
+
+      <article class="tile reveal" data-delay="2">
+        <span class="tile__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <h3>Betreuung &amp; Änderungen</h3>
+        <p>Neue Preise, neue Öffnungszeiten, neues Foto? Kurze Nachricht genügt — im Betreuungspaket inklusive, sonst nach Aufwand.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ABLAUF ============================ -->
+<section class="section" id="ablauf">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="eyebrow">Ablauf</p>
+      <h2>Vier Schritte bis zur fertigen Seite</h2>
+      <p class="lead" style="margin-top:1.2rem;">
+        Sie brauchen keine Vorkenntnisse und müssen nichts vorbereiten.
+        Ein Gespräch reicht, um loszulegen.
+      </p>
+    </div>
+
+    <div class="flow">
+      <div class="flow__item reveal">
+        <h3>Gespräch</h3>
+        <p>20–30 Minuten am Telefon oder bei Ihnen vor Ort. Ich frage, was Ihr Betrieb macht und wen Sie erreichen wollen. Kostenlos und unverbindlich.</p>
+      </div>
+      <div class="flow__item reveal" data-delay="1">
+        <h3>Angebot</h3>
+        <p>Sie bekommen einen Festpreis, eine Liste aller Leistungen und einen Termin für den Livegang — schriftlich, bevor irgendetwas beginnt.</p>
+      </div>
+      <div class="flow__item reveal" data-delay="2">
+        <h3>Entwurf</h3>
+        <p>Nach wenigen Tagen sehen Sie die erste Version im Browser. Je nach Paket sind ein oder zwei Korrekturrunden inklusive.</p>
+      </div>
+      <div class="flow__item reveal" data-delay="3">
+        <h3>Livegang</h3>
+        <p>Domain, Hosting, SSL und die Rechtstexte richte ich ein. Danach gehören alle Zugänge Ihnen — auch wenn Sie später wechseln möchten.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PAKETE ============================ -->
+<section class="section section--alt" id="pakete">
+  <div class="wrap">
+    <div class="head center reveal">
+      <p class="eyebrow">Preise</p>
+      <h2>Klare Preise, keine Überraschungen</h2>
+      <p class="lead" style="margin-top:1.2rem;">
+        Alle Pakete sind Festpreise inklusive Gestaltung, Umsetzung und Einrichtung.
+        Was nicht drinsteht, wird auch nicht berechnet.
+      </p>
+    </div>
+
+    <div class="already rise">
+      <span class="already__ico">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </span>
+      <div>
+        <b>Sie haben schon eine Webseite? Ich schaue sie mir kostenlos an.</b>
+        <p>
+          Schicken Sie mir die Adresse. Sie bekommen von mir eine kurze, ehrliche
+          Einschätzung: was gut läuft, was Besucher vermutlich abspringen lässt und
+          ob sich eine Auffrischung oder ein Neubau eher lohnt. Ohne Verpflichtung,
+          und auch dann, wenn die Antwort „lassen Sie es so" lautet.
+        </p>
+      </div>
+      <a class="btn btn--accent" href="#kontakt">Seite prüfen lassen</a>
+    </div>
+
+    <div class="plans">
+      <article class="plan reveal">
+        <h3>Start</h3>
+        <p class="plan__desc">Die digitale Visitenkarte. Alles Wichtige auf einer Seite.</p>
+        <p class="plan__price">CHF 890.–<small>einmalig · Endpreis, keine MWST</small></p>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Onepager mit bis zu 5 Abschnitten</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Mobil, Tablet und Desktop optimiert</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Kontaktformular mit Spamschutz</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Bis zu 8 Bilder aufbereitet und eingebaut</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>1 Korrekturrunde</span></li>
+        </ul>
+        <a class="btn btn--ghost" href="#kontakt">Anfragen</a>
+      </article>
+
+      <article class="plan plan--featured reveal" data-delay="1">
+        <span class="plan__flag">Am häufigsten gewählt</span>
+        <h3>Business</h3>
+        <p class="plan__desc">Der komplette Auftritt für Betriebe mit mehreren Leistungen.</p>
+        <p class="plan__price">CHF 1'690.–<small>einmalig · Endpreis, keine MWST</small></p>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Alles aus dem Start-Paket</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Bis zu 6 Unterseiten</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Bildergalerie, Preisliste oder Speisekarte</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Google-Unternehmensprofil eingerichtet</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Texte für alle Seiten, von mir geschrieben</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Bis zu 25 Bilder aufbereitet und eingebaut</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>2 Korrekturrunden</span></li>
+        </ul>
+        <a class="btn btn--light" href="#kontakt">Anfragen</a>
+      </article>
+
+      <article class="plan reveal" data-delay="2">
+        <h3>Premium</h3>
+        <p class="plan__desc">Für alles, was mehr braucht als eine Standardseite.</p>
+        <p class="plan__price">ab CHF 2'900.–<small>einmalig · Endpreis, keine MWST</small></p>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Alles aus dem Business-Paket</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Seitenumfang nach Vereinbarung</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Online-Terminbuchung oder Shop-Anbindung</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Zweite Sprache komplett (Übersetzung durch Sie)</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Redaktionssystem zum Selbstpflegen</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>3 Korrekturrunden</span></li>
+        </ul>
+        <a class="btn btn--ghost" href="#kontakt">Anfragen</a>
+      </article>
+    </div>
+
+    <!-- Das Kleingedruckte gross geschrieben — die Fragen, die sonst erst
+         nach der Rechnung kommen. Auf dem Handy zunaechst eingeklappt, damit
+         der Weg zum Kontakt kurz bleibt; ab 761 px oeffnet main.js den Block. -->
+    <details class="planinfo reveal" id="planinfo">
+      <summary>Was genau enthalten ist — und was nicht<i aria-hidden="true"></i></summary>
+      <div class="planinfo__grid">
+      <div class="planinfo__col">
+        <h3>In jedem Paket enthalten</h3>
+        <ul>
+          <li><b>Gestaltung und Umsetzung</b> — individuell, kein gekauftes Template.</li>
+          <li><b>Einrichtung von Domain, Hosting und SSL</b> — die Verträge laufen auf Ihren Namen.</li>
+          <li><b>Eine E-Mail-Adresse</b> auf Ihrer Domain, eingerichtet und getestet.</li>
+          <li><b>Impressum und Datenschutzerklärung</b> — ich binde geprüfte Vorlagen ein und fülle sie mit Ihren Angaben. Das ist Handwerk, keine Rechtsberatung; die rechtliche Prüfung bleibt bei Ihnen.</li>
+          <li><b>Bildbearbeitung</b> — zuschneiden, aufhellen, fürs Web verkleinern.</li>
+          <li><b>Übergabe aller Zugänge und Dateien</b> nach dem Livegang.</li>
+          <li><b>30 Tage Nachbesserung</b> für alles, was nach dem Livegang auffällt und im Angebot stand.</li>
+        </ul>
+      </div>
+
+      <div class="planinfo__col">
+        <h3>Nicht enthalten — und was es kostet</h3>
+        <ul>
+          <li><b>Domain und Hosting selbst:</b> je nach Anbieter rund CHF 8–20 im Monat. Sie zahlen direkt beim Anbieter, ich schlage nichts auf.</li>
+          <li><b>Externe Dienste</b> (Terminbuchung, Shop, Newsletter): Gebühren zahlen Sie direkt beim jeweiligen Anbieter.</li>
+          <li><b>Fotograf oder gekaufte Bilder:</b> nach Aufwand. Lizenzfreie Bilder suche ich kostenlos aus.</li>
+          <li><b>Zusätzliche Korrekturrunde:</b> CHF 120.– pauschal.</li>
+          <li><b>Weitere Sprachen:</b> ab CHF 390.– je Sprache, Übersetzung liefern Sie.</li>
+          <li><b>Änderungen nach dem Livegang</b> ohne Betreuungspaket: CHF 90.– je angefangene Stunde, vorher angekündigt.</li>
+        </ul>
+      </div>
+
+      <div class="planinfo__col">
+        <h3>Zahlung und Betreuung</h3>
+        <ul>
+          <li><b>Keine Anzahlung.</b> Sie zahlen erst, wenn die Seite online ist und Sie zufrieden sind — eine Rechnung, 30 Tage Zahlungsfrist.</li>
+          <li><b>Ausstieg nach dem ersten Entwurf:</b> Sagen Sie ab, wenn Ihnen die Richtung nicht gefällt. Dann kommt keine Rechnung.</li>
+          <li><b>Betreuungspaket ab CHF 29.– im Monat:</b> Hosting-Überwachung, Sicherungen, Updates und bis zu 30 Minuten Änderungen pro Monat — Texte, Preise, Öffnungszeiten, Bilder austauschen.</li>
+          <li><b>Nach dem ersten Jahr</b> läuft das Betreuungspaket monatlich weiter und ist jederzeit auf Monatsende kündbar. Der Preis bleibt, solange der Umfang gleich bleibt.</li>
+          <li><b>Ohne Betreuungspaket</b> entstehen bei mir keine laufenden Kosten. Die Seite läuft weiter, Sie melden sich nur, wenn etwas ansteht.</li>
+        </ul>
+      </div>
+      </div>
+    </details>
+
+    <p class="plans__note">
+      Ich bin nicht mehrwertsteuerpflichtig — die genannten Beträge sind Endpreise.
+      <br>Der Festpreis für Ihr Projekt wird nach dem Erstgespräch schriftlich bestätigt.
+    </p>
+  </div>
+</section>
+
+<!-- ============================ KUNDENSTIMMEN ============================
+     BEWUSST LEER — hier gehören echte Zitate hin, keine erfundenen.
+
+     So füllen Sie den Abschnitt, sobald Sie die ersten Projekte haben:
+       1. Nach dem Livegang fragen: "Darf ich zwei, drei Sätze von Ihnen
+          auf meine Seite nehmen?" Am besten direkt nach dem Moment, in
+          dem der Kunde sich gefreut hat.
+       2. Zwei Fragen stellen, die brauchbare Antworten liefern:
+          "Was war vorher das Problem?" und "Was hat sich seither geändert?"
+       3. Name, Betrieb, Ort und — wenn möglich — ein Foto dazu.
+          Ein Zitat ohne Namen wirkt erfunden und schadet mehr, als es nützt.
+       4. Diesen ganzen Block einkommentieren und die drei Karten ausfüllen.
+          Zwei echte Stimmen sind besser als sechs geschönte.
+
+<section class="section" id="stimmen">
+  <div class="wrap">
+    <div class="head center reveal">
+      <p class="eyebrow">Kundenstimmen</p>
+      <h2>Was Auftraggeber sagen</h2>
+    </div>
+    <div class="voices">
+      <figure class="voice reveal">
+        <blockquote>Vorher hat uns niemand über Google gefunden. Seit der neuen Seite rufen jede Woche Leute an, die vorher gar nicht wussten, dass es uns gibt.</blockquote>
+        <figcaption>
+          <img src="assets/img/stimme-1.jpg" alt="" width="96" height="96" loading="lazy">
+          <span><b>Vorname Nachname</b>Betrieb, Ort</span>
+        </figcaption>
+      </figure>
+      <figure class="voice reveal" data-delay="1">
+        <blockquote>Zitat.</blockquote>
+        <figcaption>
+          <img src="assets/img/stimme-2.jpg" alt="" width="96" height="96" loading="lazy">
+          <span><b>Vorname Nachname</b>Betrieb, Ort</span>
+        </figcaption>
+      </figure>
+      <figure class="voice reveal" data-delay="2">
+        <blockquote>Zitat.</blockquote>
+        <figcaption>
+          <img src="assets/img/stimme-3.jpg" alt="" width="96" height="96" loading="lazy">
+          <span><b>Vorname Nachname</b>Betrieb, Ort</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+     ====================================================================== -->
+
+<!-- ============================ FAQ ============================ -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="head center reveal">
+      <p class="eyebrow">Häufige Fragen</p>
+      <h2>Bevor Sie fragen</h2>
+    </div>
+
+    <div class="faq" id="faqBox">
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Wie lange dauert es, bis meine Seite online ist?<i aria-hidden="true"></i></button>
+        <div class="faq__a"><div>In der Regel zwei bis drei Wochen ab dem Moment, in dem Texte und Bilder vorliegen. Ein Onepager kann auch in einer Woche fertig sein. Der Engpass sind fast immer die Inhalte — nicht die Technik.</div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Ich habe keine Texte und keine Fotos. Ist das ein Problem?<i aria-hidden="true"></i></button>
+        <div class="faq__a"><div>Nein. Im Business- und im Premium-Paket schreibe ich die Texte auf Basis unseres Gesprächs; im Start-Paket überarbeite ich, was Sie mir liefern. Passende, lizenzfreie Bilder suche ich in jedem Paket kostenlos aus. Eigene Fotos wirken zwar immer am besten, sind aber keine Voraussetzung für den Start.</div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Wie läuft die Bezahlung ab?<i aria-hidden="true"></i></button>
+        <div class="faq__a"><div>Es gibt keine Anzahlung und keine Teilrechnungen. Sie bekommen genau eine Rechnung, und zwar erst, wenn die Seite online ist und Sie zufrieden sind — zahlbar innerhalb von 30 Tagen per Banküberweisung oder TWINT. Steigen Sie nach dem ersten Entwurf aus, kommt gar keine Rechnung.</div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Was kostet die Seite laufend?<i aria-hidden="true"></i></button>
+        <div class="faq__a"><div>Domain und Hosting liegen üblicherweise bei CHF 8–20 im Monat und werden direkt beim Anbieter auf Ihren Namen abgerechnet — ich schlage darauf nichts auf. Möchten Sie, dass ich mich zusätzlich um Updates, Sicherungen und laufende Änderungen kümmere, gibt es dafür das Betreuungspaket ab CHF 29.– im Monat, monatlich kündbar. Ohne dieses Paket entstehen bei mir keine laufenden Kosten.</div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Was zählt als „kleine Änderung" im Betreuungspaket?<i aria-hidden="true"></i></button>
+        <div class="faq__a"><div>Alles, was ich in wenigen Minuten erledigen kann: Öffnungszeiten, Preise, Telefonnummern, ein ausgetauschtes Foto, ein neuer Absatz, ein zusätzlicher Menüpunkt. Enthalten sind bis zu 30 Minuten pro Monat, nicht übertragbar. Neue Unterseiten, ein neues Layout oder eine zweite Sprache sind eigene Projekte — dafür bekommen Sie vorher einen Festpreis.</div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Was, wenn mir der Entwurf nicht gefällt?<i aria-hidden="true"></i></button>
+        <div class="faq__a"><div>Dann sagen Sie es mir. Je nach Paket sind ein bis drei Korrekturrunden inklusive; eine Runde heisst: Sie sammeln alle Änderungswünsche, ich setze sie gemeinsam um. Reicht das nicht, kostet jede weitere Runde CHF 120.– pauschal. Und wenn schon der erste Entwurf in die falsche Richtung geht, können Sie ohne Rechnung aussteigen.</div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Kann ich die Seite später selbst bearbeiten?<i aria-hidden="true"></i></button>
+        <div class="faq__a"><div>Ja — im Premium-Paket richte ich ein einfaches Redaktionssystem ein, mit dem Sie Texte, Preise und Bilder selbst ändern können. Ich zeige Ihnen das bei der Übergabe. Wer lieber nichts anfassen möchte, schickt mir einfach eine Nachricht mit der Änderung.</div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Wem gehört die Webseite am Ende?<i aria-hidden="true"></i></button>
+        <div class="faq__a"><div>Ihnen. Domain und Hosting laufen auf Ihren Namen, und Sie bekommen alle Zugangsdaten sowie die fertigen Dateien. Sollten Sie irgendwann zu jemand anderem wechseln wollen, können Sie alles mitnehmen.</div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Brauche ich einen Cookie-Banner?<i aria-hidden="true"></i></button>
+        <div class="faq__a"><div>Bei einer Seite, wie ich sie standardmässig baue, nicht: kein Tracking, keine Werbedienste, keine extern geladenen Schriften — also nichts, wofür eine Einwilligung nötig wäre. Sobald Sie später Statistiken, eine Kartenanzeige oder Werbedienste einbinden möchten, ändert sich das; dann richte ich die passende Einwilligung mit ein. Diese Einschätzung ersetzt keine Rechtsberatung.</div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Arbeiten Sie auch ausserhalb meiner Region?<i aria-hidden="true"></i></button>
+        <div class="faq__a"><div>Ja. Der persönliche Termin vor Ort ist schön, aber nicht nötig — Telefon, Video und E-Mail funktionieren genauso gut. Im Umkreis von 50 km um [Ort] komme ich für das Erstgespräch gerne vorbei, ohne Anfahrtskosten.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ KONTAKT ============================ -->
+<section class="section section--alt" id="kontakt">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="eyebrow">Kontakt</p>
+      <h2>Reden wir 20 Minuten darüber</h2>
+      <p class="lead" style="margin-top:1.2rem;">
+        Kostenlos und unverbindlich. Am Ende wissen Sie, was eine Seite für Ihren
+        Betrieb kosten würde und ob sich das für Sie lohnt. Wenn Sie schon eine
+        Seite haben, schauen wir sie gemeinsam an.
+      </p>
+    </div>
+
+    <div class="contact">
+      <div class="contact__side reveal">
+        <!-- ANPASSEN: E-Mail-Adresse, sobald die eigene Domain steht -->
+        <div class="ctline">
+          <span class="ctline__ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span>
+          <span><b>Telefon</b><a href="tel:+41765220525">076 522 05 25</a></span>
+        </div>
+        <div class="ctline">
+          <span class="ctline__ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.3A8.5 8.5 0 1 1 21 11.5Z"/></svg></span>
+          <span><b>WhatsApp</b><a href="https://wa.me/41765220525" target="_blank" rel="noopener">076 522 05 25 — direkt schreiben</a></span>
+        </div>
+        <div class="ctline">
+          <span class="ctline__ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+          <span><b>E-Mail</b><a href="mailto:ejdin.aliti@greenecoservice.ch">ejdin.aliti@greenecoservice.ch</a></span>
+        </div>
+        <div class="ctline">
+          <span class="ctline__ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <span><b>Erreichbar</b><span>Mo – Fr, 9 – 18 Uhr · Antwort spätestens am nächsten Werktag</span></span>
+        </div>
+
+        <div class="ctbox">
+          <b>Lieber ein Blick vor Ort?</b>
+          <span class="muted">
+            Im Umkreis von 50 km um [Ort] komme ich für das Erstgespräch gerne
+            persönlich vorbei — ohne Anfahrtskosten.
+          </span>
+        </div>
+      </div>
+
+      <form class="form reveal" data-delay="1" id="contactForm" novalidate>
+        <div class="form__grid">
+          <div class="field">
+            <label for="c-name">Name *</label>
+            <input type="text" id="c-name" name="name" autocomplete="name" required>
+            <span class="field__err">Bitte tragen Sie Ihren Namen ein.</span>
+          </div>
+          <div class="field">
+            <label for="c-mail">E-Mail *</label>
+            <input type="email" id="c-mail" name="email" autocomplete="email" required>
+            <span class="field__err">Bitte prüfen Sie Ihre E-Mail-Adresse.</span>
+          </div>
+          <div class="field">
+            <label for="c-tel">Telefon <span class="field__opt">(optional)</span></label>
+            <input type="tel" id="c-tel" name="telefon" autocomplete="tel" inputmode="tel">
+          </div>
+          <div class="field">
+            <label for="c-site">Ihre bestehende Website <span class="field__opt">(falls vorhanden)</span></label>
+            <input type="url" id="c-site" name="website" inputmode="url" placeholder="www.ihre-seite.ch">
+          </div>
+          <div class="field field--full">
+            <label for="c-msg">Worum geht es? *</label>
+            <textarea id="c-msg" name="nachricht" required placeholder="Was macht Ihr Betrieb, und was soll die Webseite können? Ein paar Stichworte genügen."></textarea>
+            <span class="field__err">Bitte schreiben Sie kurz, worum es geht.</span>
+          </div>
+        </div>
+
+        <!-- Spamfalle: fuer Menschen unsichtbar, Bots fuellen sie aus.
+             Formspree verwirft jede Anfrage, in der _gotcha ausgefuellt ist. -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+        <input type="hidden" name="_subject" value="Neue Anfrage ueber envyweb">
+
+        <label class="form__consent" for="c-privacy">
+          <input type="checkbox" id="c-privacy" name="datenschutz" required>
+          <span>Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Daten zur Bearbeitung der Anfrage einverstanden. *</span>
+        </label>
+
+        <button class="btn btn--accent btn--lg" type="submit">Anfrage senden</button>
+        <p class="form__note">
+          Ich melde mich innerhalb eines Werktags persönlich — telefonisch oder
+          per E-Mail, ganz wie Sie möchten. Unverbindlich und kostenlos.
+        </p>
+
+        <div class="form__ok" id="formOk" role="status">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
+          <span>Danke! Ihre Anfrage ist angekommen — ich melde mich innerhalb eines Werktags bei Ihnen.</span>
+        </div>
+
+        <div class="form__err" id="formErr" role="alert">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
+          <span>Die Anfrage konnte nicht übermittelt werden. Bitte schreiben Sie mir direkt an <a href="mailto:ejdin.aliti@greenecoservice.ch">ejdin.aliti@greenecoservice.ch</a> oder rufen Sie an: <a href="tel:+41765220525">076 522 05 25</a>.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CTA ============================ -->
+<section class="section" style="padding-top:clamp(3rem,5vw,4.5rem);">
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2>Sie wissen, was Sie können. Zeigen Sie es.</h2>
+      <p>
+        Ein Anruf, ein Gespräch, ein Festpreis. Wenn es nicht passt, haben Sie
+        20 Minuten investiert — und wissen trotzdem mehr als vorher.
+      </p>
+      <div class="cta__row">
+        <a class="btn btn--light btn--lg" href="#kontakt">Erstgespräch vereinbaren</a>
+        <a class="btn btn--outline-light btn--lg" href="tel:+41765220525">076 522 05 25</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <a class="brand" href="#top">
+          <span class="brand__mark">E</span>
+          <span>ENVY<small>Web</small></span>
+        </a>
+        <p style="max-width:36ch;font-size:.93rem;">
+          Websites, um die man Sie beneidet — individuell gestaltet für lokale
+          Schweizer Betriebe, zum Festpreis und ohne Baukasten-Optik.
+        </p>
+      </div>
+
+      <div>
+        <h5>Leistungen</h5>
+        <ul>
+          <li><a href="#leistungen">Neue Webseite</a></li>
+          <li><a href="#leistungen">Relaunch</a></li>
+          <li><a href="#leistungen">Lokale Sichtbarkeit</a></li>
+          <li><a href="#leistungen">Betreuung</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>Seite</h5>
+        <ul>
+          <li><a href="#referenzen">Arbeiten</a></li>
+          <li><a href="#person">Über mich</a></li>
+          <li><a href="#ablauf">Ablauf</a></li>
+          <li><a href="#pakete">Preise</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>Kontakt</h5>
+        <ul>
+          <li><a href="tel:+41765220525">076 522 05 25</a></li>
+          <li><a href="https://wa.me/41765220525" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:ejdin.aliti@greenecoservice.ch">ejdin.aliti@greenecoservice.ch</a></li>
+          <li><a href="#kontakt">Erstgespräch anfragen</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span id="year">2026</span> Envy Web · Ejdin Aliti</span>
+      <nav aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<button class="totop" id="totop" aria-label="Nach oben">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<!-- Feste Leiste auf dem Handy: der Weg zum Anruf soll nie mehr als
+     einen Daumen entfernt sein. Auf Desktop ausgeblendet. -->
+<nav class="mobilebar" aria-label="Schnellkontakt">
+  <a href="tel:+41765220525">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+    Anrufen
+  </a>
+  <a href="https://wa.me/41765220525" target="_blank" rel="noopener">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.3A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+    WhatsApp
+  </a>
+  <a class="mobilebar__cta" href="#kontakt">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+    Anfrage
+  </a>
+</nav>
+
+<script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -158,8 +158,12 @@ body.is-locked .burger span:nth-child(1){ transform:translateY(6px) rotate(45deg
 body.is-locked .burger span:nth-child(2){ opacity:0; }
 body.is-locked .burger span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
 
+/* Das mobile Menue liegt BEWUSST unter dem Header (z-index 95 < 100).
+   Sonst deckt es den Burger-Button zu und man kann es nicht mehr schliessen.
+   Der Header wird dafuer transparent geschaltet, solange das Menue offen ist. */
 .mobilemenu{
-  position:fixed; inset:0; z-index:105; background:var(--bg);
+  position:fixed; inset:0; z-index:95; background:var(--bg);
+  padding:5.5rem 1.25rem 2.5rem; overflow-y:auto; overscroll-behavior:contain;
   display:flex; flex-direction:column; justify-content:center; align-items:center; gap:.2rem;
   opacity:0; visibility:hidden; transition:opacity .4s var(--ease), visibility .4s;
 }
@@ -169,6 +173,16 @@ body.is-locked .burger span:nth-child(3){ transform:translateY(-6px) rotate(-45d
 .mobilemenu a:hover{ color:var(--accent); }
 .mobilemenu .btn{ margin-top:1.8rem; opacity:0; transition:opacity .5s .35s var(--ease); }
 .mobilemenu.is-open .btn{ opacity:1; }
+
+/* Header durchsichtig schalten, damit die Menueflaeche darunter durchgeht */
+body.is-locked .header{
+  background:transparent; box-shadow:none; border-bottom-color:transparent;
+  -webkit-backdrop-filter:none; backdrop-filter:none;
+}
+body.is-locked .totop{ opacity:0; visibility:hidden; }
+/* Zentriert, bleibt aber scrollbar, wenn das Menue hoeher als der Bildschirm ist */
+.mobilemenu > :first-child{ margin-top:auto; }
+.mobilemenu > :last-child{ margin-bottom:auto; }
 
 /* ---------- 6. Hero ---------- */
 .hero{ position:relative; padding-block:clamp(7rem,13vh,9.5rem) clamp(3rem,6vw,5rem); overflow:hidden; }
@@ -263,7 +277,7 @@ body.is-locked .burger span:nth-child(3){ transform:translateY(-6px) rotate(-45d
 .section--dark .tile__ico{ background:rgba(195,166,234,.14); color:var(--accent-lite); }
 
 /* ---------- 10. Referenzen ---------- */
-.projects{ display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(1.6rem,3vw,2.4rem); }
+.projects{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1.4rem,2.4vw,2rem); }
 .project{
   background:var(--white); border:1px solid var(--line); border-radius:var(--r-xl);
   overflow:hidden; display:flex; flex-direction:column;
@@ -383,14 +397,14 @@ body.is-locked .burger span:nth-child(3){ transform:translateY(-6px) rotate(-45d
   line-height:1.32; color:var(--ink); margin:0 0 .9rem;
 }
 .pledge span{ font-size:.86rem; color:var(--ink-mute); }
+.section--dark .pledge{
+  background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.12);
+  border-left-color:var(--accent-lite); box-shadow:none;
+}
+.section--dark .pledge svg{ color:var(--accent-lite); }
+.section--dark .pledge p{ color:#fff; }
+.section--dark .pledge span{ color:rgba(255,255,255,.5); }
 
-.statgrid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin-top:3rem; }
-.stat{ padding:1.6rem 1.4rem; border:1px solid var(--line); border-radius:var(--r-lg); background:var(--white); }
-.stat b{ display:block; font-family:var(--display); font-size:2.6rem; line-height:1; color:var(--accent); margin-bottom:.35rem; font-weight:400; }
-.stat span{ font-size:.9rem; color:var(--ink-soft); }
-.section--dark .stat{ background:rgba(255,255,255,.04); border-color:rgba(255,255,255,.1); }
-.section--dark .stat b{ color:var(--accent-lite); }
-.section--dark .stat span{ color:rgba(255,255,255,.6); }
 
 /* ---------- 14. FAQ ---------- */
 .faq{ max-width:820px; margin-inline:auto; }
@@ -445,6 +459,28 @@ body.is-locked .burger span:nth-child(3){ transform:translateY(-6px) rotate(-45d
 .form__ok{ display:none; gap:.8rem; align-items:center; background:var(--accent-soft); color:var(--accent-deep); padding:1rem 1.1rem; border-radius:10px; margin-top:1.1rem; font-size:.92rem; }
 .form__ok.is-visible{ display:flex; }
 
+/* Fehlerbox — erscheint, wenn der Versand nicht geklappt hat */
+.form__err{
+  display:none; gap:.9rem; align-items:flex-start; background:#FBEDE9; color:#8E3A22;
+  padding:1rem 1.2rem; border-radius:10px; margin-top:1.1rem; font-size:.92rem; line-height:1.55;
+}
+.form__err.is-visible{ display:flex; }
+.form__err svg{ flex:none; margin-top:.22rem; }
+.form__err a{ color:inherit; text-decoration:underline; text-underline-offset:2px; font-weight:600; }
+
+/* Spamfalle: darf fuer Menschen nicht sichtbar und nicht erreichbar sein */
+.hp{
+  position:absolute !important; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+
+/* Auf dem iPhone zoomt Safari in jedes Feld unter 16 px hinein.
+   Ab 16 px bleibt die Ansicht ruhig — nur auf kleinen Bildschirmen noetig. */
+@media (max-width:820px){
+  .field input, .field select, .field textarea{ font-size:16px; }
+}
+
+
 /* ---------- 16. CTA-Band ---------- */
 .cta{ background:var(--dark); color:#fff; border-radius:var(--r-xl); padding:clamp(2.5rem,5vw,4.5rem); text-align:center; position:relative; overflow:hidden; }
 .cta::before{
@@ -477,8 +513,12 @@ body.is-locked .burger span:nth-child(3){ transform:translateY(-6px) rotate(-45d
 .totop.is-visible{ opacity:1; visibility:visible; transform:none; }
 .totop:hover{ background:var(--accent); }
 
-/* ---------- 19. Reveal ---------- */
-.reveal{ opacity:0; transform:translateY(24px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
+/* ---------- 19. Reveal ----------
+   Wichtig: Der Inhalt wird NUR versteckt, wenn das <html>-Element die Klasse
+   "js" traegt. Die setzt ein kurzes Skript im <head>, das sich bei einem
+   JavaScript-Fehler selbst zuruecknimmt. Ohne diese Absicherung bliebe bei
+   einem Skriptfehler ein grosser Teil der Seite unsichtbar. */
+.js .reveal{ opacity:0; transform:translateY(24px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
 .reveal.is-in{ opacity:1; transform:none; }
 .reveal[data-delay="1"]{ transition-delay:.08s; }
 .reveal[data-delay="2"]{ transition-delay:.16s; }
@@ -496,6 +536,8 @@ body.is-locked .burger span:nth-child(3){ transform:translateY(-6px) rotate(-45d
 /* ---------- 21. Responsive ---------- */
 @media (max-width:1080px){
   .grid-4{ grid-template-columns:repeat(2,1fr); }
+  .grid-3{ grid-template-columns:repeat(2,1fr); }
+  .projects{ grid-template-columns:repeat(2,1fr); }
   .flow{ grid-template-columns:repeat(2,1fr); row-gap:2.4rem; }
   .flow__item:nth-child(2)::after{ display:none; }
   .footer__top{ grid-template-columns:1fr 1fr; }
@@ -511,7 +553,6 @@ body.is-locked .burger span:nth-child(3){ transform:translateY(-6px) rotate(-45d
   .burger{ display:block; }
   .header__actions .btn{ display:none; }
   .grid-2{ grid-template-columns:1fr; }
-  .grid-3{ grid-template-columns:1fr; }
   .projects{ grid-template-columns:1fr; }
   .plans{ grid-template-columns:1fr; }
   .plan--featured{ order:-1; }
@@ -520,12 +561,12 @@ body.is-locked .burger span:nth-child(3){ transform:translateY(-6px) rotate(-45d
 }
 @media (max-width:620px){
   .grid-4{ grid-template-columns:1fr; }
+  .grid-3{ grid-template-columns:1fr; }
   .already{ grid-template-columns:1fr; }
   .already .btn{ grid-column:1; width:100%; }
   .flow{ grid-template-columns:1fr; }
   .flow__item::after{ display:none; }
   .form__grid{ grid-template-columns:1fr; }
-  .statgrid{ grid-template-columns:1fr; }
   .footer__top{ grid-template-columns:1fr; }
   .hero__cta .btn{ flex:1 1 100%; }
   .mock__url{ font-size:.7rem; }
@@ -535,4 +576,171 @@ body.is-locked .burger span:nth-child(3){ transform:translateY(-6px) rotate(-45d
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{ animation-duration:.001ms !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
   .reveal{ opacity:1; transform:none; }
+}
+
+/* ---------- 21. Wer dahintersteckt (Zeile im Hero) ---------- */
+.herowho{
+  display:flex; align-items:center; gap:.9rem; margin-top:2.2rem;
+  padding:.85rem 1.4rem .85rem .85rem; max-width:46ch;
+  background:var(--white); border:1px solid var(--line); border-radius:100px;
+  box-shadow:var(--sh-sm);
+  transition:border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.herowho:hover{ border-color:var(--accent); transform:translateY(-2px); box-shadow:var(--sh-md); }
+/* Das Portraitfoto liegt als Hintergrund darueber. Fehlt die Datei, bleiben
+   die Initialen stehen — der Kasten sieht dann immer noch absichtlich aus. */
+.herowho__img{
+  width:46px; height:46px; border-radius:50%; flex:none;
+  background:var(--accent-soft) url("../img/portrait.jpg") center 20% / cover no-repeat;
+  color:var(--accent-deep);
+  display:grid; place-items:center; font-weight:600; font-size:.88rem; letter-spacing:.04em;
+}
+.herowho b{ display:block; font-weight:600; font-size:.95rem; color:var(--ink); }
+.herowho > span{ font-size:.85rem; color:var(--ink-soft); line-height:1.45; }
+
+/* ---------- 22. Ueber mich ---------- */
+.about{ display:grid; grid-template-columns:.85fr 1.15fr; gap:clamp(2rem,4.5vw,4.5rem); align-items:center; }
+.about__photo{ position:relative; margin:0; }
+.about__photo img{
+  width:100%; aspect-ratio:9/11; object-fit:cover; object-position:center 20%;
+  border-radius:var(--r-xl); box-shadow:var(--sh-lg);
+}
+.about__missing{
+  display:none; aspect-ratio:9/11; place-content:center; text-align:center;
+  padding:2rem 1.8rem; border:1px dashed var(--line); border-radius:var(--r-xl);
+  background:var(--bg-alt); color:var(--ink-soft); font-size:.9rem; line-height:1.6;
+}
+.about__photo.is-empty .about__missing{ display:grid; }
+.about__missing b{ display:block; color:var(--ink); font-weight:600; margin-bottom:.4rem; }
+.about__missing code{
+  display:inline-block; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:.85em; background:var(--white); border:1px solid var(--line);
+  border-radius:5px; padding:.1rem .4rem; margin:.15rem 0; word-break:break-all;
+}
+.about__text p{ color:var(--ink-soft); max-width:60ch; }
+.about__facts{ display:grid; gap:.9rem; margin:1.8rem 0 0; }
+.about__facts li{ display:flex; gap:.9rem; align-items:flex-start; }
+.about__facts svg{ flex:none; margin-top:.3rem; color:var(--accent); }
+.about__facts span{ color:var(--ink-soft); font-size:.95rem; }
+.about__cta{ display:flex; flex-wrap:wrap; gap:.75rem; margin-top:2rem; }
+
+/* ---------- 23. Paket-Details ----------
+   Ein <details>-Element: auf dem Handy eingeklappt, ab 761 px von main.js
+   geoeffnet. So beantwortet die Seite alle Preisfragen, ohne dass mobile
+   Besucher an einer Textwand vorbeiscrollen muessen. */
+.planinfo{
+  margin-top:clamp(2.5rem,4vw,3.5rem);
+  background:var(--white); border:1px solid var(--line); border-radius:var(--r-lg);
+  box-shadow:var(--sh-sm); overflow:hidden;
+}
+.planinfo summary{
+  display:flex; align-items:center; justify-content:space-between; gap:1.5rem;
+  padding:1.35rem 1.7rem; cursor:pointer; list-style:none;
+  font-size:1.05rem; font-weight:500; color:var(--ink);
+  transition:color .3s var(--ease);
+}
+.planinfo summary::-webkit-details-marker{ display:none; }
+.planinfo summary:hover{ color:var(--accent); }
+.planinfo summary i{ position:relative; width:15px; height:15px; flex:none; }
+.planinfo summary i::before, .planinfo summary i::after{
+  content:""; position:absolute; left:0; top:7px; width:15px; height:1.6px;
+  background:var(--accent); border-radius:2px; transition:transform .4s var(--ease);
+}
+.planinfo summary i::after{ transform:rotate(90deg); }
+.planinfo[open] summary i::after{ transform:rotate(0); }
+.planinfo[open] summary{ border-bottom:1px solid var(--line); }
+
+.planinfo__grid{
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:2rem; padding:1.8rem 1.7rem 2rem;
+}
+.planinfo__col + .planinfo__col{ border-left:1px solid var(--line); padding-left:2rem; }
+.planinfo h3{
+  font-family:var(--sans); font-size:.76rem; font-weight:600; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--accent); margin-bottom:1.2rem;
+}
+.planinfo ul{ display:grid; gap:.85rem; }
+.planinfo li{
+  font-size:.92rem; color:var(--ink-soft); line-height:1.6;
+  padding-left:1.1rem; position:relative;
+}
+.planinfo li::before{
+  content:""; position:absolute; left:0; top:.62em; width:5px; height:5px;
+  border-radius:50%; background:var(--accent); opacity:.55;
+}
+.planinfo b{ color:var(--ink); font-weight:600; }
+
+/* ---------- 24. Kundenstimmen ---------- */
+.voices{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+.voice{
+  background:var(--white); border:1px solid var(--line); border-radius:var(--r-xl);
+  padding:2rem 1.9rem; display:flex; flex-direction:column; gap:1.4rem;
+}
+.voice blockquote{
+  font-family:var(--display); font-size:1.25rem; line-height:1.4; color:var(--ink); flex:1;
+}
+.voice figcaption{ display:flex; align-items:center; gap:.9rem; padding-top:1.2rem; border-top:1px solid var(--line); }
+.voice figcaption img{ width:48px; height:48px; border-radius:50%; object-fit:cover; flex:none; }
+.voice figcaption b{ display:block; font-weight:600; font-size:.95rem; color:var(--ink); }
+.voice figcaption span{ font-size:.86rem; color:var(--ink-mute); }
+
+/* ---------- 25. Kontaktkasten und Formularfeinheiten ---------- */
+.ctbox{
+  border:1px solid var(--line); border-radius:var(--r-lg);
+  padding:1.4rem 1.5rem; background:var(--white);
+}
+.ctbox b{ display:block; margin-bottom:.4rem; font-weight:600; }
+.ctbox .muted{ font-size:.93rem; }
+.field__opt{ font-weight:400; color:var(--ink-mute); }
+.cta__row{ display:flex; flex-wrap:wrap; gap:.75rem; justify-content:center; margin-top:2rem; }
+.cta__row .btn{ margin-top:0; }
+
+/* ---------- 26. Feste Kontaktleiste auf dem Handy ----------
+   Erscheint erst unter 720 px. Damit sie nichts verdeckt, bekommt die Seite
+   unten zusaetzlichen Abstand und der Nach-oben-Knopf weicht. */
+.mobilebar{ display:none; }
+@media (max-width:720px){
+  .mobilebar{
+    position:fixed; left:0; right:0; bottom:0; z-index:98;
+    display:grid; grid-template-columns:repeat(3,1fr);
+    background:rgba(255,255,255,.94);
+    -webkit-backdrop-filter:saturate(180%) blur(14px); backdrop-filter:saturate(180%) blur(14px);
+    border-top:1px solid var(--line);
+    padding-bottom:env(safe-area-inset-bottom, 0px);
+    box-shadow:0 -6px 24px -16px rgba(20,23,26,.4);
+  }
+  .mobilebar a{
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.2rem;
+    padding:.65rem .3rem .7rem; font-size:.76rem; font-weight:500; color:var(--ink-soft);
+    border-right:1px solid var(--line);
+  }
+  .mobilebar a:last-child{ border-right:0; }
+  .mobilebar svg{ color:var(--accent); }
+  .mobilebar__cta{ background:var(--accent); color:#fff; }
+  .mobilebar__cta svg{ color:#fff; }
+  body{ padding-bottom:4.7rem; }
+  body.is-locked .mobilebar{ display:none; }
+  .totop{ display:none; }
+}
+
+/* ---------- 27. Responsive fuer die neuen Bausteine ---------- */
+@media (max-width:1080px){
+  .planinfo__grid{ grid-template-columns:1fr 1fr; }
+  .planinfo__col:nth-child(3){ grid-column:1/-1; }
+  .voices{ grid-template-columns:1fr; }
+}
+@media (max-width:920px){
+  .about{ grid-template-columns:1fr; gap:2.5rem; }
+  .about__photo{ max-width:22rem; }
+  .about__text p, .about__text .lead{ max-width:none; }
+}
+@media (max-width:760px){
+  .planinfo__grid{ grid-template-columns:1fr; gap:1.8rem; padding:1.4rem 1.4rem 1.7rem; }
+  .planinfo__col + .planinfo__col{ border-left:0; border-top:1px solid var(--line); padding-left:0; padding-top:1.8rem; }
+  .planinfo summary{ padding:1.15rem 1.4rem; font-size:.98rem; }
+  .herowho{ max-width:none; }
+}
+@media (max-width:620px){
+  .cta__row .btn{ flex:1 1 100%; }
+  .about__cta .btn{ flex:1 1 100%; }
 }

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>Quelle für das Social-Vorschaubild</title>
+<!-- =====================================================================
+     Vorlage für assets/img/social-preview.png (1200 × 630 px)
+
+     Das ist das Bild, das erscheint, wenn jemand den Link zur Website in
+     WhatsApp, LinkedIn oder Facebook teilt. Diese Datei ist die Quelle —
+     ändern Sie hier Text oder Farben und erzeugen Sie das Bild neu:
+
+       "C:\Program Files\Google\Chrome\Application\chrome.exe" ^
+         --headless=new --disable-gpu --hide-scrollbars ^
+         --window-size=1200,630 ^
+         --screenshot="assets\img\social-preview.png" ^
+         "assets\social-preview.html"
+
+     (Im Projektordner ausführen. Unter macOS/Linux entsprechend mit
+     "google-chrome" bzw. dem Pfad zu Chrome.)
+     ===================================================================== -->
+<link rel="stylesheet" href="css/fonts.css">
+<style>
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ width:1200px; height:630px; overflow:hidden; }
+  body{
+    background:#1B1424;
+    font-family:"Inter",-apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+    color:#fff; position:relative;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:0 88px;
+  }
+  /* Zwei weiche Lichtkegel — dieselbe Farbwelt wie auf der Website */
+  body::before{
+    content:""; position:absolute; top:-32%; right:-8%; width:760px; height:760px;
+    background:radial-gradient(circle, rgba(140,100,205,.55) 0%, rgba(140,100,205,0) 68%);
+  }
+  body::after{
+    content:""; position:absolute; bottom:-40%; left:-10%; width:620px; height:620px;
+    background:radial-gradient(circle, rgba(200,180,120,.20) 0%, rgba(200,180,120,0) 68%);
+  }
+  .in{ position:relative; z-index:1; }
+
+  .brand{ display:flex; align-items:center; gap:16px; margin-bottom:46px; }
+  .brand__mark{
+    width:56px; height:56px; border-radius:15px; background:#fff; color:#1B1424;
+    display:grid; place-items:center;
+    font-family:"Instrument Serif",Georgia,serif; font-size:32px; line-height:1;
+  }
+  .brand__name{ font-size:24px; font-weight:600; letter-spacing:-.02em; line-height:1.1; }
+  .brand__name small{
+    display:block; font-size:12px; font-weight:400; letter-spacing:.18em;
+    text-transform:uppercase; color:rgba(255,255,255,.5); margin-top:4px;
+  }
+
+  h1{
+    font-family:"Instrument Serif",Georgia,serif; font-weight:400;
+    font-size:76px; line-height:1.04; letter-spacing:-.015em; max-width:19ch;
+  }
+  h1 em{ font-style:italic; color:#C3A6EA; }
+
+  p{ margin-top:28px; font-size:23px; line-height:1.5; color:rgba(255,255,255,.66); max-width:44ch; }
+
+  .facts{ display:flex; gap:14px; margin-top:44px; flex-wrap:wrap; }
+  .facts span{
+    display:inline-flex; align-items:center; gap:9px;
+    border:1px solid rgba(255,255,255,.2); border-radius:100px;
+    padding:10px 20px; font-size:17px; color:rgba(255,255,255,.82);
+  }
+  .facts i{ width:7px; height:7px; border-radius:50%; background:#C3A6EA; display:block; }
+</style>
+</head>
+<body>
+  <div class="in">
+    <div class="brand">
+      <span class="brand__mark">E</span>
+      <span class="brand__name">ENVY<small>Web</small></span>
+    </div>
+
+    <h1>Websites, um die man <em>Sie beneidet.</em></h1>
+    <p>Individuelle Webseiten für lokale Schweizer Betriebe — vom Entwurf bis zum Livegang.</p>
+
+    <div class="facts">
+      <span><i></i>Festpreis</span>
+      <span><i></i>In 2–3 Wochen online</span>
+      <span><i></i>Ohne Baukasten-Optik</span>
+    </div>
+  </div>
+</body>
+</html>

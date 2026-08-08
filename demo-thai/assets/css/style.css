@@ -178,8 +178,12 @@ body.is-locked .burger span:nth-child(1){ transform:translateY(6px) rotate(45deg
 body.is-locked .burger span:nth-child(2){ opacity:0; }
 body.is-locked .burger span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
 
+/* Das mobile Menue liegt BEWUSST unter dem Header (z-index 95 < 100).
+   Sonst deckt es den Burger-Button zu und man kann es nicht mehr schliessen.
+   Der Header wird dafuer transparent geschaltet, solange das Menue offen ist. */
 .mobilemenu{
-  position:fixed; inset:0; z-index:105; background:var(--sand);
+  position:fixed; inset:0; z-index:95; background:var(--sand);
+  padding:5.5rem 1.25rem 2.5rem; overflow-y:auto; overscroll-behavior:contain;
   display:flex; flex-direction:column; justify-content:center; align-items:center; gap:.3rem;
   opacity:0; visibility:hidden; transition:opacity .45s var(--ease), visibility .45s;
 }
@@ -193,6 +197,16 @@ body.is-locked .burger span:nth-child(3){ transform:translateY(-6px) rotate(-45d
 .mobilemenu a:hover{ color:var(--gold); }
 .mobilemenu__foot{ margin-top:2rem; text-align:center; opacity:0; transition:opacity .5s .3s var(--ease); }
 .mobilemenu.is-open .mobilemenu__foot{ opacity:1; }
+
+/* Header durchsichtig schalten, damit die Menueflaeche darunter durchgeht */
+body.is-locked .header{
+  background:transparent; box-shadow:none; border-bottom-color:transparent;
+  -webkit-backdrop-filter:none; backdrop-filter:none;
+}
+body.is-locked .totop{ opacity:0; visibility:hidden; }
+/* Zentriert, bleibt aber scrollbar, wenn das Menue hoeher als der Bildschirm ist */
+.mobilemenu > :first-child{ margin-top:auto; }
+.mobilemenu > :last-child{ margin-bottom:auto; }
 
 /* ---------- 6. Hero ---------- */
 .hero{ position:relative; min-height:100svh; display:flex; align-items:flex-end; overflow:hidden; }
@@ -428,6 +442,28 @@ body.is-locked .burger span:nth-child(3){ transform:translateY(-6px) rotate(-45d
 .ok{ display:none; gap:.8rem; align-items:center; background:var(--gold-soft); color:var(--gold-deep); padding:.95rem 1.1rem; margin-top:1.1rem; font-size:.93rem; }
 .ok.is-visible{ display:flex; }
 
+/* Fehlerbox — erscheint, wenn der Versand nicht geklappt hat */
+.notok{
+  display:none; gap:.9rem; align-items:flex-start; background:#F6E7E1; color:#8C3A22;
+  padding:1rem 1.2rem;  margin-top:1.1rem; font-size:.92rem; line-height:1.55;
+}
+.notok.is-visible{ display:flex; }
+.notok svg{ flex:none; margin-top:.22rem; }
+.notok a{ color:inherit; text-decoration:underline; text-underline-offset:2px; font-weight:600; }
+
+/* Spamfalle: darf fuer Menschen nicht sichtbar und nicht erreichbar sein */
+.hp{
+  position:absolute !important; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+
+/* Auf dem iPhone zoomt Safari in jedes Feld unter 16 px hinein.
+   Ab 16 px bleibt die Ansicht ruhig — nur auf kleinen Bildschirmen noetig. */
+@media (max-width:820px){
+  .field input, .field select, .field textarea{ font-size:16px; }
+}
+
+
 /* ---------- 16. Fussbereich ---------- */
 .footer{ background:var(--teak); color:rgba(255,255,255,.6); padding:clamp(3.5rem,6vw,5rem) 0 2rem; }
 .footer__top{ display:grid; grid-template-columns:1.5fr 1fr 1fr 1.1fr; gap:2.4rem; padding-bottom:2.8rem; border-bottom:1px solid rgba(255,255,255,.12); }
@@ -506,3 +542,33 @@ body.is-locked .burger span:nth-child(3){ transform:translateY(-6px) rotate(-45d
   *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
   .rise{ opacity:1; transform:none; }
 }
+
+/* ---------- Kennzeichnung als Beispielwebsite ----------
+   Liegt ueber allem (auch ueber dem mobilen Menue), damit der Hinweis
+   nie verdeckt wird. */
+.demoflag{
+  position:fixed; left:1rem; bottom:1rem; z-index:200;
+  display:flex; align-items:center; gap:.7rem; max-width:min(92vw,33rem);
+  padding:.6rem .85rem; border-radius:100px;
+  background:rgba(24,20,17,.93); color:rgba(255,255,255,.82);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  font-family:var(--body, sans-serif); font-size:.78rem; line-height:1.4;
+  box-shadow:0 12px 30px -14px rgba(0,0,0,.6);
+}
+.demoflag[hidden]{ display:none; }
+.demoflag__ico{ display:grid; place-items:center; flex:none; color:#E5B769; }
+.demoflag__txt b{ color:#fff; font-weight:600; }
+.demoflag__link{
+  flex:none; margin-left:.1rem; padding:.3rem .8rem; border-radius:100px;
+  background:rgba(255,255,255,.13); color:#fff; font-weight:600; white-space:nowrap;
+  transition:background-color .25s ease;
+}
+.demoflag__link:hover{ background:rgba(255,255,255,.24); }
+@media (max-width:720px){
+  .demoflag{
+    left:.6rem; right:.6rem; bottom:.6rem; max-width:none;
+    border-radius:14px; font-size:.72rem; padding:.55rem .7rem; gap:.55rem;
+  }
+  .demoflag__link{ padding:.28rem .6rem; }
+}
+@media print{ .demoflag{ display:none; } }

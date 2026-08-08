@@ -8,9 +8,9 @@
 <meta name="robots" content="noindex, follow">
 <meta name="theme-color" content="#FAF8F5">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='11' fill='%231B1424'/%3E%3Ctext x='24' y='33' font-family='Georgia,serif' font-size='23' fill='%23fff' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Schriften: lokal eingebunden, keine Verbindung zu Google -->
+<link rel="preload" href="assets/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -22,9 +22,9 @@
       <span>ENVY<small>Web</small></span>
     </a>
     <nav class="nav" aria-label="Hauptnavigation">
-      <a href="index.html#leistungen">Leistungen</a>
-      <a href="index.html#referenzen">Referenzen</a>
-      <a href="index.html#pakete">Pakete</a>
+      <a href="index.html#referenzen">Arbeiten</a>
+      <a href="index.html#person">Über mich</a>
+      <a href="index.html#pakete">Preise</a>
     </nav>
     <div class="header__actions">
       <a class="btn btn--accent btn--sm" href="index.html#kontakt">Erstgespräch</a>
@@ -40,17 +40,18 @@
     <p class="notice">
       <b style="font-weight:600;">Hinweis:</b> Diese Erklärung richtet sich nach dem revidierten
       Schweizer Datenschutzgesetz (revDSG, in Kraft seit 1. September 2023). Sie ist eine Vorlage
-      und ersetzt keine Rechtsberatung. Passen Sie Abschnitt 1 und 7 an Ihre Daten und Ihren
-      Hoster an. Wenn Sie später Statistik- oder Werbedienste einbinden, muss der Text ergänzt werden.
+      und ersetzt keine Rechtsberatung. Vor dem Livegang müssen die Angaben in eckigen Klammern
+      in Abschnitt 1 und 8 ausgefüllt sein. Wenn Sie später Statistik-, Karten- oder Werbedienste
+      einbinden, muss der Text ergänzt werden.
     </p>
 
     <h2>1. Verantwortliche Person</h2>
     <p>
-      [Vor- und Nachname]<br>
+      Ejdin Aliti, Envy Web<br>
       [Strasse und Hausnummer]<br>
       [PLZ und Ort], Schweiz<br>
       E-Mail: <a href="mailto:ejdin.aliti@greenecoservice.ch">ejdin.aliti@greenecoservice.ch</a><br>
-      Telefon: [Ihre Telefonnummer]
+      Telefon: <a href="tel:+41765220525">076 522 05 25</a>
     </p>
 
     <h2>2. Grundsätzliches</h2>
@@ -94,6 +95,16 @@
       mehr erforderlich sind — vorbehalten bleiben die gesetzlichen Aufbewahrungsfristen
       (insbesondere Art. 958f OR, 10 Jahre für Geschäftsunterlagen).
     </p>
+    <p>
+      <b style="font-weight:600;color:var(--ink);">Versand über einen Formulardienst:</b>
+      Das Kontaktformular wird über Formspree (Formspree Inc., USA) zugestellt. Die von Ihnen
+      eingegebenen Daten werden dabei an dessen Server übermittelt und von dort als E-Mail an
+      mich weitergeleitet. Formspree handelt als Auftragsbearbeiter im Sinne von Art. 9 DSG.
+      Die USA verfügen für zertifizierte Unternehmen über einen vom Bundesrat anerkannten
+      angemessenen Datenschutz (Swiss–U.S. Data Privacy Framework).
+      Wenn Sie das nicht möchten, schreiben Sie mir stattdessen direkt per E-Mail oder rufen an —
+      beides steht auf der Startseite.
+    </p>
 
     <h2>5. Cookies und Reichweitenmessung</h2>
     <p>
@@ -101,30 +112,34 @@
       statt, es werden keine Nutzerprofile erstellt und keine Social-Media-Plugins geladen.
     </p>
 
-    <h2>6. Schriftarten und Bekanntgabe ins Ausland</h2>
+    <h2>6. Schriftarten und externe Inhalte</h2>
     <p>
-      Diese Website lädt Schriftarten von Google Fonts. Dabei wird eine Verbindung zu Servern von
-      Google LLC (USA) aufgebaut und Ihre IP-Adresse übertragen. Die USA verfügen über einen vom
-      Bundesrat anerkannten angemessenen Datenschutz für zertifizierte Unternehmen
-      (Swiss–U.S. Data Privacy Framework).
+      Diese Website lädt <b style="font-weight:600;color:var(--ink);">keine</b> Schriftarten,
+      Skripte, Karten oder Videos von fremden Servern. Alle Schriften liegen lokal auf dem
+      Server dieser Website. Beim Aufruf der Seite wird deshalb keine Verbindung zu Google,
+      zu einem Content-Delivery-Netzwerk oder zu einem sozialen Netzwerk aufgebaut, und Ihre
+      IP-Adresse wird an keinen Dritten übertragen.
     </p>
     <p>
-      <b style="font-weight:600;color:var(--ink);">Datenschutzfreundlichere Alternative:</b>
-      Die Schriften lassen sich lokal auf dem eigenen Server ablegen. Dann entfällt die Verbindung
-      zu Google vollständig — und dieser Abschnitt kann gestrichen werden.
+      Eine Ausnahme gilt nur, wenn Sie das Kontaktformular absenden (siehe Abschnitt 4) oder
+      einen ausgehenden Link anklicken.
     </p>
 
     <h2>7. Hosting</h2>
     <p>
-      Diese Website wird bei [Name des Hosting-Anbieters, z. B. Infomaniak, Hostpoint, Netlify]
-      gehostet. Der Anbieter bearbeitet die unter Punkt 3 genannten Daten in meinem Auftrag als
-      Auftragsbearbeiter im Sinne von Art. 9 DSG.
+      Diese Website wird bei [Name und Sitz des Hosting-Anbieters — z. B. Hostpoint AG, Rapperswil;
+      Infomaniak Network SA, Genf; oder GitHub Inc., USA bei GitHub Pages] gehostet. Der Anbieter
+      bearbeitet die unter Punkt 3 genannten Daten in meinem Auftrag als Auftragsbearbeiter im
+      Sinne von Art. 9 DSG. Liegt der Serverstandort ausserhalb der Schweiz und des EWR, stützt
+      sich die Bekanntgabe auf einen anerkannten angemessenen Datenschutz beziehungsweise auf
+      Standardvertragsklauseln.
     </p>
 
     <h2>8. Eingebettete Vorschauen</h2>
     <p>
-      Im Bereich „Referenzen" werden Vorschauen von Websites eingebettet, die auf demselben Server
-      liegen. Dabei werden keine Daten an Dritte übertragen.
+      Im Bereich „Arbeiten" werden Vorschauen von Beispielwebsites eingebettet, die auf demselben
+      Server liegen. Dabei werden keine Daten an Dritte übertragen. Die dort gezeigten
+      Unternehmen, Adressen und Preise sind frei erfunden.
     </p>
 
     <h2>9. Datensicherheit</h2>
@@ -169,7 +184,7 @@
 <footer class="footer">
   <div class="wrap">
     <div class="footer__bottom" style="border:0;padding-top:0;">
-      <span>© <span id="year">2026</span> Envy Web</span>
+      <span>© <span id="year">2026</span> Envy Web · Ejdin Aliti</span>
       <nav aria-label="Rechtliches">
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>

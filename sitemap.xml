@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Nur Seiten, die tatsächlich in der Suche erscheinen sollen.
+  Die beiden Beispielwebsites stehen bewusst NICHT hier — sie sind
+  in robots.txt gesperrt und tragen "noindex".
+  Bei eigener Domain alle Adressen hier ersetzen.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://anonym210.github.io/webdesign-portfolio/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

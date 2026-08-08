@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Datenschutzerklärung — AURELIA Massage &amp; Wellness</title>
 <meta name="description" content="Datenschutzerklärung der AURELIA Massage & Wellness nach revidiertem Schweizer Datenschutzgesetz.">
-<meta name="robots" content="noindex, follow">
+<meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#FBF9F6">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%2329241F'/%3E%3Ctext x='24' y='33' font-family='Georgia,serif' font-size='24' fill='%23D8B189' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<!-- Schriften: lokal eingebunden, keine Verbindung zu Google -->
+<link rel="preload" href="assets/fonts/jost-200-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="page-legal">
@@ -189,5 +189,21 @@
 </footer>
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+<!-- ===================================================================
+     Kennzeichnung: Diese Seite ist ein Gestaltungsbeispiel, kein echtes
+     Unternehmen. Sie wird per JavaScript ausgeblendet, wenn die Seite als
+     Vorschau in der Portfolio-Website eingebettet laeuft — dort steht die
+     Kennzeichnung bereits daneben.
+     =================================================================== -->
+<aside class="demoflag" id="demoflag">
+  <span class="demoflag__ico" aria-hidden="true">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
+  </span>
+  <span class="demoflag__txt"><b>Beispielwebsite.</b> Unternehmen, Adresse, Preise und Texte sind erfunden.</span>
+  <a class="demoflag__link" href="../index.html">Gestaltung&nbsp;ansehen</a>
+</aside>
+
+<script>(function(){var f=document.getElementById('demoflag');var e=false;try{e=window.self!==window.top;}catch(x){e=true;}if(f&&e)f.hidden=true;})();</script>
 </body>
 </html>
