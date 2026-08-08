@@ -1,5 +1,5 @@
 /* =========================================================================
-   ALITI Webdesign — Interaktion
+   Envy Web — Interaktion
    Reines JavaScript, keine Bibliotheken.
    ========================================================================= */
 (function () {

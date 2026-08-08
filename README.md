@@ -46,6 +46,19 @@ Nach etwa einer Minute ist die Live-Adresse aktualisiert. Die Änderung ist
 also erst online, wenn Sie `git push` ausgeführt haben — Speichern allein
 genügt nicht.
 
+### Marke
+
+| | |
+|---|---|
+| **Name** | Envy Web |
+| **Logo** | Buchstabe „E" im dunklen Quadrat, darunter „ENVY / Web" |
+| **Wunschdomain** | `envyweb.ch` — noch nicht registriert |
+| **Claim (Titel & Footer)** | Websites, um die man Sie beneidet. |
+| **Claim (Hero-Eyebrow)** | Neid ist das beste Kompliment |
+
+Vor der Registrierung prüfen: Domain bei [nic.ch](https://www.nic.ch),
+Markenkonflikte bei [swissreg.ch](https://www.swissreg.ch) in Klasse 42.
+
 ### Eigene Domain verbinden
 
 Wenn Sie später eine `.ch`-Domain haben: im Repo unter
@@ -84,13 +97,13 @@ eingebettet — in Chrome und Edge funktioniert das auch per Doppelklick (getest
 
 | Wo | Was |
 |---|---|
-| `portfolio/index.html` | „ALITI" durch Ihren Namen / Firmennamen ersetzen (Suchen & Ersetzen) |
+| `portfolio/index.html` | Der Markenname **Envy Web** ist bereits überall eingetragen. Falls Sie ihn später ändern: „Envy Web", „ENVY" und den Logo-Buchstaben „E" ersetzen |
 | `portfolio/index.html` | Telefonnummer `+41 00 000 00 00` ersetzen — kommt im Kontaktbereich, im Footer und in den strukturierten Daten vor. Die E-Mail `ejdin.aliti@greenecoservice.ch` ist bereits überall eingetragen |
 | `portfolio/index.html` | WhatsApp-Link `https://wa.me/41000000000` auf Ihre Nummer setzen (Format: `41` + Nummer ohne führende 0 — aus 079 123 45 67 wird `41791234567`) |
 | `portfolio/index.html` | Abschnitt **Pakete**: Preise prüfen. Eingetragen sind CHF 890.– / CHF 1'690.– / ab CHF 2'900.– sowie Betreuung ab CHF 29.–/Monat — marktübliche Werte für Einzelunternehmer in der Schweiz |
 | `portfolio/impressum.html` | Alle `[Platzhalter]` in eckigen Klammern ersetzen — **Pflicht** nach Art. 3 Abs. 1 lit. s UWG (Name, vollständige Adresse, E-Mail) |
 | `portfolio/datenschutz.html` | Abschnitt 1 und 7 ausfüllen (Ihre Daten, Ihr Hoster). Text richtet sich nach revDSG |
-| Favicon / Logo | Der Buchstabe „A" steht an drei Stellen: im `<link rel="icon">` im Kopf und zweimal als `<span class="brand__mark">A</span>` |
+| Favicon / Logo | Der Buchstabe „E" steht an drei Stellen: im `<link rel="icon">` im Kopf und zweimal als `<span class="brand__mark">E</span>` |
 
 **Farbe ändern:** in `portfolio/assets/css/style.css` ganz oben im Block `:root`
 die Zeilen `--accent` und `--accent-deep` anpassen. Die ganze Seite zieht mit.
