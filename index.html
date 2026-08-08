@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Webdesign — Portfolio &amp; Demo</title>
+<meta name="description" content="Zwei Websites: die Portfolio-Seite und eine Demo-Website für eine Massagepraxis.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FAF9F6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='11' fill='%2314171A'/%3E%3Ctext x='24' y='33' font-family='Georgia,serif' font-size='23' fill='%23fff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#FAF9F6; --card:#FFFFFF; --line:#E2E0D8;
+    --ink:#14171A; --soft:#5A6169; --mute:#8C939B;
+    --accent:#1F6F5C; --accent-soft:#E3F0EB;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *,*::before,*::after{ box-sizing:border-box; }
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:1rem; line-height:1.7; -webkit-font-smoothing:antialiased;
+    display:flex; align-items:center; justify-content:center;
+    min-height:100svh; padding:clamp(1.5rem,5vw,4rem);
+  }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ width:min(100%,940px); }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:.6rem; margin:0 0 1rem;
+    font-size:.7rem; font-weight:500; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--accent);
+  }
+  .eyebrow::before{ content:""; width:22px; height:1px; background:currentColor; }
+
+  h1{
+    font-family:Georgia,"Iowan Old Style",serif; font-weight:400;
+    font-size:clamp(2rem,1.4rem + 2.6vw,3.1rem); line-height:1.1;
+    letter-spacing:-.015em; margin:0 0 .8rem; text-wrap:balance;
+  }
+  .lead{ color:var(--soft); max-width:58ch; margin:0 0 clamp(2rem,4vw,3rem); }
+
+  .grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+  .card{
+    display:flex; flex-direction:column; gap:.5rem;
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:1.8rem 1.7rem 1.9rem;
+    transition:transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
+  }
+  .card:hover{ transform:translateY(-4px); box-shadow:0 20px 45px -22px rgba(20,23,26,.28); border-color:transparent; }
+  .card:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+  .tag{
+    align-self:flex-start; font-size:.68rem; font-weight:500; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--accent); background:var(--accent-soft);
+    padding:.3rem .7rem; border-radius:100px; margin-bottom:.4rem;
+  }
+  .card h2{
+    font-family:Georgia,"Iowan Old Style",serif; font-weight:400; font-size:1.5rem;
+    line-height:1.15; margin:0;
+  }
+  .card p{ color:var(--soft); font-size:.94rem; margin:0; flex:1; }
+  .go{
+    display:inline-flex; align-items:center; gap:.45rem; margin-top:1rem;
+    color:var(--accent); font-weight:500; font-size:.92rem;
+    transition:gap .3s var(--ease);
+  }
+  .card:hover .go{ gap:.85rem; }
+
+  footer{ margin-top:clamp(2rem,4vw,3rem); color:var(--mute); font-size:.86rem; }
+  footer a{ color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+
+  @media (max-width:720px){ .grid{ grid-template-columns:1fr; } }
+  @media (prefers-reduced-motion:reduce){ *{ transition-duration:.001ms !important; } }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <p class="eyebrow">Übersicht</p>
+    <h1>Zwei Websites in diesem Projekt</h1>
+    <p class="lead">
+      Beide sind reines HTML, CSS und JavaScript — ohne Baukasten, ohne Datenbank,
+      ohne externe Bibliotheken.
+    </p>
+
+    <div class="grid">
+      <a class="card" href="portfolio/">
+        <span class="tag">Verkaufsseite</span>
+        <h2>Webdesign-Portfolio</h2>
+        <p>
+          Leistungen, Referenzen, Ablauf, Pakete und Kontaktformular —
+          die Seite, mit der Aufträge gewonnen werden.
+        </p>
+        <span class="go">
+          Öffnen
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="card" href="demo-massage/">
+        <span class="tag">Arbeitsbeispiel</span>
+        <h2>AURELIA Massage &amp; Wellness</h2>
+        <p>
+          Demo-Website für eine Massagepraxis: Behandlungen, Preisliste,
+          Galerie mit Lightbox und Terminanfrage. Alle Inhalte sind erfunden.
+        </p>
+        <span class="go">
+          Öffnen
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+    </div>
+
+    <footer>
+      Einrichtung, Anpassung und Veröffentlichung sind in der
+      <a href="README.md">README</a> beschrieben. Bildquellen und Lizenzen stehen in
+      <a href="CREDITS.md">CREDITS</a>.
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AURELIA · Massage & Wellness — Ruhe finden, Kraft tanken</title>
+<meta name="description" content="AURELIA Massage & Wellness — klassische Massage, Hot Stone, Aroma-Öl und Wellness-Rituale in ruhiger Atmosphäre. Jetzt Termin online anfragen.">
+<meta name="theme-color" content="#FBF9F6">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.aurelia-massage.ch/">
+
+<!-- Social Preview -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="AURELIA · Massage & Wellness">
+<meta property="og:description" content="Ruhe finden, Kraft tanken. Klassische Massage, Hot Stone und Aroma-Rituale in ruhiger Atmosphäre.">
+<meta property="og:image" content="assets/img/hero.jpg">
+<meta property="og:locale" content="de_CH">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Favicon (Monogramm, ohne externe Datei) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%2329241F'/%3E%3Ctext x='24' y='33' font-family='Georgia,serif' font-size='24' fill='%23D8B189' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+
+<!-- Schriften -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/style.css">
+
+<!-- Strukturierte Daten für Google (lokales Unternehmen) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HealthAndBeautyBusiness",
+  "name": "AURELIA Massage & Wellness",
+  "image": "assets/img/hero.jpg",
+  "description": "Massagepraxis für klassische Massage, Hot-Stone-Massage, Aroma-Öl-Massagen und Wellness-Rituale.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Bahnhofstrasse 12",
+    "postalCode": "8001",
+    "addressLocality": "Musterstadt",
+    "addressCountry": "CH"
+  },
+  "telephone": "+41 44 123 45 67",
+  "email": "hallo@aurelia-massage.ch",
+  "priceRange": "CHF",
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "20:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "16:00" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- ============================ HEADER ============================ -->
+<header class="header" id="header">
+  <div class="wrap header__inner">
+    <a class="brand" href="#top" aria-label="AURELIA — zur Startseite">
+      <svg class="brand__mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-opacity=".35"/>
+        <path d="M24 11c5 5.5 8 10 8 14.2A8 8 0 0 1 24 33a8 8 0 0 1-8-7.8C16 21 19 16.5 24 11Z" stroke="currentColor" stroke-width="1.1"/>
+        <path d="M24 15v18" stroke="currentColor" stroke-width="1.1" stroke-opacity=".45"/>
+      </svg>
+      <span class="brand__text">
+        <span class="brand__name">AURELIA</span>
+        <span class="brand__tag">Massage &amp; Wellness</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="#philosophie">Praxis</a>
+      <a href="#behandlungen">Behandlungen</a>
+      <a href="#galerie">Räume</a>
+      <a href="#preise">Preise</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+
+    <div class="header__actions">
+      <a class="header__phone" href="tel:+41441234567">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+        044 123 45 67
+      </a>
+      <a class="btn btn--light btn--sm" href="#kontakt">Termin anfragen</a>
+      <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobilemenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menü -->
+<div class="mobilemenu" id="mobilemenu">
+  <a href="#philosophie">Praxis</a>
+  <a href="#behandlungen">Behandlungen</a>
+  <a href="#galerie">Räume</a>
+  <a href="#preise">Preise</a>
+  <a href="#stimmen">Stimmen</a>
+  <a href="#kontakt">Kontakt</a>
+  <div class="mobilemenu__foot">
+    <a class="btn btn--accent" href="#kontakt">Termin anfragen</a>
+    <p class="muted" style="margin-top:1.2rem;font-size:.9rem;">044 123 45 67</p>
+  </div>
+</div>
+
+<main id="top">
+
+<!-- ============================ HERO ============================ -->
+<section class="hero">
+  <div class="hero__media">
+    <img src="assets/img/hero.jpg" alt="Helle, ruhige Nacken- und Schultermassage in der Praxis" fetchpriority="high" width="2000" height="1333">
+  </div>
+
+  <div class="wrap hero__inner">
+    <p class="eyebrow hero__eyebrow">Massage &amp; Wellness in Musterstadt</p>
+    <h1>Ruhe finden.<br><em>Kraft tanken.</em></h1>
+    <p class="hero__sub">
+      Eine kleine, ruhige Praxis für Menschen, die zwischen Terminen und Bildschirmen
+      wieder bei sich ankommen möchten. Ohne Hektik. Ohne Massenbetrieb.
+    </p>
+    <div class="hero__cta">
+      <a class="btn btn--accent" href="#kontakt">Termin anfragen</a>
+      <a class="btn btn--light" href="#behandlungen">Behandlungen ansehen</a>
+    </div>
+    <div class="hero__meta">
+      <span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Zentrum, 3 Min. vom Marktplatz
+      </span>
+      <span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        Mo–Fr 9–20 Uhr · Sa 10–16 Uhr
+      </span>
+      <span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
+        4,9 von 5 · 128 Bewertungen
+      </span>
+    </div>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true">
+    <i></i>
+    <span>Scrollen</span>
+  </div>
+</section>
+
+<!-- ============================ VORTEILE ============================ -->
+<section class="strip">
+  <div class="wrap">
+    <div class="strip__grid">
+      <div class="strip__item"><span class="strip__k">12</span><span class="strip__v">Jahre Erfahrung</span></div>
+      <div class="strip__item"><span class="strip__k">60–90</span><span class="strip__v">Minuten Auszeit</span></div>
+      <div class="strip__item"><span class="strip__k">100 %</span><span class="strip__v">Bio-Öle</span></div>
+      <div class="strip__item"><span class="strip__k">1:1</span><span class="strip__v">Einzelbetreuung</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PHILOSOPHIE ============================ -->
+<section class="section" id="philosophie">
+  <div class="wrap split">
+    <div class="split__content reveal">
+      <p class="eyebrow">Unsere Philosophie</p>
+      <h2>Eine Stunde, in der<br>nichts von Ihnen<br>erwartet wird.</h2>
+      <p class="lead" style="margin-top:1.5rem;">
+        AURELIA ist bewusst klein gehalten. Es gibt keine Wartenummern und keine
+        Musik aus der Konserve — nur einen ruhigen Raum, warme Öle und Zeit,
+        die wirklich Ihnen gehört.
+      </p>
+      <ul class="split__list">
+        <li>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          <span><b style="font-weight:400;color:var(--ink)">Ausführliches Vorgespräch.</b> Wir schauen zuerst, was Ihr Körper gerade braucht — erst dann beginnt die Behandlung.</span>
+        </li>
+        <li>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          <span><b style="font-weight:400;color:var(--ink)">Keine Termine im Akkord.</b> Zwischen zwei Gästen liegen mindestens 20 Minuten Puffer.</span>
+        </li>
+        <li>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          <span><b style="font-weight:400;color:var(--ink)">Reine Bio-Öle.</b> Kaltgepresst, ohne Duftstoffe — auf Wunsch komplett neutral.</span>
+        </li>
+      </ul>
+      <a class="link-arrow" href="#behandlungen">
+        Behandlungen entdecken
+        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M0 5h14M10 1l4 4-4 4"/></svg>
+      </a>
+      <p class="signature">Marie Lindner</p>
+      <p class="muted" style="font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;">Inhaberin &amp; Masseurin</p>
+    </div>
+
+    <div class="split__media reveal" data-delay="1">
+      <img src="assets/img/philosophie.jpg" alt="Ruhiger, heller Behandlungsraum mit Vase und weichem Leinen" loading="lazy" width="1200" height="1500">
+      <div class="split__badge">
+        <b>4,9</b>
+        <span>Google-Bewertung</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ BEHANDLUNGEN ============================ -->
+<section class="section section--warm" id="behandlungen">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">Behandlungen</p>
+      <h2>Vier Wege zur Entspannung</h2>
+      <p class="lead" style="margin-top:1.2rem;">
+        Jede Behandlung beginnt mit einem kurzen Gespräch. Sie müssen sich vorher
+        nicht festlegen — wir finden gemeinsam das Passende.
+      </p>
+    </div>
+
+    <div class="treatments">
+      <article class="card reveal">
+        <div class="card__media">
+          <img src="assets/img/behandlung-klassisch.jpg" alt="Klassische Rückenmassage bei Tageslicht am Fenster" loading="lazy" width="1100" height="880">
+          <span class="card__price">ab CHF 120</span>
+        </div>
+        <div class="card__body">
+          <span class="card__dur">60 · 90 Minuten</span>
+          <h3>Klassische Massage</h3>
+          <p>Die bewährte Basis: gezielte Griffe für Nacken, Schultern und Rücken. Löst Verspannungen, die vom Sitzen kommen.</p>
+          <a class="link-arrow" href="#kontakt">Termin anfragen
+            <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M0 5h14M10 1l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-delay="1">
+        <div class="card__media">
+          <img src="assets/img/behandlung-hotstone.jpg" alt="Hot-Stone-Massage mit warmen Basaltsteinen und Orchideen" loading="lazy" width="1100" height="880">
+          <span class="card__price">ab CHF 155</span>
+        </div>
+        <div class="card__body">
+          <span class="card__dur">75 Minuten</span>
+          <h3>Hot Stone</h3>
+          <p>Warme Basaltsteine geben ihre Wärme langsam ab. Ideal, wenn Muskeln tief sitzen und schnell wieder verkrampfen.</p>
+          <a class="link-arrow" href="#kontakt">Termin anfragen
+            <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M0 5h14M10 1l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-delay="2">
+        <div class="card__media">
+          <img src="assets/img/behandlung-aroma.jpg" alt="Aromaöl in brauner Glasflasche im warmen Licht" loading="lazy" width="1100" height="880">
+          <span class="card__price">ab CHF 135</span>
+        </div>
+        <div class="card__body">
+          <span class="card__dur">60 · 90 Minuten</span>
+          <h3>Aroma-Öl-Massage</h3>
+          <p>Fliessende, ruhige Bewegungen mit einem Duft, den Sie selbst auswählen — von Lavendel bis Zeder. Oder ganz neutral.</p>
+          <a class="link-arrow" href="#kontakt">Termin anfragen
+            <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M0 5h14M10 1l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-delay="3">
+        <div class="card__media">
+          <img src="assets/img/behandlung-wellness.jpg" alt="Duftstäbchen, Kerzen und gerolltes Handtuch in hellem Licht" loading="lazy" width="1100" height="880">
+          <span class="card__price">ab CHF 240</span>
+        </div>
+        <div class="card__body">
+          <span class="card__dur">120 Minuten</span>
+          <h3>Wellness-Ritual</h3>
+          <p>Peeling, Ganzkörpermassage und Ruhephase mit Tee. Unsere längste Auszeit — auch als Geschenk sehr beliebt.</p>
+          <a class="link-arrow" href="#kontakt">Termin anfragen
+            <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M0 5h14M10 1l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ABLAUF ============================ -->
+<section class="section">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">So läuft Ihr Besuch</p>
+      <h2>Drei Schritte, mehr nicht</h2>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step__n">I</div>
+        <h3>Ankommen</h3>
+        <p>Sie klingeln, hängen den Alltag an die Garderobe und bekommen erst einmal einen Tee.</p>
+      </div>
+      <div class="step reveal" data-delay="1">
+        <div class="step__n">II</div>
+        <h3>Abstimmen</h3>
+        <p>Kurzes Gespräch: Wo drückt es? Wie viel Druck ist angenehm? Welcher Duft — oder lieber keiner?</p>
+      </div>
+      <div class="step reveal" data-delay="2">
+        <div class="step__n">III</div>
+        <h3>Loslassen</h3>
+        <p>Die Behandlung. Danach 10 Minuten Nachruhe, damit die Wirkung bleibt — auch nach der Tür.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ GALERIE ============================ -->
+<section class="section section--warm" id="galerie">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">Unsere Räume</p>
+      <h2>Hell, ruhig, ohne Deko-Lärm</h2>
+      <p class="lead" style="margin-top:1.2rem;">Ein Blick in die Praxis, bevor Sie kommen — damit Sie schon wissen, was Sie erwartet.</p>
+    </div>
+
+    <div class="gallery reveal" id="gallery">
+      <button type="button" data-src="assets/img/studio-2.jpg" data-cap="Behandlungsraum I"><img src="assets/img/studio-2.jpg" alt="Behandlungsraum mit Bambuswand und warmem Licht" loading="lazy"></button>
+      <button type="button" data-src="assets/img/studio-1.jpg" data-cap="Ruheecke"><img src="assets/img/studio-1.jpg" alt="Helle Ruheecke mit Diffusor und Spiegel" loading="lazy"></button>
+      <button type="button" data-src="assets/img/detail-stones.jpg" data-cap="Warme Basaltsteine"><img src="assets/img/detail-stones.jpg" alt="Warme Basaltsteine werden auf dem Rücken platziert" loading="lazy"></button>
+      <button type="button" data-src="assets/img/studio-3.jpg" data-cap="Behandlungsraum II"><img src="assets/img/studio-3.jpg" alt="Heller Behandlungsraum mit Massageliege am Fenster" loading="lazy"></button>
+      <button type="button" data-src="assets/img/galerie-massage.jpg" data-cap="Behandlung"><img src="assets/img/galerie-massage.jpg" alt="Massage des Rückens mit beiden Händen" loading="lazy"></button>
+      <button type="button" data-src="assets/img/detail-tuecher.jpg" data-cap="Frische Tücher"><img src="assets/img/detail-tuecher.jpg" alt="Gerolltes Handtuch, Spender und Tulpen" loading="lazy"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PREISE ============================ -->
+<section class="section" id="preise">
+  <div class="wrap">
+    <div class="reveal" style="max-width:640px;">
+      <p class="eyebrow">Preise</p>
+      <h2>Transparent, ohne Kleingedrucktes</h2>
+      <p class="lead" style="margin-top:1.2rem;">Alle Preise verstehen sich inkl. Vorgespräch, Nachruhe und Tee.</p>
+    </div>
+
+    <div class="pricing" style="margin-top:3.2rem;">
+      <div class="pricelist reveal">
+        <div class="priceitem">
+          <span class="priceitem__name">Klassische Massage · 60 Min.</span>
+          <span class="priceitem__val">CHF 120.–</span>
+          <span class="priceitem__desc">Rücken, Nacken, Schultern — die klassische Auszeit.</span>
+        </div>
+        <div class="priceitem">
+          <span class="priceitem__name">Klassische Massage · 90 Min.</span>
+          <span class="priceitem__val">CHF 165.–</span>
+          <span class="priceitem__desc">Ganzkörper, mit mehr Zeit für Problemzonen.</span>
+        </div>
+        <div class="priceitem">
+          <span class="priceitem__name">Aroma-Öl-Massage · 60 Min.</span>
+          <span class="priceitem__val">CHF 135.–</span>
+          <span class="priceitem__desc">Inkl. Duftauswahl aus sechs Bio-Ölen.</span>
+        </div>
+        <div class="priceitem">
+          <span class="priceitem__name">Hot Stone · 75 Min.</span>
+          <span class="priceitem__val">CHF 155.–</span>
+          <span class="priceitem__desc">Warme Basaltsteine, besonders bei tiefen Verspannungen.</span>
+        </div>
+        <div class="priceitem">
+          <span class="priceitem__name">Rücken intensiv · 40 Min.</span>
+          <span class="priceitem__val">CHF 95.–</span>
+          <span class="priceitem__desc">Die kurze Variante für die Mittagspause.</span>
+        </div>
+        <div class="priceitem">
+          <span class="priceitem__name">Wellness-Ritual · 120 Min.</span>
+          <span class="priceitem__val">CHF 240.–</span>
+          <span class="priceitem__desc">Peeling, Ganzkörpermassage, Ruhephase mit Tee.</span>
+        </div>
+        <div class="priceitem">
+          <span class="priceitem__name">Paar-Behandlung · 90 Min.</span>
+          <span class="priceitem__val">CHF 320.–</span>
+          <span class="priceitem__desc">Zwei Liegen, ein Raum, zwei Masseurinnen.</span>
+        </div>
+      </div>
+
+      <aside class="pricecard reveal" data-delay="1">
+        <h3>10er-Karte</h3>
+        <p style="color:rgba(255,255,255,.7);">Für alle, die regelmässig kommen — die entspannteste Art zu sparen.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>10 Behandlungen zum Preis von 9</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Frei kombinierbar zwischen allen Behandlungen</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>24 Monate gültig, übertragbar</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Bevorzugte Terminvergabe</span></li>
+        </ul>
+        <p style="font-family:var(--serif);font-size:2.6rem;color:#fff;line-height:1;margin-bottom:1.4rem;">ab CHF 1'080.–</p>
+        <a class="btn btn--light" href="#kontakt">Karte anfragen</a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ STIMMEN ============================ -->
+<section class="section section--warm" id="stimmen">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">Stimmen</p>
+      <h2>Was Gäste erzählen</h2>
+    </div>
+
+    <div class="quotes">
+      <figure class="quote reveal">
+        <div class="quote__stars" aria-label="5 von 5 Sternen">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
+        </div>
+        <blockquote><p>„Ich sitze zehn Stunden am Tag am Schreibtisch. Nach der ersten Behandlung konnte ich den Kopf zum ersten Mal seit Monaten wieder frei drehen."</p></blockquote>
+        <figcaption class="quote__by">
+          <span class="quote__ini">T. K.</span>
+          <span><b>Thomas K.</b><span>Seit 2 Jahren Stammgast</span></span>
+        </figcaption>
+      </figure>
+
+      <figure class="quote reveal" data-delay="1">
+        <div class="quote__stars" aria-label="5 von 5 Sternen">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
+        </div>
+        <blockquote><p>„Kein Wellness-Kitsch, keine Verkaufsgespräche. Man wird gefragt, was man braucht — und bekommt genau das."</p></blockquote>
+        <figcaption class="quote__by">
+          <span class="quote__ini">S. B.</span>
+          <span><b>Sandra B.</b><span>Aroma-Öl-Massage</span></span>
+        </figcaption>
+      </figure>
+
+      <figure class="quote reveal" data-delay="2">
+        <div class="quote__stars" aria-label="5 von 5 Sternen">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
+        </div>
+        <blockquote><p>„Das Wellness-Ritual habe ich meiner Mutter geschenkt. Sie hat danach zwei Wochen lang von nichts anderem gesprochen."</p></blockquote>
+        <figcaption class="quote__by">
+          <span class="quote__ini">M. R.</span>
+          <span><b>Melanie R.</b><span>Gutschein verschenkt</span></span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ GUTSCHEIN-BANNER ============================ -->
+<section class="banner">
+  <div class="banner__media">
+    <img src="assets/img/gutschein.jpg" alt="Ruhige Sauna- und Wellnessatmosphäre in warmem Holz" loading="lazy">
+  </div>
+  <div class="wrap banner__inner">
+    <p class="eyebrow hero__eyebrow">Gutscheine</p>
+    <h2>Zeit verschenken statt Dinge.</h2>
+    <p>
+      Gutscheine gibt es für jeden Betrag oder jede Behandlung — auf Wunsch als
+      gedruckte Karte im Leinenumschlag oder als PDF innerhalb von 10 Minuten per E-Mail.
+    </p>
+    <a class="btn btn--light" href="#kontakt">Gutschein bestellen</a>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section class="section">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">Häufige Fragen</p>
+      <h2>Gut zu wissen</h2>
+    </div>
+
+    <div class="faq" id="faq">
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Muss ich mich komplett ausziehen?<i aria-hidden="true"></i></button>
+        <div class="faq__a"><div>Nein. Sie behalten so viel an, wie Sie möchten — Unterwäsche ist völlig üblich. Alle Bereiche, die gerade nicht behandelt werden, bleiben mit Tüchern bedeckt.</div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Wie früh sollte ich da sein?<i aria-hidden="true"></i></button>
+        <div class="faq__a"><div>Fünf Minuten reichen völlig. Ihre Behandlungszeit beginnt erst, wenn Sie auf der Liege liegen — das Vorgespräch geht nicht von Ihrer Zeit ab.</div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Ich habe Rückenprobleme. Ist Massage sinnvoll?<i aria-hidden="true"></i></button>
+        <div class="faq__a"><div>In den meisten Fällen ja — bei akuten Beschwerden, Bandscheibenvorfällen oder nach Operationen sprechen Sie aber bitte vorher mit Ihrer Ärztin oder Ihrem Arzt. Sagen Sie uns im Vorgespräch einfach Bescheid, dann passen wir Druck und Technik an.</div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Kann ich einen Termin absagen?<i aria-hidden="true"></i></button>
+        <div class="faq__a"><div>Ja, bis 24 Stunden vorher kostenfrei — kurz anrufen oder eine Nachricht schreiben genügt. Danach berechnen wir 50 % der Behandlung, weil der Termin dann meist nicht mehr vergeben werden kann.</div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Wie bezahle ich?<i aria-hidden="true"></i></button>
+        <div class="faq__a"><div>Bar, mit Debit- oder Kreditkarte sowie per TWINT. Gutscheine und 10er-Karten können Sie auch vorab per Rechnung begleichen.</div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Gibt es Parkplätze?<i aria-hidden="true"></i></button>
+        <div class="faq__a"><div>Direkt vor dem Haus stehen zwei Gästeparkplätze zur Verfügung. Zusätzlich ist das Parkhaus am Marktplatz drei Gehminuten entfernt.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ KONTAKT ============================ -->
+<section class="section section--warm" id="kontakt">
+  <div class="wrap">
+    <div class="reveal" style="max-width:640px;margin-bottom:3.2rem;">
+      <p class="eyebrow">Kontakt</p>
+      <h2>Termin anfragen</h2>
+      <p class="lead" style="margin-top:1.2rem;">
+        Schreiben Sie uns kurz, wann es Ihnen passt — wir melden uns in der Regel
+        noch am selben Tag mit einem Vorschlag zurück.
+      </p>
+    </div>
+
+    <div class="contact">
+      <div class="info reveal">
+        <div class="info__block">
+          <h4>Praxis</h4>
+          <p>
+            AURELIA Massage &amp; Wellness<br>
+            Bahnhofstrasse 12<br>
+            8001 Musterstadt
+          </p>
+        </div>
+        <div class="info__block">
+          <h4>Direkt erreichen</h4>
+          <p>
+            <a href="tel:+41441234567">044 123 45 67</a><br>
+            <a href="mailto:hallo@aurelia-massage.ch">hallo@aurelia-massage.ch</a>
+          </p>
+        </div>
+        <div class="info__block">
+          <h4>Öffnungszeiten</h4>
+          <ul class="hours">
+            <li><span>Montag – Freitag</span><b>9:00 – 20:00</b></li>
+            <li><span>Samstag</span><b>10:00 – 16:00</b></li>
+            <li style="border:0;"><span>Sonntag</span><b>geschlossen</b></li>
+          </ul>
+        </div>
+        <div class="info__block">
+          <h4>Folgen</h4>
+          <div class="socials">
+            <a href="#" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 3h-3a4 4 0 0 0-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h3Z"/></svg>
+            </a>
+            <a href="#" aria-label="WhatsApp">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.3A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 9.2c.2-.5.5-.5.8-.5h.6c.2 0 .4 0 .6.5l.7 1.6c.1.3 0 .5-.1.7l-.4.5c-.1.2-.2.3 0 .6a6 6 0 0 0 2.7 2.3c.3.1.4 0 .6-.1l.5-.6c.2-.2.4-.2.6-.1l1.6.8c.3.1.4.3.4.5 0 .6-.4 1.6-1.6 1.7-1 .1-2.4-.3-4.2-1.6a9.7 9.7 0 0 1-3-3.8c-.4-1-.4-2 .2-2.5Z" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <form class="form reveal" data-delay="1" id="bookingForm" novalidate>
+        <div class="form__grid">
+          <div class="field">
+            <label for="f-name">Name *</label>
+            <input type="text" id="f-name" name="name" autocomplete="name" required>
+            <span class="field__err">Bitte tragen Sie Ihren Namen ein.</span>
+          </div>
+          <div class="field">
+            <label for="f-mail">E-Mail *</label>
+            <input type="email" id="f-mail" name="email" autocomplete="email" required>
+            <span class="field__err">Bitte prüfen Sie Ihre E-Mail-Adresse.</span>
+          </div>
+          <div class="field">
+            <label for="f-phone">Telefon</label>
+            <input type="tel" id="f-phone" name="telefon" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="f-treat">Behandlung</label>
+            <select id="f-treat" name="behandlung">
+              <option>Klassische Massage · 60 Min.</option>
+              <option>Klassische Massage · 90 Min.</option>
+              <option>Aroma-Öl-Massage · 60 Min.</option>
+              <option>Hot Stone · 75 Min.</option>
+              <option>Rücken intensiv · 40 Min.</option>
+              <option>Wellness-Ritual · 120 Min.</option>
+              <option>Paar-Behandlung · 90 Min.</option>
+              <option>Gutschein</option>
+              <option>Noch unentschlossen</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-date">Wunschtermin</label>
+            <input type="date" id="f-date" name="datum">
+          </div>
+          <div class="field">
+            <label for="f-time">Tageszeit</label>
+            <select id="f-time" name="tageszeit">
+              <option>Vormittags (9–12 Uhr)</option>
+              <option>Mittags (12–15 Uhr)</option>
+              <option>Nachmittags (15–18 Uhr)</option>
+              <option>Abends (18–20 Uhr)</option>
+              <option>Flexibel</option>
+            </select>
+          </div>
+          <div class="field field--full">
+            <label for="f-msg">Nachricht</label>
+            <textarea id="f-msg" name="nachricht" placeholder="Gibt es etwas, das wir vorher wissen sollten? (Verspannungen, Allergien, Wünsche …)"></textarea>
+          </div>
+        </div>
+
+        <label class="form__consent" for="f-privacy">
+          <input type="checkbox" id="f-privacy" name="datenschutz" required>
+          <span>Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Daten zur Bearbeitung der Anfrage einverstanden. *</span>
+        </label>
+
+        <button class="btn btn--accent" type="submit">Anfrage senden</button>
+        <p class="form__note">Antwort in der Regel innerhalb von 24 Stunden · Keine automatische Buchung</p>
+
+        <div class="form__ok" id="formOk" role="status">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
+          <span>Vielen Dank! Ihre Anfrage ist eingegangen — wir melden uns zeitnah.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <a class="brand" href="#top">
+          <svg class="brand__mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-opacity=".35"/>
+            <path d="M24 11c5 5.5 8 10 8 14.2A8 8 0 0 1 24 33a8 8 0 0 1-8-7.8C16 21 19 16.5 24 11Z" stroke="currentColor" stroke-width="1.1"/>
+            <path d="M24 15v18" stroke="currentColor" stroke-width="1.1" stroke-opacity=".45"/>
+          </svg>
+          <span class="brand__text">
+            <span class="brand__name">AURELIA</span>
+            <span class="brand__tag">Massage &amp; Wellness</span>
+          </span>
+        </a>
+        <p style="max-width:34ch;font-size:.92rem;">
+          Eine kleine Praxis für ehrliche Massage — ohne Hektik, ohne Verkaufsgespräche.
+        </p>
+      </div>
+
+      <div>
+        <h5>Behandlungen</h5>
+        <ul>
+          <li><a href="#behandlungen">Klassische Massage</a></li>
+          <li><a href="#behandlungen">Hot Stone</a></li>
+          <li><a href="#behandlungen">Aroma-Öl-Massage</a></li>
+          <li><a href="#behandlungen">Wellness-Ritual</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>Praxis</h5>
+        <ul>
+          <li><a href="#philosophie">Über uns</a></li>
+          <li><a href="#galerie">Räume</a></li>
+          <li><a href="#preise">Preise</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>Kontakt</h5>
+        <ul>
+          <li>Bahnhofstrasse 12<br>8001 Musterstadt</li>
+          <li><a href="tel:+41441234567">044 123 45 67</a></li>
+          <li><a href="mailto:hallo@aurelia-massage.ch">hallo@aurelia-massage.ch</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span id="year">2026</span> AURELIA Massage &amp; Wellness</span>
+      <nav aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<button class="totop" id="totop" aria-label="Nach oben">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Bildansicht">
+  <button class="lightbox__close" id="lbClose" aria-label="Schliessen">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <button class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Vorheriges Bild">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+  </button>
+  <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Nächstes Bild">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+  </button>
+  <img id="lbImg" src="" alt="">
+  <p class="lightbox__cap" id="lbCap"></p>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
