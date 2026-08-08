@@ -58,6 +58,15 @@
        ]
      }
      ------------------------------------------------------------------ -->
+<!-- Laeuft die Seite als Vorschau in einem Rahmen? Diese Pruefung muss VOR
+     dem ersten Rendern stehen, sonst blitzt die Kennzeichnung kurz auf. -->
+<script>
+  (function () {
+    var e = true;
+    try { e = window.self !== window.top; } catch (x) { e = true; }
+    if (e) document.documentElement.className += ' embedded';
+  })();
+</script>
 </head>
 <body>
 

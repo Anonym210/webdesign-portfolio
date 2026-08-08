@@ -556,6 +556,10 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
   box-shadow:0 12px 30px -14px rgba(0,0,0,.6);
 }
 .demoflag[hidden]{ display:none; }
+/* In der eingebetteten Vorschau auf der Verkaufsseite ausblenden —
+   dort steht die Kennzeichnung bereits neben dem Rahmen. */
+.embedded .demoflag{ display:none; }
+
 .demoflag__ico{ display:grid; place-items:center; flex:none; color:#E5B769; }
 .demoflag__txt b{ color:#fff; font-weight:600; }
 .demoflag__link{

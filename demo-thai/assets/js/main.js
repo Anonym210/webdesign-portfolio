@@ -313,13 +313,4 @@
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
-  /* ---------- 10. Kennzeichnung als Beispielwebsite ----------
-     In der eingebetteten Vorschau auf der Portfolio-Website ausblenden —
-     dort steht der Hinweis schon neben dem Rahmen. */
-  var demoflag = document.getElementById('demoflag');
-  if (demoflag) {
-    var embedded = false;
-    try { embedded = window.self !== window.top; } catch (e) { embedded = true; }
-    if (embedded) demoflag.hidden = true;
-  }
 })();

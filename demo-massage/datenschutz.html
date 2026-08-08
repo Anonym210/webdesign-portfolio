@@ -12,6 +12,15 @@
 <link rel="preload" href="assets/fonts/jost-200-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/style.css">
+<!-- Laeuft die Seite als Vorschau in einem Rahmen? Diese Pruefung muss VOR
+     dem ersten Rendern stehen, sonst blitzt die Kennzeichnung kurz auf. -->
+<script>
+  (function () {
+    var e = true;
+    try { e = window.self !== window.top; } catch (x) { e = true; }
+    if (e) document.documentElement.className += ' embedded';
+  })();
+</script>
 </head>
 <body class="page-legal">
 
@@ -204,6 +213,5 @@
   <a class="demoflag__link" href="../index.html">Gestaltung&nbsp;ansehen</a>
 </aside>
 
-<script>(function(){var f=document.getElementById('demoflag');var e=false;try{e=window.self!==window.top;}catch(x){e=true;}if(f&&e)f.hidden=true;})();</script>
 </body>
 </html>
