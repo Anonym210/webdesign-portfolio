@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Webdesign — Portfolio &amp; Demo</title>
-<meta name="description" content="Zwei Websites: die Portfolio-Seite und eine Demo-Website für eine Massagepraxis.">
+<meta name="description" content="Drei Websites: die Portfolio-Seite und zwei Demo-Websites für Massagepraxen.">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#FAF9F6">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='11' fill='%2314171A'/%3E%3Ctext x='24' y='33' font-family='Georgia,serif' font-size='23' fill='%23fff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
@@ -24,7 +24,7 @@
     min-height:100svh; padding:clamp(1.5rem,5vw,4rem);
   }
   a{ color:inherit; text-decoration:none; }
-  .wrap{ width:min(100%,940px); }
+  .wrap{ width:min(100%,1120px); }
 
   .eyebrow{
     display:inline-flex; align-items:center; gap:.6rem; margin:0 0 1rem;
@@ -40,7 +40,7 @@
   }
   .lead{ color:var(--soft); max-width:58ch; margin:0 0 clamp(2rem,4vw,3rem); }
 
-  .grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+  .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
   .card{
     display:flex; flex-direction:column; gap:.5rem;
     background:var(--card); border:1px solid var(--line); border-radius:16px;
@@ -69,6 +69,7 @@
   footer{ margin-top:clamp(2rem,4vw,3rem); color:var(--mute); font-size:.86rem; }
   footer a{ color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
 
+  @media (max-width:980px){ .grid{ grid-template-columns:1fr 1fr; } }
   @media (max-width:720px){ .grid{ grid-template-columns:1fr; } }
   @media (prefers-reduced-motion:reduce){ *{ transition-duration:.001ms !important; } }
 </style>
@@ -76,9 +77,9 @@
 <body>
   <main class="wrap">
     <p class="eyebrow">Übersicht</p>
-    <h1>Zwei Websites in diesem Projekt</h1>
+    <h1>Drei Websites in diesem Projekt</h1>
     <p class="lead">
-      Beide sind reines HTML, CSS und JavaScript — ohne Baukasten, ohne Datenbank,
+      Alle drei sind reines HTML, CSS und JavaScript — ohne Baukasten, ohne Datenbank,
       ohne externe Bibliotheken.
     </p>
 
@@ -102,6 +103,20 @@
         <p>
           Demo-Website für eine Massagepraxis: Behandlungen, Preisliste,
           Galerie mit Lightbox und Terminanfrage. Alle Inhalte sind erfunden.
+        </p>
+        <span class="go">
+          Öffnen
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="card" href="demo-therapie/">
+        <span class="tag">Arbeitsbeispiel</span>
+        <h2>VITA Therapeutische Massage</h2>
+        <p>
+          Demo für eine Therapie- und Sportmassage-Praxis: Auswahl nach
+          Körperregion, Preistabelle mit Kassenangaben, Terminanfrage.
+          Alle Inhalte sind erfunden.
         </p>
         <span class="go">
           Öffnen

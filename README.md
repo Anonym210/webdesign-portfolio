@@ -1,11 +1,12 @@
-# Webdesign-Paket: Portfolio + Demo-Website
+# Webdesign-Paket: Portfolio + zwei Demo-Websites
 
-Zwei fertige, eigenständige Websites:
+Drei fertige, eigenständige Websites:
 
 ```
-📄 index.html        → Startseite mit Verweis auf beide Websites
+📄 index.html        → Startseite mit Verweis auf alle drei Websites
 📁 portfolio/        → Ihre eigene Seite, mit der Sie Webseiten verkaufen
 📁 demo-massage/     → Demo-Website „AURELIA Massage & Wellness" als Referenz
+📁 demo-therapie/    → Demo-Website „VITA Therapeutische Massage" als Referenz
 📄 CREDITS.md        → Bildquellen und Lizenzen
 ```
 
@@ -13,7 +14,7 @@ Die `index.html` im Hauptordner ist nur die Übersicht für dieses Projekt.
 Wenn Sie einem Kunden eine einzelne Website übergeben, laden Sie ausschliesslich
 den Inhalt des jeweiligen Unterordners hoch — die Übersicht bleibt hier.
 
-Beides ist **reines HTML, CSS und JavaScript** — kein Baukasten, kein WordPress,
+Alles ist **reines HTML, CSS und JavaScript** — kein Baukasten, kein WordPress,
 keine Datenbank, keine Abhängigkeiten. Das heisst: schnell, wartbar, überall
 lauffähig und für den Kunden problemlos übertragbar.
 
@@ -26,6 +27,7 @@ lauffähig und für den Kunden problemlos übertragbar.
 | **Live-Adresse** | https://anonym210.github.io/webdesign-portfolio/ |
 | Portfolio | https://anonym210.github.io/webdesign-portfolio/portfolio/ |
 | Demo-Massage | https://anonym210.github.io/webdesign-portfolio/demo-massage/ |
+| Demo-Therapie | https://anonym210.github.io/webdesign-portfolio/demo-therapie/ |
 | **Code** | https://github.com/Anonym210/webdesign-portfolio |
 
 Die Seiten liegen auf GitHub Pages und sind öffentlich erreichbar.
@@ -59,9 +61,10 @@ danach automatisch.
 
 ## 1. Lokal ansehen
 
-Doppelklick auf `portfolio/index.html` oder `demo-massage/index.html`.
+Doppelklick auf `portfolio/index.html`, `demo-massage/index.html` oder
+`demo-therapie/index.html`.
 
-Auf der Portfolio-Seite ist die Demo-Website als *Live-Vorschau* im Browserfenster
+Auf der Portfolio-Seite sind beide Demo-Websites als *Live-Vorschau* im Browserfenster
 eingebettet — in Chrome und Edge funktioniert das auch per Doppelklick (getestet).
 
 > Sollte die Vorschau in Ihrem Browser leer bleiben, starten Sie kurz einen
@@ -115,10 +118,41 @@ Massage-Website. Bei einem Kunden ohne Anerkennung diesen Abschnitt streichen.
 
 ---
 
+### 2.3 Demo-Therapie-Website
+
+Die zweite Demo zielt auf einen anderen Kundentyp: eine Praxis für
+**therapeutische Massage und Sportmassage**. Deren Gäste wollen nicht
+entspannen, sondern Schmerzen loswerden — deshalb ist die Seite anders
+aufgebaut und anders gestaltet.
+
+| Unterschied | AURELIA | VITA |
+|---|---|---|
+| Kundentyp | Wellness, Wohlfühlen | Beschwerden, Therapie |
+| Grundfarbe | warmes Creme, Bronze | kühles Kreidegrün, gebranntes Orange |
+| Schriften | Cormorant Garamond + Jost | Bricolage Grotesque + Newsreader |
+| Aufbau | Bildstarker Hero, Karten, Galerie | Text-Hero, Haarlinien-Listen, Tabelle |
+| Kernstück | Galerie mit Lightbox | Auswahl nach Körperregion |
+
+**Das Kernstück** ist die Beschwerde-Auswahl („Wo tut es weh?"). Besucher
+tippen eine Körperregion an und sehen sofort Behandlung, Dauer, Preis und
+Kassenlage. Neue Region hinzufügen: in `assets/js/main.js` einen Eintrag im
+Objekt `EMPFEHLUNG` ergänzen und im HTML einen Knopf mit passendem
+`data-key` einsetzen.
+
+> ⚠️ **Zwei Punkte vor einem echten Livegang:**
+> Erstens sind im Abschnitt „Krankenkasse" echte Versicherernamen gelistet
+> (CSS, Helsana, Swica …). Für einen echten Kunden bitte prüfen, welche
+> Kassen bei ihm tatsächlich vergüten. Zweitens erfasst das Formular
+> Gesundheitsangaben — diese sind nach Art. 5 lit. c DSG besonders
+> schützenswert. Der Versand muss verschlüsselt laufen, und ein Hoster mit
+> Rechenzentrum in der Schweiz ist hier klar zu bevorzugen.
+
+---
+
 ## 3. Eigene Referenzen einbauen
 
-Im Portfolio gibt es aktuell eine echte Referenz (die Demo) und eine
-Platzhalter-Karte. So fügen Sie Ihre bereits gebauten Seiten hinzu:
+Im Portfolio stehen aktuell zwei Referenzen (beide Demos). So fügen Sie Ihre
+bereits gebauten Seiten hinzu:
 
 1. **Screenshot machen** — Browserfenster auf ca. 1440 px Breite ziehen,
    Screenshot der Startseite aufnehmen, als JPG speichern.
@@ -132,7 +166,8 @@ Platzhalter-Karte. So fügen Sie Ihre bereits gebauten Seiten hinzu:
    - Name des Unternehmens
    - Beschreibung (2–3 Sätze: Aufgabe → Lösung → Ergebnis)
    - Stichworte und Link
-4. Eine Platzhalter-Karte (`project--empty`) löschen.
+4. Die neue Karte hinter die bestehenden setzen — oder eine Demo ersetzen,
+   sobald Sie genug echte Kundenprojekte haben.
 
 ### Statt Screenshot: Live-Vorschau
 
@@ -152,7 +187,7 @@ Das JavaScript skaliert die Seite automatisch auf die Kartenbreite herunter.
 
 ## 4. Kontaktformular scharf schalten
 
-**Beide Formulare bestätigen aktuell nur — sie versenden nichts.** Das ist Absicht,
+**Alle drei Formulare bestätigen aktuell nur — sie versenden nichts.** Das ist Absicht,
 damit die Demo ohne Server läuft. Für den Livebetrieb eine Variante wählen:
 
 ### Variante A — Formspree (am einfachsten, kostenlos für kleine Mengen)
@@ -178,7 +213,7 @@ hinzufügen. Netlify erkennt das Formular beim Deployment automatisch.
 fetch('kontakt.php', { method: 'POST', body: new FormData(form) })
 ```
 
-Die passende Stelle ist in beiden `main.js`-Dateien mit einem grossen
+Die passende Stelle ist in allen `main.js`-Dateien mit einem grossen
 Kommentarblock markiert.
 
 ---

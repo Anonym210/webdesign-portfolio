@@ -53,6 +53,20 @@ Die vollständige Bild-URL lautet jeweils:
 
 ---
 
+## Verwendete Bilder — `demo-therapie/assets/img/`
+
+| Datei | Verwendung auf der Seite | Quelle (Unsplash-CDN) |
+|---|---|---|
+| `hero.jpg` | Startbild rechts | `photo-1639162906614-0603b0ae95fd` |
+| `b-nacken.jpg` | Vorschau „Klassische Massage" | `photo-1645005512968-0c1fe99f0093` |
+| `b-triggerpunkt.jpg` | Vorschau „Triggerpunkt-Therapie" | `photo-1699523229199-fce5aa6b0ec3` |
+| `b-sport.jpg` | Vorschau „Sportmassage" | `photo-1545463913-5083aa7359a6` |
+| `b-fuss.jpg` | Vorschau „Fussreflexzonen" | `photo-1675159364615-38e1f6b62282` |
+| `band-haende.jpg` | Breites Bildband in der Seitenmitte | `photo-1611073615830-9f76902c10fe` |
+| `uebungen.jpg` | Abschnitt „Wer behandelt" und Vorschau „Lymphdrainage" | `photo-1645005512942-a17817fb7c11` |
+
+---
+
 ## Schriften
 
 | Schrift | Verwendung | Lizenz |
@@ -61,6 +75,8 @@ Die vollständige Bild-URL lautet jeweils:
 | [Jost](https://fonts.google.com/specimen/Jost) | Fliesstext Demo-Massage | SIL Open Font License 1.1 |
 | [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif) | Überschriften Portfolio | SIL Open Font License 1.1 |
 | [Inter](https://fonts.google.com/specimen/Inter) | Fliesstext Portfolio | SIL Open Font License 1.1 |
+| [Bricolage Grotesque](https://fonts.google.com/specimen/Bricolage+Grotesque) | Überschriften Demo-Therapie | SIL Open Font License 1.1 |
+| [Newsreader](https://fonts.google.com/specimen/Newsreader) | Fliesstext Demo-Therapie | SIL Open Font License 1.1 |
 
 Alle Schriften sind frei für kommerzielle Nutzung und dürfen auch lokal
 auf dem eigenen Server abgelegt werden (siehe README, Abschnitt „Schriften lokal einbinden").
