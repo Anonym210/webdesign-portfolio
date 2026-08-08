@@ -3,10 +3,15 @@
 Zwei fertige, eigenständige Websites:
 
 ```
+📄 index.html        → Startseite mit Verweis auf beide Websites
 📁 portfolio/        → Ihre eigene Seite, mit der Sie Webseiten verkaufen
 📁 demo-massage/     → Demo-Website „AURELIA Massage & Wellness" als Referenz
 📄 CREDITS.md        → Bildquellen und Lizenzen
 ```
+
+Die `index.html` im Hauptordner ist nur die Übersicht für dieses Projekt.
+Wenn Sie einem Kunden eine einzelne Website übergeben, laden Sie ausschliesslich
+den Inhalt des jeweiligen Unterordners hoch — die Übersicht bleibt hier.
 
 Beides ist **reines HTML, CSS und JavaScript** — kein Baukasten, kein WordPress,
 keine Datenbank, keine Abhängigkeiten. Das heisst: schnell, wartbar, überall
@@ -14,7 +19,45 @@ lauffähig und für den Kunden problemlos übertragbar.
 
 ---
 
-## 1. Sofort ansehen
+## 0. Wo alles liegt
+
+| | |
+|---|---|
+| **Live-Adresse** | https://anonym210.github.io/webdesign-portfolio/ |
+| Portfolio | https://anonym210.github.io/webdesign-portfolio/portfolio/ |
+| Demo-Massage | https://anonym210.github.io/webdesign-portfolio/demo-massage/ |
+| **Code** | https://github.com/Anonym210/webdesign-portfolio |
+
+Die Seiten liegen auf GitHub Pages und sind öffentlich erreichbar.
+
+### Änderungen veröffentlichen
+
+Nach jeder Änderung an den Dateien im Terminal in diesem Ordner:
+
+```
+git add -A
+git commit -m "Kurz beschreiben, was geändert wurde"
+git push
+```
+
+Nach etwa einer Minute ist die Live-Adresse aktualisiert. Die Änderung ist
+also erst online, wenn Sie `git push` ausgeführt haben — Speichern allein
+genügt nicht.
+
+### Eigene Domain verbinden
+
+Wenn Sie später eine `.ch`-Domain haben: im Repo unter
+*Settings → Pages → Custom domain* eintragen und beim Domain-Anbieter einen
+CNAME-Eintrag auf `anonym210.github.io` setzen. HTTPS aktiviert GitHub
+danach automatisch.
+
+> **Vor dem ernsthaften Einsatz:** Das Impressum enthält noch Platzhalter in
+> eckigen Klammern. Solange dort keine echten Angaben stehen, sollten Sie die
+> Adresse nicht aktiv bewerben — siehe Abschnitt 2.1.
+
+---
+
+## 1. Lokal ansehen
 
 Doppelklick auf `portfolio/index.html` oder `demo-massage/index.html`.
 
