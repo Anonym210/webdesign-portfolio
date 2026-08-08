@@ -6,7 +6,7 @@ Drei fertige, eigenständige Websites:
 📄 index.html        → Startseite mit Verweis auf alle drei Websites
 📁 portfolio/        → Ihre eigene Seite, mit der Sie Webseiten verkaufen
 📁 demo-massage/     → Demo-Website „AURELIA Massage & Wellness" als Referenz
-📁 demo-therapie/    → Demo-Website „VITA Therapeutische Massage" als Referenz
+📁 demo-thai/        → Demo-Website „SABAI Thai Massage" als Referenz
 📄 CREDITS.md        → Bildquellen und Lizenzen
 ```
 
@@ -27,7 +27,7 @@ lauffähig und für den Kunden problemlos übertragbar.
 | **Live-Adresse** | https://anonym210.github.io/webdesign-portfolio/ |
 | Portfolio | https://anonym210.github.io/webdesign-portfolio/portfolio/ |
 | Demo-Massage | https://anonym210.github.io/webdesign-portfolio/demo-massage/ |
-| Demo-Therapie | https://anonym210.github.io/webdesign-portfolio/demo-therapie/ |
+| Demo-Thai | https://anonym210.github.io/webdesign-portfolio/demo-thai/ |
 | **Code** | https://github.com/Anonym210/webdesign-portfolio |
 
 Die Seiten liegen auf GitHub Pages und sind öffentlich erreichbar.
@@ -62,7 +62,7 @@ danach automatisch.
 ## 1. Lokal ansehen
 
 Doppelklick auf `portfolio/index.html`, `demo-massage/index.html` oder
-`demo-therapie/index.html`.
+`demo-thai/index.html`.
 
 Auf der Portfolio-Seite sind beide Demo-Websites als *Live-Vorschau* im Browserfenster
 eingebettet — in Chrome und Edge funktioniert das auch per Doppelklick (getestet).
@@ -118,34 +118,33 @@ Massage-Website. Bei einem Kunden ohne Anerkennung diesen Abschnitt streichen.
 
 ---
 
-### 2.3 Demo-Therapie-Website
+### 2.3 Demo-Thai-Website
 
-Die zweite Demo zielt auf einen anderen Kundentyp: eine Praxis für
-**therapeutische Massage und Sportmassage**. Deren Gäste wollen nicht
-entspannen, sondern Schmerzen loswerden — deshalb ist die Seite anders
-aufgebaut und anders gestaltet.
+Die zweite Demo ist eine **Thai-Massage-Praxis** — bewusst eine andere
+Bild- und Farbwelt als AURELIA, damit Sie im Gespräch zwei echte
+Alternativen zeigen können.
 
-| Unterschied | AURELIA | VITA |
+| Unterschied | AURELIA | SABAI |
 |---|---|---|
-| Kundentyp | Wellness, Wohlfühlen | Beschwerden, Therapie |
-| Grundfarbe | warmes Creme, Bronze | kühles Kreidegrün, gebranntes Orange |
-| Schriften | Cormorant Garamond + Jost | Bricolage Grotesque + Newsreader |
-| Aufbau | Bildstarker Hero, Karten, Galerie | Text-Hero, Haarlinien-Listen, Tabelle |
-| Kernstück | Galerie mit Lightbox | Auswahl nach Körperregion |
+| Ausrichtung | Wellness allgemein | Thai-Massage, Sport, Tiefengewebe |
+| Grundton | helles Creme, Bronze | warmer Sand, Teakholz, Gold, Jade |
+| Schriften | Cormorant Garamond + Jost | Marcellus + Karla |
+| Aufbau | Bildhero, Karten, Galerie | Bildhero, grosse Bild-Text-Blöcke, dunkles Teakband |
+| Stimmung | hell und leicht | warm, dunkel, abendlich |
 
-**Das Kernstück** ist die Beschwerde-Auswahl („Wo tut es weh?"). Besucher
-tippen eine Körperregion an und sehen sofort Behandlung, Dauer, Preis und
-Kassenlage. Neue Region hinzufügen: in `assets/js/main.js` einen Eintrag im
-Objekt `EMPFEHLUNG` ergänzen und im HTML einen Knopf mit passendem
-`data-key` einsetzen.
+**Gestalterische Kniffe, die Sie übernehmen können:**
 
-> ⚠️ **Zwei Punkte vor einem echten Livegang:**
-> Erstens sind im Abschnitt „Krankenkasse" echte Versicherernamen gelistet
-> (CSS, Helsana, Swica …). Für einen echten Kunden bitte prüfen, welche
-> Kassen bei ihm tatsächlich vergüten. Zweitens erfasst das Formular
-> Gesundheitsangaben — diese sind nach Art. 5 lit. c DSG besonders
-> schützenswert. Der Versand muss verschlüsselt laufen, und ein Hoster mit
-> Rechenzentrum in der Schweiz ist hier klar zu bevorzugen.
+- Alle Fotos tragen die Klasse `warm` (`filter: sepia(.14) saturate(1.06)`).
+  Das zieht Bilder aus unterschiedlichen Quellen auf einen gemeinsamen
+  warmen Ton — ohne diesen Trick wirkt jede Bildersammlung zusammengewürfelt.
+- Die sechs Rituale wechseln die Seite (`nth-child(even)` setzt das Bild
+  nach rechts). Das ergibt Rhythmus, ohne dass man Karten braucht.
+- Das dunkle Teakband in der Mitte gibt der Seite Tiefe und trennt
+  Behandlungen von Preisen.
+
+**Farben ändern:** in `demo-thai/assets/css/style.css` im Block `:root`.
+Die wichtigsten sind `--gold` (Akzent), `--teak` (dunkle Bänder) und
+`--sand` (Grundfläche).
 
 ---
 

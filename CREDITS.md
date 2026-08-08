@@ -53,17 +53,23 @@ Die vollständige Bild-URL lautet jeweils:
 
 ---
 
-## Verwendete Bilder — `demo-therapie/assets/img/`
+## Verwendete Bilder — `demo-thai/assets/img/`
 
 | Datei | Verwendung auf der Seite | Quelle (Unsplash-CDN) |
 |---|---|---|
-| `hero.jpg` | Startbild rechts | `photo-1639162906614-0603b0ae95fd` |
-| `b-nacken.jpg` | Vorschau „Klassische Massage" | `photo-1645005512968-0c1fe99f0093` |
-| `b-triggerpunkt.jpg` | Vorschau „Triggerpunkt-Therapie" | `photo-1699523229199-fce5aa6b0ec3` |
-| `b-sport.jpg` | Vorschau „Sportmassage" | `photo-1545463913-5083aa7359a6` |
-| `b-fuss.jpg` | Vorschau „Fussreflexzonen" | `photo-1675159364615-38e1f6b62282` |
-| `band-haende.jpg` | Breites Bildband in der Seitenmitte | `photo-1611073615830-9f76902c10fe` |
-| `uebungen.jpg` | Abschnitt „Wer behandelt" und Vorschau „Lymphdrainage" | `photo-1645005512942-a17817fb7c11` |
+| `hero.jpg` | Startbild, Galerie | `photo-1696841212541-449ca29397cc` |
+| `detail-blumen.jpg` | Abschnitt „Sawasdee", Galerie | `photo-1543134968-8752069dbf58` |
+| `r-thai.jpg` | Ritual I, Galerie | `photo-1639162906614-0603b0ae95fd` |
+| `r-oel.jpg` | Ritual II | `photo-1745327883508-b6cd32e5dde5` |
+| `r-tiefen.jpg` | Ritual III | `photo-1741522509407-41cfe73b0b75` |
+| `r-stone.jpg` | Ritual IV, Galerie | `photo-1610402601271-5b4bd5b3eba4` |
+| `r-kraeuter.jpg` | Ritual V, Galerie, Gutschein-Band | `photo-1590487590297-bb9d0b2e75e0` |
+| `r-fuss.jpg` | Ritual VI | `photo-1675159364615-38e1f6b62282` |
+| `raum.jpg` | Teakband „Tradition", Galerie | `photo-1712659604528-b179a3634560` |
+
+Alle Bilder tragen im HTML die Klasse `warm` — ein leichter CSS-Filter
+(`sepia`/`saturate`), der die Aufnahmen aus verschiedenen Quellen auf einen
+gemeinsamen warmen Ton bringt.
 
 ---
 
@@ -75,8 +81,8 @@ Die vollständige Bild-URL lautet jeweils:
 | [Jost](https://fonts.google.com/specimen/Jost) | Fliesstext Demo-Massage | SIL Open Font License 1.1 |
 | [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif) | Überschriften Portfolio | SIL Open Font License 1.1 |
 | [Inter](https://fonts.google.com/specimen/Inter) | Fliesstext Portfolio | SIL Open Font License 1.1 |
-| [Bricolage Grotesque](https://fonts.google.com/specimen/Bricolage+Grotesque) | Überschriften Demo-Therapie | SIL Open Font License 1.1 |
-| [Newsreader](https://fonts.google.com/specimen/Newsreader) | Fliesstext Demo-Therapie | SIL Open Font License 1.1 |
+| [Marcellus](https://fonts.google.com/specimen/Marcellus) | Überschriften Demo-Thai | SIL Open Font License 1.1 |
+| [Karla](https://fonts.google.com/specimen/Karla) | Fliesstext Demo-Thai | SIL Open Font License 1.1 |
 
 Alle Schriften sind frei für kommerzielle Nutzung und dürfen auch lokal
 auf dem eigenen Server abgelegt werden (siehe README, Abschnitt „Schriften lokal einbinden").

@@ -1,5 +1,5 @@
 /* =========================================================================
-   VITA — Therapeutische Massage
+   SABAI — Thai Massage & Körperarbeit
    Reines JavaScript, keine Bibliotheken.
    ========================================================================= */
 (function () {
@@ -13,7 +13,7 @@
 
   function onScroll() {
     var y = window.scrollY || window.pageYOffset;
-    if (header) header.classList.toggle('is-stuck', y > 20);
+    if (header) header.classList.toggle('is-stuck', y > 60);
     if (totop)  totop.classList.toggle('is-visible', y > 700);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -42,6 +42,11 @@
       document.body.classList.toggle('is-locked', open);
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
       burger.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
+
+      var links = menu.querySelectorAll('a');
+      for (var i = 0; i < links.length; i++) {
+        links[i].style.transitionDelay = open ? (0.06 * i + 0.1) + 's' : '0s';
+      }
     });
     menu.addEventListener('click', function (e) {
       if (e.target.tagName === 'A') closeMenu();
@@ -62,7 +67,7 @@
 
     e.preventDefault();
     closeMenu();
-    var offset = (header ? header.offsetHeight : 0) + 8;
+    var offset = (header ? header.offsetHeight : 0) + 10;
     var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
     window.scrollTo({ top: top, behavior: reduced ? 'auto' : 'smooth' });
     history.replaceState(null, '', id);
@@ -80,7 +85,7 @@
           io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
     for (var s = 0; s < rises.length; s++) io.observe(rises[s]);
   }
 
@@ -96,139 +101,11 @@
           navLinks[i].classList.toggle('is-active', navLinks[i].getAttribute('href') === id);
         }
       });
-    }, { rootMargin: '-40% 0px -55% 0px' });
+    }, { rootMargin: '-45% 0px -50% 0px' });
     for (var t = 0; t < sections.length; t++) spy.observe(sections[t]);
   }
 
-  /* ---------- 6. Beschwerde-Auswahl ------------------------------------
-     Kernstueck der Seite: Besucher waehlt eine Koerperregion und sieht
-     sofort die passende Behandlung samt Dauer, Preis und Kassenlage.
-     Neue Region ergaenzen = einen Eintrag in EMPFEHLUNG hinzufuegen und
-     einen Knopf mit passendem data-key ins HTML setzen.
-     -------------------------------------------------------------------- */
-  var EMPFEHLUNG = {
-    nacken: {
-      region: 'Nacken & Schultern',
-      titel:  'Triggerpunkt-Therapie',
-      warum:  'Bei steifem Nacken sitzt die Ursache meist in wenigen verhärteten Punkten im Trapezius. Wir lösen sie gezielt statt grossflächig zu kneten.',
-      dauer:  '45 Min.',
-      preis:  'CHF 110.–',
-      anzahl: '3–5',
-      kasse:  true
-    },
-    ruecken: {
-      region: 'Unterer Rücken',
-      titel:  'Klassische Massage · 60 Min.',
-      warum:  'Beschwerden im unteren Rücken kommen häufig aus verkürzten Hüftbeugern vom vielen Sitzen. Deshalb behandeln wir Rücken und Hüfte zusammen.',
-      dauer:  '60 Min.',
-      preis:  'CHF 135.–',
-      anzahl: '2–4',
-      kasse:  true
-    },
-    kopf: {
-      region: 'Kopfschmerzen',
-      titel:  'Triggerpunkt-Therapie · Nacken',
-      warum:  'Spannungskopfschmerz entsteht oft im Nacken und in der Kaumuskulatur. Löst sich dort die Spannung, verschwindet häufig auch der Kopfschmerz.',
-      dauer:  '45 Min.',
-      preis:  'CHF 110.–',
-      anzahl: '3–6',
-      kasse:  true
-    },
-    beine: {
-      region: 'Beine & Knie',
-      titel:  'Sportmassage',
-      warum:  'Knieschmerzen beim Laufen kommen selten aus dem Knie. Wir arbeiten an Oberschenkel, Wade und dem Bandapparat rundherum.',
-      dauer:  '60 Min.',
-      preis:  'CHF 140.–',
-      anzahl: '2–4',
-      kasse:  true
-    },
-    fuss: {
-      region: 'Füsse',
-      titel:  'Fussreflexzonen',
-      warum:  'Bei Fersensporn, müden Füssen oder nach langen Steh-Schichten. Wirkt zusätzlich beruhigend auf den ganzen Körper.',
-      dauer:  '45 Min.',
-      preis:  'CHF 105.–',
-      anzahl: '2–3',
-      kasse:  true
-    },
-    stress: {
-      region: 'Nur abschalten',
-      titel:  'Entspannungsmassage',
-      warum:  'Kein Befund, kein Programm — ruhige Ganzkörpermassage in gleichmässigem Tempo. Ohne therapeutisches Ziel.',
-      dauer:  '60 Min.',
-      preis:  'CHF 120.–',
-      anzahl: 'nach Bedarf',
-      kasse:  false
-    }
-  };
-
-  var chips  = document.querySelectorAll('.chip[data-key]');
-  var result = document.getElementById('result');
-
-  if (chips.length && result) {
-    var el = {
-      region:  document.getElementById('r-region'),
-      titel:   document.getElementById('r-title'),
-      warum:   document.getElementById('r-why'),
-      dauer:   document.getElementById('r-dur'),
-      preis:   document.getElementById('r-price'),
-      anzahl:  document.getElementById('r-count'),
-      paytext: document.getElementById('r-paytext'),
-      pay:     document.getElementById('r-pay')
-    };
-
-    function zeige(key) {
-      var d = EMPFEHLUNG[key];
-      if (!d) return;
-
-      // Kurz ausblenden, damit der Wechsel sichtbar ist
-      result.classList.add('is-swapping');
-      window.setTimeout(function () {
-        el.region.textContent = d.region;
-        el.titel.textContent  = d.titel;
-        el.warum.textContent  = d.warum;
-        el.dauer.textContent  = d.dauer;
-        el.preis.textContent  = d.preis;
-        el.anzahl.textContent = d.anzahl;
-        el.paytext.textContent = d.kasse
-          ? 'Über die Zusatzversicherung abrechenbar'
-          : 'Wird von der Zusatzversicherung nicht vergütet';
-        el.pay.style.color = d.kasse ? '' : 'var(--ink-mute)';
-        result.classList.remove('is-swapping');
-      }, reduced ? 0 : 160);
-    }
-
-    for (var c = 0; c < chips.length; c++) {
-      chips[c].addEventListener('click', function () {
-        for (var i = 0; i < chips.length; i++) chips[i].setAttribute('aria-selected', 'false');
-        this.setAttribute('aria-selected', 'true');
-        zeige(this.getAttribute('data-key'));
-
-        // Auswahl ins Kontaktformular übernehmen
-        var sel = document.getElementById('f-region');
-        if (sel) {
-          var wanted = this.textContent.trim();
-          for (var o = 0; o < sel.options.length; o++) {
-            if (sel.options[o].text === wanted) { sel.selectedIndex = o; break; }
-          }
-        }
-      });
-
-      // Mit Pfeiltasten durch die Auswahl gehen
-      chips[c].addEventListener('keydown', function (e) {
-        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
-        e.preventDefault();
-        var list = Array.prototype.slice.call(chips);
-        var i = list.indexOf(this) + (e.key === 'ArrowRight' ? 1 : -1);
-        var next = list[(i + list.length) % list.length];
-        next.focus();
-        next.click();
-      });
-    }
-  }
-
-  /* ---------- 7. FAQ ---------- */
+  /* ---------- 6. FAQ ---------- */
   var faq = document.getElementById('faq');
   if (faq) {
     faq.addEventListener('click', function (e) {
@@ -264,9 +141,71 @@
     });
   }
 
+  /* ---------- 7. Galerie-Lightbox ---------- */
+  var gallery = document.getElementById('gallery');
+  var lb      = document.getElementById('lightbox');
+
+  if (gallery && lb) {
+    var lbImg  = document.getElementById('lbImg');
+    var lbCap  = document.getElementById('lbCap');
+    var btns   = Array.prototype.slice.call(gallery.querySelectorAll('button'));
+    var index  = 0;
+    var lastFocus = null;
+
+    function show(i) {
+      index = (i + btns.length) % btns.length;
+      var b = btns[index];
+      var thumb = b.querySelector('img');
+      // data-src erlaubt eine groessere Fassung; sonst das Vorschaubild nehmen
+      lbImg.src = b.getAttribute('data-src') || thumb.getAttribute('src');
+      lbImg.alt = thumb.alt;
+      lbCap.textContent = b.getAttribute('data-cap') || '';
+    }
+    function openLb(i) {
+      lastFocus = document.activeElement;
+      show(i);
+      lb.classList.add('is-open');
+      document.body.classList.add('is-locked');
+      document.getElementById('lbClose').focus();
+    }
+    function closeLb() {
+      lb.classList.remove('is-open');
+      document.body.classList.remove('is-locked');
+      if (lastFocus) lastFocus.focus();
+    }
+
+    gallery.addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (b) openLb(btns.indexOf(b));
+    });
+    document.getElementById('lbClose').addEventListener('click', closeLb);
+    document.getElementById('lbPrev').addEventListener('click', function () { show(index - 1); });
+    document.getElementById('lbNext').addEventListener('click', function () { show(index + 1); });
+    lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+
+    document.addEventListener('keydown', function (e) {
+      if (!lb.classList.contains('is-open')) return;
+      if (e.key === 'Escape')     closeLb();
+      if (e.key === 'ArrowLeft')  show(index - 1);
+      if (e.key === 'ArrowRight') show(index + 1);
+    });
+
+    var startX = null;
+    lb.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', function (e) {
+      if (startX === null) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 50) show(dx > 0 ? index - 1 : index + 1);
+      startX = null;
+    });
+  }
+
   /* ---------- 8. Terminformular ---------- */
   var form = document.getElementById('terminForm');
   if (form) {
+    var dateInput = document.getElementById('f-date');
+    if (dateInput) dateInput.min = new Date().toISOString().split('T')[0];
+
     function mark(input, bad) {
       var f = input.closest('.field');
       if (f) f.classList.toggle('has-error', bad);
@@ -282,21 +221,19 @@
       var ok   = true;
       var name = document.getElementById('f-name');
       var mail = document.getElementById('f-mail');
-      var msg  = document.getElementById('f-msg');
       var priv = document.getElementById('f-priv');
 
       if (!name.value.trim()) { mark(name, true); ok = false; }
       if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(mail.value.trim())) { mark(mail, true); ok = false; }
-      if (!msg.value.trim()) { mark(msg, true); ok = false; }
       if (!priv.checked) {
         ok = false;
         priv.focus();
-        priv.parentElement.style.color = '#B3341C';
+        priv.parentElement.style.color = '#A8452C';
         window.setTimeout(function () { priv.parentElement.style.color = ''; }, 2500);
       }
 
       if (!ok) {
-        var first = form.querySelector('.field.has-error input, .field.has-error textarea');
+        var first = form.querySelector('.field.has-error input');
         if (first) first.focus();
         return;
       }
@@ -309,11 +246,6 @@
             und diesen preventDefault-Block entfernen
          b) Netlify — dem <form>-Tag  netlify  und  name="termin"  geben
          c) Eigenes PHP — fetch('kontakt.php', {method:'POST', body:new FormData(form)})
-
-         ACHTUNG: Dieses Formular erfasst Gesundheitsangaben. Diese sind
-         nach Art. 5 lit. c DSG besonders schuetzenswert — der Versand
-         muss verschluesselt erfolgen und der Anbieter sollte in der
-         Schweiz oder im EU-Raum hosten.
          -------------------------------------------------------------- */
 
       var box = document.getElementById('okBox');
@@ -328,9 +260,9 @@
         box.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
         window.setTimeout(function () {
           btn.disabled = false;
-          btn.textContent = 'Termin anfragen';
+          btn.textContent = 'Anfrage senden';
         }, 4000);
-      }, 700);
+      }, 800);
     });
   }
 
