@@ -11,3 +11,6 @@ desktop.ini
 # Temporäres
 *.log
 *.tmp
+
+# lokale Hilfsskripte, gehoeren nicht zur Website
+.audit-server.cjs
