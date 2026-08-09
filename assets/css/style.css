@@ -126,7 +126,7 @@ p:last-child{ margin-bottom:0; }
 .header__inner{ display:flex; align-items:center; justify-content:space-between; gap:1.5rem; }
 
 .brand{ display:flex; align-items:center; font-weight:600; letter-spacing:-.02em; font-size:1.08rem; }
-.brand__logo{ height:32px; width:auto; display:block; transition:transform .5s var(--ease); }
+.brand__logo{ height:42px; width:auto; display:block; transition:transform .5s var(--ease); }
 .brand:hover .brand__logo{ transform:scale(1.04); }
 
 /* Navigation als weiche Pillenleiste — ruhiger als nackte Links und
@@ -628,7 +628,7 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
   .langswitch a{ padding:.42rem; font-size:.72rem; }
 }
 @media (max-width:340px){
-  .brand__logo{ height:26px; }
+  .brand__logo{ height:34px; }
 }
 
 /* ---------- 22. Reduzierte Bewegung ---------- */
