@@ -1,4 +1,4 @@
-# Envy Web — Verkaufsseite + zwei Beispielwebsites
+# Envy Web — Verkaufsseite + drei Beispielwebsites
 
 ```
 📄 index.html         → Die Verkaufsseite. Liegt bewusst im Wurzelverzeichnis,
@@ -8,6 +8,7 @@
 📁 assets/            → CSS, JavaScript, Schriften und Bilder der Verkaufsseite
 📁 demo-massage/      → Beispielwebsite „AURELIA Massage & Wellness“
 📁 demo-thai/         → Beispielwebsite „SABAI Thai Massage“
+📁 demo-restaurant/   → Beispielwebsite „AVERA Contemporary Dining“
 📄 uebersicht.html    → Interne Projektübersicht (noindex, nicht verlinkt)
 📄 robots.txt         → sperrt die Beispielwebsites für Suchmaschinen
 📄 sitemap.xml
@@ -45,6 +46,7 @@ Noch offen — optional, erst mit eigener Domain sinnvoll:
 | **Live-Adresse (Verkaufsseite)** | https://anonym210.github.io/webdesign-portfolio/ |
 | Beispiel AURELIA | https://anonym210.github.io/webdesign-portfolio/demo-massage/ |
 | Beispiel SABAI | https://anonym210.github.io/webdesign-portfolio/demo-thai/ |
+| Beispiel AVERA | https://anonym210.github.io/webdesign-portfolio/demo-restaurant/ |
 | Projektübersicht (intern) | https://anonym210.github.io/webdesign-portfolio/uebersicht.html |
 | **Code** | https://github.com/Anonym210/webdesign-portfolio |
 
@@ -92,10 +94,10 @@ danach automatisch.
 
 ## 1. Lokal ansehen
 
-Doppelklick auf `index.html`, `demo-massage/index.html` oder
-`demo-thai/index.html`.
+Doppelklick auf `index.html`, `demo-massage/index.html`, `demo-thai/index.html`
+oder `demo-restaurant/index.html`.
 
-Auf der Verkaufsseite sind beide Beispielwebsites als *Live-Vorschau* im Browserfenster
+Auf der Verkaufsseite sind alle drei Beispielwebsites als *Live-Vorschau* im Browserfenster
 eingebettet — in Chrome und Edge funktioniert das auch per Doppelklick (getestet).
 
 > Sollte die Vorschau in Ihrem Browser leer bleiben, starten Sie kurz einen
@@ -179,9 +181,102 @@ Die wichtigsten sind `--gold` (Akzent), `--teak` (dunkle Bänder) und
 
 ---
 
+### 2.4 Demo-Restaurant-Website
+
+Die dritte Demo ist ein **Restaurant** — die einzige dunkle Seite im Portfolio.
+Sie beweist im Gespräch, dass nicht jede Website hell und freundlich aussehen
+muss, und deckt mit der Gastronomie eine Branche ab, die auf der Verkaufsseite
+ohnehin zuoberst in der Liste „Passend für“ steht.
+
+| Unterschied | AURELIA / SABAI | AVERA |
+|---|---|---|
+| Grundton | hell, warm | Russ, Tannengrün, Messing |
+| Schriften | Cormorant / Marcellus | Bodoni Moda + Jost |
+| Aufbau | Karten und Bildstrecken | zwei randlose Bildbänder, eine gesetzte Menükarte |
+| Formular | Terminanfrage | Reservation mit Datum, Uhrzeit, Anzahl Gäste |
+| Stimmung | Praxis am Vormittag | Restaurant am Abend |
+
+**Gestalterische Kniffe, die Sie übernehmen können:**
+
+- Auf dunklem Grund ist reines Weiss zu hart. Der Textton ist deshalb
+  `--linen` (#F3EEE4) und nie #FFFFFF; die Dunkeltöne sind leicht ins Braune
+  gezogen statt neutralgrau.
+- Die Kursive der Bodoni trägt den ganzen Auftritt: In jeder Überschrift steht
+  genau ein `<em>` in Messing. Mehr Auszeichnung würde die Wirkung sofort
+  verbrauchen.
+- Die Menükarte ist ein eigenes Objekt mit doppelter Rahmenlinie
+  (`.card::before`). Sie zitiert die gedruckte Karte, ohne sie nachzuäffen.
+- Beide Bildbänder (Hero, Der Raum) legen den Text über einen Verlauf statt
+  über eine flächige Abdunklung — so bleibt das Foto sichtbar und die Schrift
+  trotzdem lesbar.
+
+**Farben ändern:** in `demo-restaurant/assets/css/style.css` im Block `:root`.
+Die wichtigsten sind `--brass` (Akzent), `--night` (Grundfläche) und
+`--forest` (die grünen Bänder).
+
+**Herkunft:** Marke, Texte und Bildmotive stammen aus dem Repository
+`Anonym210/avera-restaurant-portfolio`. Dort liegt AVERA als Next.js-Anwendung
+mit Cloudflare Worker und Datenbank — auf GitHub Pages nicht lauffähig. Diese
+Fassung ist ein statischer Nachbau im Stil der übrigen Demos.
+
+---
+
+## 2.5 Sprachen pflegen (Deutsch / Englisch / Französisch)
+
+Die Verkaufsseite gibt es dreimal. **Deutsch ist die Leitfassung** — Änderungen
+immer zuerst dort, dann nachziehen:
+
+| | |
+|---|---|
+| Deutsch | `index.html`, `impressum.html`, `datenschutz.html` (Wurzelverzeichnis) |
+| Englisch | `en/…` |
+| Französisch | `fr/…` |
+
+Der Umschalter oben rechts besteht aus **reinen Links, ohne JavaScript**.
+Es gibt bewusst **keine** automatische Weiterleitung anhand der Browsersprache:
+das bricht den Zurück-Knopf und verhindert, dass Google die Sprachfassungen
+einzeln aufnimmt.
+
+**Was jetzt dreifach existiert — bei jeder Änderung alle drei anfassen:**
+
+- Preise (890 / 1'690 / 2'900, Betreuung 29.–, Korrekturrunde 120.–, Sprache 390.–)
+- Telefonnummer, WhatsApp-Link, E-Mail-Adresse
+- alle Texte der Startseite
+- die FAQ — **und zwar doppelt je Sprache:** sichtbar *und* als `FAQPage`-Strukturdaten
+  im selben Dokument. Beide müssen wortgleich bleiben, sonst melden Google und
+  die KI-Suchen etwas anderes, als auf der Seite steht.
+
+**Pfade in `en/` und `fr/`:** Diese Ordner haben **keine** eigenen Assets, sondern
+verweisen mit `../assets/…` auf die gemeinsamen Dateien — CSS, JavaScript,
+Schriften und Bilder existieren also nur einmal. Beim Kopieren einer Datei ins
+Sprachverzeichnis müssen alle `assets/…` und `demo-…`-Pfade auf `../` umgestellt
+werden. Kontrolle (muss leer bleiben):
+
+```
+grep -nE '(href|src)="(assets/|demo-)' en/*.html fr/*.html
+```
+
+**Kein `<base>`-Tag einbauen.** Das sieht nach der eleganten Lösung für die Pfade
+aus, biegt aber jeden der über 30 Sprunglinks (`#kontakt` usw.) auf die Basis-URL
+um und zerstört das sanfte Scrollen.
+
+**hreflang:** Der Vier-Zeilen-Block im `<head>` ist in allen drei Fassungen einer
+Seite buchstabengleich. Nie sprachspezifisch anpassen — nur so erkennt Google sie
+als zusammengehörig. Dasselbe gilt für die Alternates in `sitemap.xml`.
+
+**Rechtstexte:** Englisch und Französisch tragen oben einen Hinweis, dass die
+deutsche Fassung rechtlich massgebend ist. Gesetzesbezeichnungen (UWG, MWSTG,
+DSG/LPD) bleiben mit dem Schweizer Original stehen.
+
+**Texte, die JavaScript erzeugt** (Burger-Beschriftung, „Wird gesendet …") stehen
+gesammelt in `assets/js/main.js`, Abschnitt 0. Die Datei ist für alle Sprachen
+dieselbe und wählt anhand von `<html lang>` aus.
+
+---
+
 ## 3. Eigene Referenzen einbauen
 
-Im Portfolio stehen aktuell zwei Referenzen (beide Demos). So fügen Sie Ihre
+Im Portfolio stehen aktuell drei Referenzen (alle drei Demos). So fügen Sie Ihre
 bereits gebauten Seiten hinzu:
 
 1. **Screenshot machen** — Browserfenster auf ca. 1440 px Breite ziehen,
@@ -229,8 +324,9 @@ Formulardienstes. Alle drei Websites benutzen denselben Mechanismus.
    ```js
    var FORM_ENDPOINT = 'https://formspree.io/f/xayzabcd';
    ```
-4. Dasselbe in `demo-massage/assets/js/main.js` und `demo-thai/assets/js/main.js`,
-   falls auch die Beispielformulare wirklich zustellen sollen.
+4. Dasselbe in `demo-massage/assets/js/main.js`, `demo-thai/assets/js/main.js`
+   und `demo-restaurant/assets/js/main.js`, falls auch die Beispielformulare
+   wirklich zustellen sollen.
 5. Die allererste Testanfrage abschicken und die Bestätigungsmail von Formspree
    anklicken — sonst kommt nichts an.
 
@@ -351,8 +447,9 @@ erzeugen (der genaue Befehl steht als Kommentar in der Datei).
 
 ### Suchmaschinen
 
-- `robots.txt` sperrt `demo-massage/`, `demo-thai/` und `uebersicht.html`.
-- Beide Beispielwebsites tragen zusätzlich `noindex, nofollow` und blenden beim
+- `robots.txt` sperrt `demo-massage/`, `demo-thai/`, `demo-restaurant/` und
+  `uebersicht.html`.
+- Alle drei Beispielwebsites tragen zusätzlich `noindex, nofollow` und blenden beim
   direkten Aufruf einen Hinweis „Beispielwebsite“ ein — in der eingebetteten
   Vorschau auf der Verkaufsseite bleibt er ausgeblendet.
 - `sitemap.xml` enthält nur die Verkaufsseite.
@@ -364,11 +461,13 @@ erzeugen (der genaue Befehl steht als Kommentar in der Datei).
 ## 7. Ordnerstruktur
 
 ```
-index.html                Verkaufsseite (Wurzelverzeichnis = Hauptadresse)
+index.html                Verkaufsseite, Deutsch (Wurzelverzeichnis = Hauptadresse)
 impressum.html
 datenschutz.html
+en/                       dieselben drei Seiten auf Englisch (nutzen ../assets/)
+fr/                       dieselben drei Seiten auf Französisch
 uebersicht.html           interne Projektübersicht, noindex
-robots.txt  sitemap.xml  .nojekyll
+robots.txt  sitemap.xml  llms.txt  .nojekyll
 assets/
 ├── css/style.css          Alle Stile, oben in :root die Farben
 ├── css/fonts.css          Lokale @font-face-Regeln
@@ -384,6 +483,10 @@ demo-massage/             Beispielwebsite AURELIA
 demo-thai/                Beispielwebsite SABAI
 ├── index.html  impressum.html  datenschutz.html
 └── assets/css · js · fonts · img (8 Bilder)
+
+demo-restaurant/          Beispielwebsite AVERA
+├── index.html  impressum.html  datenschutz.html
+└── assets/css · js · fonts · img (3 Bilder)
 ```
 
 Bildquellen und Lizenzen stehen in **[CREDITS.md](CREDITS.md)**.

@@ -1,7 +1,9 @@
 # Bildnachweise & Lizenzen
 
-Alle verwendeten Fotos stammen von **[Unsplash](https://unsplash.com)** und stehen unter der
-[Unsplash-Lizenz](https://unsplash.com/de/lizenz).
+Die Fotos der beiden Massage-Demos stammen von **[Unsplash](https://unsplash.com)**
+und stehen unter der [Unsplash-Lizenz](https://unsplash.com/de/lizenz).
+Die Motive der Restaurant-Demo sind **eigens erzeugte Bilder** und keine
+Stockfotos — Einzelheiten im Abschnitt zu `demo-restaurant/`.
 
 ## Was die Unsplash-Lizenz erlaubt
 
@@ -73,16 +75,38 @@ gemeinsamen warmen Ton bringt.
 
 ---
 
+## Verwendete Bilder — `demo-restaurant/assets/img/`
+
+Diese drei Motive stammen **nicht** von einem Stockdienst. Sie wurden mit
+OpenAI ImageGen eigens für das AVERA-Projekt erzeugt und aus dem Repository
+`Anonym210/avera-restaurant-portfolio` übernommen (dort dokumentiert in
+`IMAGE-SOURCES.md`). Für diese Fassung wurden sie von PNG nach progressivem
+JPEG umgerechnet und auf Webgrössen skaliert.
+
+| Datei | Verwendung auf der Seite | Herkunft | Grösse |
+|---|---|---|---|
+| `hero.jpg` | Startbild oben | ImageGen, eigenes Motiv | 1600 × 900, 179 KB |
+| `gericht.jpg` | Bildband „Die Küche“ | ImageGen, eigenes Motiv | 1000 × 1500, 125 KB |
+| `bar.jpg` | Bildband „Der Raum“ | ImageGen, eigenes Motiv | 1500 × 1000, 144 KB |
+
+Die Motive zeigen weder erkennbare Personen noch bestehende Betriebe, Logos
+oder Markenetiketten. Vor einer kommerziellen Verwendung für einen echten
+Auftraggeber sollten Bildrechte trotzdem erneut geprüft werden; diese
+Dokumentation ist keine Rechtsberatung.
+
+---
+
 ## Schriften
 
 | Schrift | Verwendung | Lizenz |
 |---|---|---|
 | [Cormorant Garamond](https://fonts.google.com/specimen/Cormorant+Garamond) | Überschriften Demo-Massage | SIL Open Font License 1.1 |
-| [Jost](https://fonts.google.com/specimen/Jost) | Fliesstext Demo-Massage | SIL Open Font License 1.1 |
+| [Jost](https://fonts.google.com/specimen/Jost) | Fliesstext Demo-Massage und Demo-Restaurant | SIL Open Font License 1.1 |
 | [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif) | Überschriften Portfolio | SIL Open Font License 1.1 |
 | [Inter](https://fonts.google.com/specimen/Inter) | Fliesstext Portfolio | SIL Open Font License 1.1 |
 | [Marcellus](https://fonts.google.com/specimen/Marcellus) | Überschriften Demo-Thai | SIL Open Font License 1.1 |
 | [Karla](https://fonts.google.com/specimen/Karla) | Fliesstext Demo-Thai | SIL Open Font License 1.1 |
+| [Bodoni Moda](https://fonts.google.com/specimen/Bodoni+Moda) | Überschriften Demo-Restaurant | SIL Open Font License 1.1 |
 
 Alle Schriften sind frei für kommerzielle Nutzung und dürfen auch lokal
 auf dem eigenen Server abgelegt werden (siehe README, Abschnitt „Schriften lokal einbinden“).

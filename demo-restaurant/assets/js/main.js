@@ -1,5 +1,5 @@
 /* =========================================================================
-   Envy Web — Interaktion
+   AVERA — Contemporary Dining
    Reines JavaScript, keine Bibliotheken.
    ========================================================================= */
 (function () {
@@ -7,28 +7,14 @@
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- 0. Sprache ----------
-     Diese Datei wird von allen Sprachfassungen geteilt (/, /en/, /fr/) und
-     nicht kopiert. Hier stehen nur die wenigen Texte, die das Skript selbst
-     erzeugt; welche Sprache gilt, sagt das lang-Attribut von <html>.
-     Alle uebrigen Texte kommen aus dem HTML und sind dadurch automatisch
-     richtig — siehe SUBMIT_LABEL in Abschnitt 8. */
-  var LANG = (document.documentElement.getAttribute('lang') || 'de').slice(0, 2).toLowerCase();
-  var TEXT = {
-    de: { menuOpen: 'Menü öffnen',     menuClose: 'Menü schliessen', sending: 'Wird gesendet …',  sent: 'Anfrage gesendet' },
-    en: { menuOpen: 'Open menu',       menuClose: 'Close menu',      sending: 'Sending …',        sent: 'Message sent' },
-    fr: { menuOpen: 'Ouvrir le menu',  menuClose: 'Fermer le menu',  sending: 'Envoi en cours …', sent: 'Demande envoyée' }
-  };
-  var T = TEXT[LANG] || TEXT.de;
-
-  /* ---------- 1. Header + Back-to-top ---------- */
+  /* ---------- 1. Kopfzeile und Nach-oben-Knopf ---------- */
   var header = document.getElementById('header');
   var totop  = document.getElementById('totop');
 
   function onScroll() {
     var y = window.scrollY || window.pageYOffset;
-    if (header) header.classList.toggle('is-stuck', y > 40);
-    if (totop)  totop.classList.toggle('is-visible', y > 800);
+    if (header) header.classList.toggle('is-stuck', y > 60);
+    if (totop)  totop.classList.toggle('is-visible', y > 700);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
@@ -53,11 +39,11 @@
     document.body.classList.toggle('is-locked', open);
     if (burger) {
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-      burger.setAttribute('aria-label', open ? T.menuClose : T.menuOpen);
+      burger.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
     }
     var links = menu.querySelectorAll('a');
     for (var i = 0; i < links.length; i++) {
-      links[i].style.transitionDelay = open ? (0.05 * i + 0.08) + 's' : '0s';
+      links[i].style.transitionDelay = open ? (0.06 * i + 0.1) + 's' : '0s';
     }
   }
   function closeMenu() { setMenu(false); }
@@ -69,11 +55,9 @@
     menu.addEventListener('click', function (e) {
       if (e.target.closest('a')) closeMenu();
     });
-    // Beim Wechsel auf Desktopbreite darf keine gesperrte Seite zurueckbleiben.
-    // 1000 px ist dieselbe Grenze, ab der style.css den Burger einblendet —
-    // die beiden Werte muessen zusammen geaendert werden.
+    // Beim Wechsel auf Desktopbreite darf keine gesperrte Seite zurueckbleiben
     window.addEventListener('resize', function () {
-      if (window.innerWidth > 1000 && menu.classList.contains('is-open')) closeMenu();
+      if (window.innerWidth > 860 && menu.classList.contains('is-open')) closeMenu();
     });
   }
 
@@ -92,16 +76,16 @@
 
     e.preventDefault();
     closeMenu();
-    var offset = (header ? header.offsetHeight : 0) + 12;
+    var offset = (header ? header.offsetHeight : 0) + 10;
     var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
     window.scrollTo({ top: top, behavior: reduced ? 'auto' : 'smooth' });
     history.replaceState(null, '', id);
   });
 
-  /* ---------- 4. Scroll-Reveal ---------- */
-  var reveals = document.querySelectorAll('.reveal');
+  /* ---------- 4. Einblenden beim Scrollen ---------- */
+  var rises = document.querySelectorAll('.rise');
   if (!('IntersectionObserver' in window) || reduced) {
-    for (var r = 0; r < reveals.length; r++) reveals[r].classList.add('is-in');
+    for (var r = 0; r < rises.length; r++) rises[r].classList.add('is-in');
   } else {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -110,8 +94,8 @@
           io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    for (var s = 0; s < reveals.length; s++) io.observe(reveals[s]);
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    for (var s = 0; s < rises.length; s++) io.observe(rises[s]);
   }
 
   /* ---------- 5. Aktiver Navigationspunkt ---------- */
@@ -130,71 +114,7 @@
     for (var t = 0; t < sections.length; t++) spy.observe(sections[t]);
   }
 
-  /* ---------- 6. FAQ-Akkordeon ---------- */
-  var faq = document.getElementById('faqBox');
-  if (faq) {
-    faq.addEventListener('click', function (e) {
-      var btn = e.target.closest('.faq__q');
-      if (!btn) return;
-
-      var item   = btn.parentElement;
-      var panel  = item.querySelector('.faq__a');
-      var isOpen = item.classList.contains('is-open');
-
-      var openItems = faq.querySelectorAll('.faq__item.is-open');
-      for (var i = 0; i < openItems.length; i++) {
-        if (openItems[i] === item) continue;
-        openItems[i].classList.remove('is-open');
-        openItems[i].querySelector('.faq__a').style.height = '0px';
-        openItems[i].querySelector('.faq__q').setAttribute('aria-expanded', 'false');
-      }
-
-      if (isOpen) {
-        panel.style.height = '0px';
-        item.classList.remove('is-open');
-        btn.setAttribute('aria-expanded', 'false');
-      } else {
-        panel.style.height = panel.firstElementChild.offsetHeight + 'px';
-        item.classList.add('is-open');
-        btn.setAttribute('aria-expanded', 'true');
-      }
-    });
-
-    window.addEventListener('resize', function () {
-      var open = faq.querySelector('.faq__item.is-open .faq__a');
-      if (open) open.style.height = open.firstElementChild.offsetHeight + 'px';
-    });
-  }
-
-  /* ---------- 7. Live-Vorschauen skalieren --------------------------------
-     Die eingebettete Website wird in voller Desktopbreite (1440 px) geladen
-     und anschliessend passgenau auf die Kartenbreite herunterskaliert.
-     So sieht man das echte Desktop-Layout statt der Mobilansicht.
-     ---------------------------------------------------------------------- */
-  var previews = document.querySelectorAll('[data-preview]');
-  var BASE_WIDTH = 1440;
-
-  function scalePreviews() {
-    for (var i = 0; i < previews.length; i++) {
-      var box    = previews[i];
-      var frame  = box.querySelector('iframe');
-      if (!frame) continue;
-
-      var scale  = box.clientWidth / BASE_WIDTH;
-      frame.style.transform = 'scale(' + scale + ')';
-      frame.style.height    = (box.clientHeight / scale) + 'px';
-    }
-  }
-
-  if (previews.length) {
-    scalePreviews();
-    window.addEventListener('resize', scalePreviews);
-    window.addEventListener('load', scalePreviews);
-    // Nach dem Laden der Schriften erneut messen
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(scalePreviews);
-  }
-
-  /* ---------- 8. Kontaktformular ---------- */
+  /* ---------- 6. Reservationsformular ---------- */
   /* ===== ANPASSEN: Adresse des Formular-Dienstes ==========================
      1. Kostenloses Konto auf formspree.io anlegen
      2. Neues Formular anlegen — Sie erhalten eine Adresse wie
@@ -202,47 +122,54 @@
      3. Diese Adresse hier unten eintragen (die Zeile mit FORM_ENDPOINT)
      4. Die allererste Testanfrage einmal per E-Mail bestaetigen
 
+     Ein echtes Restaurant wuerde hier stattdessen ein Reservationssystem
+     anbinden, das freie Tische kennt. Fuer eine Gestaltungsdemo genuegt der
+     Formulardienst.
+
      Bis dahin zeigt das Formular eine Fehlermeldung mit E-Mail und Telefon
      an — statt einer falschen Erfolgsmeldung.
      ====================================================================== */
   var FORM_ENDPOINT = 'https://formspree.io/f/xzepdone';
   var IS_CONFIGURED = FORM_ENDPOINT.indexOf('DEINE-FORM-ID') === -1;
 
-  var form = document.getElementById('contactForm');
+  var form = document.getElementById('resvForm');
   if (form) {
     var SUBMIT_LABEL = form.querySelector('button[type="submit"]').textContent;
     if (IS_CONFIGURED) { form.setAttribute('action', FORM_ENDPOINT); form.setAttribute('method', 'POST'); }
-    function markError(input, hasError) {
-      var field = input.closest('.field');
-      if (field) field.classList.toggle('has-error', hasError);
+
+    // Ein Tisch laesst sich nicht rueckwirkend reservieren
+    var dateInput = document.getElementById('f-date');
+    if (dateInput) dateInput.min = new Date().toISOString().split('T')[0];
+
+    function mark(input, bad) {
+      var f = input.closest('.field');
+      if (f) f.classList.toggle('has-error', bad);
     }
 
     form.addEventListener('input', function (e) {
-      if (e.target.matches('input, textarea')) markError(e.target, false);
+      if (e.target.matches('input, textarea')) mark(e.target, false);
     });
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
       var ok   = true;
-      var name = document.getElementById('c-name');
-      var mail = document.getElementById('c-mail');
-      var msg  = document.getElementById('c-msg');
-      var priv = document.getElementById('c-privacy');
+      var name = document.getElementById('f-name');
+      var mail = document.getElementById('f-mail');
+      var priv = document.getElementById('f-priv');
 
-      if (!name.value.trim()) { markError(name, true); ok = false; }
-      if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(mail.value.trim())) { markError(mail, true); ok = false; }
-      if (!msg.value.trim())  { markError(msg, true);  ok = false; }
+      if (!name.value.trim()) { mark(name, true); ok = false; }
+      if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(mail.value.trim())) { mark(mail, true); ok = false; }
       if (!priv.checked) {
         ok = false;
         priv.focus();
-        priv.parentElement.style.color = '#C2593F';
-        setTimeout(function () { priv.parentElement.style.color = ''; }, 2500);
+        priv.parentElement.style.color = '#E08C6E';
+        window.setTimeout(function () { priv.parentElement.style.color = ''; }, 2500);
       }
 
       if (!ok) {
-        var firstErr = form.querySelector('.field.has-error input, .field.has-error textarea');
-        if (firstErr) firstErr.focus();
+        var first = form.querySelector('.field.has-error input');
+        if (first) first.focus();
         return;
       }
 
@@ -250,8 +177,8 @@
          Solange bei FORM_ENDPOINT noch die Beispieladresse steht, meldet das
          Formular BEWUSST einen Fehler statt "gesendet". Eine Anfrage, die
          niemand bekommt, darf nicht als erfolgreich bestaetigt werden. */
-      var okBox  = document.getElementById('formOk');
-      var errBox = document.getElementById('formErr');
+      var okBox  = document.getElementById('okBox');
+      var errBox = document.getElementById('errBox');
       var btn    = form.querySelector('button[type="submit"]');
 
       okBox.classList.remove('is-visible');
@@ -271,7 +198,7 @@
       }
 
       btn.disabled = true;
-      btn.textContent = T.sending;
+      btn.textContent = 'Wird gesendet …';
 
       window.fetch(FORM_ENDPOINT, {
         method: 'POST',
@@ -283,7 +210,7 @@
       }).then(function () {
         okBox.classList.add('is-visible');
         form.reset();
-        btn.textContent = T.sent;
+        btn.textContent = 'Anfrage gesendet';
         okBox.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
         window.setTimeout(function () {
           btn.disabled = false;
@@ -293,14 +220,8 @@
     });
   }
 
-  /* ---------- 9. Jahreszahl ---------- */
+  /* ---------- 7. Jahreszahl ---------- */
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
-  /* ---------- 10. Paketdetails ----------
-     Auf dem Handy bleibt der Block eingeklappt (kuerzerer Weg zum Kontakt),
-     ab Tabletbreite ist er offen. Ohne JavaScript ist er zwar zu, laesst sich
-     aber ganz normal per Klick oeffnen — <details> braucht kein Skript. */
-  var planinfo = document.getElementById('planinfo');
-  if (planinfo && window.matchMedia('(min-width:761px)').matches) planinfo.open = true;
 })();

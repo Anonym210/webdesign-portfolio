@@ -46,7 +46,15 @@
 <!-- ANPASSEN: Sobald eine eigene Domain läuft, hier, in og:url, in og:image,
      in robots.txt und in sitemap.xml die neue Adresse eintragen. -->
 <link rel="canonical" href="https://anonym210.github.io/webdesign-portfolio/">
+<!-- Der hreflang-Satz ist in ALLEN drei Sprachfassungen dieser Seite
+     buchstabengleich. Nur so erkennt Google sie als zusammengehoerig. -->
+<link rel="alternate" hreflang="de"        href="https://anonym210.github.io/webdesign-portfolio/">
+<link rel="alternate" hreflang="en"        href="https://anonym210.github.io/webdesign-portfolio/en/">
+<link rel="alternate" hreflang="fr"        href="https://anonym210.github.io/webdesign-portfolio/fr/">
+<link rel="alternate" hreflang="x-default" href="https://anonym210.github.io/webdesign-portfolio/">
 <meta property="og:url" content="https://anonym210.github.io/webdesign-portfolio/">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:locale:alternate" content="fr_CH">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Envy Web">
@@ -82,6 +90,7 @@
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+  "@id": "https://anonym210.github.io/webdesign-portfolio/#organisation",
   "name": "Envy Web",
   "url": "https://anonym210.github.io/webdesign-portfolio/",
   "slogan": "Websites, um die man Sie beneidet.",
@@ -99,7 +108,7 @@
   "email": "ejdin.aliti@greenecoservice.ch",
   "telephone": "+41765220525",
   "founder": { "@type": "Person", "name": "Ejdin Aliti" },
-  "knowsLanguage": ["de-CH", "de"]
+  "knowsLanguage": ["de-CH", "de", "en", "fr"]
 }
 </script>
 </head>
@@ -123,7 +132,26 @@
     </nav>
 
     <div class="header__actions">
-      <a class="btn btn--accent btn--sm" href="#kontakt">Kostenloses Erstgespräch</a>
+      <!-- Sprachumschalter: reine Links, kein JavaScript. Die aktuelle Seite
+           bleibt beim Wechsel erhalten. Bewusst KEIN automatischer Wechsel
+           anhand der Browsersprache — das bricht den Zurück-Knopf und
+           verhindert, dass Google die Sprachfassungen einzeln aufnimmt.
+           hreflang = Sprache des Ziels, lang = Sprache der Beschriftung. -->
+      <nav class="langswitch" aria-label="Sprache wählen">
+        <a class="is-active" href="index.html" hreflang="de" lang="de-CH" aria-current="true">
+          <span aria-hidden="true">DE</span><span class="sr-only">Deutsch</span>
+        </a>
+        <a href="en/index.html" hreflang="en" lang="en">
+          <span aria-hidden="true">EN</span><span class="sr-only">English</span>
+        </a>
+        <a href="fr/index.html" hreflang="fr" lang="fr">
+          <span aria-hidden="true">FR</span><span class="sr-only">Français</span>
+        </a>
+      </nav>
+
+      <!-- Beschriftung in EINEM span, weil .btn ein inline-flex mit gap ist:
+           zwei getrennte Kinder ergaeben sonst eine doppelte Luecke. -->
+      <a class="btn btn--accent btn--sm" href="#kontakt"><span><span class="btn__long">Kostenloses </span>Erstgespräch</span></a>
       <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobilemenu">
         <span></span><span></span><span></span>
       </button>
@@ -232,7 +260,7 @@
       <p class="eyebrow">Arbeiten</p>
       <h2>So sieht das Ergebnis aus</h2>
       <p class="lead" style="margin-top:1.2rem;">
-        Zwei vollständig gebaute Beispielwebsites — anklickbar, nicht nur als Bild.
+        Drei vollständig gebaute Beispielwebsites — anklickbar, nicht nur als Bild.
         Jedes Projekt beginnt mit derselben Frage: Was soll ein Besucher innerhalb
         von zehn Sekunden verstanden haben?
       </p>
@@ -300,6 +328,36 @@
         </div>
       </article>
 
+      <!-- ---------------- Beispiel 3 ---------------- -->
+      <article class="project reveal" data-delay="2">
+        <div class="project__visual">
+          <span class="project__tag project__tag--live">Beispielwebsite</span>
+          <div class="livepreview" data-preview>
+            <iframe src="demo-restaurant/index.html" title="Vorschau AVERA Contemporary Dining" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+            <a class="livepreview__veil" href="demo-restaurant/index.html" target="_blank" rel="noopener" aria-label="AVERA Contemporary Dining öffnen"></a>
+          </div>
+        </div>
+        <div class="project__body">
+          <span class="project__meta">Restaurant · Onepager</span>
+          <h3>AVERA Contemporary Dining</h3>
+          <p>
+            Dunkle Abendstimmung statt heller Praxisseite: grosse Bildflächen, eine
+            gesetzte Menükarte mit fünf Gängen und eine Tischreservation, die nach
+            Datum, Uhrzeit und Anzahl Gästen fragt.
+          </p>
+          <div class="project__tags">
+            <span>Onepager</span><span>Menükarte</span><span>Reservation</span><span>Dunkles Design</span>
+          </div>
+          <div class="project__foot">
+            <a class="textlink" href="demo-restaurant/index.html" target="_blank" rel="noopener">
+              Website öffnen
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+            <span class="muted" style="font-size:.84rem;">Inhalte erfunden</span>
+          </div>
+        </div>
+      </article>
+
       <!-- ---------------- Platz für das erste echte Kundenprojekt ----------------
            So ersetzen Sie diese Karte durch eine echte Referenz:
              1. Screenshot der fertigen Seite machen (Breite ca. 1440 px)
@@ -307,7 +365,7 @@
              3. Den Kommentar-Block darunter einkommentieren und ausfüllen
              4. Diese Platzhalter-Karte löschen
            -->
-      <article class="project project--empty reveal" data-delay="2">
+      <article class="project project--empty reveal" data-delay="3">
         <div class="project__visual">
           <div>
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>

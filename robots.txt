@@ -10,6 +10,7 @@ Allow: /
 # Sie dürfen nicht wie echte Unternehmen in der Suche erscheinen.
 Disallow: /demo-massage/
 Disallow: /demo-thai/
+Disallow: /demo-restaurant/
 
 # Interne Übersichtsseite und Quelldatei des Vorschaubilds
 Disallow: /uebersicht.html
@@ -18,5 +19,10 @@ Disallow: /assets/social-preview.html
 # "Allow: /" oben gilt auch für KI-Crawler (GPTBot, ClaudeBot, PerplexityBot
 # u.a.), da kein eigener Disallow-Block für sie existiert. Kurzbeschreibung
 # der Seite für Sprachmodelle: /llms.txt
+#
+# Die Sprachfassungen /en/ und /fr/ sind ausdrücklich erwünscht und durch
+# "Allow: /" bereits abgedeckt. Sie enthalten keine Kopien der Beispiel-
+# websites — diese liegen nur einmal unter /demo-massage/, /demo-thai/ und
+# /demo-restaurant/ und bleiben durch die Regeln oben gesperrt.
 
 Sitemap: https://anonym210.github.io/webdesign-portfolio/sitemap.xml

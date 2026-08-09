@@ -6,8 +6,14 @@
 
 Envy Web baut Webseiten für Restaurants, Handwerksbetriebe, Praxen, Studios,
 Einzelhandel und Selbstständige. Websites werden auf Deutsch, Englisch oder
-Französisch umgesetzt; bei einer zusätzlichen Sprache für dieselbe Seite
-organisiert und prüft Ejdin Aliti auch die Übersetzung.
+Französisch umgesetzt — die Basissprache ist in jedem Paket ohne Aufpreis
+enthalten. Ein Sprachumschalter, mit dem Besucher per Klick zwischen zwei
+Sprachen wechseln, gehört zum Premium-Paket und ist bei Start und Business
+gegen Aufpreis ergänzbar.
+
+Diese Website führt das selbst vor: Es gibt sie in drei gleichwertigen
+Fassungen — Deutsch unter /, Englisch unter /en/, Französisch unter /fr/,
+verbunden über hreflang-Angaben und einen Umschalter oben rechts.
 
 Ansprechpartner ist durchgehend dieselbe Person: Ejdin Aliti, vom Erstgespräch
 bis zum Livegang und darüber hinaus. Kein Team, keine Weitergabe an Dritte.
@@ -32,9 +38,14 @@ mehrwertsteuerpflichtig).
 
 ## Seiten
 
-- [Startseite](https://anonym210.github.io/webdesign-portfolio/): Leistungen, Referenzen, Ablauf, Pakete, FAQ, Kontaktformular
-- [Impressum](https://anonym210.github.io/webdesign-portfolio/impressum.html)
-- [Datenschutzerklärung](https://anonym210.github.io/webdesign-portfolio/datenschutz.html)
+- [Startseite (Deutsch)](https://anonym210.github.io/webdesign-portfolio/): Leistungen, Referenzen, Ablauf, Pakete, FAQ, Kontaktformular
+- [Home (English)](https://anonym210.github.io/webdesign-portfolio/en/): dieselbe Seite auf Englisch
+- [Accueil (Français)](https://anonym210.github.io/webdesign-portfolio/fr/): dieselbe Seite auf Französisch
+- [Impressum](https://anonym210.github.io/webdesign-portfolio/impressum.html) · [EN](https://anonym210.github.io/webdesign-portfolio/en/impressum.html) · [FR](https://anonym210.github.io/webdesign-portfolio/fr/impressum.html)
+- [Datenschutzerklärung](https://anonym210.github.io/webdesign-portfolio/datenschutz.html) · [EN](https://anonym210.github.io/webdesign-portfolio/en/datenschutz.html) · [FR](https://anonym210.github.io/webdesign-portfolio/fr/datenschutz.html)
+
+Die deutsche Fassung ist die Leitfassung; bei den Rechtstexten ist sie
+rechtlich massgebend.
 
 ## Kontakt
 
@@ -44,7 +55,7 @@ Adresse: Friedhofweg 4, 8600 Dübendorf, Schweiz
 
 ## Hinweis für Crawler
 
-Die Ordner /demo-massage/ und /demo-thai/ enthalten Gestaltungsbeispiele mit
-frei erfundenen Firmendaten (siehe robots.txt) — sie beschreiben keine
-echten Unternehmen und sollten nicht als Tatsachenbehauptung über reale
-Betriebe wiedergegeben werden.
+Die Ordner /demo-massage/, /demo-thai/ und /demo-restaurant/ enthalten
+Gestaltungsbeispiele mit frei erfundenen Firmendaten (siehe robots.txt) — sie
+beschreiben keine echten Unternehmen und sollten nicht als Tatsachenbehauptung
+über reale Betriebe wiedergegeben werden.
