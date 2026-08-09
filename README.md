@@ -30,12 +30,11 @@ Adresse und Ort in Impressum, Datenschutz, Hero und Kontaktbereich,
 Hosting-Anbieter (GitHub Pages, `datenschutz.html` Abschnitt 7),
 Telefon und WhatsApp (076 522 05 25).
 
-Noch offen — beides optional bzw. erst mit eigener Domain sinnvoll:
+Noch offen — optional, erst mit eigener Domain sinnvoll:
 
 | Was | Wo |
 |---|---|
 | **Eigene E-Mail-Adresse** | Aktuell `ejdin.aliti@greenecoservice.ch`. Eine Adresse auf der eigenen Domain (z. B. `hallo@envyweb.ch`) wirkt stimmiger — kommt in `index.html` (Kontakt, Fehlermeldung, Footer, strukturierte Daten) und in beiden Rechtstexten vor |
-| **Portraitfoto** (optional) | `assets/img/portrait.jpg`, hochkant ca. 900 × 1100 px. Der Über-mich-Abschnitt zeigt bewusst ein Monogramm; die Einbindung des Fotos ist im Abschnitt als Kommentar beschrieben |
 
 ---
 
@@ -375,7 +374,7 @@ assets/
 ├── css/fonts.css          Lokale @font-face-Regeln
 ├── js/main.js             Menü, Reveal, FAQ, Vorschau-Skalierung, Formular
 ├── fonts/                 Instrument Serif + Inter als WOFF2
-├── img/                   social-preview.png, später portrait.jpg und Referenzen
+├── img/                   social-preview.png, portrait.jpg, später Referenzen
 └── social-preview.html    Quelle für das Vorschaubild
 
 demo-massage/             Beispielwebsite AURELIA
