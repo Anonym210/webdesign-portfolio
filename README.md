@@ -29,13 +29,22 @@ Request an einen fremden Server — das ist der Grund, warum die Aussage
 Bereits erledigt: Formspree-Adresse (`FORM_ENDPOINT` in allen drei `main.js`),
 Adresse und Ort in Impressum, Datenschutz, Hero und Kontaktbereich,
 Hosting-Anbieter (GitHub Pages, `datenschutz.html` Abschnitt 7),
-Telefon und WhatsApp (076 522 05 25).
+Telefon und WhatsApp (076 522 05 25),
+E-Mail-Adresse auf der eigenen Domain (`info@envyweb.ch`).
 
-Noch offen — optional, erst mit eigener Domain sinnvoll:
+Damit sind alle Pflichtangaben gesetzt.
 
-| Was | Wo |
+**Wenn die E-Mail-Adresse einmal wechselt**, kommt sie an diesen Stellen vor —
+am einfachsten mit einer projektweiten Suche nach der alten Adresse ersetzen:
+
+| Wo | Wie oft |
 |---|---|
-| **Eigene E-Mail-Adresse** | Aktuell `ejdin.aliti@greenecoservice.ch`. Eine Adresse auf der eigenen Domain (z. B. `hallo@envyweb.ch`) wirkt stimmiger — kommt in `index.html` (Kontakt, Fehlermeldung, Footer, strukturierte Daten) und in beiden Rechtstexten vor |
+| `index.html`, `en/index.html`, `fr/index.html` | Kontaktbereich, Fehlermeldung des Formulars, Footer, strukturierte Daten (`"email"`) |
+| `impressum.html`, `datenschutz.html` — je auch in `en/` und `fr/` | je einmal |
+| `llms.txt` | Abschnitt „Kontakt" |
+
+Nicht anfassen: die Adressen in `demo-massage/`, `demo-thai/` und
+`demo-restaurant/` gehören zu den erfundenen Beispielbetrieben.
 
 ---
 
@@ -241,7 +250,7 @@ einzeln aufnimmt.
 
 **Was jetzt dreifach existiert — bei jeder Änderung alle drei anfassen:**
 
-- Preise (890 / 1'690 / 2'900, Betreuung 29.–, Korrekturrunde 120.–, Sprache 390.–)
+- Preise (890 / 1'690 / 2'900, Betreuung 29.–, Sprache 390.–)
 - Telefonnummer, WhatsApp-Link, E-Mail-Adresse
 - alle Texte der Startseite
 - die FAQ — **und zwar doppelt je Sprache:** sichtbar *und* als `FAQPage`-Strukturdaten
@@ -455,8 +464,9 @@ erzeugen (der genaue Befehl steht als Kommentar in der Datei).
   direkten Aufruf einen Hinweis „Beispielwebsite“ ein — in der eingebetteten
   Vorschau auf der Verkaufsseite bleibt er ausgeblendet.
 - `sitemap.xml` enthält nur die Verkaufsseite.
-- Bei eigener Domain: Adresse in `robots.txt`, `sitemap.xml` sowie bei
-  `canonical`, `og:url` und `og:image` in `index.html` ersetzen.
+- Bei einem Domainwechsel: Adresse in `CNAME`, `robots.txt`, `sitemap.xml`
+  sowie bei `canonical`, `og:url` und `og:image` in `index.html`, `en/index.html`
+  und `fr/index.html` ersetzen.
 
 ---
 

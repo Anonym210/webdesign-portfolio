@@ -5,21 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- =====================================================================
-     VOR DEM LIVEGANG AUSFÜLLEN  —  alles an einer Stelle gesammelt
+     STAND DER PFLICHTANGABEN  —  alles an einer Stelle gesammelt
      ---------------------------------------------------------------------
-     Suchen Sie im Editor nach dem Text in eckigen Klammern; das sind alle
-     offenen Punkte. Die Reihenfolge entspricht der Dringlichkeit.
+     Alle Punkte sind erledigt. Die Liste bleibt stehen, damit bei einer
+     spaeteren Aenderung sofort ersichtlich ist, wo etwas nachzuziehen ist.
 
-     1. DOMAIN        Die Seite läuft aktuell unter
-                      https://envyweb.ch/
-                      Sobald eine eigene Domain da ist, die Adresse an fünf
-                      Stellen ersetzen: canonical und og:url (hier unten),
-                      og:image, robots.txt und sitemap.xml.
-     2. E-MAIL        Aktuell: ejdin.aliti@greenecoservice.ch
-                      Empfohlen: eine Adresse auf der eigenen Domain,
-                      z. B. hallo@envyweb.ch. Kommt 4× vor:
-                      Kontaktbereich, Fehlermeldung des Formulars, Footer,
-                      Impressum.
+     1. DOMAIN        Erledigt — die Seite laeuft unter https://envyweb.ch/
+                      (CNAME im Repo-Root, Custom Domain in den
+                      Repo-Settings, HTTPS erzwungen). Bei einem Wechsel die
+                      Adresse an fuenf Stellen ersetzen: canonical und
+                      og:url (hier unten), og:image, robots.txt und
+                      sitemap.xml — dasselbe in /en/ und /fr/.
+     2. E-MAIL        Erledigt — info@envyweb.ch, eine Adresse auf der
+                      eigenen Domain. Sie steht im Kontaktbereich, in der
+                      Fehlermeldung des Formulars, im Footer, in den
+                      strukturierten Daten und in beiden Rechtstexten
+                      (auch in /en/ und /fr/).
      3. FORMULAR      Erledigt — Formspree-Adresse ist in assets/js/main.js
                       eingetragen (Abschnitt 8, FORM_ENDPOINT). Nach dem
                       Livegang einmal eine Testanfrage senden und die
@@ -32,6 +33,7 @@
                       im Hero-Kreis und im Abschnitt "ÜBER MICH".
      6. IMPRESSUM     Adresse ist eingetragen. UID/Handelsregister nur
                       ergänzen, falls vorhanden — siehe impressum.html.
+                      Das ist der einzige Punkt, der noch offen sein kann.
 
      Bereits eingetragen: Telefon/WhatsApp 076 522 05 25 ·
      Friedhofweg 4, 8600 Dübendorf
@@ -43,8 +45,9 @@
 <meta name="robots" content="index, follow">
 <meta name="author" content="Ejdin Aliti">
 
-<!-- ANPASSEN: Sobald eine eigene Domain läuft, hier, in og:url, in og:image,
-     in robots.txt und in sitemap.xml die neue Adresse eintragen. -->
+<!-- Die Domain envyweb.ch steht an fuenf Stellen: hier (canonical), in
+     og:url, in og:image, in robots.txt und in sitemap.xml. Bei einem
+     Domainwechsel alle fuenf zusammen aendern. -->
 <link rel="canonical" href="https://envyweb.ch/">
 <!-- Der hreflang-Satz ist in ALLEN drei Sprachfassungen dieser Seite
      buchstabengleich. Nur so erkennt Google sie als zusammengehoerig. -->
@@ -105,7 +108,7 @@
   "areaServed": { "@type": "Country", "name": "Schweiz" },
   "priceRange": "CHF 890–2900",
   "currenciesAccepted": "CHF",
-  "email": "ejdin.aliti@greenecoservice.ch",
+  "email": "info@envyweb.ch",
   "telephone": "+41765220525",
   "founder": { "@type": "Person", "name": "Ejdin Aliti" },
   "knowsLanguage": ["de-CH", "de", "en", "fr"]
@@ -573,7 +576,7 @@
       </div>
       <div class="flow__item reveal" data-delay="2">
         <h3>Entwurf</h3>
-        <p>Nach wenigen Tagen sehen Sie die erste Version im Browser. Je nach Paket sind ein oder zwei Korrekturrunden inklusive.</p>
+        <p>Nach wenigen Tagen sehen Sie die erste Version im Browser. Wir feilen daran, bis sie passt — ohne Limit bei den Korrekturrunden, solange die Seite noch nicht live ist.</p>
       </div>
       <div class="flow__item reveal" data-delay="3">
         <h3>Livegang</h3>
@@ -621,7 +624,7 @@
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Mobil, Tablet und Desktop optimiert</span></li>
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Kontaktformular mit Spamschutz</span></li>
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Bis zu 8 Bilder aufbereitet und eingebaut</span></li>
-          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>1 Korrekturrunde</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Unbegrenzte Korrekturrunden vor dem Livegang</span></li>
         </ul>
         <a class="btn btn--ghost" href="#kontakt">Anfragen</a>
       </article>
@@ -640,7 +643,7 @@
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Google-Unternehmensprofil eingerichtet</span></li>
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Texte für alle Seiten, von mir geschrieben</span></li>
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Bis zu 25 Bilder aufbereitet und eingebaut</span></li>
-          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>2 Korrekturrunden</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Unbegrenzte Korrekturrunden vor dem Livegang</span></li>
         </ul>
         <a class="btn btn--light" href="#kontakt">Anfragen</a>
       </article>
@@ -655,7 +658,7 @@
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Online-Terminbuchung oder Shop-Anbindung</span></li>
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Sprachumschalter für eine zweite Sprache (z. B. Französisch)</span></li>
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Redaktionssystem zum Selbstpflegen</span></li>
-          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>3 Korrekturrunden</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Unbegrenzte Korrekturrunden vor dem Livegang</span></li>
         </ul>
         <a class="btn btn--ghost" href="#kontakt">Anfragen</a>
       </article>
@@ -686,7 +689,6 @@
           <li><b>Domain und Hosting selbst:</b> je nach Anbieter rund CHF 8–20 im Monat. Sie zahlen direkt beim Anbieter, ich schlage nichts auf.</li>
           <li><b>Externe Dienste</b> (Terminbuchung, Shop, Newsletter): Gebühren zahlen Sie direkt beim jeweiligen Anbieter.</li>
           <li><b>Fotograf oder gekaufte Bilder:</b> nach Aufwand. Lizenzfreie Bilder suche ich kostenlos aus.</li>
-          <li><b>Zusätzliche Korrekturrunde:</b> CHF 120.– pauschal.</li>
           <li><b>Sprachumschalter für Start und Business:</b> ab CHF 390.– je zusätzliche Sprache. Die Basissprache (Deutsch, Englisch oder Französisch) ist in jedem Paket bereits inklusive, ganz ohne Aufpreis. Für den Umschalter organisiere und prüfe ich die Übersetzung und reiche die Kosten dafür zum Selbstkostenpreis weiter — oder Sie liefern den Text selbst, dann entfällt dieser Posten.</li>
           <li><b>Änderungen nach dem Livegang</b> ohne Betreuungspaket: CHF 90.– je angefangene Stunde, vorher angekündigt.</li>
         </ul>
@@ -795,7 +797,7 @@
       </div>
       <div class="faq__item">
         <button class="faq__q" type="button" aria-expanded="false">Was, wenn mir der Entwurf nicht gefällt?<i aria-hidden="true"></i></button>
-        <div class="faq__a"><div>Dann sagen Sie es mir. Je nach Paket sind ein bis drei Korrekturrunden inklusive; eine Runde heisst: Sie sammeln alle Änderungswünsche, ich setze sie gemeinsam um. Reicht das nicht, kostet jede weitere Runde CHF 120.– pauschal. Und wenn schon der erste Entwurf in die falsche Richtung geht, können Sie ohne Rechnung aussteigen.</div></div>
+        <div class="faq__a"><div>Dann sagen Sie es mir. Solange die Seite noch nicht live ist, gibt es keine Begrenzung bei den Korrekturrunden — wir feilen so lange am Entwurf, bis er passt. Und wenn schon der erste Entwurf in die falsche Richtung geht, können Sie ohne Rechnung aussteigen.</div></div>
       </div>
       <div class="faq__item">
         <button class="faq__q" type="button" aria-expanded="false">Kann ich die Seite später selbst bearbeiten?<i aria-hidden="true"></i></button>
@@ -880,7 +882,7 @@
       "name": "Was, wenn mir der Entwurf nicht gefällt?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Dann sagen Sie es mir. Je nach Paket sind ein bis drei Korrekturrunden inklusive; eine Runde heisst: Sie sammeln alle Änderungswünsche, ich setze sie gemeinsam um. Reicht das nicht, kostet jede weitere Runde CHF 120.– pauschal. Und wenn schon der erste Entwurf in die falsche Richtung geht, können Sie ohne Rechnung aussteigen."
+        "text": "Dann sagen Sie es mir. Solange die Seite noch nicht live ist, gibt es keine Begrenzung bei den Korrekturrunden — wir feilen so lange am Entwurf, bis er passt. Und wenn schon der erste Entwurf in die falsche Richtung geht, können Sie ohne Rechnung aussteigen."
       }
     },
     {
@@ -934,7 +936,6 @@
 
     <div class="contact">
       <div class="contact__side reveal">
-        <!-- ANPASSEN: E-Mail-Adresse, sobald die eigene Domain steht -->
         <div class="ctline">
           <span class="ctline__ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span>
           <span><b>Telefon</b><a href="tel:+41765220525">076 522 05 25</a></span>
@@ -945,11 +946,11 @@
         </div>
         <div class="ctline">
           <span class="ctline__ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
-          <span><b>E-Mail</b><a href="mailto:ejdin.aliti@greenecoservice.ch">ejdin.aliti@greenecoservice.ch</a></span>
+          <span><b>E-Mail</b><a href="mailto:info@envyweb.ch">info@envyweb.ch</a></span>
         </div>
         <div class="ctline">
           <span class="ctline__ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-          <span><b>Erreichbar</b><span>Mo – Fr, 9 – 18 Uhr · Antwort spätestens am nächsten Werktag</span></span>
+          <span><b>Erreichbar</b><span>Mo – Fr, 8 – 18 Uhr · Antwort spätestens am nächsten Werktag</span></span>
         </div>
 
         <div class="ctbox">
@@ -1011,7 +1012,7 @@
 
         <div class="form__err" id="formErr" role="alert">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
-          <span>Die Anfrage konnte nicht übermittelt werden. Bitte schreiben Sie mir direkt an <a href="mailto:ejdin.aliti@greenecoservice.ch">ejdin.aliti@greenecoservice.ch</a> oder rufen Sie an: <a href="tel:+41765220525">076 522 05 25</a>.</span>
+          <span>Die Anfrage konnte nicht übermittelt werden. Bitte schreiben Sie mir direkt an <a href="mailto:info@envyweb.ch">info@envyweb.ch</a> oder rufen Sie an: <a href="tel:+41765220525">076 522 05 25</a>.</span>
         </div>
       </form>
     </div>
@@ -1076,7 +1077,7 @@
         <ul>
           <li><a href="tel:+41765220525">076 522 05 25</a></li>
           <li><a href="https://wa.me/41765220525" target="_blank" rel="noopener">WhatsApp</a></li>
-          <li><a href="mailto:ejdin.aliti@greenecoservice.ch">ejdin.aliti@greenecoservice.ch</a></li>
+          <li><a href="mailto:info@envyweb.ch">info@envyweb.ch</a></li>
           <li><a href="#kontakt">Erstgespräch anfragen</a></li>
         </ul>
       </div>

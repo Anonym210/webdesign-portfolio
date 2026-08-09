@@ -1,6 +1,6 @@
 # =====================================================================
 #  Envy Web — Regeln für Suchmaschinen
-#  Bei eigener Domain: die Sitemap-Adresse unten anpassen.
+#  Bei einem Domainwechsel: die Sitemap-Adresse unten mit anpassen.
 # =====================================================================
 
 User-agent: *

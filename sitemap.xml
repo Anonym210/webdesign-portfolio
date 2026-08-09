@@ -8,7 +8,7 @@
   verlangt diese Gegenseitigkeit; fehlt sie in einem Block, wird die ganze
   Gruppe ignoriert. Der xhtml-Namensraum oben muss dafür deklariert sein.
 
-  Bei eigener Domain alle Adressen hier ersetzen.
+  Bei einem Domainwechsel alle Adressen hier ersetzen.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
