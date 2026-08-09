@@ -43,11 +43,11 @@ Noch offen — optional, erst mit eigener Domain sinnvoll:
 
 | | |
 |---|---|
-| **Live-Adresse (Verkaufsseite)** | https://anonym210.github.io/webdesign-portfolio/ |
-| Beispiel AURELIA | https://anonym210.github.io/webdesign-portfolio/demo-massage/ |
-| Beispiel SABAI | https://anonym210.github.io/webdesign-portfolio/demo-thai/ |
-| Beispiel AVERA | https://anonym210.github.io/webdesign-portfolio/demo-restaurant/ |
-| Projektübersicht (intern) | https://anonym210.github.io/webdesign-portfolio/uebersicht.html |
+| **Live-Adresse (Verkaufsseite)** | https://envyweb.ch/ |
+| Beispiel AURELIA | https://envyweb.ch/demo-massage/ |
+| Beispiel SABAI | https://envyweb.ch/demo-thai/ |
+| Beispiel AVERA | https://envyweb.ch/demo-restaurant/ |
+| Projektübersicht (intern) | https://envyweb.ch/uebersicht.html |
 | **Code** | https://github.com/Anonym210/webdesign-portfolio |
 
 Die Seiten liegen auf GitHub Pages und sind öffentlich erreichbar.
@@ -72,19 +72,21 @@ genügt nicht.
 |---|---|
 | **Name** | Envy Web |
 | **Logo** | Monogramm: kursives „E“ mit Glanzstern auf violettem Verlauf, daneben „ENVY / Web“ |
-| **Wunschdomain** | `envyweb.ch` — noch nicht registriert |
+| **Domain** | `envyweb.ch` — registriert bei Hostpoint, verbunden mit GitHub Pages |
 | **Claim (Titel & Footer)** | Websites, um die man Sie beneidet. |
 | **Claim (Hero-Eyebrow)** | Neid ist das beste Kompliment |
 
 Vor der Registrierung prüfen: Domain bei [nic.ch](https://www.nic.ch),
 Markenkonflikte bei [swissreg.ch](https://www.swissreg.ch) in Klasse 42.
 
-### Eigene Domain verbinden
+### Eigene Domain
 
-Wenn Sie später eine `.ch`-Domain haben: im Repo unter
-*Settings → Pages → Custom domain* eintragen und beim Domain-Anbieter einen
-CNAME-Eintrag auf `anonym210.github.io` setzen. HTTPS aktiviert GitHub
-danach automatisch.
+`envyweb.ch` ist bei Hostpoint registriert und per DNS auf GitHub Pages
+verbunden: vier A-Records auf die GitHub-Pages-IPs (185.199.108–111.153),
+vier AAAA-Records auf die zugehörigen IPv6-Adressen, sowie ein
+CNAME-Record für `www` auf `anonym210.github.io`. Die Datei `CNAME` im
+Repo-Root enthält `envyweb.ch`. In den Repo-Settings unter *Pages* ist die
+Custom Domain eingetragen und „Enforce HTTPS" aktiviert.
 
 > **Stand:** Impressum und Datenschutzerklärung sind vollständig ausgefüllt
 > (Adresse, Kontakt, Hosting-Anbieter). Offen ist nur noch die E-Mail-Adresse

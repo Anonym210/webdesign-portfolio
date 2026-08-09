@@ -38,11 +38,11 @@ mehrwertsteuerpflichtig).
 
 ## Seiten
 
-- [Startseite (Deutsch)](https://anonym210.github.io/webdesign-portfolio/): Leistungen, Referenzen, Ablauf, Pakete, FAQ, Kontaktformular
-- [Home (English)](https://anonym210.github.io/webdesign-portfolio/en/): dieselbe Seite auf Englisch
-- [Accueil (Français)](https://anonym210.github.io/webdesign-portfolio/fr/): dieselbe Seite auf Französisch
-- [Impressum](https://anonym210.github.io/webdesign-portfolio/impressum.html) · [EN](https://anonym210.github.io/webdesign-portfolio/en/impressum.html) · [FR](https://anonym210.github.io/webdesign-portfolio/fr/impressum.html)
-- [Datenschutzerklärung](https://anonym210.github.io/webdesign-portfolio/datenschutz.html) · [EN](https://anonym210.github.io/webdesign-portfolio/en/datenschutz.html) · [FR](https://anonym210.github.io/webdesign-portfolio/fr/datenschutz.html)
+- [Startseite (Deutsch)](https://envyweb.ch/): Leistungen, Referenzen, Ablauf, Pakete, FAQ, Kontaktformular
+- [Home (English)](https://envyweb.ch/en/): dieselbe Seite auf Englisch
+- [Accueil (Français)](https://envyweb.ch/fr/): dieselbe Seite auf Französisch
+- [Impressum](https://envyweb.ch/impressum.html) · [EN](https://envyweb.ch/en/impressum.html) · [FR](https://envyweb.ch/fr/impressum.html)
+- [Datenschutzerklärung](https://envyweb.ch/datenschutz.html) · [EN](https://envyweb.ch/en/datenschutz.html) · [FR](https://envyweb.ch/fr/datenschutz.html)
 
 Die deutsche Fassung ist die Leitfassung; bei den Rechtstexten ist sie
 rechtlich massgebend.
