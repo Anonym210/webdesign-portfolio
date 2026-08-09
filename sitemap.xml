@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Nur Seiten, die tatsächlich in der Suche erscheinen sollen.
-  Nicht enthalten: die drei Beispielwebsites (in robots.txt gesperrt und
-  mit "noindex"), Impressum und Datenschutz (ebenfalls "noindex").
+  Nicht enthalten: die drei Beispielwebsites (tragen "noindex, nofollow"),
+  Impressum und Datenschutz (ebenfalls "noindex").
 
   Jeder Eintrag listet ALLE Sprachfassungen — auch sich selbst. Google
   verlangt diese Gegenseitigkeit; fehlt sie in einem Block, wird die ganze

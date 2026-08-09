@@ -12,8 +12,8 @@
      Kopf von ../index.html und werden hier bewusst nicht wiederholt.
      ===================================================================== -->
 
-<title>Envy Web — Sites web pour les entreprises locales en Suisse</title>
-<meta name="description" content="Des sites web sur mesure pour les petites entreprises suisses qui veulent plus d'appels et de demandes via Google. Prix fixe, en ligne en 2–3 semaines, sans allure de modèle.">
+<title>Création de sites web à Dübendorf &amp; Zurich — Envy Web</title>
+<meta name="description" content="Création de sites web à Dübendorf près de Zurich : des sites sur mesure pour les petites entreprises suisses qui veulent plus d'appels et de demandes via Google. Prix fixe, en ligne en 2–3 semaines.">
 <meta name="theme-color" content="#FAF8F5">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Ejdin Aliti">
@@ -29,13 +29,11 @@
 <!-- Der hreflang-Satz ist in ALLEN drei Sprachfassungen dieser Seite
      buchstabengleich. Nur so erkennt Google sie als zusammengehoerig. -->
 <meta property="og:url" content="https://envyweb.ch/fr/">
-<meta property="og:locale:alternate" content="en_GB">
-<meta property="og:locale:alternate" content="fr_CH">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Envy Web">
-<meta property="og:title" content="Envy Web — Sites web pour les entreprises locales en Suisse">
-<meta property="og:description" content="Des sites web sur mesure à prix fixe. Du premier projet à la mise en ligne en 2–3 semaines.">
+<meta property="og:title" content="Création de sites web à Dübendorf &amp; Zurich — Envy Web">
+<meta property="og:description" content="Des sites web sur mesure à prix fixe, créés à Dübendorf près de Zurich. Du premier projet à la mise en ligne en 2–3 semaines.">
 <meta property="og:image" content="https://envyweb.ch/assets/img/social-preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -48,8 +46,11 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='4' y1='4' x2='44' y2='44' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%231B1424'/%3E%3Cstop offset='1' stop-color='%2352397A'/%3E%3C/linearGradient%3E%3CradialGradient id='h' cx='30%25' cy='25%25' r='60%25'%3E%3Cstop offset='0' stop-color='%23C3A6EA' stop-opacity='.55'/%3E%3Cstop offset='1' stop-color='%23C3A6EA' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='48' height='48' rx='12' fill='url(%23g)'/%3E%3Crect width='48' height='48' rx='12' fill='url(%23h)'/%3E%3Cg transform='translate(1.67 2.57) scale(0.4286)'%3E%3Cpath d='M50 8 C52.5 30 54 43 76 50 C54 57 52.5 70 50 92 C47.5 70 46 57 24 50 C46 43 47.5 30 50 8 Z' fill='%23fff'/%3E%3Ccircle cx='76' cy='24' r='4.2' fill='%23C3A6EA'/%3E%3C/g%3E%3C/svg%3E">
 
-<!-- Schriften: lokal eingebunden, keine Verbindung zu Google -->
+<!-- Schriften: lokal eingebunden, keine Verbindung zu Google.
+     Preload fuer die drei Dateien, die den sichtbaren Erstaufbau tragen. -->
 <link rel="preload" href="../assets/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/instrument-serif-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/instrument-serif-400i-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/css/fonts.css">
 
 <link rel="stylesheet" href="../assets/css/style.css">
@@ -69,11 +70,12 @@
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": "https://envyweb.ch/#organisation",
-  "@id": "https://envyweb.ch/#organisation",
   "name": "Envy Web",
   "url": "https://envyweb.ch/fr/",
+  "logo": "https://envyweb.ch/assets/img/logo.svg",
+  "image": "https://envyweb.ch/assets/img/social-preview.png",
   "slogan": "Des sites web qui font des envieux.",
-  "description": "Conception et développement de sites web pour les petites entreprises locales en Suisse.",
+  "description": "Conception et développement de sites web pour les petites entreprises locales en Suisse — des sites sur mesure à prix fixe, depuis Dübendorf près de Zurich.",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Friedhofweg 4",
@@ -81,7 +83,13 @@
     "addressLocality": "Dübendorf",
     "addressCountry": "CH"
   },
-  "areaServed": { "@type": "Country", "name": "Suisse" },
+  "geo": { "@type": "GeoCoordinates", "latitude": 47.3971, "longitude": 8.6184 },
+  "areaServed": [
+    { "@type": "City", "name": "Dübendorf" },
+    { "@type": "City", "name": "Zurich" },
+    { "@type": "AdministrativeArea", "name": "Canton de Zurich" },
+    { "@type": "Country", "name": "Suisse" }
+  ],
   "priceRange": "CHF 890–2900",
   "currenciesAccepted": "CHF",
   "email": "ejdin.aliti@envyweb.ch",
@@ -92,6 +100,10 @@
 </script>
 </head>
 <body>
+
+<!-- Erst per Tab sichtbar: bringt Tastatur- und Vorlesehilfen-Nutzer
+     direkt zum Inhalt, ohne durch Navigation und Sprachumschalter zu muessen. -->
+<a class="skiplink" href="#top">Aller au contenu</a>
 
 <!-- ============================ HEADER ============================ -->
 <header class="header" id="header">
@@ -158,7 +170,7 @@
   <div class="wrap hero__inner">
     <div class="hero__grid">
       <div>
-        <p class="eyebrow">Sites web sur mesure pour les entreprises suisses locales</p>
+        <p class="eyebrow">Création de sites web à Dübendorf près de Zurich — pour les entreprises suisses locales</p>
         <h1>Vos clients cherchent en ligne.<br><em>Vous trouvent-ils ?</em></h1>
         <p class="hero__sub">
           
@@ -241,7 +253,7 @@
     <div class="head reveal">
       <p class="eyebrow">Réalisations</p>
       <h2>Voici le résultat</h2>
-      <p class="lead" style="margin-top:1.2rem;">
+      <p class="lead">
         
         Trois sites d'exemple entièrement réalisés — cliquables, et pas de simples captures d'écran.
         Chaque projet commence par la même question : que doit comprendre un visiteur en dix secondes ?
@@ -276,7 +288,7 @@
               Ouvrir le site
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
             </a>
-            <span class="muted" style="font-size:.84rem;">Contenu fictif</span>
+            <span class="muted">Contenu fictif</span>
           </div>
         </div>
       </article>
@@ -307,7 +319,7 @@
               Ouvrir le site
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
             </a>
-            <span class="muted" style="font-size:.84rem;">Contenu fictif</span>
+            <span class="muted">Contenu fictif</span>
           </div>
         </div>
       </article>
@@ -338,7 +350,7 @@
               Ouvrir le site
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
             </a>
-            <span class="muted" style="font-size:.84rem;">Contenu fictif</span>
+            <span class="muted">Contenu fictif</span>
           </div>
         </div>
       </article>
@@ -423,7 +435,7 @@
         <p class="eyebrow">Qui se cache derrière</p>
         <h2>Je m'appelle Ejdin Aliti et je réalise votre site moi-même.</h2>
 
-        <p class="lead" style="margin-top:1.4rem;">
+        <p class="lead">
           
           Pas d'équipe, pas d'agence, aucune sous-traitance. Vous m'expliquez lors du premier entretien ce
           que fait votre entreprise — et la même personne réalise la maquette, la mise en œuvre, la mise
@@ -433,7 +445,8 @@
         <p>
           
           Je travaille depuis Dübendorf et m'occupe principalement d'entreprises de la région zurichoise
-          et du reste de la Suisse alémanique. J'écris chaque page à la main plutôt que de l'assembler
+          et du reste de la Suisse alémanique — de la création du site aux textes, à la technique et au
+          suivi. J'écris chaque page à la main plutôt que de l'assembler
           dans un constructeur de sites — c'est pourquoi mes sites se chargent vite, fonctionnent sur tous
           les appareils et ne contiennent rien d'inutile.
         </p>
@@ -492,8 +505,8 @@
   <div class="wrap">
     <div class="head reveal">
       <p class="eyebrow">Prestations</p>
-      <h2>Ce que je fais pour vous</h2>
-      <p class="lead" style="margin-top:1.2rem;">
+      <h2>Un site web qui vous apporte des demandes</h2>
+      <p class="lead">
         
         Du premier croquis au nom de domaine enregistré à votre nom — vous n'avez à vous occuper de rien
         et recevez tous les accès à la fin.
@@ -546,7 +559,7 @@
     <div class="head reveal">
       <p class="eyebrow">Déroulement</p>
       <h2>Quatre étapes jusqu'au site terminé</h2>
-      <p class="lead" style="margin-top:1.2rem;">
+      <p class="lead">
         
         Aucune connaissance préalable ni préparation n'est nécessaire. Un entretien suffit pour
         démarrer.
@@ -580,7 +593,7 @@
     <div class="head center reveal">
       <p class="eyebrow">Tarifs</p>
       <h2>Des tarifs clairs, sans surprise</h2>
-      <p class="lead" style="margin-top:1.2rem;">
+      <p class="lead">
         
         Toutes les formules sont à prix fixe, conception, réalisation et installation comprises. Ce qui
         n'est pas mentionné n'est pas facturé.
@@ -916,7 +929,7 @@
     <div class="head reveal">
       <p class="eyebrow">Contact</p>
       <h2>Parlons-en pendant 20 minutes</h2>
-      <p class="lead" style="margin-top:1.2rem;">
+      <p class="lead">
         
         Gratuit et sans engagement. À la fin, vous saurez ce qu'un site coûterait à votre entreprise et
         si cela en vaut la peine. Si vous en avez déjà un, nous l'examinons ensemble.
@@ -981,14 +994,19 @@
 
         <!-- Spamfalle: fuer Menschen unsichtbar, Bots fuellen sie aus.
              Formspree verwirft jede Anfrage, in der _gotcha ausgefuellt ist. -->
-        <input type="hidden" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+        <!-- type="text" statt "hidden": Bots erkennen hidden-Felder und lassen
+             sie leer. Ein per CSS (.hp) verstecktes Textfeld fuellen sie aus. -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
         <!-- Sprache mitschicken: sonst sind Anfragen aus den drei Fassungen
              im Formspree-Postfach nicht auseinanderzuhalten. -->
         <input type="hidden" name="_subject" value="Neue Anfrage ueber envyweb (FR)">
         <input type="hidden" name="Sprache" value="Französisch">
 
         <label class="form__consent" for="c-privacy">
-          <input type="checkbox" id="c-privacy" name="datenschutz" required>
+          <!-- value: ohne diese Angabe schickt der Browser bei einer angehakten
+               Checkbox nur "on" — in der Benachrichtigungsmail stand dann
+               "datenschutz: on". -->
+          <input type="checkbox" id="c-privacy" name="datenschutz" value="Ja — Datenschutzerklärung gelesen und akzeptiert (FR)" required>
           <span>J'ai lu la <a href="datenschutz.html">politique de confidentialité</a> et j'accepte le traitement de mes données pour répondre à ma demande. *</span>
         </label>
 
@@ -1014,7 +1032,7 @@
 </section>
 
 <!-- ============================ CTA ============================ -->
-<section class="section" style="padding-top:clamp(3rem,5vw,4.5rem);">
+<section class="section section--tight">
   <div class="wrap">
     <div class="cta reveal">
       <h2>Vous savez ce que vous valez. Montrez-le.</h2>
@@ -1041,15 +1059,14 @@
         <a class="brand" href="#top">
           <img class="brand__logo" src="../assets/img/logo.svg" alt="Envy Web" width="300" height="90">
         </a>
-        <p style="max-width:36ch;font-size:.93rem;">
-          
-          Des sites web qui font des envieux — conçus sur mesure pour les petites entreprises suisses, à
-          prix fixe et sans allure de modèle.
+        <p class="footer__tagline">
+          Des sites web qui font des envieux — création de sites web à Dübendorf pour les
+          petites entreprises suisses, à prix fixe et sans allure de modèle.
         </p>
       </div>
 
       <div>
-        <h5>Prestations</h5>
+        <h4 class="footer__title">Prestations</h4>
         <ul>
           <li><a href="#leistungen">Nouveau site web</a></li>
           <li><a href="#leistungen">Refonte</a></li>
@@ -1059,7 +1076,7 @@
       </div>
 
       <div>
-        <h5>Site</h5>
+        <h4 class="footer__title">Site</h4>
         <ul>
           <li><a href="#referenzen">Réalisations</a></li>
           <li><a href="#person">À propos</a></li>
@@ -1069,7 +1086,7 @@
       </div>
 
       <div>
-        <h5>Contact</h5>
+        <h4 class="footer__title">Contact</h4>
         <ul>
           <li><a href="tel:+41765220525">076 522 05 25</a></li>
           <li><a href="https://wa.me/41765220525" target="_blank" rel="noopener">WhatsApp</a></li>

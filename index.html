@@ -39,8 +39,8 @@
      Friedhofweg 4, 8600 Dübendorf
      ===================================================================== -->
 
-<title>Envy Web — Webseiten für lokale Betriebe in der Schweiz</title>
-<meta name="description" content="Individuelle Webseiten für lokale Schweizer Betriebe, die über Google mehr Anrufe und Anfragen gewinnen wollen. Festpreis, in 2–3 Wochen online, ohne Baukasten-Optik.">
+<title>Webdesign Dübendorf &amp; Zürich — Webseiten für lokale Betriebe | Envy Web</title>
+<meta name="description" content="Webdesign aus Dübendorf bei Zürich: individuelle Webseiten für lokale Schweizer Betriebe, die über Google mehr Anrufe und Anfragen gewinnen wollen. Festpreis, in 2–3 Wochen online.">
 <meta name="theme-color" content="#FAF8F5">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Ejdin Aliti">
@@ -61,8 +61,8 @@
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Envy Web">
-<meta property="og:title" content="Envy Web — Webseiten für lokale Betriebe in der Schweiz">
-<meta property="og:description" content="Individuelle Webseiten zum Festpreis. Vom Entwurf bis zum Livegang in 2–3 Wochen.">
+<meta property="og:title" content="Webdesign Dübendorf &amp; Zürich — Webseiten für lokale Betriebe | Envy Web">
+<meta property="og:description" content="Webdesign zum Festpreis aus Dübendorf bei Zürich. Vom Entwurf bis zum Livegang in 2–3 Wochen.">
 <meta property="og:image" content="https://envyweb.ch/assets/img/social-preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -73,8 +73,12 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='4' y1='4' x2='44' y2='44' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%231B1424'/%3E%3Cstop offset='1' stop-color='%2352397A'/%3E%3C/linearGradient%3E%3CradialGradient id='h' cx='30%25' cy='25%25' r='60%25'%3E%3Cstop offset='0' stop-color='%23C3A6EA' stop-opacity='.55'/%3E%3Cstop offset='1' stop-color='%23C3A6EA' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='48' height='48' rx='12' fill='url(%23g)'/%3E%3Crect width='48' height='48' rx='12' fill='url(%23h)'/%3E%3Cg transform='translate(1.67 2.57) scale(0.4286)'%3E%3Cpath d='M50 8 C52.5 30 54 43 76 50 C54 57 52.5 70 50 92 C47.5 70 46 57 24 50 C46 43 47.5 30 50 8 Z' fill='%23fff'/%3E%3Ccircle cx='76' cy='24' r='4.2' fill='%23C3A6EA'/%3E%3C/g%3E%3C/svg%3E">
 
-<!-- Schriften: lokal eingebunden, keine Verbindung zu Google -->
+<!-- Schriften: lokal eingebunden, keine Verbindung zu Google.
+     Preload fuer die drei Dateien, die den sichtbaren Erstaufbau tragen:
+     Inter (Fliesstext) sowie Instrument Serif normal + kursiv (H1). -->
 <link rel="preload" href="assets/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-serif-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-serif-400i-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/fonts.css">
 
 <link rel="stylesheet" href="assets/css/style.css">
@@ -96,8 +100,10 @@
   "@id": "https://envyweb.ch/#organisation",
   "name": "Envy Web",
   "url": "https://envyweb.ch/",
+  "logo": "https://envyweb.ch/assets/img/logo.svg",
+  "image": "https://envyweb.ch/assets/img/social-preview.png",
   "slogan": "Websites, um die man Sie beneidet.",
-  "description": "Webdesign und Webentwicklung für lokale Unternehmen in der Schweiz.",
+  "description": "Webdesign und Webentwicklung für lokale Unternehmen in der Schweiz — individuelle Webseiten zum Festpreis, aus Dübendorf bei Zürich.",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Friedhofweg 4",
@@ -105,7 +111,13 @@
     "addressLocality": "Dübendorf",
     "addressCountry": "CH"
   },
-  "areaServed": { "@type": "Country", "name": "Schweiz" },
+  "geo": { "@type": "GeoCoordinates", "latitude": 47.3971, "longitude": 8.6184 },
+  "areaServed": [
+    { "@type": "City", "name": "Dübendorf" },
+    { "@type": "City", "name": "Zürich" },
+    { "@type": "AdministrativeArea", "name": "Kanton Zürich" },
+    { "@type": "Country", "name": "Schweiz" }
+  ],
   "priceRange": "CHF 890–2900",
   "currenciesAccepted": "CHF",
   "email": "ejdin.aliti@envyweb.ch",
@@ -116,6 +128,10 @@
 </script>
 </head>
 <body>
+
+<!-- Erst per Tab sichtbar: bringt Tastatur- und Vorlesehilfen-Nutzer
+     direkt zum Inhalt, ohne durch Navigation und Sprachumschalter zu muessen. -->
+<a class="skiplink" href="#top">Zum Inhalt springen</a>
 
 <!-- ============================ HEADER ============================ -->
 <header class="header" id="header">
@@ -179,7 +195,7 @@
   <div class="wrap hero__inner">
     <div class="hero__grid">
       <div>
-        <p class="eyebrow">Massgeschneiderte Webseiten für lokale Schweizer Betriebe</p>
+        <p class="eyebrow">Webdesign aus Dübendorf bei Zürich — für lokale Schweizer Betriebe</p>
         <h1>Ihre Kunden suchen online.<br><em>Werden Sie gefunden?</em></h1>
         <p class="hero__sub">
           Ich baue Webseiten für lokale Schweizer Betriebe, die über Google mehr
@@ -261,7 +277,7 @@
     <div class="head reveal">
       <p class="eyebrow">Arbeiten</p>
       <h2>So sieht das Ergebnis aus</h2>
-      <p class="lead" style="margin-top:1.2rem;">
+      <p class="lead">
         Drei vollständig gebaute Beispielwebsites — anklickbar, nicht nur als Bild.
         Jedes Projekt beginnt mit derselben Frage: Was soll ein Besucher innerhalb
         von zehn Sekunden verstanden haben?
@@ -295,7 +311,7 @@
               Website öffnen
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
             </a>
-            <span class="muted" style="font-size:.84rem;">Inhalte erfunden</span>
+            <span class="muted">Inhalte erfunden</span>
           </div>
         </div>
       </article>
@@ -325,7 +341,7 @@
               Website öffnen
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
             </a>
-            <span class="muted" style="font-size:.84rem;">Inhalte erfunden</span>
+            <span class="muted">Inhalte erfunden</span>
           </div>
         </div>
       </article>
@@ -355,7 +371,7 @@
               Website öffnen
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
             </a>
-            <span class="muted" style="font-size:.84rem;">Inhalte erfunden</span>
+            <span class="muted">Inhalte erfunden</span>
           </div>
         </div>
       </article>
@@ -439,7 +455,7 @@
         <p class="eyebrow">Wer dahintersteckt</p>
         <h2>Ich heisse Ejdin Aliti und baue Ihre Seite selbst.</h2>
 
-        <p class="lead" style="margin-top:1.4rem;">
+        <p class="lead">
           Kein Team, keine Agentur, keine Weitergabe an Dritte. Sie schildern mir
           im Erstgespräch, was Ihr Betrieb macht — und bekommen von derselben Person
           Entwurf, Umsetzung, Livegang und später die Änderungen.
@@ -447,7 +463,8 @@
 
         <p>
           Ich arbeite von Dübendorf aus und betreue vor allem Betriebe im Grossraum Zürich und der
-          übrigen Deutschschweiz. Ich schreibe jede Seite von Hand statt sie in einem
+          übrigen Deutschschweiz — vom Webdesign über Texte und Technik bis zur laufenden Pflege.
+          Ich schreibe jede Seite von Hand statt sie in einem
           Baukasten zusammenzuklicken — deshalb laden meine Seiten schnell, funktionieren
           auf jedem Gerät und enthalten nichts, was Sie nicht brauchen.
         </p>
@@ -506,8 +523,8 @@
   <div class="wrap">
     <div class="head reveal">
       <p class="eyebrow">Leistungen</p>
-      <h2>Was ich für Sie mache</h2>
-      <p class="lead" style="margin-top:1.2rem;">
+      <h2>Webdesign, das Ihnen Anfragen bringt</h2>
+      <p class="lead">
         Von der ersten Skizze bis zur Domain, die auf Ihren Namen läuft — Sie müssen
         sich um nichts kümmern und bekommen am Ende alle Zugänge.
       </p>
@@ -559,7 +576,7 @@
     <div class="head reveal">
       <p class="eyebrow">Ablauf</p>
       <h2>Vier Schritte bis zur fertigen Seite</h2>
-      <p class="lead" style="margin-top:1.2rem;">
+      <p class="lead">
         Sie brauchen keine Vorkenntnisse und müssen nichts vorbereiten.
         Ein Gespräch reicht, um loszulegen.
       </p>
@@ -592,7 +609,7 @@
     <div class="head center reveal">
       <p class="eyebrow">Preise</p>
       <h2>Klare Preise, keine Überraschungen</h2>
-      <p class="lead" style="margin-top:1.2rem;">
+      <p class="lead">
         Alle Pakete sind Festpreise inklusive Gestaltung, Umsetzung und Einrichtung.
         Was nicht drinsteht, wird auch nicht berechnet.
       </p>
@@ -927,7 +944,7 @@
     <div class="head reveal">
       <p class="eyebrow">Kontakt</p>
       <h2>Reden wir 20 Minuten darüber</h2>
-      <p class="lead" style="margin-top:1.2rem;">
+      <p class="lead">
         Kostenlos und unverbindlich. Am Ende wissen Sie, was eine Seite für Ihren
         Betrieb kosten würde und ob sich das für Sie lohnt. Wenn Sie schon eine
         Seite haben, schauen wir sie gemeinsam an.
@@ -991,11 +1008,17 @@
 
         <!-- Spamfalle: fuer Menschen unsichtbar, Bots fuellen sie aus.
              Formspree verwirft jede Anfrage, in der _gotcha ausgefuellt ist. -->
-        <input type="hidden" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+        <!-- type="text" statt "hidden": Bots erkennen hidden-Felder und lassen
+             sie leer. Ein per CSS (.hp) verstecktes Textfeld fuellen sie aus —
+             genau daran erkennt Formspree den Spam. -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
         <input type="hidden" name="_subject" value="Neue Anfrage ueber envyweb">
 
         <label class="form__consent" for="c-privacy">
-          <input type="checkbox" id="c-privacy" name="datenschutz" required>
+          <!-- value: ohne diese Angabe schickt der Browser bei einer angehakten
+               Checkbox nur "on" — in der Benachrichtigungsmail stand dann
+               "datenschutz: on". -->
+          <input type="checkbox" id="c-privacy" name="datenschutz" value="Ja — Datenschutzerklärung gelesen und akzeptiert" required>
           <span>Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Daten zur Bearbeitung der Anfrage einverstanden. *</span>
         </label>
 
@@ -1020,7 +1043,7 @@
 </section>
 
 <!-- ============================ CTA ============================ -->
-<section class="section" style="padding-top:clamp(3rem,5vw,4.5rem);">
+<section class="section section--tight">
   <div class="wrap">
     <div class="cta reveal">
       <h2>Sie wissen, was Sie können. Zeigen Sie es.</h2>
@@ -1046,14 +1069,14 @@
         <a class="brand" href="#top">
           <img class="brand__logo" src="assets/img/logo.svg" alt="Envy Web" width="300" height="90">
         </a>
-        <p style="max-width:36ch;font-size:.93rem;">
-          Websites, um die man Sie beneidet — individuell gestaltet für lokale
+        <p class="footer__tagline">
+          Websites, um die man Sie beneidet — Webdesign aus Dübendorf für lokale
           Schweizer Betriebe, zum Festpreis und ohne Baukasten-Optik.
         </p>
       </div>
 
       <div>
-        <h5>Leistungen</h5>
+        <h4 class="footer__title">Leistungen</h4>
         <ul>
           <li><a href="#leistungen">Neue Webseite</a></li>
           <li><a href="#leistungen">Relaunch</a></li>
@@ -1063,7 +1086,7 @@
       </div>
 
       <div>
-        <h5>Seite</h5>
+        <h4 class="footer__title">Seite</h4>
         <ul>
           <li><a href="#referenzen">Arbeiten</a></li>
           <li><a href="#person">Über mich</a></li>
@@ -1073,7 +1096,7 @@
       </div>
 
       <div>
-        <h5>Kontakt</h5>
+        <h4 class="footer__title">Kontakt</h4>
         <ul>
           <li><a href="tel:+41765220525">076 522 05 25</a></li>
           <li><a href="https://wa.me/41765220525" target="_blank" rel="noopener">WhatsApp</a></li>

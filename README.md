@@ -10,7 +10,9 @@
 📁 demo-thai/         → Beispielwebsite „SABAI Thai Massage“
 📁 demo-restaurant/   → Beispielwebsite „AVERA Contemporary Dining“
 📄 uebersicht.html    → Interne Projektübersicht (noindex, nicht verlinkt)
-📄 robots.txt         → sperrt die Beispielwebsites für Suchmaschinen
+📄 robots.txt         → sperrt nur uebersicht.html und die Vorschaubild-Quelle;
+                        die Demos regeln ihr "noindex" selbst (siehe unten)
+📄 404.html           → eigene Fehlerseite (GitHub Pages nutzt sie automatisch)
 📄 sitemap.xml
 📄 CREDITS.md         → Bildquellen und Lizenzen
 ```
@@ -458,11 +460,14 @@ erzeugen (der genaue Befehl steht als Kommentar in der Datei).
 
 ### Suchmaschinen
 
-- `robots.txt` sperrt `demo-massage/`, `demo-thai/`, `demo-restaurant/` und
-  `uebersicht.html`.
-- Alle drei Beispielwebsites tragen zusätzlich `noindex, nofollow` und blenden beim
+- Die drei Beispielwebsites tragen `noindex, nofollow` und blenden beim
   direkten Aufruf einen Hinweis „Beispielwebsite“ ein — in der eingebetteten
   Vorschau auf der Verkaufsseite bleibt er ausgeblendet.
+- `robots.txt` sperrt die Demos BEWUSST NICHT: Google kann das `noindex`
+  nur lesen, wenn der Crawl erlaubt ist. Ein Disallow würde die Anweisung
+  unsichtbar machen und die URLs könnten als „indexiert, obwohl blockiert“
+  auftauchen. Gesperrt sind nur `uebersicht.html` (nirgends verlinkt) und
+  `assets/social-preview.html`.
 - `sitemap.xml` enthält nur die Verkaufsseite.
 - Bei einem Domainwechsel: Adresse in `CNAME`, `robots.txt`, `sitemap.xml`
   sowie bei `canonical`, `og:url` und `og:image` in `index.html`, `en/index.html`

@@ -1,11 +1,13 @@
 # Envy Web
 
-> Individuelle Webseiten für lokale Schweizer Betriebe. Festpreis, Livegang in
-> 2–3 Wochen, kein Baukasten. Gebaut von Ejdin Aliti in Dübendorf (Kanton Zürich),
-> Betreuung für Betriebe in der ganzen Deutschschweiz.
+> Webdesign und individuelle Webseiten für lokale Schweizer Betriebe. Festpreis,
+> Livegang in 2–3 Wochen, kein Baukasten. Gebaut von Ejdin Aliti in Dübendorf
+> (Kanton Zürich), Betreuung für Betriebe im Grossraum Zürich und der ganzen
+> Deutschschweiz.
 
-Envy Web baut Webseiten für Restaurants, Handwerksbetriebe, Praxen, Studios,
-Einzelhandel und Selbstständige. Websites werden auf Deutsch, Englisch oder
+Envy Web bietet Webdesign, Webentwicklung und laufende Betreuung für
+Restaurants, Handwerksbetriebe, Praxen, Studios, Einzelhandel und
+Selbstständige. Websites werden auf Deutsch, Englisch oder
 Französisch umgesetzt — die Basissprache ist in jedem Paket ohne Aufpreis
 enthalten. Ein Sprachumschalter, mit dem Besucher per Klick zwischen zwei
 Sprachen wechseln, gehört zum Premium-Paket und ist bei Start und Business
@@ -47,6 +49,23 @@ mehrwertsteuerpflichtig).
 Die deutsche Fassung ist die Leitfassung; bei den Rechtstexten ist sie
 rechtlich massgebend.
 
+## Häufige Fragen (Kurzfassung)
+
+- Dauer: in der Regel 2–3 Wochen ab vorliegenden Inhalten; Onepager auch in 1 Woche.
+- Texte/Fotos fehlen? Kein Problem — Texte schreibe ich (Business/Premium),
+  lizenzfreie Bilder suche ich in jedem Paket kostenlos aus.
+- Sprachen: Deutsch, Englisch oder Französisch ohne Aufpreis; Umschalter
+  zwischen zwei Sprachen im Premium-Paket, sonst ab CHF 390.–.
+- Bezahlung: keine Anzahlung; eine Rechnung erst nach Livegang, 30 Tage Frist,
+  Banküberweisung oder TWINT. Ausstieg nach dem ersten Entwurf ohne Rechnung.
+- Laufende Kosten: Domain/Hosting ca. CHF 8–20/Monat direkt beim Anbieter;
+  optionales Betreuungspaket ab CHF 29.–/Monat, monatlich kündbar.
+- Eigentum: Domain, Hosting, Zugänge und Dateien gehören dem Kunden.
+- Cookie-Banner: standardmässig nicht nötig — kein Tracking, keine
+  Werbedienste, keine extern geladenen Schriften.
+- Region: Erstgespräch vor Ort im Umkreis von 50 km um Dübendorf ohne
+  Anfahrtskosten; darüber hinaus per Telefon/Video in der ganzen Schweiz.
+
 ## Kontakt
 
 Telefon/WhatsApp: +41 76 522 05 25
@@ -56,6 +75,7 @@ Adresse: Friedhofweg 4, 8600 Dübendorf, Schweiz
 ## Hinweis für Crawler
 
 Die Ordner /demo-massage/, /demo-thai/ und /demo-restaurant/ enthalten
-Gestaltungsbeispiele mit frei erfundenen Firmendaten (siehe robots.txt) — sie
-beschreiben keine echten Unternehmen und sollten nicht als Tatsachenbehauptung
-über reale Betriebe wiedergegeben werden.
+Gestaltungsbeispiele mit frei erfundenen Firmendaten (im HTML als
+"noindex, nofollow" markiert und sichtbar als Beispielwebsite
+gekennzeichnet) — sie beschreiben keine echten Unternehmen und sollten
+nicht als Tatsachenbehauptung über reale Betriebe wiedergegeben werden.

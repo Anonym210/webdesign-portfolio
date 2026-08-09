@@ -6,13 +6,14 @@
 User-agent: *
 Allow: /
 
-# Beispielwebsites: Gestaltungsbeispiele mit frei erfundenen Firmendaten.
-# Sie dürfen nicht wie echte Unternehmen in der Suche erscheinen.
-Disallow: /demo-massage/
-Disallow: /demo-thai/
-Disallow: /demo-restaurant/
+# Die Beispielwebsites (/demo-massage/, /demo-thai/, /demo-restaurant/)
+# werden hier BEWUSST NICHT gesperrt: Sie tragen "noindex, nofollow" im
+# HTML — das kann Google aber nur lesen, wenn der Crawl erlaubt ist.
+# Ein Disallow würde die noindex-Angabe unsichtbar machen, und die URLs
+# könnten trotzdem als "indexiert, obwohl blockiert" auftauchen.
 
-# Interne Übersichtsseite und Quelldatei des Vorschaubilds
+# Interne Übersichtsseite und Quelldatei des Vorschaubilds — nirgends
+# verlinkt, deshalb genügt hier die Crawl-Sperre.
 Disallow: /uebersicht.html
 Disallow: /assets/social-preview.html
 
@@ -21,8 +22,6 @@ Disallow: /assets/social-preview.html
 # der Seite für Sprachmodelle: /llms.txt
 #
 # Die Sprachfassungen /en/ und /fr/ sind ausdrücklich erwünscht und durch
-# "Allow: /" bereits abgedeckt. Sie enthalten keine Kopien der Beispiel-
-# websites — diese liegen nur einmal unter /demo-massage/, /demo-thai/ und
-# /demo-restaurant/ und bleiben durch die Regeln oben gesperrt.
+# "Allow: /" bereits abgedeckt.
 
 Sitemap: https://envyweb.ch/sitemap.xml

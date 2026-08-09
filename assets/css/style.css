@@ -12,7 +12,9 @@
   --line:        #E5DFE7;
   --ink:         #1F1826;
   --ink-soft:    #5C5266;
-  --ink-mute:    #8F869B;
+  /* Nicht weiter aufhellen: #726B7E erreicht auf --bg gerade die 4.5:1
+     (WCAG AA) fuer die kleinen Schriftgroessen, in denen die Farbe steht. */
+  --ink-mute:    #726B7E;
   --accent:      #6A4A9C;
   --accent-deep: #52397A;
   --accent-soft: #EEE7F6;
@@ -65,12 +67,24 @@ p:last-child{ margin-bottom:0; }
   overflow:hidden; clip-path:inset(50%); white-space:nowrap; border:0;
 }
 
+/* Sprung zum Inhalt: unsichtbar, bis er per Tab den Fokus bekommt.
+   Liegt ueber dem Header (z-index 200 > 100). */
+.skiplink{
+  position:fixed; top:.8rem; left:.8rem; z-index:200;
+  background:var(--accent); color:#fff; font-size:.9rem; font-weight:500;
+  padding:.7rem 1.2rem; border-radius:100px; box-shadow:var(--sh-md);
+  transform:translateY(-250%);
+}
+.skiplink:focus{ transform:none; }
+
 /* ---------- 3. Layout ---------- */
 .wrap{ width:min(100% - 2.5rem, var(--wrap)); margin-inline:auto; }
 .section{ padding:clamp(4.5rem,3rem + 6.5vw,8.5rem) 0; }
 .section--alt{ background:var(--bg-alt); }
 .section--dark{ background:var(--dark); color:rgba(255,255,255,.72); }
 .section--dark h2, .section--dark h3{ color:#fff; }
+/* Nach .section notiert, damit der kleinere Wert die Kurzform ueberschreibt */
+.section--tight{ padding-top:clamp(3rem,5vw,4.5rem); }
 .center{ text-align:center; }
 
 .eyebrow{
@@ -82,6 +96,8 @@ p:last-child{ margin-bottom:0; }
 .section--dark .eyebrow{ color:var(--accent-lite); }
 
 .lead{ font-size:clamp(1.05rem,1rem + .3vw,1.2rem); color:var(--ink-soft); max-width:60ch; }
+.head .lead{ margin-top:1.2rem; }
+.about__text .lead{ margin-top:1.4rem; }
 .center .lead{ margin-inline:auto; }
 .section--dark .lead{ color:rgba(255,255,255,.68); }
 .muted{ color:var(--ink-mute); }
@@ -329,6 +345,7 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .project__tags{ display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.3rem; }
 .project__tags span{ font-size:.76rem; padding:.28rem .7rem; border-radius:100px; background:var(--bg-alt); color:var(--ink-soft); }
 .project__foot{ display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:.9rem; padding-top:1.1rem; border-top:1px solid var(--line); }
+.project__foot .muted{ font-size:.84rem; }
 
 /* Platzhalter-Karte zum Selbstbefuellen */
 .project--empty{ border-style:dashed; background:transparent; box-shadow:none; }
@@ -543,7 +560,8 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .footer__top{ display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:2.5rem; padding-bottom:2.8rem; border-bottom:1px solid rgba(255,255,255,.1); }
 .footer .brand{ color:#fff; margin-bottom:1rem; }
 .footer .brand__logo{ filter:brightness(0) invert(1); }
-.footer h5{ font-family:var(--sans); font-size:.78rem; font-weight:600; letter-spacing:.06em; color:#fff; margin:0 0 1rem; }
+.footer__tagline{ max-width:36ch; font-size:.93rem; }
+.footer .footer__title{ font-family:var(--sans); font-size:.78rem; font-weight:600; letter-spacing:.06em; color:#fff; margin:0 0 1rem; }
 .footer li{ margin-bottom:.55rem; font-size:.93rem; }
 .footer a:hover{ color:#fff; }
 .footer__bottom{ display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-between; align-items:center; padding-top:1.6rem; font-size:.86rem; }
@@ -656,7 +674,7 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
   .reveal{ opacity:1; transform:none; }
 }
 
-/* ---------- 21. Wer dahintersteckt (Zeile im Hero) ---------- */
+/* ---------- 23. Wer dahintersteckt (Zeile im Hero) ---------- */
 .herowho{
   display:flex; align-items:center; gap:.9rem; margin-top:2.2rem;
   padding:.85rem 1.4rem .85rem .85rem; max-width:46ch;
@@ -674,7 +692,7 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .herowho b{ display:block; font-weight:600; font-size:.95rem; color:var(--ink); }
 .herowho > span{ font-size:.85rem; color:var(--ink-soft); line-height:1.45; }
 
-/* ---------- 22. Ueber mich ---------- */
+/* ---------- 24. Ueber mich ---------- */
 .about{ display:grid; grid-template-columns:.85fr 1.15fr; gap:clamp(2rem,4.5vw,4.5rem); align-items:center; }
 .about__photo{ position:relative; margin:0; display:grid; gap:1.1rem; }
 .about__portrait{
@@ -691,7 +709,7 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .about__facts span{ color:var(--ink-soft); font-size:.95rem; }
 .about__cta{ display:flex; flex-wrap:wrap; gap:.75rem; margin-top:2rem; }
 
-/* ---------- 23. Paket-Details ----------
+/* ---------- 25. Paket-Details ----------
    Ein <details>-Element: auf dem Handy eingeklappt, ab 761 px von main.js
    geoeffnet. So beantwortet die Seite alle Preisfragen, ohne dass mobile
    Besucher an einer Textwand vorbeiscrollen muessen. */
@@ -737,7 +755,7 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 }
 .planinfo b{ color:var(--ink); font-weight:600; }
 
-/* ---------- 24. Kundenstimmen ---------- */
+/* ---------- 26. Kundenstimmen ---------- */
 .voices{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
 .voice{
   background:var(--white); border:1px solid var(--line); border-radius:var(--r-xl);
@@ -751,7 +769,7 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .voice figcaption b{ display:block; font-weight:600; font-size:.95rem; color:var(--ink); }
 .voice figcaption span{ font-size:.86rem; color:var(--ink-mute); }
 
-/* ---------- 25. Kontaktkasten und Formularfeinheiten ---------- */
+/* ---------- 27. Kontaktkasten und Formularfeinheiten ---------- */
 .ctbox{
   border:1px solid var(--line); border-radius:var(--r-lg);
   padding:1.4rem 1.5rem; background:var(--white);
@@ -762,7 +780,7 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .cta__row{ display:flex; flex-wrap:wrap; gap:.75rem; justify-content:center; margin-top:2rem; }
 .cta__row .btn{ margin-top:0; }
 
-/* ---------- 26. Feste Kontaktleiste auf dem Handy ----------
+/* ---------- 28. Feste Kontaktleiste auf dem Handy ----------
    Erscheint erst unter 720 px. Damit sie nichts verdeckt, bekommt die Seite
    unten zusaetzlichen Abstand und der Nach-oben-Knopf weicht. */
 .mobilebar{ display:none; }
@@ -790,7 +808,7 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
   .totop{ display:none; }
 }
 
-/* ---------- 27. Responsive fuer die neuen Bausteine ---------- */
+/* ---------- 29. Responsive fuer die neuen Bausteine ---------- */
 @media (max-width:1080px){
   .planinfo__grid{ grid-template-columns:1fr 1fr; }
   .planinfo__col:nth-child(3){ grid-column:1/-1; }
