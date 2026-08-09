@@ -61,7 +61,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://anonym210.github.io/webdesign-portfolio/assets/img/social-preview.png">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='11' fill='%231B1424'/%3E%3Ctext x='24' y='33' font-family='Georgia,serif' font-size='23' fill='%23fff' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='4' y1='4' x2='44' y2='44' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%231B1424'/%3E%3Cstop offset='1' stop-color='%2352397A'/%3E%3C/linearGradient%3E%3CradialGradient id='h' cx='30%25' cy='25%25' r='60%25'%3E%3Cstop offset='0' stop-color='%23C3A6EA' stop-opacity='.55'/%3E%3Cstop offset='1' stop-color='%23C3A6EA' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='48' height='48' rx='12' fill='url(%23g)'/%3E%3Crect width='48' height='48' rx='12' fill='url(%23h)'/%3E%3Ctext x='24' y='33.5' font-family='Georgia,serif' font-style='italic' font-size='25' fill='%23fff' text-anchor='middle'%3EE%3C/text%3E%3Cpath d='M38 9 L39.7 13.3 L44 15 L39.7 16.7 L38 21 L36.3 16.7 L32 15 L36.3 13.3 Z' fill='%23C3A6EA'/%3E%3C/svg%3E">
 
 <!-- Schriften: lokal eingebunden, keine Verbindung zu Google -->
 <link rel="preload" href="assets/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -355,18 +355,18 @@
 <section class="section" id="person">
   <div class="wrap">
     <div class="about">
+      <!-- Bewusst ein Monogramm statt eines Fotos — kein Platzhalter, der nach
+           "noch nicht fertig" aussieht, sondern ein eigenständiges Gestaltungs-
+           element. Wer später doch ein Foto möchte: assets/img/portrait.jpg
+           ablegen und im Markup unten die auskommentierte <img>-Variante
+           gegen den <div class="about__monogram"> tauschen. -->
       <figure class="about__photo reveal">
-        <!-- ANPASSEN: Portraitfoto unter assets/img/portrait.jpg ablegen.
-             Solange die Datei fehlt, erscheint automatisch ein Hinweiskasten. -->
-        <img src="assets/img/portrait.jpg"
-             alt="Ejdin Aliti, Webdesigner"
-             width="900" height="1100" loading="lazy"
-             onerror="this.closest('.about__photo').className += ' is-empty'; this.remove();">
-        <figcaption class="about__missing">
-          <b>Hier fehlt noch Ihr Foto.</b>
-          Ein hochkantes Portrait, ungefähr 900 × 1100 Pixel, unter
-          <code>assets/img/portrait.jpg</code> ablegen. Ein freundliches, gut
-          belichtetes Bild wirkt stärker als jedes Logo.
+        <div class="about__monogram" aria-hidden="true">
+          <span>EA</span>
+        </div>
+        <figcaption class="about__caption">
+          <b>Ejdin Aliti</b>
+          <span>Gründer &amp; einziger Ansprechpartner, Envy Web</span>
         </figcaption>
       </figure>
 

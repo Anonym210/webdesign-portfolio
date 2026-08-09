@@ -119,12 +119,22 @@ p:last-child{ margin-bottom:0; }
 .header__inner{ display:flex; align-items:center; justify-content:space-between; gap:1.5rem; }
 
 .brand{ display:flex; align-items:center; gap:.65rem; font-weight:600; letter-spacing:-.02em; font-size:1.08rem; }
+/* Logo-Monogramm: violetter Verlauf, kursives "E", kleiner Glanzstern —
+   der "Funke", der Neid ausloest (siehe Claim "Neid ist das beste Kompliment"). */
 .brand__mark{
-  width:34px; height:34px; border-radius:9px; background:var(--ink); color:#fff;
-  display:grid; place-items:center; font-family:var(--display); font-size:1.15rem; flex:none;
-  transition:background-color .35s var(--ease), transform .5s var(--ease);
+  width:34px; height:34px; border-radius:10px; color:#fff; position:relative; overflow:hidden;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(195,166,234,.55) 0%, rgba(195,166,234,0) 60%),
+    linear-gradient(155deg, var(--dark) 0%, var(--accent-deep) 130%);
+  display:grid; place-items:center; font-family:var(--display); font-style:italic; font-size:1.2rem; flex:none;
+  transition:transform .5s var(--ease), box-shadow .35s var(--ease);
 }
-.brand:hover .brand__mark{ background:var(--accent); transform:rotate(-6deg); }
+.brand__mark::after{
+  content:""; position:absolute; top:4px; right:4px; width:6px; height:6px;
+  background:var(--accent-lite);
+  clip-path:polygon(50% 0%,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0% 50%,39% 39%);
+}
+.brand:hover .brand__mark{ transform:rotate(-6deg) scale(1.05); box-shadow:0 8px 18px -8px rgba(106,74,156,.55); }
 .brand span small{ display:block; font-size:.66rem; font-weight:400; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-mute); line-height:1; margin-top:.18rem; }
 
 /* Navigation als weiche Pillenleiste — ruhiger als nackte Links und
@@ -496,7 +506,10 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .footer{ background:var(--dark); color:rgba(255,255,255,.55); padding:clamp(3.5rem,6vw,5rem) 0 2rem; }
 .footer__top{ display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:2.5rem; padding-bottom:2.8rem; border-bottom:1px solid rgba(255,255,255,.1); }
 .footer .brand{ color:#fff; margin-bottom:1rem; }
-.footer .brand__mark{ background:#fff; color:var(--dark); }
+.footer .brand__mark{
+  background:linear-gradient(155deg, #fff 0%, var(--accent-soft) 130%); color:var(--dark);
+}
+.footer .brand__mark::after{ background:var(--accent); }
 .footer h5{ font-family:var(--sans); font-size:.78rem; font-weight:600; letter-spacing:.06em; color:#fff; margin:0 0 1rem; }
 .footer li{ margin-bottom:.55rem; font-size:.93rem; }
 .footer a:hover{ color:#fff; }
@@ -600,23 +613,27 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 
 /* ---------- 22. Ueber mich ---------- */
 .about{ display:grid; grid-template-columns:.85fr 1.15fr; gap:clamp(2rem,4.5vw,4.5rem); align-items:center; }
-.about__photo{ position:relative; margin:0; }
-.about__photo img{
-  width:100%; aspect-ratio:9/11; object-fit:cover; object-position:center 20%;
-  border-radius:var(--r-xl); box-shadow:var(--sh-lg);
+.about__photo{ position:relative; margin:0; display:grid; gap:1.1rem; }
+/* Monogramm statt Foto — eigenständiges Gestaltungselement, kein
+   "Platzhalter, der noch ersetzt werden muss". Passt zum Kreis im Hero. */
+.about__monogram{
+  aspect-ratio:9/11; border-radius:var(--r-xl); box-shadow:var(--sh-lg);
+  background:
+    radial-gradient(circle at 28% 22%, var(--accent-glow) 0%, rgba(106,74,156,0) 55%),
+    linear-gradient(155deg, var(--dark) 0%, var(--accent-deep) 130%);
+  display:grid; place-items:center; position:relative; overflow:hidden;
 }
-.about__missing{
-  display:none; aspect-ratio:9/11; place-content:center; text-align:center;
-  padding:2rem 1.8rem; border:1px dashed var(--line); border-radius:var(--r-xl);
-  background:var(--bg-alt); color:var(--ink-soft); font-size:.9rem; line-height:1.6;
+.about__monogram::before{
+  content:""; position:absolute; inset:0; opacity:.5;
+  background:radial-gradient(circle at 78% 85%, rgba(195,166,234,.35) 0%, rgba(195,166,234,0) 60%);
 }
-.about__photo.is-empty .about__missing{ display:grid; }
-.about__missing b{ display:block; color:var(--ink); font-weight:600; margin-bottom:.4rem; }
-.about__missing code{
-  display:inline-block; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  font-size:.85em; background:var(--white); border:1px solid var(--line);
-  border-radius:5px; padding:.1rem .4rem; margin:.15rem 0; word-break:break-all;
+.about__monogram span{
+  position:relative; font-family:var(--display); font-weight:400; color:#fff;
+  font-size:clamp(4rem,3rem + 4vw,6.5rem); letter-spacing:.02em;
 }
+.about__caption{ text-align:center; }
+.about__caption b{ display:block; font-weight:600; color:var(--ink); }
+.about__caption span{ font-size:.9rem; color:var(--ink-mute); }
 .about__text p{ color:var(--ink-soft); max-width:60ch; }
 .about__facts{ display:grid; gap:.9rem; margin:1.8rem 0 0; }
 .about__facts li{ display:flex; gap:.9rem; align-items:flex-start; }

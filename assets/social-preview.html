@@ -43,9 +43,18 @@
 
   .brand{ display:flex; align-items:center; gap:16px; margin-bottom:46px; }
   .brand__mark{
-    width:56px; height:56px; border-radius:15px; background:#fff; color:#1B1424;
+    width:56px; height:56px; border-radius:15px; color:#fff; position:relative; overflow:hidden;
+    background:
+      radial-gradient(circle at 30% 25%, rgba(195,166,234,.55) 0%, rgba(195,166,234,0) 60%),
+      linear-gradient(155deg, #1B1424 0%, #52397A 130%);
     display:grid; place-items:center;
-    font-family:"Instrument Serif",Georgia,serif; font-size:32px; line-height:1;
+    font-family:"Instrument Serif",Georgia,serif; font-style:italic; font-size:32px; line-height:1;
+    box-shadow:0 10px 24px -10px rgba(0,0,0,.5);
+  }
+  .brand__mark::after{
+    content:""; position:absolute; top:7px; right:7px; width:9px; height:9px;
+    background:#C3A6EA;
+    clip-path:polygon(50% 0%,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0% 50%,39% 39%);
   }
   .brand__name{ font-size:24px; font-weight:600; letter-spacing:-.02em; line-height:1.1; }
   .brand__name small{
