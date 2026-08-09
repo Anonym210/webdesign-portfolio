@@ -478,8 +478,27 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .field.has-error input, .field.has-error textarea{ border-color:#C2593F; }
 .field__err{ font-size:.8rem; color:#C2593F; display:none; }
 .field.has-error .field__err{ display:block; }
-.form__consent{ display:flex; gap:.65rem; align-items:flex-start; font-size:.86rem; color:var(--ink-mute); margin-top:1rem; line-height:1.55; }
-.form__consent input{ margin-top:.3rem; accent-color:var(--accent); width:auto; }
+.form__consent{ display:flex; gap:.7rem; align-items:flex-start; font-size:.86rem; color:var(--ink-mute); margin-top:1rem; line-height:1.55; cursor:pointer; }
+/* Eigenes Kaestchen statt des System-Checkbox: die native Variante ist auf
+   iOS nur ein paar Pixel gross und kaum als ankreuzbar zu erkennen. */
+.form__consent input[type="checkbox"]{
+  appearance:none; -webkit-appearance:none;
+  flex:none; width:24px; height:24px; margin:0; padding:0;
+  border:1.5px solid var(--ink-mute); border-radius:6px;
+  background-color:var(--white);
+  background-repeat:no-repeat; background-position:center; background-size:15px 15px;
+  cursor:pointer;
+  transition:background-color .2s var(--ease), border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+.form__consent input[type="checkbox"]:hover{ border-color:var(--accent); }
+.form__consent input[type="checkbox"]:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+.form__consent input[type="checkbox"]:checked{
+  background-color:var(--accent); border-color:var(--accent);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5 9.5 18 20 6.5'/%3E%3C/svg%3E");
+}
+/* Fehlerzustand: gesetzt von assets/js/main.js, wenn ohne Haken gesendet wird */
+.form__consent.has-error{ color:#C2593F; }
+.form__consent.has-error input[type="checkbox"]{ border-color:#C2593F; box-shadow:0 0 0 3px rgba(194,89,63,.14); }
 .form__consent a{ color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
 .form .btn{ width:100%; margin-top:1.3rem; }
 .form__note{ text-align:center; font-size:.82rem; color:var(--ink-mute); margin-top:.9rem; }

@@ -438,12 +438,31 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .field.has-error input,.field.has-error textarea{ border-color:#A8452C; }
 .err{ font-size:.78rem; color:#A8452C; display:none; }
 .field.has-error .err{ display:block; }
-.consent{ display:flex; gap:.65rem; align-items:flex-start; font-size:.85rem; color:var(--ink-mute); margin-top:.9rem; line-height:1.55; }
-.consent input{ margin-top:.3rem; accent-color:var(--gold); width:auto; }
+.consent{ display:flex; gap:.65rem; align-items:flex-start; font-size:.85rem; color:var(--ink-mute); margin-top:.9rem; line-height:1.55; cursor:pointer; }
+/* Eigenes Kaestchen statt des System-Checkbox: die native Variante ist auf
+   iOS nur ein paar Pixel gross und kaum als ankreuzbar zu erkennen. */
+.consent input[type="checkbox"]{
+  appearance:none; -webkit-appearance:none;
+  flex:none; width:24px; height:24px; margin:0; padding:0;
+  border:1.5px solid var(--ink-mute); border-radius:4px;
+  background-color:#fff;
+  background-repeat:no-repeat; background-position:center; background-size:15px 15px;
+  cursor:pointer;
+  transition:background-color .2s ease, border-color .2s ease;
+}
+.consent input[type="checkbox"]:hover{ border-color:var(--gold-deep); }
+.consent input[type="checkbox"]:focus-visible{ outline:2px solid var(--gold-deep); outline-offset:2px; }
+.consent input[type="checkbox"]:checked{
+  background-color:var(--gold-deep); border-color:var(--gold-deep);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5 9.5 18 20 6.5'/%3E%3C/svg%3E");
+}
 .consent a{ color:var(--gold-deep); text-decoration:underline; text-underline-offset:2px; }
 .form .btn{ margin-top:1.3rem; }
 .formnote{ font-size:.78rem; color:var(--ink-mute); text-align:center; margin-top:.9rem; }
-.ok{ display:none; gap:.8rem; align-items:center; background:var(--gold-soft); color:var(--gold-deep); padding:.95rem 1.1rem; margin-top:1.1rem; font-size:.93rem; }
+.ok{ display:none; gap:.8rem; align-items:flex-start; background:var(--gold-soft); color:var(--gold-deep); padding:.95rem 1.1rem; margin-top:1.1rem; font-size:.93rem; line-height:1.6; }
+.ok svg{ flex:none; margin-top:.24rem; }
+.ok b{ font-weight:600; }
+.ok a{ color:inherit; text-decoration:underline; text-underline-offset:2px; font-weight:600; }
 .ok.is-visible{ display:flex; }
 
 /* Fehlerbox — erscheint, wenn der Versand nicht geklappt hat */
@@ -560,6 +579,7 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
   -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
   font-family:var(--body, sans-serif); font-size:.78rem; line-height:1.4;
   box-shadow:0 12px 30px -14px rgba(0,0,0,.6);
+  pointer-events:none; /* darf auf Mobilgeraeten keine Taps auf darunterliegende Felder blockieren */
 }
 .demoflag[hidden]{ display:none; }
 /* In der eingebetteten Vorschau auf der Verkaufsseite ausblenden —
@@ -572,6 +592,7 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
   flex:none; margin-left:.1rem; padding:.3rem .8rem; border-radius:100px;
   background:rgba(255,255,255,.13); color:#fff; font-weight:600; white-space:nowrap;
   transition:background-color .25s ease;
+  pointer-events:auto;
 }
 .demoflag__link:hover{ background:rgba(255,255,255,.24); }
 @media (max-width:720px){

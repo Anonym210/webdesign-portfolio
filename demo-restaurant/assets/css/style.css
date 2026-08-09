@@ -403,8 +403,24 @@ strong{ font-weight:500; color:var(--linen); }
 /* Spamfalle — fuer Menschen unsichtbar, aber nicht display:none (Bots pruefen das) */
 .hp{ position:absolute; left:-9999px; width:1px; height:1px; opacity:0; }
 
-.consent{ display:flex; gap:.8rem; align-items:flex-start; font-size:.84rem; line-height:1.6; color:var(--linen-mute); margin-bottom:1.6rem; }
-.consent input{ margin-top:.35rem; flex:none; accent-color:var(--brass); width:1rem; height:1rem; }
+.consent{ display:flex; gap:.8rem; align-items:flex-start; font-size:.84rem; line-height:1.6; color:var(--linen-mute); margin-bottom:1.6rem; cursor:pointer; }
+/* Eigenes Kaestchen statt des System-Checkbox: die native Variante ist auf
+   iOS nur ein paar Pixel gross und auf dunklem Grund kaum zu erkennen. */
+.consent input[type="checkbox"]{
+  appearance:none; -webkit-appearance:none;
+  flex:none; width:24px; height:24px; margin:0; padding:0;
+  border:1.5px solid var(--linen-mute); border-radius:3px;
+  background-color:transparent;
+  background-repeat:no-repeat; background-position:center; background-size:15px 15px;
+  cursor:pointer;
+  transition:background-color .2s ease, border-color .2s ease;
+}
+.consent input[type="checkbox"]:hover{ border-color:var(--brass); }
+.consent input[type="checkbox"]:focus-visible{ outline:2px solid var(--brass); outline-offset:2px; }
+.consent input[type="checkbox"]:checked{
+  background-color:var(--brass); border-color:var(--brass);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23100D0A' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5 9.5 18 20 6.5'/%3E%3C/svg%3E");
+}
 .consent a{ color:var(--brass); text-decoration:underline; text-underline-offset:2px; }
 .formnote{ margin-top:1rem; text-align:center; font-size:.72rem; letter-spacing:.12em; color:var(--linen-mute); }
 
@@ -417,6 +433,8 @@ strong{ font-weight:500; color:var(--linen); }
 .ok.is-visible,.notok.is-visible{ display:flex; }
 .ok svg,.notok svg{ flex:none; margin-top:.2rem; }
 .notok a{ color:var(--brass); text-decoration:underline; text-underline-offset:2px; }
+.ok b{ font-weight:500; }
+.ok a{ color:var(--brass); text-decoration:underline; text-underline-offset:2px; font-weight:500; }
 
 /* ---------- 12. Kontakt ---------- */
 .contact__grid{
@@ -518,6 +536,7 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
   -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
   font-family:var(--body, sans-serif); font-size:.78rem; line-height:1.4;
   box-shadow:0 12px 30px -14px rgba(0,0,0,.8);
+  pointer-events:none; /* darf auf Mobilgeraeten keine Taps auf darunterliegende Felder blockieren */
 }
 .demoflag[hidden]{ display:none; }
 /* In der eingebetteten Vorschau auf der Verkaufsseite ausblenden —
@@ -530,6 +549,7 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
   flex:none; margin-left:.1rem; padding:.3rem .8rem; border-radius:100px;
   background:rgba(243,238,228,.13); color:var(--linen); font-weight:400; white-space:nowrap;
   transition:background-color .25s ease;
+  pointer-events:auto;
 }
 .demoflag__link:hover{ background:rgba(243,238,228,.24); }
 @media (max-width:720px){

@@ -626,7 +626,7 @@
 
         <!-- Spamfalle: fuer Menschen unsichtbar, Bots fuellen sie aus.
              Formspree verwirft jede Anfrage, in der _gotcha ausgefuellt ist. -->
-        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+        <input type="hidden" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
         <input type="hidden" name="_subject" value="Neue Terminanfrage ueber die Website">
         <label class="form__consent" for="f-privacy">
           <input type="checkbox" id="f-privacy" name="datenschutz" required>
@@ -637,8 +637,8 @@
         <p class="form__note">Antwort in der Regel innerhalb von 24 Stunden · Keine automatische Buchung</p>
 
         <div class="form__ok" id="formOk" role="status">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
-          <span>Vielen Dank! Ihre Anfrage ist eingegangen — wir melden uns zeitnah.</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-5M12 8h.01"/></svg>
+          <span><b>Beispielwebsite — es wurde nichts gesendet.</b> Ihre Eingaben haben diesen Browser nicht verlassen und wurden nirgends gespeichert. So sieht das Formular für Ihre Kundschaft aus; auf einer echten Seite ginge die Anfrage an das Postfach des Betriebs. <a href="../index.html">Website gestalten lassen</a></span>
         </div>
 
         <div class="form__err" id="formErr" role="alert">

@@ -219,6 +219,8 @@
 
     form.addEventListener('input', function (e) {
       if (e.target.matches('input, textarea')) markError(e.target, false);
+      var consent = e.target.closest('.form__consent');
+      if (consent) consent.classList.remove('has-error');
     });
 
     form.addEventListener('submit', function (e) {
@@ -235,9 +237,8 @@
       if (!msg.value.trim())  { markError(msg, true);  ok = false; }
       if (!priv.checked) {
         ok = false;
+        priv.closest('.form__consent').classList.add('has-error');
         priv.focus();
-        priv.parentElement.style.color = '#C2593F';
-        setTimeout(function () { priv.parentElement.style.color = ''; }, 2500);
       }
 
       if (!ok) {

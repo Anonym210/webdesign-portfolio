@@ -210,23 +210,24 @@
   }
 
   /* ---------- 8. Terminformular ---------- */
-  /* ===== ANPASSEN: Adresse des Formular-Dienstes ==========================
-     1. Kostenloses Konto auf formspree.io anlegen
-     2. Neues Formular anlegen — Sie erhalten eine Adresse wie
-        https://formspree.io/f/xayzabcd
-     3. Diese Adresse hier unten eintragen (die Zeile mit FORM_ENDPOINT)
-     4. Die allererste Testanfrage einmal per E-Mail bestaetigen
+  /* ===== BEISPIELWEBSITE: Dieses Formular sendet NICHTS ===================
+     Die Seite ist eine Gestaltungsdemo. Das Formular prueft die Eingaben und
+     zeigt die Rueckmeldung, uebermittelt aber bewusst keine Daten:
 
-     Bis dahin zeigt das Formular eine Fehlermeldung mit E-Mail und Telefon
-     an — statt einer falschen Erfolgsmeldung.
+     - Empfaenger waere das Postfach des Portfolio-Betreibers, waehrend die
+       Datenschutzerklaerung dieser Demo einen erfundenen Betrieb nennt.
+       Die Pflichtangabe nach Art. 19 DSG waere damit falsch.
+     - Das Nachrichtenfeld laedt zu Angaben zu Beschwerden ein. Das sind
+       besonders schuetzenswerte Gesundheitsdaten nach Art. 5 lit. c DSG.
+
+     Keine Uebermittlung = kein Datenschutzrisiko. Wer diese Vorlage fuer
+     einen echten Betrieb uebernimmt, traegt hier den eigenen Formulardienst
+     ein und passt die Datenschutzerklaerung an.
      ====================================================================== */
-  var FORM_ENDPOINT = 'https://formspree.io/f/xzepdone';
-  var IS_CONFIGURED = FORM_ENDPOINT.indexOf('DEINE-FORM-ID') === -1;
 
   var form = document.getElementById('terminForm');
   if (form) {
     var SUBMIT_LABEL = form.querySelector('button[type="submit"]').textContent;
-    if (IS_CONFIGURED) { form.setAttribute('action', FORM_ENDPOINT); form.setAttribute('method', 'POST'); }
     var dateInput = document.getElementById('f-date');
     if (dateInput) dateInput.min = new Date().toISOString().split('T')[0];
 
@@ -262,50 +263,16 @@
         return;
       }
 
-      /* ================= Versand =================
-         Solange bei FORM_ENDPOINT noch die Beispieladresse steht, meldet das
-         Formular BEWUSST einen Fehler statt "gesendet". Eine Anfrage, die
-         niemand bekommt, darf nicht als erfolgreich bestaetigt werden. */
-      var okBox  = document.getElementById('okBox');
-      var errBox = document.getElementById('errBox');
-      var btn    = form.querySelector('button[type="submit"]');
+      /* ================= Kein Versand =================
+         Siehe Erklaerung oben: die Eingaben verlassen den Browser nicht.
+         Der Hinweiskasten sagt das der Besucherin oder dem Besucher auch
+         deutlich — eine Demo darf keine Anfrage vortaeuschen, die niemand
+         erhaelt. */
+      var okBox = document.getElementById('okBox');
 
-      okBox.classList.remove('is-visible');
-      errBox.classList.remove('is-visible');
-
-      function fail(grund) {
-        errBox.classList.add('is-visible');
-        btn.disabled = false;
-        btn.textContent = SUBMIT_LABEL;
-        errBox.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
-        if (window.console) window.console.error('Formularversand fehlgeschlagen:', grund);
-      }
-
-      if (!IS_CONFIGURED) {
-        fail('FORM_ENDPOINT ist noch nicht eingetragen (assets/js/main.js).');
-        return;
-      }
-
-      btn.disabled = true;
-      btn.textContent = 'Wird gesendet …';
-
-      window.fetch(FORM_ENDPOINT, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      }).then(function (res) {
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        return res;
-      }).then(function () {
-        okBox.classList.add('is-visible');
-        form.reset();
-        btn.textContent = 'Anfrage gesendet';
-        okBox.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
-        window.setTimeout(function () {
-          btn.disabled = false;
-          btn.textContent = SUBMIT_LABEL;
-        }, 5000);
-      })['catch'](fail);
+      form.reset();
+      okBox.classList.add('is-visible');
+      okBox.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
     });
   }
 
