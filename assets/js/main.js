@@ -189,7 +189,7 @@
      Bis dahin zeigt das Formular eine Fehlermeldung mit E-Mail und Telefon
      an — statt einer falschen Erfolgsmeldung.
      ====================================================================== */
-  var FORM_ENDPOINT = 'https://formspree.io/f/DEINE-FORM-ID';
+  var FORM_ENDPOINT = 'https://formspree.io/f/xzepdone';
   var IS_CONFIGURED = FORM_ENDPOINT.indexOf('DEINE-FORM-ID') === -1;
 
   var form = document.getElementById('contactForm');
