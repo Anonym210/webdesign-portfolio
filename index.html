@@ -179,7 +179,7 @@
           </span>
           <span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-            Auch mehrsprachig — Übersetzung organisiere ich
+            Ihre Website auf Deutsch, Englisch oder Französisch
           </span>
         </div>
 
@@ -477,8 +477,8 @@
 
       <article class="tile reveal" data-delay="2">
         <span class="tile__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
-        <h3>Lokale Sichtbarkeit</h3>
-        <p>Saubere Technik, sinnvolle Seitentitel und ein gepflegtes Google-Unternehmensprofil, damit Sie in Ihrer Umgebung gefunden werden.</p>
+        <h3>Sichtbar bei Google &amp; KI</h3>
+        <p>Saubere Technik, sinnvolle Seitentitel, strukturierte Daten und ein gepflegtes Google-Unternehmensprofil — damit man Sie nicht nur bei Google findet, sondern auch, wenn jemand ChatGPT oder Perplexity nach einem Betrieb wie Ihrem fragt.</p>
       </article>
 
       <article class="tile reveal">
@@ -730,6 +730,10 @@
         <div class="faq__a"><div>Nein. Im Business- und im Premium-Paket schreibe ich die Texte auf Basis unseres Gesprächs; im Start-Paket überarbeite ich, was Sie mir liefern. Passende, lizenzfreie Bilder suche ich in jedem Paket kostenlos aus. Eigene Fotos wirken zwar immer am besten, sind aber keine Voraussetzung für den Start.</div></div>
       </div>
       <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Bauen Sie die Seite auch auf Englisch oder Französisch?<i aria-hidden="true"></i></button>
+        <div class="faq__a"><div>Ja, alle drei sind für mich Alltag: Deutsch, Englisch und Französisch sind kein Problem. Sie sagen mir, in welcher Sprache Ihre Kundschaft Sie sucht, und ich baue die Seite direkt darin. Möchten Sie dieselbe Seite zusätzlich in einer zweiten Sprache, organisiere und prüfe ich auch die Übersetzung.</div></div>
+      </div>
+      <div class="faq__item">
         <button class="faq__q" type="button" aria-expanded="false">Wie läuft die Bezahlung ab?<i aria-hidden="true"></i></button>
         <div class="faq__a"><div>Es gibt keine Anzahlung und keine Teilrechnungen. Sie bekommen genau eine Rechnung, und zwar erst, wenn die Seite online ist und Sie zufrieden sind — zahlbar innerhalb von 30 Tagen per Banküberweisung oder TWINT. Steigen Sie nach dem ersten Entwurf aus, kommt gar keine Rechnung.</div></div>
       </div>
@@ -764,6 +768,108 @@
     </div>
   </div>
 </section>
+
+<!-- Strukturierte Daten der FAQ oben — wortgleich mit dem sichtbaren Text.
+     Das ist der technische Teil von "KI-kompatibel": Antwortmaschinen wie
+     ChatGPT oder Google-KI-Übersichten lesen dieses Format direkt aus, statt
+     den Fliesstext interpretieren zu müssen. Bei Änderungen an der FAQ oben
+     bitte diesen Block mitpflegen, sonst laufen Text und Daten auseinander. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie lange dauert es, bis meine Seite online ist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In der Regel zwei bis drei Wochen ab dem Moment, in dem Texte und Bilder vorliegen. Ein Onepager kann auch in einer Woche fertig sein. Der Engpass sind fast immer die Inhalte — nicht die Technik."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ich habe keine Texte und keine Fotos. Ist das ein Problem?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Im Business- und im Premium-Paket schreibe ich die Texte auf Basis unseres Gesprächs; im Start-Paket überarbeite ich, was Sie mir liefern. Passende, lizenzfreie Bilder suche ich in jedem Paket kostenlos aus. Eigene Fotos wirken zwar immer am besten, sind aber keine Voraussetzung für den Start."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bauen Sie die Seite auch auf Englisch oder Französisch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, alle drei sind für mich Alltag: Deutsch, Englisch und Französisch sind kein Problem. Sie sagen mir, in welcher Sprache Ihre Kundschaft Sie sucht, und ich baue die Seite direkt darin. Möchten Sie dieselbe Seite zusätzlich in einer zweiten Sprache, organisiere und prüfe ich auch die Übersetzung."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie läuft die Bezahlung ab?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es gibt keine Anzahlung und keine Teilrechnungen. Sie bekommen genau eine Rechnung, und zwar erst, wenn die Seite online ist und Sie zufrieden sind — zahlbar innerhalb von 30 Tagen per Banküberweisung oder TWINT. Steigen Sie nach dem ersten Entwurf aus, kommt gar keine Rechnung."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet die Seite laufend?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Domain und Hosting liegen üblicherweise bei CHF 8–20 im Monat und werden direkt beim Anbieter auf Ihren Namen abgerechnet — ich schlage darauf nichts auf. Möchten Sie, dass ich mich zusätzlich um Updates, Sicherungen und laufende Änderungen kümmere, gibt es dafür das Betreuungspaket ab CHF 29.– im Monat, monatlich kündbar. Ohne dieses Paket entstehen bei mir keine laufenden Kosten."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was zählt als „kleine Änderung“ im Betreuungspaket?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Alles, was ich in wenigen Minuten erledigen kann: Öffnungszeiten, Preise, Telefonnummern, ein ausgetauschtes Foto, ein neuer Absatz, ein zusätzlicher Menüpunkt. Enthalten sind bis zu 30 Minuten pro Monat, nicht übertragbar. Neue Unterseiten, ein neues Layout oder eine zweite Sprache sind eigene Projekte — dafür bekommen Sie vorher einen Festpreis."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was, wenn mir der Entwurf nicht gefällt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dann sagen Sie es mir. Je nach Paket sind ein bis drei Korrekturrunden inklusive; eine Runde heisst: Sie sammeln alle Änderungswünsche, ich setze sie gemeinsam um. Reicht das nicht, kostet jede weitere Runde CHF 120.– pauschal. Und wenn schon der erste Entwurf in die falsche Richtung geht, können Sie ohne Rechnung aussteigen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann ich die Seite später selbst bearbeiten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja — im Premium-Paket richte ich ein einfaches Redaktionssystem ein, mit dem Sie Texte, Preise und Bilder selbst ändern können. Ich zeige Ihnen das bei der Übergabe. Wer lieber nichts anfassen möchte, schickt mir einfach eine Nachricht mit der Änderung."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wem gehört die Webseite am Ende?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ihnen. Domain und Hosting laufen auf Ihren Namen, und Sie bekommen alle Zugangsdaten sowie die fertigen Dateien. Sollten Sie irgendwann zu jemand anderem wechseln wollen, können Sie alles mitnehmen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Brauche ich einen Cookie-Banner?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bei einer Seite, wie ich sie standardmässig baue, nicht: kein Tracking, keine Werbedienste, keine extern geladenen Schriften — also nichts, wofür eine Einwilligung nötig wäre. Sobald Sie später Statistiken, eine Kartenanzeige oder Werbedienste einbinden möchten, ändert sich das; dann richte ich die passende Einwilligung mit ein. Diese Einschätzung ersetzt keine Rechtsberatung."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Arbeiten Sie auch ausserhalb meiner Region?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Der persönliche Termin vor Ort ist schön, aber nicht nötig — Telefon, Video und E-Mail funktionieren genauso gut. Im Umkreis von 50 km um Dübendorf komme ich für das Erstgespräch gerne vorbei, ohne Anfahrtskosten."
+      }
+    }
+  ]
+}
+</script>
 
 <!-- ============================ KONTAKT ============================ -->
 <section class="section section--alt" id="kontakt">

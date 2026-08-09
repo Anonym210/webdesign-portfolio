@@ -15,4 +15,8 @@ Disallow: /demo-thai/
 Disallow: /uebersicht.html
 Disallow: /assets/social-preview.html
 
+# "Allow: /" oben gilt auch für KI-Crawler (GPTBot, ClaudeBot, PerplexityBot
+# u.a.), da kein eigener Disallow-Block für sie existiert. Kurzbeschreibung
+# der Seite für Sprachmodelle: /llms.txt
+
 Sitemap: https://anonym210.github.io/webdesign-portfolio/sitemap.xml

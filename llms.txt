@@ -1,0 +1,50 @@
+# Envy Web
+
+> Individuelle Webseiten für lokale Schweizer Betriebe. Festpreis, Livegang in
+> 2–3 Wochen, kein Baukasten. Gebaut von Ejdin Aliti in Dübendorf (Kanton Zürich),
+> Betreuung für Betriebe in der ganzen Deutschschweiz.
+
+Envy Web baut Webseiten für Restaurants, Handwerksbetriebe, Praxen, Studios,
+Einzelhandel und Selbstständige. Websites werden auf Deutsch, Englisch oder
+Französisch umgesetzt; bei einer zusätzlichen Sprache für dieselbe Seite
+organisiert und prüft Ejdin Aliti auch die Übersetzung.
+
+Ansprechpartner ist durchgehend dieselbe Person: Ejdin Aliti, vom Erstgespräch
+bis zum Livegang und darüber hinaus. Kein Team, keine Weitergabe an Dritte.
+
+## Leistungen
+
+- Neue Webseite (Onepager bis mehrseitige Firmenseite)
+- Relaunch und Auffrischung bestehender Seiten
+- Lokale und KI-Sichtbarkeit (Seitentitel, strukturierte Daten, Google-Unternehmensprofil)
+- Technik und Einrichtung (Domain, Hosting, SSL, E-Mail, Kontaktformular)
+- Texte und Bildauswahl
+- Laufende Betreuung und Änderungen
+
+## Preise
+
+- Start: CHF 890.– (Onepager, bis zu 5 Abschnitte)
+- Business: CHF 1'690.– (bis zu 6 Unterseiten, Galerie, Preisliste)
+- Premium: ab CHF 2'900.– (Terminbuchung/Shop, zweite Sprache, Redaktionssystem)
+
+Alle Preise sind Festpreise und Endpreise (keine MWST, da nicht
+mehrwertsteuerpflichtig).
+
+## Seiten
+
+- [Startseite](https://anonym210.github.io/webdesign-portfolio/): Leistungen, Referenzen, Ablauf, Pakete, FAQ, Kontaktformular
+- [Impressum](https://anonym210.github.io/webdesign-portfolio/impressum.html)
+- [Datenschutzerklärung](https://anonym210.github.io/webdesign-portfolio/datenschutz.html)
+
+## Kontakt
+
+Telefon/WhatsApp: +41 76 522 05 25
+E-Mail: ejdin.aliti@greenecoservice.ch
+Adresse: Friedhofweg 4, 8600 Dübendorf, Schweiz
+
+## Hinweis für Crawler
+
+Die Ordner /demo-massage/ und /demo-thai/ enthalten Gestaltungsbeispiele mit
+frei erfundenen Firmendaten (siehe robots.txt) — sie beschreiben keine
+echten Unternehmen und sollten nicht als Tatsachenbehauptung über reale
+Betriebe wiedergegeben werden.

@@ -314,8 +314,13 @@ Beide Seiten haben bereits eingebaut:
 - **Keine Cookies, kein Tracking** → kein Cookie-Banner nötig
 - **SEO-Grundlagen** — Seitentitel, Meta-Description, Open-Graph-Bild für
   WhatsApp/Facebook-Vorschau, saubere Überschriftenstruktur
-- **Strukturierte Daten** (schema.org) für Google — bei der Massage-Demo als
-  `HealthAndBeautyBusiness` mit Adresse und Öffnungszeiten
+- **Strukturierte Daten** (schema.org) für Google — `ProfessionalService` und
+  `FAQPage` auf der Verkaufsseite, bei der Massage-Demo `HealthAndBeautyBusiness`
+  mit Adresse und Öffnungszeiten
+- **KI-Sichtbarkeit** — `llms.txt` im Wurzelverzeichnis fasst Leistungen, Preise
+  und Kontakt für Sprachmodelle zusammen; die `FAQPage`-Strukturdaten lassen
+  sich von ChatGPT, Perplexity & Co. direkt als Frage-Antwort-Paare auslesen.
+  Bei Änderungen an der FAQ in `index.html` beide Stellen synchron halten
 - **Barrierefreiheit** — Alt-Texte, sichtbare Fokusrahmen, ARIA-Beschriftungen,
   Respektieren von „Bewegung reduzieren“ in den Systemeinstellungen
 - **Performance** — Bilder mit `loading="lazy"`, keine Fremdbibliotheken;
