@@ -30,7 +30,7 @@ Bereits erledigt: Formspree-Adresse (`FORM_ENDPOINT` in allen drei `main.js`),
 Adresse und Ort in Impressum, Datenschutz, Hero und Kontaktbereich,
 Hosting-Anbieter (GitHub Pages, `datenschutz.html` Abschnitt 7),
 Telefon und WhatsApp (076 522 05 25),
-E-Mail-Adresse auf der eigenen Domain (`info@envyweb.ch`).
+E-Mail-Adresse auf der eigenen Domain (`ejdin.aliti@envyweb.ch`).
 
 Damit sind alle Pflichtangaben gesetzt.
 
