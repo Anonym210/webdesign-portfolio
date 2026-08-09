@@ -6,8 +6,8 @@
 📄 impressum.html     → Rechtstexte der Verkaufsseite
 📄 datenschutz.html
 📁 assets/            → CSS, JavaScript, Schriften und Bilder der Verkaufsseite
-📁 demo-massage/      → Beispielwebsite „AURELIA Massage & Wellness"
-📁 demo-thai/         → Beispielwebsite „SABAI Thai Massage"
+📁 demo-massage/      → Beispielwebsite „AURELIA Massage & Wellness“
+📁 demo-thai/         → Beispielwebsite „SABAI Thai Massage“
 📄 uebersicht.html    → Interne Projektübersicht (noindex, nicht verlinkt)
 📄 robots.txt         → sperrt die Beispielwebsites für Suchmaschinen
 📄 sitemap.xml
@@ -19,26 +19,23 @@ keine Datenbank, keine externen Bibliotheken. Seit der letzten Überarbeitung
 lädt die Seite auch **keine Schriften mehr von Google**: alle Schriftdateien
 liegen unter `assets/fonts/`. Damit gibt es beim Seitenaufruf keinen einzigen
 Request an einen fremden Server — das ist der Grund, warum die Aussage
-„ohne Tracking, ohne Cookie-Banner" auf der Seite überhaupt stehen darf.
+„ohne Tracking, ohne Cookie-Banner“ auf der Seite überhaupt stehen darf.
 
 ---
 
-## ❗ Was vor dem Bewerben der Adresse noch fehlt
+## ✅ Stand der Pflichtangaben
 
-Diese Punkte kann nur der Betreiber ausfüllen — die Stellen sind im Code mit
-eckigen Klammern markiert:
+Bereits erledigt: Formspree-Adresse (`FORM_ENDPOINT` in allen drei `main.js`),
+Adresse und Ort in Impressum, Datenschutz, Hero und Kontaktbereich,
+Hosting-Anbieter (GitHub Pages, `datenschutz.html` Abschnitt 7),
+Telefon und WhatsApp (076 522 05 25).
+
+Noch offen — beides optional bzw. erst mit eigener Domain sinnvoll:
 
 | Was | Wo |
 |---|---|
-| **Formspree-Adresse eintragen** | `assets/js/main.js`, Abschnitt 8, Zeile `FORM_ENDPOINT`. Solange dort die Beispieladresse steht, zeigt das Formular bewusst eine Fehlermeldung statt „gesendet" — damit keine Anfrage unbemerkt verloren geht. Dasselbe gilt für beide Demo-Websites |
-| **Adresse im Impressum** | `impressum.html` — Strasse, PLZ, Ort. **Pflicht** nach Art. 3 Abs. 1 lit. s UWG |
-| **Adresse im Datenschutz** | `datenschutz.html`, Abschnitt 1 |
-| **Hosting-Anbieter benennen** | `datenschutz.html`, Abschnitt 8 |
-| **Ort und Region** | `index.html` — `[Ort]` und `[Region]` im Hero, im Abschnitt „Über mich", im FAQ und im Kontaktbereich |
-| **Portraitfoto** | `assets/img/portrait.jpg`, hochkant ca. 900 × 1100 px. Fehlt die Datei, zeigt der Abschnitt automatisch einen Hinweiskasten statt eines kaputten Bildes |
-| **Eigene E-Mail-Adresse** | Aktuell `ejdin.aliti@greenecoservice.ch`. Eine Adresse auf der eigenen Domain wirkt stimmiger — kommt in `index.html` (Kontakt, Fehlermeldung, Footer, strukturierte Daten) und in beiden Rechtstexten vor |
-
-Telefon und WhatsApp (076 522 05 25) sind bereits überall eingetragen.
+| **Eigene E-Mail-Adresse** | Aktuell `ejdin.aliti@greenecoservice.ch`. Eine Adresse auf der eigenen Domain (z. B. `hallo@envyweb.ch`) wirkt stimmiger — kommt in `index.html` (Kontakt, Fehlermeldung, Footer, strukturierte Daten) und in beiden Rechtstexten vor |
+| **Portraitfoto** (optional) | `assets/img/portrait.jpg`, hochkant ca. 900 × 1100 px. Der Über-mich-Abschnitt zeigt bewusst ein Monogramm; die Einbindung des Fotos ist im Abschnitt als Kommentar beschrieben |
 
 ---
 
@@ -73,7 +70,7 @@ genügt nicht.
 | | |
 |---|---|
 | **Name** | Envy Web |
-| **Logo** | Buchstabe „E" im dunklen Quadrat, darunter „ENVY / Web" |
+| **Logo** | Monogramm: kursives „E“ mit Glanzstern auf violettem Verlauf, daneben „ENVY / Web“ |
 | **Wunschdomain** | `envyweb.ch` — noch nicht registriert |
 | **Claim (Titel & Footer)** | Websites, um die man Sie beneidet. |
 | **Claim (Hero-Eyebrow)** | Neid ist das beste Kompliment |
@@ -88,9 +85,9 @@ Wenn Sie später eine `.ch`-Domain haben: im Repo unter
 CNAME-Eintrag auf `anonym210.github.io` setzen. HTTPS aktiviert GitHub
 danach automatisch.
 
-> **Vor dem ernsthaften Einsatz:** Das Impressum enthält noch Platzhalter in
-> eckigen Klammern. Solange dort keine echten Angaben stehen, sollten Sie die
-> Adresse nicht aktiv bewerben — siehe Abschnitt 2.1.
+> **Stand:** Impressum und Datenschutzerklärung sind vollständig ausgefüllt
+> (Adresse, Kontakt, Hosting-Anbieter). Offen ist nur noch die E-Mail-Adresse
+> auf eigener Domain — siehe Tabelle oben.
 
 ---
 
@@ -119,13 +116,13 @@ eingebettet — in Chrome und Edge funktioniert das auch per Doppelklick (getest
 
 | Wo | Was |
 |---|---|
-| `index.html` | Der Markenname **Envy Web** ist bereits überall eingetragen. Falls Sie ihn später ändern: „Envy Web", „ENVY" und den Logo-Buchstaben „E" ersetzen |
-| `index.html` | Telefon **076 522 05 25** und WhatsApp sind eingetragen. Zu ersetzen bleiben `[Ort]` und `[Region]` |
+| `index.html` | Der Markenname **Envy Web** ist bereits überall eingetragen. Falls Sie ihn später ändern: „Envy Web“, „ENVY“ und den Logo-Buchstaben „E“ ersetzen |
+| `index.html` | Telefon **076 522 05 25**, WhatsApp sowie Ort und Region (Dübendorf / Grossraum Zürich) sind eingetragen |
 | `index.html` | Falls die Nummer wechselt: `tel:+41765220525` und `https://wa.me/41765220525` anpassen (WhatsApp-Format: `41` + Nummer ohne führende 0) |
 | `index.html` | Abschnitt **Pakete**: Preise prüfen. Eingetragen sind CHF 890.– / CHF 1'690.– / ab CHF 2'900.– sowie Betreuung ab CHF 29.–/Monat — marktübliche Werte für Einzelunternehmer in der Schweiz |
-| `impressum.html` | Strasse, PLZ und Ort ergänzen — **Pflicht** nach Art. 3 Abs. 1 lit. s UWG. Es ist hinterlegt, dass keine MWST-Pflicht besteht |
-| `datenschutz.html` | Abschnitt 1 (Adresse) und Abschnitt 8 (Hoster) ausfüllen. Der Text richtet sich nach revDSG und nennt Formspree bereits als Auftragsbearbeiter |
-| Favicon / Logo | Der Buchstabe „E" steht an drei Stellen: im `<link rel="icon">` im Kopf und zweimal als `<span class="brand__mark">E</span>` |
+| `impressum.html` | Adresse ist eingetragen (**Pflicht** nach Art. 3 Abs. 1 lit. s UWG). Es ist hinterlegt, dass keine MWST-Pflicht besteht |
+| `datenschutz.html` | Vollständig ausgefüllt: Abschnitt 1 (Adresse), Abschnitt 7 (Hoster: GitHub Pages). Der Text richtet sich nach revDSG und nennt Formspree als Auftragsbearbeiter |
+| Favicon / Logo | Der Buchstabe „E“ steht an drei Stellen: im `<link rel="icon">` im Kopf und zweimal als `<span class="brand__mark">E</span>` |
 
 **Farbe ändern:** in `assets/css/style.css` ganz oben im Block `:root`
 die Zeilen `--accent` und `--accent-deep` anpassen. Die ganze Seite zieht mit.
@@ -133,12 +130,12 @@ die Zeilen `--accent` und `--accent-deep` anpassen. Die ganze Seite zieht mit.
 ### 2.2 Demo-Massage-Website
 
 Diese Seite ist als **Verkaufsargument** gedacht — Sie zeigen sie im Gespräch und
-sagen: „So etwas baue ich für Sie." Alle Inhalte sind erfunden (Adresse, Preise,
-Bewertungen, Name „Marie Lindner").
+sagen: „So etwas baue ich für Sie.“ Alle Inhalte sind erfunden (Adresse, Preise,
+Bewertungen, Name „Marie Lindner“).
 
 Wenn Sie sie an einen echten Massage-Kunden verkaufen, ersetzen Sie:
 Firmenname, Adresse, Telefon, E-Mail, Öffnungszeiten, Behandlungen, Preisliste,
-die Zitate im Abschnitt „Stimmen" sowie Impressum und Datenschutz.
+die Zitate im Abschnitt „Stimmen“ sowie Impressum und Datenschutz.
 
 Die Preise sind bereits auf Schweizer Niveau gesetzt (CHF 95.– bis CHF 320.–,
 10er-Karte ab CHF 1'080.–) — realistisch für eine Einzelpraxis. Im Impressum ist
@@ -146,10 +143,10 @@ ausserdem ein EMR-Eintrag vorgesehen: Ohne EMR- oder ASCA-Anerkennung zahlen
 Zusatzversicherungen nicht, deshalb steht das auf fast jeder echten
 Massage-Website. Bei einem Kunden ohne Anerkennung diesen Abschnitt streichen.
 
-> ⚠️ Die Zahlen in der dunklen Leiste („12 Jahre Erfahrung", „4,9 von 5 · 128 Bewertungen")
-> sind Demo-Werte. Erfundene Bewertungen auf einer echten Kundenseite sind
-> wettbewerbsrechtlich angreifbar — vor dem Livegang durch echte Werte ersetzen
-> oder den Abschnitt entfernen.
+> ⚠️ Die Zahlen in der dunklen Leiste („12 Jahre Erfahrung“, „100 % Bio-Öle“)
+> und die drei Kundenzitate im Abschnitt „Stimmen“ sind Demo-Werte. Erfundene
+> Angaben und Bewertungen auf einer echten Kundenseite sind wettbewerbsrechtlich
+> angreifbar — vor dem Livegang durch echte Werte ersetzen oder entfernen.
 
 ---
 
@@ -193,7 +190,7 @@ bereits gebauten Seiten hinzu:
 2. Datei nach `assets/img/` legen, z. B. `referenz-1.jpg`.
 3. In `index.html` den Abschnitt `<!-- ============ REFERENZEN ============ -->`
    suchen. Dort steht ein **auskommentierter Vorlage-Block**
-   („VORLAGE FÜR EIGENE REFERENZEN"). Diesen kopieren, die Kommentarzeichen
+   („VORLAGE FÜR EIGENE REFERENZEN“). Diesen kopieren, die Kommentarzeichen
    `<!--` und `-->` entfernen und anpassen:
    - Bildpfad
    - Branche / Art des Projekts
@@ -241,9 +238,9 @@ Formulardienstes. Alle drei Websites benutzen denselben Mechanismus.
 ### Warum das Formular vorher einen Fehler zeigt
 
 Solange die Beispieladresse eingetragen ist, meldet das Formular
-„Die Anfrage konnte nicht übermittelt werden" und nennt E-Mail und Telefonnummer.
+„Die Anfrage konnte nicht übermittelt werden“ und nennt E-Mail und Telefonnummer.
 Das ist bewusst so: Eine Anfrage, die niemand bekommt, darf nicht als
-„gesendet" bestätigt werden — sonst gehen echte Aufträge unbemerkt verloren.
+„gesendet“ bestätigt werden — sonst gehen echte Aufträge unbemerkt verloren.
 
 ### Was sonst noch eingebaut ist
 
@@ -275,7 +272,7 @@ Das ist bewusst so: Eine Anfrage, die niemand bekommt, darf nicht als
 | **Hostpoint** (Schweizer Anbieter, `.ch`-Domains) | FTP-Upload | ab ca. CHF 8/Monat |
 
 Wichtig bei eigener Domain: **HTTPS aktivieren** (bei Netlify und Cloudflare
-automatisch, beim Webspace meist ein Klick „SSL/Let's Encrypt").
+automatisch, beim Webspace meist ein Klick „SSL/Let's Encrypt“).
 
 Beim Upload auf klassischen Webspace kommt der **Inhalt** des jeweiligen Ordners
 ins Wurzelverzeichnis — also `index.html` direkt in `httpdocs/` bzw. `public_html/`,
@@ -287,13 +284,13 @@ nicht den Ordner selbst.
 
 Beide Seiten sind auf den Schweizer Markt ausgelegt:
 
-- **Sprache** — durchgehend Schweizer Rechtschreibung, also `ss` statt `ss`.
+- **Sprache** — durchgehend Schweizer Rechtschreibung, also `ss` statt `ß`.
   `lang="de-CH"` ist gesetzt, damit Browser und Vorlesehilfen richtig arbeiten.
 - **Währung** — CHF mit Apostroph als Tausendertrennzeichen (`1'690.–`) und
   `exkl. MWST`. Falls Sie unter CHF 100'000 Jahresumsatz bleiben und nicht
   mehrwertsteuerpflichtig sind: den Zusatz `exkl. MWST` streichen.
 - **Impressum** — nach Art. 3 Abs. 1 lit. s UWG. Pflicht sind Name,
-  vollständige Adresse und E-Mail-Adresse. Kein „§ 5 DDG", kein Rundfunkstaatsvertrag.
+  vollständige Adresse und E-Mail-Adresse. Kein „§ 5 DDG“, kein Rundfunkstaatsvertrag.
 - **Datenschutz** — nach revDSG (in Kraft seit 1. September 2023) mit Verweis
   auf den EDÖB. Der Text weist zusätzlich darauf hin, dass für Besucher aus der
   EU die DSGVO sinngemäss gilt — das ist bei Schweizer Websites mit
@@ -320,7 +317,7 @@ Beide Seiten haben bereits eingebaut:
 - **Strukturierte Daten** (schema.org) für Google — bei der Massage-Demo als
   `HealthAndBeautyBusiness` mit Adresse und Öffnungszeiten
 - **Barrierefreiheit** — Alt-Texte, sichtbare Fokusrahmen, ARIA-Beschriftungen,
-  Respektieren von „Bewegung reduzieren" in den Systemeinstellungen
+  Respektieren von „Bewegung reduzieren“ in den Systemeinstellungen
 - **Performance** — Bilder mit `loading="lazy"`, keine Fremdbibliotheken;
   gesamtes JavaScript beider Seiten unter 10 KB
 - **Rechtstexte** — Impressum und Datenschutz als eigene Seiten angelegt
@@ -352,7 +349,7 @@ erzeugen (der genaue Befehl steht als Kommentar in der Datei).
 
 - `robots.txt` sperrt `demo-massage/`, `demo-thai/` und `uebersicht.html`.
 - Beide Beispielwebsites tragen zusätzlich `noindex, nofollow` und blenden beim
-  direkten Aufruf einen Hinweis „Beispielwebsite" ein — in der eingebetteten
+  direkten Aufruf einen Hinweis „Beispielwebsite“ ein — in der eingebetteten
   Vorschau auf der Verkaufsseite bleibt er ausgeblendet.
 - `sitemap.xml` enthält nur die Verkaufsseite.
 - Bei eigener Domain: Adresse in `robots.txt`, `sitemap.xml` sowie bei

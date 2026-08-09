@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="SABAI — Thai Massage &amp; Körperarbeit">
 <meta property="og:description" content="Traditionelle Thai-Massage, Kräuterstempel und Sportmassage in warmer Atmosphäre.">
-<meta property="og:image" content="assets/img/hero.jpg">
+<meta property="og:image" content="https://anonym210.github.io/webdesign-portfolio/demo-thai/assets/img/hero.jpg">
 <meta property="og:locale" content="de_CH">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -64,6 +64,12 @@
     try { e = window.self !== window.top; } catch (x) { e = true; }
     if (e) document.documentElement.className += ' embedded';
   })();
+  // Einblend-Animationen nur, wenn JavaScript wirklich laeuft — sonst bliebe
+  // bei deaktiviertem JavaScript ein Teil der Seite unsichtbar.
+  document.documentElement.className += ' js';
+  window.addEventListener('error', function () {
+    document.documentElement.className = document.documentElement.className.replace(/\bjs\b/, '');
+  });
 </script>
 </head>
 <body>
@@ -160,7 +166,7 @@
       <p class="thaiword">สบาย<small>Sabai — es geht mir gut</small></p>
       <h2>Ein Wort, das sich nicht<br>übersetzen lässt.</h2>
       <p class="lead" style="margin-top:1.4rem;">
-        „Sabai" heisst wohl, leicht, entspannt — und beschreibt nicht einen
+        „Sabai“ heisst wohlig, leicht, entspannt — und beschreibt nicht einen
         Moment, sondern einen Zustand. Genau dorthin arbeiten wir: nicht mit
         Hektik, nicht nach Programm, sondern in dem Tempo, das Ihr Körper
         gerade zulässt.
@@ -364,7 +370,7 @@
     </div>
 
     <div class="tradition__media rise" data-d="1">
-      <img class="warm" src="assets/img/raum.jpg" alt="Warmer Behandlungsraum mit dunklem Holz und indirektem Licht" loading="lazy">
+      <img class="warm" src="assets/img/raum.jpg" alt="Sauna aus dunklem Holz mit warmem, indirektem Licht" loading="lazy">
     </div>
   </div>
 </section>
@@ -504,7 +510,10 @@
     </div>
 
     <div class="gallery rise" id="gallery">
-      <button type="button" data-cap="Behandlungsraum"><img class="warm" src="assets/img/raum.jpg" alt="Behandlungsraum mit dunklem Holz" loading="lazy"></button>
+      <!-- Das Bild zeigt eine Sauna — auf einer echten Kundenseite entweder
+           durch ein Foto des Behandlungsraums ersetzen oder als das
+           beschriften, was zu sehen ist. -->
+      <button type="button" data-cap="Sauna im Ruhebereich"><img class="warm" src="assets/img/raum.jpg" alt="Sauna aus dunklem Holz" loading="lazy"></button>
       <button type="button" data-cap="Blütenschale im Empfang"><img class="warm" src="assets/img/detail-blumen.jpg" alt="Blüten in einer dunklen Wasserschale" loading="lazy"></button>
       <button type="button" data-cap="Kräuter und Öle"><img class="warm" src="assets/img/r-kraeuter.jpg" alt="Messingschale mit Kräutern und Öl" loading="lazy"></button>
       <button type="button" data-cap="Warme Steine"><img class="warm" src="assets/img/r-stone.jpg" alt="Warme Steine auf dem Rücken" loading="lazy"></button>
@@ -545,7 +554,7 @@
       </div>
       <div class="faq__i">
         <button class="faq__q" type="button" aria-expanded="false">Tut Thai-Massage weh?<i aria-hidden="true"></i></button>
-        <div class="faq__a"><div>Sie ist deutlich spürbar, aber sie soll nicht wehtun. Viele beschreiben es als „gutes Ziehen". Wir fragen mehrmals nach dem Druck, und Sie dürfen jederzeit sagen, dass es weniger sein soll — das ist keine Störung, sondern gehört dazu.</div></div>
+        <div class="faq__a"><div>Sie ist deutlich spürbar, aber sie soll nicht wehtun. Viele beschreiben es als „gutes Ziehen“. Wir fragen mehrmals nach dem Druck, und Sie dürfen jederzeit sagen, dass es weniger sein soll — das ist keine Störung, sondern gehört dazu.</div></div>
       </div>
       <div class="faq__i">
         <button class="faq__q" type="button" aria-expanded="false">Wie lange sollte die erste Behandlung sein?<i aria-hidden="true"></i></button>
@@ -565,7 +574,7 @@
       </div>
       <div class="faq__i">
         <button class="faq__q" type="button" aria-expanded="false">Gibt es Termine am Abend?<i aria-hidden="true"></i></button>
-        <div class="faq__a"><div>Montag bis Freitag ist der letzte Termin um 21 Uhr, samstags um 18 Uhr. Die Abendtermine sind am schnellsten weg — geben Sie am besten gleich zwei oder drei Wunschzeiten an.</div></div>
+        <div class="faq__a"><div>Montag bis Freitag endet der letzte Termin um 21 Uhr, samstags um 18 Uhr. Die Abendtermine sind am schnellsten weg — geben Sie am besten gleich zwei oder drei Wunschzeiten an.</div></div>
       </div>
     </div>
   </div>
@@ -685,7 +694,7 @@
 
         <div class="notok" id="errBox" role="alert">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
-          <span>Die Anfrage konnte nicht übermittelt werden. Bitte schreiben Sie mir direkt an <a href="mailto:sawasdee@sabai-massage.ch">sawasdee@sabai-massage.ch</a> oder rufen Sie an: <a href="tel:+41411234567">041 123 45 67</a>.</span>
+          <span>Die Anfrage konnte nicht übermittelt werden. Bitte schreiben Sie uns direkt an <a href="mailto:sawasdee@sabai-massage.ch">sawasdee@sabai-massage.ch</a> oder rufen Sie an: <a href="tel:+41411234567">041 123 45 67</a>.</span>
         </div>
       </form>
     </div>

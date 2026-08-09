@@ -485,7 +485,9 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .totop:hover{ background:var(--gold); }
 
 /* ---------- 18. Einblenden ---------- */
-.rise{ opacity:0; transform:translateY(22px); transition:opacity .9s var(--ease), transform .9s var(--ease); }
+/* Nur verstecken, wenn <html> die Klasse "js" traegt (setzt ein Skript im
+   <head>). Ohne JavaScript bleibt so der gesamte Inhalt sichtbar. */
+.js .rise{ opacity:0; transform:translateY(22px); transition:opacity .9s var(--ease), transform .9s var(--ease); }
 .rise.is-in{ opacity:1; transform:none; }
 .rise[data-d="1"]{ transition-delay:.09s; }
 .rise[data-d="2"]{ transition-delay:.18s; }

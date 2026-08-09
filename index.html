@@ -28,9 +28,10 @@
      4. ORT / REGION  Erledigt — Dübendorf und Grossraum Zürich sind im
                       Hero, im Über-mich-Abschnitt und im Kontaktbereich
                       eingetragen.
-     5. PORTRAITFOTO  assets/img/portrait.jpg ablegen (hochkant, ca.
-                      900 × 1100 px). Solange die Datei fehlt, zeigt der
-                      Abschnitt einen Hinweiskasten statt eines Fotos.
+     5. PORTRAITFOTO  Optional: assets/img/portrait.jpg ablegen (hochkant,
+                      ca. 900 × 1100 px). Der Über-mich-Abschnitt zeigt
+                      bewusst ein Monogramm; wie das Foto eingebunden wird,
+                      steht als Kommentar direkt im Abschnitt "ÜBER MICH".
      6. IMPRESSUM     Adresse ist eingetragen. UID/Handelsregister nur
                       ergänzen, falls vorhanden — siehe impressum.html.
 
@@ -84,8 +85,16 @@
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Envy Web",
+  "url": "https://anonym210.github.io/webdesign-portfolio/",
   "slogan": "Websites, um die man Sie beneidet.",
   "description": "Webdesign und Webentwicklung für lokale Unternehmen in der Schweiz.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Friedhofweg 4",
+    "postalCode": "8600",
+    "addressLocality": "Dübendorf",
+    "addressCountry": "CH"
+  },
   "areaServed": { "@type": "Country", "name": "Schweiz" },
   "priceRange": "CHF 890–2900",
   "currenciesAccepted": "CHF",
@@ -110,6 +119,7 @@
       <a href="#referenzen">Arbeiten</a>
       <a href="#person">Über mich</a>
       <a href="#leistungen">Leistungen</a>
+      <a href="#ablauf">Ablauf</a>
       <a href="#pakete">Preise</a>
       <a href="#faq">FAQ</a>
     </nav>
@@ -243,7 +253,7 @@
           <p>
             Ruhige, helle Gestaltung für eine kleine Praxis. Behandlungen, Preisliste,
             Galerie und ein Anfrageformular mit Wunschtermin — alles auf einer Seite,
-            damit Besucher nirgends hin klicken müssen.
+            damit Besucher nirgendwohin klicken müssen.
           </p>
           <div class="project__tags">
             <span>Onepager</span><span>Galerie</span><span>Terminanfrage</span><span>Preisliste</span>
@@ -419,7 +429,7 @@
           <p>
             „Wenn Sie nach der ersten Entwurfsrunde das Gefühl haben, das wird
             nichts, steigen Sie aus — ohne Rechnung. Das ist mir lieber als ein
-            Projekt, hinter dem keiner von uns beiden steht."
+            Projekt, hinter dem keiner von uns beiden steht.“
           </p>
           <span>Mein Versprechen an jeden neuen Kunden</span>
         </div>
@@ -543,7 +553,7 @@
           Schicken Sie mir die Adresse. Sie bekommen von mir eine kurze, ehrliche
           Einschätzung: was gut läuft, was Besucher vermutlich abspringen lässt und
           ob sich eine Auffrischung oder ein Neubau eher lohnt. Ohne Verpflichtung,
-          und auch dann, wenn die Antwort „lassen Sie es so" lautet.
+          und auch dann, wenn die Antwort „lassen Sie es so“ lautet.
         </p>
       </div>
       <a class="btn btn--accent" href="#kontakt">Seite prüfen lassen</a>
@@ -565,7 +575,9 @@
       </article>
 
       <article class="plan plan--featured reveal" data-delay="1">
-        <span class="plan__flag">Am häufigsten gewählt</span>
+        <!-- Ehrlich bleiben: "Am häufigsten gewählt" erst behaupten, wenn es
+             tatsächlich Kunden gibt, die es belegen. Bis dahin: Empfehlung. -->
+        <span class="plan__flag">Empfohlen</span>
         <h3>Business</h3>
         <p class="plan__desc">Der komplette Auftritt für Betriebe mit mehreren Leistungen.</p>
         <p class="plan__price">CHF 1'690.–<small>einmalig · Endpreis, keine MWST</small></p>
@@ -722,7 +734,7 @@
         <div class="faq__a"><div>Domain und Hosting liegen üblicherweise bei CHF 8–20 im Monat und werden direkt beim Anbieter auf Ihren Namen abgerechnet — ich schlage darauf nichts auf. Möchten Sie, dass ich mich zusätzlich um Updates, Sicherungen und laufende Änderungen kümmere, gibt es dafür das Betreuungspaket ab CHF 29.– im Monat, monatlich kündbar. Ohne dieses Paket entstehen bei mir keine laufenden Kosten.</div></div>
       </div>
       <div class="faq__item">
-        <button class="faq__q" type="button" aria-expanded="false">Was zählt als „kleine Änderung" im Betreuungspaket?<i aria-hidden="true"></i></button>
+        <button class="faq__q" type="button" aria-expanded="false">Was zählt als „kleine Änderung“ im Betreuungspaket?<i aria-hidden="true"></i></button>
         <div class="faq__a"><div>Alles, was ich in wenigen Minuten erledigen kann: Öffnungszeiten, Preise, Telefonnummern, ein ausgetauschtes Foto, ein neuer Absatz, ein zusätzlicher Menüpunkt. Enthalten sind bis zu 30 Minuten pro Monat, nicht übertragbar. Neue Unterseiten, ein neues Layout oder eine zweite Sprache sind eigene Projekte — dafür bekommen Sie vorher einen Festpreis.</div></div>
       </div>
       <div class="faq__item">

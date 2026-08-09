@@ -13,7 +13,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="AURELIA · Massage & Wellness">
 <meta property="og:description" content="Ruhe finden, Kraft tanken. Klassische Massage, Hot Stone und Aroma-Rituale in ruhiger Atmosphäre.">
-<meta property="og:image" content="assets/img/hero.jpg">
+<meta property="og:image" content="https://anonym210.github.io/webdesign-portfolio/demo-massage/assets/img/hero.jpg">
 <meta property="og:locale" content="de_CH">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -66,6 +66,12 @@
     try { e = window.self !== window.top; } catch (x) { e = true; }
     if (e) document.documentElement.className += ' embedded';
   })();
+  // Einblend-Animationen nur, wenn JavaScript wirklich laeuft — sonst bliebe
+  // bei deaktiviertem JavaScript ein Teil der Seite unsichtbar.
+  document.documentElement.className += ' js';
+  window.addEventListener('error', function () {
+    document.documentElement.className = document.documentElement.className.replace(/\bjs\b/, '');
+  });
 </script>
 </head>
 <body>
@@ -421,7 +427,7 @@
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
         </div>
-        <blockquote><p>„Ich sitze zehn Stunden am Tag am Schreibtisch. Nach der ersten Behandlung konnte ich den Kopf zum ersten Mal seit Monaten wieder frei drehen."</p></blockquote>
+        <blockquote><p>„Ich sitze zehn Stunden am Tag am Schreibtisch. Nach der ersten Behandlung konnte ich den Kopf zum ersten Mal seit Monaten wieder frei drehen.“</p></blockquote>
         <figcaption class="quote__by">
           <span class="quote__ini">T. K.</span>
           <span><b>Thomas K.</b><span>Seit 2 Jahren Stammgast</span></span>
@@ -436,7 +442,7 @@
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
         </div>
-        <blockquote><p>„Kein Wellness-Kitsch, keine Verkaufsgespräche. Man wird gefragt, was man braucht — und bekommt genau das."</p></blockquote>
+        <blockquote><p>„Kein Wellness-Kitsch, keine Verkaufsgespräche. Man wird gefragt, was man braucht — und bekommt genau das.“</p></blockquote>
         <figcaption class="quote__by">
           <span class="quote__ini">S. B.</span>
           <span><b>Sandra B.</b><span>Aroma-Öl-Massage</span></span>
@@ -451,7 +457,7 @@
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8Z"/></svg>
         </div>
-        <blockquote><p>„Das Wellness-Ritual habe ich meiner Mutter geschenkt. Sie hat danach zwei Wochen lang von nichts anderem gesprochen."</p></blockquote>
+        <blockquote><p>„Das Wellness-Ritual habe ich meiner Mutter geschenkt. Sie hat danach zwei Wochen lang von nichts anderem gesprochen.“</p></blockquote>
         <figcaption class="quote__by">
           <span class="quote__ini">M. R.</span>
           <span><b>Melanie R.</b><span>Gutschein verschenkt</span></span>
@@ -637,7 +643,7 @@
 
         <div class="form__err" id="formErr" role="alert">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
-          <span>Die Anfrage konnte nicht übermittelt werden. Bitte schreiben Sie mir direkt an <a href="mailto:hallo@aurelia-massage.ch">hallo@aurelia-massage.ch</a> oder rufen Sie an: <a href="tel:+41441234567">044 123 45 67</a>.</span>
+          <span>Die Anfrage konnte nicht übermittelt werden. Bitte schreiben Sie uns direkt an <a href="mailto:hallo@aurelia-massage.ch">hallo@aurelia-massage.ch</a> oder rufen Sie an: <a href="tel:+41441234567">044 123 45 67</a>.</span>
         </div>
       </form>
     </div>
