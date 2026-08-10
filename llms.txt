@@ -8,13 +8,13 @@
 Envy Web bietet Webdesign, Webentwicklung und laufende Betreuung für
 Restaurants, Handwerksbetriebe, Praxen, Studios, Einzelhandel und
 Selbstständige. Websites werden auf Deutsch, Englisch oder
-Französisch umgesetzt — die Basissprache ist in jedem Paket ohne Aufpreis
+Französisch umgesetzt. Die Basissprache ist in jedem Paket ohne Aufpreis
 enthalten. Ein Sprachumschalter, mit dem Besucher per Klick zwischen zwei
 Sprachen wechseln, gehört zum Premium-Paket und ist bei Start und Business
 gegen Aufpreis ergänzbar.
 
 Diese Website führt das selbst vor: Es gibt sie in drei gleichwertigen
-Fassungen — Deutsch unter /, Englisch unter /en/, Französisch unter /fr/,
+Fassungen: Deutsch unter /, Englisch unter /en/, Französisch unter /fr/,
 verbunden über hreflang-Angaben und einen Umschalter oben rechts.
 
 Ansprechpartner ist durchgehend dieselbe Person: Ejdin Aliti, vom Erstgespräch
@@ -52,7 +52,7 @@ rechtlich massgebend.
 ## Häufige Fragen (Kurzfassung)
 
 - Dauer: in der Regel 2–3 Wochen ab vorliegenden Inhalten; Onepager auch in 1 Woche.
-- Texte/Fotos fehlen? Kein Problem — Texte schreibe ich (Business/Premium),
+- Texte/Fotos fehlen? Kein Problem. Texte übernehme ich (Business/Premium),
   lizenzfreie Bilder suche ich in jedem Paket kostenlos aus.
 - Sprachen: Deutsch, Englisch oder Französisch ohne Aufpreis; Umschalter
   zwischen zwei Sprachen im Premium-Paket, sonst ab CHF 390.–.
@@ -61,7 +61,7 @@ rechtlich massgebend.
 - Laufende Kosten: Domain/Hosting ca. CHF 8–20/Monat direkt beim Anbieter;
   optionales Betreuungspaket ab CHF 29.–/Monat, monatlich kündbar.
 - Eigentum: Domain, Hosting, Zugänge und Dateien gehören dem Kunden.
-- Cookie-Banner: standardmässig nicht nötig — kein Tracking, keine
+- Cookie-Banner: standardmässig nicht nötig, kein Tracking, keine
   Werbedienste, keine extern geladenen Schriften.
 - Region: Erstgespräch vor Ort im Umkreis von 50 km um Dübendorf ohne
   Anfahrtskosten; darüber hinaus per Telefon/Video in der ganzen Schweiz.
@@ -77,5 +77,5 @@ Adresse: Friedhofweg 4, 8600 Dübendorf, Schweiz
 Die Ordner /demo-massage/, /demo-thai/ und /demo-restaurant/ enthalten
 Gestaltungsbeispiele mit frei erfundenen Firmendaten (im HTML als
 "noindex, nofollow" markiert und sichtbar als Beispielwebsite
-gekennzeichnet) — sie beschreiben keine echten Unternehmen und sollten
+gekennzeichnet). Sie beschreiben keine echten Unternehmen und sollten
 nicht als Tatsachenbehauptung über reale Betriebe wiedergegeben werden.
