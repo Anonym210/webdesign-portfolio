@@ -114,37 +114,39 @@
     for (var s = 0; s < reveals.length; s++) io.observe(reveals[s]);
   }
 
-  /* ---------- 4b. Hero-Ueberschrift Wort fuer Wort ----------
-     Die Ueberschrift steht vollstaendig und lesbar im HTML. Hier wird sie
-     nur in Woerter zerlegt, damit jedes einzeln einschweben kann.
+  /* ---------- 4b. Ueberschriften Wort fuer Wort ----------
+     Die Ueberschriften stehen vollstaendig und lesbar im HTML. Hier werden
+     sie nur in Woerter zerlegt, damit jedes einzeln einschweben kann.
 
      - Geschnitten wird ausschliesslich in Textknoten. <br> und <em> bleiben
-       dadurch unangetastet, der Zeilenumbruch und die Kursivschrift der
-       zweiten Zeile bleiben erhalten.
+       dadurch unangetastet, Zeilenumbruch und Kursivschrift bleiben, wo sie
+       hingehoeren.
      - Die Leerzeichen zwischen den Woertern werden als eigene Textknoten
        wieder eingesetzt, sonst klebten die Woerter aneinander.
-     - Am vorgelesenen Text aendert sich nichts, die Spans sind reine Huellen
-       ohne eigene Bedeutung.
      - Pro Wort entstehen zwei Spans: aussen die Maske (.split__w), innen
-       das Wort selbst (.split__i). Bewegt wird nur das innere, das aeussere
-       schneidet ab. Deshalb sieht es aus, als kaeme das Wort hinter einer
-       Kante hervor, statt einfach aufzutauchen.
+       das bewegte Wort (.split__i). Bewegt wird nur das innere, das
+       aeussere schneidet ab. Deshalb sieht es aus, als kaeme das Wort
+       hinter einer Kante hervor, statt einfach aufzutauchen.
+     - Am vorgelesenen Text aendert sich nichts, die Spans sind reine
+       Huellen ohne eigene Bedeutung.
      - Bei reduzierter Bewegung wird gar nicht erst geschnitten.
 
-     Das Aussehen steht in style.css, Abschnitt 19b. */
-  var heroTitle = document.querySelector('.hero h1');
-  if (heroTitle && !reduced) {
-    var wordIndex = 0;
+     Die H1 im Hero laeuft beim Laden los, die H2 weiter unten erst, wenn
+     ihr Block ins Bild kommt — das entscheidet .is-in aus Abschnitt 4.
+     Das Aussehen steht in style.css, Abschnitte 19b und 19c. */
+  var splitTitle = function (title, base, step) {
+    var i = 0;
 
-    var splitWords = function (node) {
+    var walk = function (node) {
       var kids = Array.prototype.slice.call(node.childNodes);
       kids.forEach(function (kid) {
         // Elementknoten (<em>, <br>) behalten wir und gehen hinein.
-        if (kid.nodeType === 1) { splitWords(kid); return; }
+        if (kid.nodeType === 1) { walk(kid); return; }
         if (kid.nodeType !== 3) return;
 
         var parts = kid.nodeValue.split(/(\s+)/);
         var frag  = document.createDocumentFragment();
+        var wortDavor = null;
 
         parts.forEach(function (part) {
           if (part === '') return;
@@ -156,8 +158,23 @@
           // davor und kommen mit ihm zusammen an. Sonst schwebte im
           // franzoesischen Titel das "?" hinter allem anderen her, weil dort
           // ein Leerzeichen davorsteht.
-          var alone = !/[0-9A-Za-zÀ-ɏ]/.test(part);
-          var step  = alone && wordIndex > 0 ? wordIndex - 1 : wordIndex;
+          var alone = !/[0-9A-Za-z\u00C0-\u024F]/.test(part);
+          var at    = alone && i > 0 ? i - 1 : i;
+
+          // Ein alleinstehendes Satzzeichen wird an das Wort davor gehaengt,
+          // mit geschuetztem Leerzeichen dazwischen. Grund: die Woerter sind
+          // inline-block, also eigene Kaesten, und zwischen zwei solchen
+          // Kaesten darf die Zeile umbrechen. Im franzoesischen Titel
+          // "Vous trouvent-ils ?" landete das Fragezeichen sonst allein auf
+          // der naechsten Zeile. Innerhalb EINES Kastens haelt das
+          // geschuetzte Leerzeichen dagegen zuverlaessig.
+          if (alone && wortDavor) {
+            if (frag.lastChild && frag.lastChild.nodeType === 3) {
+              frag.removeChild(frag.lastChild);
+            }
+            wortDavor.appendChild(document.createTextNode('\u00A0' + part));
+            return;
+          }
 
           var mask = document.createElement('span');
           mask.className = 'split__w';
@@ -165,10 +182,11 @@
           var word = document.createElement('span');
           word.className = 'split__i';
           word.textContent = part;
-          word.style.animationDelay = (0.06 + step * 0.055).toFixed(3) + 's';
+          word.style.animationDelay = (base + at * step).toFixed(3) + 's';
 
           mask.appendChild(word);
-          if (!alone) wordIndex++;
+          wortDavor = word;
+          if (!alone) i++;
           frag.appendChild(mask);
         });
 
@@ -176,8 +194,53 @@
       });
     };
 
-    splitWords(heroTitle);
-    heroTitle.classList.add('is-split');
+    walk(title);
+    title.classList.add('is-split');
+  };
+
+  if (!reduced) {
+    var heroTitle = document.querySelector('.hero h1');
+    if (heroTitle) splitTitle(heroTitle, 0.06, 0.055);
+
+    // Jede H2, die in einem .reveal-Block steckt. Der Block bekommt
+    // has-split, damit style.css sein eigenes Hochschieben abschalten kann.
+    var subTitles = document.querySelectorAll('.reveal h2');
+    for (var st = 0; st < subTitles.length; st++) {
+      splitTitle(subTitles[st], 0.04, 0.05);
+      var block = subTitles[st].closest('.reveal');
+      if (block) block.classList.add('has-split');
+    }
+  }
+
+  /* ---------- 4c. Branchenleiste als Laufband ----------
+     Damit der Durchlauf nahtlos ist, muss die Zeile aus einer geraden Zahl
+     gleicher Saetze bestehen: die Animation schiebt um genau die Haelfte
+     der Gesamtbreite, und diese Haelfte muss auf eine Satzgrenze fallen.
+     Deshalb wird zuerst gemessen, wie viele Saetze noetig sind, um die
+     sichtbare Breite zu fuellen, und dann auf das Doppelte aufgefuellt.
+
+     Die Kopien bekommen aria-hidden, sonst liest ein Screenreader dieselben
+     Branchen mehrfach vor. Ohne JavaScript und bei reduzierter Bewegung
+     bleibt die Zeile so stehen, wie sie im HTML steht. */
+  var bRow  = document.querySelector('.branches__row');
+  var bView = document.querySelector('.branches__viewport');
+  if (bRow && bView && !reduced) {
+    var satz = Array.prototype.slice.call(bRow.children);
+
+    bRow.classList.add('is-marquee');
+    var satzBreite = bRow.scrollWidth;
+    var sichtbar   = bView.clientWidth;
+    var noetig     = Math.max(1, Math.ceil(sichtbar / Math.max(satzBreite, 1)));
+
+    for (var k = 1; k < noetig * 2; k++) {
+      var kopie = document.createDocumentFragment();
+      satz.forEach(function (chip) {
+        var c = chip.cloneNode(true);
+        c.setAttribute('aria-hidden', 'true');
+        kopie.appendChild(c);
+      });
+      bRow.appendChild(kopie);
+    }
   }
 
   /* ---------- 5. Aktiver Navigationspunkt ---------- */
@@ -277,6 +340,9 @@
   var form = document.getElementById('contactForm');
   if (form) {
     var SUBMIT_LABEL = form.querySelector('button[type="submit"]').textContent;
+    var CHECK_SVG = '<svg class="btn__check" viewBox="0 0 24 24" fill="none" '
+                  + 'stroke="currentColor" stroke-width="2.4" stroke-linecap="round" '
+                  + 'stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
     if (IS_CONFIGURED) { form.setAttribute('action', FORM_ENDPOINT); form.setAttribute('method', 'POST'); }
     function markError(input, hasError) {
       var field = input.closest('.field');
@@ -327,6 +393,7 @@
       function fail(grund) {
         errBox.classList.add('is-visible');
         btn.disabled = false;
+        btn.classList.remove('is-done');
         btn.textContent = SUBMIT_LABEL;
         errBox.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
         if (window.console) window.console.error('Formularversand fehlgeschlagen:', grund);
@@ -350,10 +417,16 @@
       }).then(function () {
         okBox.classList.add('is-visible');
         form.reset();
-        btn.textContent = T.sent;
+        /* Der Knopf bestaetigt selbst, statt nur seine Beschriftung zu
+           wechseln: das Haekchen wird gezeichnet (siehe style.css,
+           Abschnitt 19c). Der eingesetzte Inhalt ist fest im Skript
+           hinterlegt, es landet nichts aus dem Formular im Markup. */
+        btn.classList.add('is-done');
+        btn.innerHTML = CHECK_SVG + T.sent;
         okBox.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
         window.setTimeout(function () {
           btn.disabled = false;
+          btn.classList.remove('is-done');
           btn.textContent = SUBMIT_LABEL;
         }, 5000);
       })['catch'](fail);

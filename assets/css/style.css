@@ -353,13 +353,6 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .project__foot .muted{ font-size:.84rem; }
 
 /* Platzhalter-Karte zum Selbstbefuellen */
-.project--empty{ border-style:dashed; background:transparent; box-shadow:none; }
-.project--empty:hover{ transform:none; box-shadow:none; border-color:var(--accent); }
-.project--empty .project__visual{
-  aspect-ratio:16/11; display:grid; place-items:center; background:var(--bg-alt);
-  color:var(--ink-mute); text-align:center; padding:2rem;
-}
-.project--empty .project__visual div{ display:grid; gap:.6rem; justify-items:center; }
 
 /* ---------- 11. Ablauf ---------- */
 .flow{ display:grid; grid-template-columns:repeat(4,1fr); gap:1.6rem; counter-reset:step; }
@@ -653,6 +646,69 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
    beliebigen Zeitpunkt. Hier bekommt sie ihren Platz in der Reihenfolge. */
 .js .hero .showcase.reveal{ transition-delay:.3s; transition-duration:.9s; }
 
+/* ---------- 19c. Auftritte im weiteren Verlauf ----------
+   Der Hero legt die Bewegungssprache fest, hier wird sie auf den Rest der
+   Seite gezogen. Alles haengt am Beobachter aus main.js Abschnitt 4: der
+   setzt .is-in, sobald ein Block ins Bild kommt. Nichts davon laeuft beim
+   Laden los, sonst waere es vorbei, bevor man hinsieht. */
+
+/* Abschnitts-Ueberschriften Wort fuer Wort, dieselbe Maske wie im Hero.
+   Vor .is-in stehen die Woerter unter der Kante; danach laeuft die
+   Animation und endet dank "both" sichtbar. */
+.js .reveal h2.is-split .split__i{ transform:translateY(135%); }
+.js .reveal.is-in h2.is-split .split__i{ animation:heroWord .8s var(--ease-hero) both; }
+
+/* Traegt ein Block eine zerlegte Ueberschrift, faellt sein eigenes
+   Hochschieben weg. Sonst bewegen sich Block und Woerter gegeneinander und
+   es sieht wackelig aus. Das Einblenden bleibt, wird aber kuerzer, damit
+   die Woerter die Fuehrung haben. */
+.js .reveal.has-split{ transform:none; transition-duration:.35s; }
+
+/* Ablauf: die Verbindungslinie waechst von links nach rechts mit, die
+   grosse Ziffer kommt kurz davor. Die Verzoegerungen spiegeln die
+   data-delay-Werte der vier Karten, damit Karte und Linie zusammenbleiben.
+   Ab 780 px blendet Abschnitt 21 die Linien aus, dort passiert nichts. */
+.js .flow__item::before{
+  opacity:0; transform:translateY(10px);
+  transition:opacity .7s var(--ease-hero), transform .7s var(--ease-hero);
+}
+.js .flow__item.is-in::before{ opacity:.28; transform:none; }
+.js .flow__item::after{ transform:scaleX(0); transform-origin:0 50%; transition:transform .9s var(--ease-hero); }
+.js .flow__item.is-in::after{ transform:scaleX(1); transition-delay:.25s; }
+.js .flow__item.is-in[data-delay="1"]::after{ transition-delay:.33s; }
+.js .flow__item.is-in[data-delay="2"]::after{ transition-delay:.41s; }
+.js .flow__item.is-in[data-delay="3"]::after{ transition-delay:.49s; }
+
+/* Branchenleiste als ruhiges Laufband.
+   Die Klasse is-marquee setzt main.js erst, nachdem es die Chips einmal
+   dupliziert hat — ohne Duplikat gaebe es eine sichtbare Luecke beim
+   Umbruch. Ohne JavaScript und bei reduzierter Bewegung bleibt die Zeile
+   deshalb einfach stehen, so wie bisher.
+   gap wird fuer das Laufband auf 0 gesetzt und durch margin-right am Chip
+   ersetzt: nur dann ist die Haelfte der Gesamtbreite exakt ein Durchlauf
+   und der Uebergang unsichtbar. */
+.branches__viewport{
+  overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+}
+.branches__row.is-marquee{
+  flex-wrap:nowrap; justify-content:flex-start; width:max-content; gap:0;
+  animation:branchRun 42s linear infinite;
+}
+.branches__row.is-marquee .chip{ margin-right:.8rem; }
+.branches__viewport:hover .branches__row.is-marquee,
+.branches__row.is-marquee:focus-within{ animation-play-state:paused; }
+@keyframes branchRun{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+/* Absenden-Knopf: das Haekchen wird gezeichnet, statt einfach da zu sein.
+   stroke-dasharray entspricht der Pfadlaenge, dashoffset schiebt den Strich
+   heraus und die Animation holt ihn zurueck. */
+.btn__check{ width:1.15em; height:1.15em; flex:none; }
+.btn__check path{ stroke-dasharray:24; stroke-dashoffset:24; animation:checkDraw .55s var(--ease-hero) .08s forwards; }
+@keyframes checkDraw{ to{ stroke-dashoffset:0; } }
+.btn.is-done{ --bg:var(--accent-deep); --bd:var(--accent-deep); }
+
 /* ---------- 20. Rechtstexte ---------- */
 .legal{ padding-block:clamp(7.5rem,13vh,10rem) clamp(4rem,7vw,6.5rem); }
 .legal__body{ max-width:75ch; }
@@ -893,4 +949,26 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 @media (max-width:620px){
   .cta__row .btn{ flex:1 1 100%; }
   .about__cta .btn{ flex:1 1 100%; }
+}
+
+/* ---------- 24. Seitenuebergaenge ----------
+   Beim Wechsel zwischen zwei Seiten dieser Domain blendet der Browser die
+   alte Ansicht aus und die neue ein, statt weiss aufzublitzen. Das braucht
+   nur diese Regel, und zwar in BEIDEN beteiligten Dokumenten — weil alle
+   Seiten dieselbe style.css laden, ist das automatisch erfuellt.
+
+   Chrome, Edge und Safari koennen es; Firefox ignoriert die Regel und
+   navigiert wie bisher. Die Demoseiten haben eigene Stylesheets und sind
+   deshalb aussen vor, sie oeffnen ohnehin in einem neuen Tab.
+
+   Steht bewusst in einer no-preference-Abfrage: wer Bewegung reduziert
+   haben will, bekommt gar keinen Uebergang statt eines auf 0 gekuerzten. */
+@media (prefers-reduced-motion:no-preference){
+  @view-transition{ navigation:auto; }
+
+  ::view-transition-old(root){ animation:pageOut .22s var(--ease) both; }
+  ::view-transition-new(root){ animation:pageIn  .38s var(--ease-hero) both; }
+
+  @keyframes pageOut{ to{ opacity:0; transform:translateY(-8px); } }
+  @keyframes pageIn{ from{ opacity:0; transform:translateY(14px); } }
 }

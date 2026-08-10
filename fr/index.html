@@ -237,12 +237,16 @@
 <section class="branches">
   <div class="wrap">
     <p class="branches__title">Idéal pour</p>
-    <div class="branches__row">
-      <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 3v18M4 8h6a3 3 0 0 0 0-6H4M16 3v18M20 3v7a4 4 0 0 1-4 0"/></svg>Restaurants et cafés</span>
-      <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m14 7 3-3 4 4-3 3M3 21l4-1 11-11-3-3L4 17Z"/></svg>Artisans</span>
-      <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9M12 3v9h9"/></svg>Cabinets et studios</span>
-      <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 9h18M3 9l2-5h14l2 5M5 9v11h14V9"/></svg>Commerces de détail</span>
-      <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>Indépendants</span>
+    <!-- Die Zeile laeuft als Laufband, sobald main.js (Abschnitt 4d) die
+         Chips vervielfacht hat. Ohne JavaScript bleibt sie stehen. -->
+    <div class="branches__viewport">
+      <div class="branches__row">
+        <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 3v18M4 8h6a3 3 0 0 0 0-6H4M16 3v18M20 3v7a4 4 0 0 1-4 0"/></svg>Restaurants et cafés</span>
+        <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m14 7 3-3 4 4-3 3M3 21l4-1 11-11-3-3L4 17Z"/></svg>Artisans</span>
+        <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9M12 3v9h9"/></svg>Cabinets et studios</span>
+        <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 9h18M3 9l2-5h14l2 5M5 9v11h14V9"/></svg>Commerces de détail</span>
+        <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>Indépendants</span>
+      </div>
     </div>
   </div>
 </section>
@@ -360,33 +364,7 @@
              1. Screenshot der fertigen Seite machen (Breite ca. 1440 px)
              2. Als JPG unter  assets/img/referenz-1.jpg  ablegen
              3. Den Kommentar-Block darunter einkommentieren und ausfüllen
-             4. Diese Platzhalter-Karte löschen
            -->
-      <article class="project project--empty reveal" data-delay="3">
-        <div class="project__visual">
-          <div>
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-            <b style="font-weight:600;color:var(--ink);">Votre projet</b>
-            <span style="font-size:.9rem;">La prochaine place est libre.</span>
-          </div>
-        </div>
-        <div class="project__body">
-          <span class="project__meta">Votre secteur · Votre site</span>
-          <h3>Votre entreprise pourrait figurer ici</h3>
-          <p>
-            
-            Je prends volontairement peu de projets à la fois, afin que chacun reçoive l'attention qu'il
-            mérite. Dites-moi ce que vous avez en tête. Lors du premier entretien, je vous dirai
-            honnêtement si je suis la bonne personne.
-          </p>
-          <div class="project__foot">
-            <a class="textlink" href="#kontakt">
-              Parler de votre projet
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-        </div>
-      </article>
 
       <!-- =====================================================================
            VORLAGE FÜR EINE ECHTE REFERENZ — Kommentarzeichen entfernen und ausfüllen
