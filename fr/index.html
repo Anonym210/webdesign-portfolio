@@ -54,6 +54,9 @@
 <link rel="stylesheet" href="../assets/css/fonts.css">
 
 <link rel="stylesheet" href="../assets/css/style.css">
+<!-- Zusatzeffekte, getrennt gehalten. Zum Entfernen: diese Zeile und die
+     Zeile mit effects.js vor </body> loeschen. -->
+<link rel="stylesheet" href="../assets/css/effects.css">
 
 <!-- Die Einblend-Animationen greifen nur, wenn JavaScript wirklich laeuft.
      Ohne dieses Signal bleibt der gesamte Inhalt sichtbar — sonst waere bei
@@ -167,6 +170,10 @@
 
 <!-- ============================ HERO ============================ -->
 <section class="hero">
+  <!-- Effekt 1: drei weiche Farbwolken ziehen langsam hinter dem Text,
+       darueber eine feine Koernung. Rein dekorativ, deshalb aria-hidden. -->
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="hero__grain" aria-hidden="true"></div>
   <div class="wrap hero__inner">
     <div class="hero__grid">
       <div>
@@ -267,8 +274,9 @@
     <div class="projects">
 
       <!-- ---------------- Beispiel 1 ---------------- -->
-      <article class="project reveal">
+      <article class="project fx-tilt reveal">
         <div class="project__visual">
+          <span class="fx-shine" aria-hidden="true"></span>
           <span class="project__tag project__tag--live">Site d'exemple</span>
           <div class="livepreview" data-preview>
             <iframe src="../demo-massage/index.html" title="Aperçu d'AURELIA Massage &amp; Wellness" loading="lazy" scrolling="no" tabindex="-1"></iframe>
@@ -298,8 +306,9 @@
       </article>
 
       <!-- ---------------- Beispiel 2 ---------------- -->
-      <article class="project reveal" data-delay="1">
+      <article class="project fx-tilt reveal" data-delay="1">
         <div class="project__visual">
+          <span class="fx-shine" aria-hidden="true"></span>
           <span class="project__tag project__tag--live">Site d'exemple</span>
           <div class="livepreview" data-preview>
             <iframe src="../demo-thai/index.html" title="Aperçu de SABAI Thai Massage" loading="lazy" scrolling="no" tabindex="-1"></iframe>
@@ -329,8 +338,9 @@
       </article>
 
       <!-- ---------------- Beispiel 3 ---------------- -->
-      <article class="project reveal" data-delay="2">
+      <article class="project fx-tilt reveal" data-delay="2">
         <div class="project__visual">
+          <span class="fx-shine" aria-hidden="true"></span>
           <span class="project__tag project__tag--live">Site d'exemple</span>
           <div class="livepreview" data-preview>
             <iframe src="../demo-restaurant/index.html" title="Aperçu d'AVERA Contemporary Dining" loading="lazy" scrolling="no" tabindex="-1"></iframe>
@@ -369,8 +379,9 @@
       <!-- =====================================================================
            VORLAGE FÜR EINE ECHTE REFERENZ — Kommentarzeichen entfernen und ausfüllen
 
-      <article class="project reveal">
+      <article class="project fx-tilt reveal">
         <div class="project__visual">
+          <span class="fx-shine" aria-hidden="true"></span>
           <span class="project__tag">Kundenprojekt</span>
           <img class="project__shot" src="../assets/img/referenz-1.jpg" alt="Screenshot der Website von ..." loading="lazy">
         </div>
@@ -394,6 +405,27 @@
            ===================================================================== -->
 
     </div>
+
+    <!-- Effekt 8: die Zahlen laufen einmal hoch, sobald der Streifen ins
+         Bild kommt. Werte aendern: data-to am <b>, Text im <span>. -->
+    <div class="fxstats reveal">
+      <div class="fxstat">
+        <b data-to="3">0</b>
+        <span>Sites d'exemple entièrement réalisés et cliquables</span>
+      </div>
+      <div class="fxstat">
+        <b data-to="1">0</b>
+        <span>Interlocuteur unique, du premier appel à la mise en ligne</span>
+      </div>
+      <div class="fxstat">
+        <b data-to="3">0</b>
+        <span>Langues au choix : allemand, anglais, français</span>
+      </div>
+      <div class="fxstat">
+        <b data-to="0">0</b>
+        <span>Bannières de cookies, traceurs et frais cachés</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -401,7 +433,7 @@
 <section class="section" id="person">
   <div class="wrap">
     <div class="about">
-      <figure class="about__photo reveal">
+      <figure class="about__photo fx-tilt reveal">
         <img class="about__portrait" src="../assets/img/portrait.jpg" alt="Portrait d'Ejdin Aliti, fondateur d'Envy Web" width="900" height="1100">
         <figcaption class="about__caption">
           <b>Ejdin Aliti</b>
@@ -459,7 +491,9 @@
 
         <div class="pledge">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
-          <p>
+          <!-- Effekt 6: dieser Satz faerbt sich beim Scrollen Wort fuer Wort
+               ein. Ohne Javascript steht er ganz normal dunkel da. -->
+          <p class="fx-read">
             
             « Si, après la première maquette, vous sentez que cela ne mène à rien, vous pouvez arrêter,
             sans facture. Je préfère cela à un projet auquel aucun de nous deux ne croit. »
@@ -493,37 +527,37 @@
     </div>
 
     <div class="grid-3">
-      <article class="tile reveal">
+      <article class="tile fx-spot reveal">
         <span class="tile__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 22h8"/></svg></span>
         <h3>Nouveau site web</h3>
         <p>Conçu sur mesure, pas à partir d'un modèle. De la carte de visite en une page au site d'entreprise multipage.</p>
       </article>
 
-      <article class="tile reveal" data-delay="1">
+      <article class="tile fx-spot reveal" data-delay="1">
         <span class="tile__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></span>
         <h3>Refonte et rafraîchissement</h3>
         <p>Vous avez déjà un site, mais il date de 2011 ? Je le reconstruis. Vos textes et images peuvent rester.</p>
       </article>
 
-      <article class="tile reveal" data-delay="2">
+      <article class="tile fx-spot reveal" data-delay="2">
         <span class="tile__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
         <h3>Visible sur Google et l'IA</h3>
         <p>Un code propre, des titres de page pertinents, des données structurées et une fiche Google Business soignée, pour qu'on vous trouve non seulement sur Google, mais aussi lorsque quelqu'un demande à ChatGPT ou Perplexity une entreprise comme la vôtre.</p>
       </article>
 
-      <article class="tile reveal">
+      <article class="tile fx-spot reveal">
         <span class="tile__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg></span>
         <h3>Technique et installation</h3>
         <p>Nom de domaine, hébergement, SSL, adresse e-mail à votre nom, formulaire de contact protégé contre le spam et intégration des mentions légales. Le tout par un seul prestataire.</p>
       </article>
 
-      <article class="tile reveal" data-delay="1">
+      <article class="tile fx-spot reveal" data-delay="1">
         <span class="tile__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 20h9M3 20l1-4 11-11 3 3L7 19Z"/></svg></span>
         <h3>Textes et choix des images</h3>
         <p>Sur demande, je me charge des textes et sélectionne des images libres de droits. Ou nous utilisons vos propres photos.</p>
       </article>
 
-      <article class="tile reveal" data-delay="2">
+      <article class="tile fx-spot reveal" data-delay="2">
         <span class="tile__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span>
         <h3>Suivi et modifications</h3>
         <p>Nouveaux tarifs, nouveaux horaires, nouvelle photo ? Un court message suffit. Inclus dans la formule de suivi, sinon facturé au temps passé.</p>
@@ -596,7 +630,7 @@
     </div>
 
     <div class="plans">
-      <article class="plan reveal">
+      <article class="plan fx-spot reveal">
         <h3>Start</h3>
         <p class="plan__desc">La carte de visite numérique. L'essentiel sur une seule page.</p>
         <p class="plan__price">CHF 890.–<small>paiement unique · prix final, sans TVA</small></p>
@@ -610,7 +644,7 @@
         <a class="btn btn--ghost" href="#kontakt">Demander</a>
       </article>
 
-      <article class="plan plan--featured reveal" data-delay="1">
+      <article class="plan plan--featured fx-spot reveal" data-delay="1">
         <!-- Ehrlich bleiben: "Am häufigsten gewählt" erst behaupten, wenn es
              tatsächlich Kunden gibt, die es belegen. Bis dahin: Empfehlung. -->
         <span class="plan__flag">Recommandé</span>
@@ -629,7 +663,7 @@
         <a class="btn btn--light" href="#kontakt">Demander</a>
       </article>
 
-      <article class="plan reveal" data-delay="2">
+      <article class="plan fx-spot reveal" data-delay="2">
         <h3>Premium</h3>
         <p class="plan__desc">Pour tout ce qui dépasse un site standard.</p>
         <p class="plan__price">ab CHF 2'900.–<small>paiement unique · prix final, sans TVA</small></p>
@@ -1107,5 +1141,6 @@
 </nav>
 
 <script src="../assets/js/main.js"></script>
+<script src="../assets/js/effects.js" defer></script>
 </body>
 </html>

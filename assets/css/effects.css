@@ -1,0 +1,183 @@
+/* =========================================================================
+   ENVY WEB — Zusatzeffekte (Vorschau)
+   -------------------------------------------------------------------------
+   Bewusst in einer eigenen Datei, getrennt von style.css. So laesst sich
+   der ganze Satz mit zwei Zeilen wieder herausnehmen: den Verweis auf
+   diese Datei im <head> und den auf effects.js vor </body>.
+
+   Enthalten sind fuenf Effekte:
+     1  Aurora und Koernung im Hero
+     3  Karten mit Lichtkegel (Leistungen, Pakete)
+     4  Raeumliche Neigung (Referenzkarten, Portrait)
+     6  Text faerbt sich beim Scrollen ein (Versprechen-Kasten)
+     8  Zahlen zaehlen hoch (Streifen unter den Referenzen)
+
+   Grundsatz: kein Effekt darf etwas verdecken, verschieben oder das
+   Lesen stoeren. Bei "prefers-reduced-motion" steht am Ende alles still.
+   ========================================================================= */
+
+
+/* ---------- 1. Aurora und Koernung im Hero ----------
+   Drei weiche Farbwolken ziehen langsam hinter dem Text. Sie liegen auf
+   z-index 0, der Inhalt steht mit .hero__inner auf z-index 1 darueber.
+   Der Hero hat bereits overflow:hidden, die Wolken koennen also nicht
+   seitlich herauslaufen und keine Querscrollleiste ausloesen. */
+.aurora{
+  position:absolute; inset:-30% -15%; z-index:0; pointer-events:none;
+  filter:blur(78px); opacity:.72;
+}
+.aurora i{
+  position:absolute; display:block; border-radius:50%;
+  mix-blend-mode:multiply; will-change:transform;
+}
+/* Violett wie die Marke, dazu ein warmer Sandton und ein kuehler Rest.
+   Alle drei sind stark entsaettigt, damit die Schrift lesbar bleibt. */
+.aurora i:nth-child(1){
+  width:46vw; height:46vw; left:2%; top:4%;
+  background:radial-gradient(circle,rgba(195,166,234,.85),rgba(195,166,234,0) 68%);
+  animation:auroraA 21s ease-in-out infinite alternate;
+}
+.aurora i:nth-child(2){
+  width:40vw; height:40vw; right:2%; top:16%;
+  background:radial-gradient(circle,rgba(233,206,180,.8),rgba(233,206,180,0) 68%);
+  animation:auroraB 26s ease-in-out infinite alternate;
+}
+.aurora i:nth-child(3){
+  width:38vw; height:38vw; left:34%; bottom:-6%;
+  background:radial-gradient(circle,rgba(178,205,222,.7),rgba(178,205,222,0) 68%);
+  animation:auroraC 31s ease-in-out infinite alternate;
+}
+@keyframes auroraA{ to{ transform:translate3d(7vw,5vh,0)  scale(1.14); } }
+@keyframes auroraB{ to{ transform:translate3d(-6vw,7vh,0) scale(.88);  } }
+@keyframes auroraC{ to{ transform:translate3d(5vw,-5vh,0) scale(1.09); } }
+
+/* Feine Koernung ueber der Flaeche. Nimmt den weichen Verlaeufen das
+   Glatte und laesst sie gedruckt statt digital wirken. Das Muster ist ein
+   140x140-SVG als Datenadresse, also kein zusaetzlicher Ladevorgang. */
+.hero__grain{
+  position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.3;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+/* Auf dem Telefon muessen die Wolken groesser sein: sie sind in
+   Bildschirmbreiten gerechnet, und 46vw sind auf einem schmalen Geraet
+   nur noch knapp 180 Pixel. Dazu etwas weniger Unschaerfe, weil der Blur
+   der teuerste Teil ist und auf einfachen Telefonen sonst auffaellt. */
+@media (max-width:760px){
+  .aurora{ filter:blur(52px); opacity:.7; }
+  .aurora i:nth-child(1){ width:96vw; height:96vw; left:-26%; top:1%; }
+  .aurora i:nth-child(2){ width:86vw; height:86vw; right:-24%; top:19%; }
+  .aurora i:nth-child(3){ width:82vw; height:82vw; left:8%;   bottom:0; }
+  .hero__grain{ opacity:.22; }
+}
+
+
+/* ---------- 3. Karten mit Lichtkegel ----------
+   Ein weicher Schein folgt dem Zeiger ueber die Karte. Position kommt aus
+   --mx / --my, die effects.js beim Bewegen setzt. Ohne Zeiger (Telefon)
+   passiert nichts, die Karte sieht aus wie bisher.
+
+   Kein overflow:hidden auf der Karte: die Fahne "Empfohlen" der mittleren
+   Preiskarte ragt oben absichtlich heraus und wuerde sonst abgeschnitten.
+   Der Schein bleibt trotzdem in Form, weil das Pseudoelement genau auf der
+   Karte liegt und ihre Rundung erbt. */
+.fx-spot{ position:relative; isolation:isolate; }
+.fx-spot::after{
+  content:""; position:absolute; inset:0; z-index:-1; opacity:0;
+  border-radius:inherit;
+  background:radial-gradient(360px circle at var(--mx,50%) var(--my,50%),
+             rgba(106,74,156,.15), rgba(106,74,156,0) 62%);
+  transition:opacity .4s var(--ease); pointer-events:none;
+}
+.fx-spot:hover::after{ opacity:1; }
+.fx-spot:hover{ border-color:var(--accent-lite); }
+/* Auf der dunklen Empfehlungskarte muss der Schein hell sein, sonst
+   sieht man ihn nicht. */
+.plan--featured.fx-spot::after{
+  background:radial-gradient(360px circle at var(--mx,50%) var(--my,50%),
+             rgba(195,166,234,.22), rgba(195,166,234,0) 62%);
+}
+.plan--featured.fx-spot:hover{ border-color:var(--accent); }
+/* Die Nutzenkarten setzen ihren Rand beim Hover auf transparent. Das
+   wuerde den Akzentrand oben wieder aufheben, deshalb hier zurueckgeholt. */
+.tile.fx-spot:hover{ border-color:var(--accent-lite); }
+
+
+/* ---------- 4. Raeumliche Neigung ----------
+   Die Karte kippt leicht zum Zeiger. Bewusst flach gehalten: mehr als
+   neun Grad sieht nach Spielerei aus. Die Neigung wird von effects.js
+   in die Variablen --rx / --ry geschrieben, damit ein eventuell
+   bestehendes transform aus style.css hier vollstaendig ersetzt wird. */
+.fx-tilt{
+  transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0px));
+  transition:transform .55s var(--ease), box-shadow .5s var(--ease);
+}
+.fx-tilt.is-tilting{ transition:transform .1s linear, box-shadow .5s var(--ease); }
+/* Der Hoverzustand der Referenzkarte hebt sie in style.css per
+   translateY(-7px) an. Das laeuft jetzt ueber --ty mit, sonst wuerden
+   sich die beiden transform-Angaben gegenseitig ueberschreiben. */
+.project.fx-tilt:hover{ transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,-7px)); }
+
+/* Glanzkante, die mit dem Zeiger wandert. Liegt ueber dem Bild, aber
+   unter dem Etikett "Beispielwebsite" (das steht auf z-index 3). */
+.fx-tilt .fx-shine{
+  position:absolute; inset:0; z-index:2; pointer-events:none; opacity:0;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),
+             rgba(255,255,255,.35), rgba(255,255,255,0) 58%);
+  transition:opacity .4s var(--ease);
+}
+.fx-tilt:hover .fx-shine{ opacity:1; }
+/* Das Portrait bekommt dieselbe Neigung, aber ohne Glanz. Ein Gesicht
+   mit Lichtschleier darueber wirkt unangenehm. */
+.about__photo.fx-tilt{ transform-origin:50% 40%; }
+
+
+/* ---------- 6. Text faerbt sich beim Scrollen ein ----------
+   Jedes Wort des Versprechens steckt in einem eigenen span. Beim Scrollen
+   wechseln sie nacheinander von blass auf dunkel. Vorgelesen wird der
+   Satz unveraendert, die Spans tragen keine eigene Bedeutung.
+
+   Wichtig: style.css setzt fuer .pledge span eine kleinere Schrift (das ist
+   die Zeile "Mein Versprechen an jeden neuen Kunden" darunter). Die Wort-
+   Spans muessen die Groesse des Absatzes erben, sonst schrumpft das Zitat. */
+.pledge .fx-read span,
+.fx-read span{
+  font-size:inherit; line-height:inherit; letter-spacing:inherit;
+  color:#C9C0D4; transition:color .5s var(--ease);
+}
+.pledge .fx-read span.on,
+.fx-read span.on{ color:var(--ink); }
+/* Ohne JavaScript bleibt der Text normal dunkel, weil die Spans dann
+   gar nicht erst entstehen. */
+
+
+/* ---------- 8. Zahlen zaehlen hoch ----------
+   Vier Angaben, die alle im uebrigen Text der Seite belegt sind. Sie
+   laufen genau einmal hoch, wenn der Streifen ins Bild kommt. */
+.fxstats{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1.4rem;
+  margin-top:clamp(2.5rem,4vw,3.5rem); padding-top:clamp(2.2rem,3.5vw,3rem);
+  border-top:1px solid var(--line); text-align:center;
+}
+.fxstat b{
+  display:block; font-family:var(--display); font-weight:400; color:var(--accent);
+  font-size:clamp(2.6rem,1.6rem + 3vw,4.2rem); line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.fxstat span{
+  display:block; margin-top:.5rem; font-size:.9rem; color:var(--ink-soft);
+  max-width:20ch; margin-inline:auto;
+}
+@media (max-width:860px){ .fxstats{ grid-template-columns:repeat(2,1fr); gap:2rem 1rem; } }
+@media (max-width:420px){ .fxstats{ grid-template-columns:1fr; } }
+
+
+/* ---------- Ruecksicht auf Bewegungsempfindlichkeit ----------
+   Wer im Betriebssystem weniger Bewegung eingestellt hat, bekommt den
+   ruhigen Zustand: Wolken stehen still, nichts kippt, die Zahlen stehen
+   sofort auf dem Endwert (das erledigt effects.js). */
+@media (prefers-reduced-motion:reduce){
+  .aurora i{ animation:none; }
+  .fx-tilt{ transform:none; }
+  .project.fx-tilt:hover{ transform:translateY(-7px); }
+  .fx-read span{ color:var(--ink); transition:none; }
+}

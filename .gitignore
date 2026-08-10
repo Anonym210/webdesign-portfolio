@@ -14,3 +14,8 @@ desktop.ini
 
 # lokale Hilfsskripte, gehoeren nicht zur Website
 .audit-server.cjs
+
+# lokale Vorschau- und Testdateien, gehoeren nicht zur Website
+_test-form.html
+_effekte-demo.html
+_vorschau-bilder/
