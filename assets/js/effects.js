@@ -1,5 +1,5 @@
 /* =========================================================================
-   ENVY WEB — Zusatzeffekte (Vorschau)
+   ENVY WEB — Zusatzeffekte
    -------------------------------------------------------------------------
    Gehoert zu assets/css/effects.css. Laeuft unabhaengig von main.js: faellt
    dieses Skript aus, sieht die Seite aus wie vorher, nur ohne die Effekte.
