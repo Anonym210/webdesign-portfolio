@@ -181,3 +181,194 @@
   .project.fx-tilt:hover{ transform:translateY(-7px); }
   .fx-read span{ color:var(--ink); transition:none; }
 }
+
+
+/* ---------- 10. Gleitende Markierung im Kopfmenue ----------
+   Vorher war der aktive Punkt schlicht ein weisser Hintergrund am Link.
+   Beim Wechsel blendete der eine aus und der andere ein, zwei Bewegungen
+   gleichzeitig, das sah unsauber aus. Jetzt liegt eine einzelne Pille
+   hinter den Links und faehrt an die neue Stelle.
+
+   Eingehaengt wird sie von effects.js Abschnitt 10. Nur wenn das geklappt
+   hat, traegt die Leiste .nav--pill, und erst dann wird der alte
+   Hintergrund am Link abgeschaltet. Ohne Javascript bleibt alles wie
+   bisher. */
+.nav{ position:relative; }
+.nav a{ position:relative; z-index:1; }
+.navpill{
+  position:absolute; left:0; top:.28rem; bottom:.28rem; z-index:0;
+  border-radius:100px; background:var(--white);
+  box-shadow:0 1px 3px rgba(31,24,38,.09), 0 0 0 1px var(--accent-soft);
+  opacity:0; transform:translateX(0) scaleX(.6); transform-origin:left center;
+  pointer-events:none;
+  transition:transform .5s var(--ease-hero), width .5s var(--ease-hero),
+             opacity .35s var(--ease);
+}
+.navpill.is-da{ opacity:1; }
+.nav--pill a.is-active{ background:transparent; box-shadow:none; }
+.nav--pill a:hover{ background:transparent; }
+/* Beim Ueberfahren nur die Schrift dunkler, die Flaeche gehoert der Pille. */
+.nav--pill a:hover{ color:var(--ink); }
+
+@media (prefers-reduced-motion:reduce){
+  .navpill{ transition:opacity .2s linear; }
+}
+
+
+/* ---------- 11. Die Feinheiten zu den Paketen ----------
+   Drei eigene Karten mit Abstand: links hell, was ohnehin dabei ist,
+   rechts auf dunklem Grund, was zusaetzlich kostet, darunter flach die
+   Zahlungsbedingungen. Getrennte Karten statt einer geteilten Flaeche,
+   weil die beiden Seiten unterschiedlich lang sind: als eigenstaendige
+   Objekte faellt das nicht auf, bei einer durchgehenden Flaeche mit
+   Kante in der Mitte sieht es aus, als fehle unten etwas.
+
+   style.css macht aus .planinfo eine weisse Karte. Das gilt hier nur noch
+   fuer die Kopfzeile, der Inhalt darunter liegt frei auf dem Abschnitt.
+   Markup: index.html, Block id="planinfo". Bewegung: effects.js Abschnitt 9. */
+.pi{ background:transparent; border:0; box-shadow:none; overflow:visible; }
+.pi > summary{
+  background:var(--white); border:1px solid var(--line); border-radius:var(--r-lg);
+  box-shadow:var(--sh-sm);
+}
+.pi[open] > summary{ border-bottom:1px solid var(--line); color:var(--accent-deep); }
+
+.pi__grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:1.1rem;
+  padding-top:1.1rem;
+  /* align-items bleibt beim Standard "stretch": beide Karten sind damit
+     gleich hoch und schliessen unten auf einer Linie ab, auch wenn die
+     dunkle weniger Zeilen hat. */
+}
+.pi__h{
+  font-family:var(--sans); font-size:.72rem; font-weight:600;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--accent);
+  margin:0 0 1.2rem;
+}
+.planinfo .pi__grid ul{ list-style:none; margin:0; padding:0; }
+.planinfo .pi__grid li::before{ content:none; display:none; }
+
+.pi__karte{
+  background:var(--white); border:1px solid var(--line); border-radius:var(--r-lg);
+  padding:clamp(1.5rem,3vw,2.2rem); box-shadow:var(--sh-sm);
+}
+
+/* ----- helle Karte ----- */
+.pi__karte--hell li{
+  display:grid; grid-template-columns:auto 1fr; gap:.75rem;
+  padding:.6rem .5rem; margin:0 -.5rem; border-radius:8px;
+  align-items:baseline; transition:background-color .25s var(--ease);
+}
+.pi__karte--hell li svg{ color:var(--accent); margin-top:.3rem; flex:none; }
+.pi__karte--hell b{ font-weight:500; font-size:.96rem; color:var(--ink); line-height:1.45; }
+.pi__karte--hell span{ display:block; font-size:.85rem; color:var(--ink-mute); margin-top:.18rem; line-height:1.5; }
+
+/* ----- dunkle Karte ----- */
+.pi__karte--dunkel{
+  position:relative; overflow:hidden;
+  background:var(--dark); border-color:var(--dark); color:rgba(255,255,255,.7);
+  box-shadow:var(--sh-md);
+}
+.pi__karte--dunkel .pi__h{ color:var(--accent-lite); }
+.pi__karte--dunkel li{
+  display:grid; grid-template-columns:1fr auto; gap:.26rem 1.2rem;
+  align-items:baseline; padding:.8rem .5rem; margin:0 -.5rem; border-radius:8px;
+  transition:background-color .25s var(--ease);
+}
+.pi__karte--dunkel li + li{ box-shadow:0 -1px 0 rgba(255,255,255,.1); }
+.pi__karte--dunkel b{ font-weight:500; font-size:.96rem; color:#fff; line-height:1.4; }
+.pi__n{ grid-column:1 / -1; font-size:.85rem; color:rgba(255,255,255,.5); line-height:1.5; }
+/* Der Betrag steht in der Serifenschrift, in der auch die Paketpreise
+   weiter oben gesetzt sind. font-style bewusst normal: der Schnitt hat
+   eine Kursive, die sonst greift. */
+.pi__p{
+  grid-column:2; justify-self:end; white-space:nowrap;
+  font-family:var(--display); font-style:normal; font-size:1.3rem; line-height:1.15;
+  color:var(--accent-lite); font-variant-numeric:tabular-nums;
+}
+.pi__p small{ font-family:var(--sans); font-size:.7rem; color:rgba(255,255,255,.45); margin-left:.1rem; }
+/* Posten ohne festen Betrag treten zurueck, damit die echten Zahlen
+   die Spalte fuehren. */
+.pi__p--soft{ font-family:var(--sans); font-size:.84rem; color:rgba(255,255,255,.5); }
+
+@media (hover:hover) and (pointer:fine){
+  .pi__karte--hell li:hover{ background:var(--bg-alt); }
+  .pi__karte--dunkel li:hover{ background:rgba(255,255,255,.05); }
+}
+
+/* ----- flache Karte mit den Zahlungsbedingungen ----- */
+.pi__fuss{
+  grid-column:1 / -1;
+  background:var(--white); border:1px solid var(--line); border-radius:var(--r-lg);
+  box-shadow:var(--sh-sm);
+  display:grid; grid-template-columns:repeat(3,1fr); gap:1.6rem;
+  padding:1.4rem clamp(1.5rem,3vw,2rem);
+}
+.pi__fuss p{ margin:0; font-size:.86rem; color:var(--ink-mute); line-height:1.55; }
+.pi__fuss b{ display:block; color:var(--ink); font-weight:600; font-size:.92rem; margin-bottom:.1rem; }
+
+/* ----- Auftritt -----
+   Warum .is-in[open] und nicht nur [open]: main.js klappt den Block auf
+   breiten Schirmen schon beim Laden auf. Ohne die Bedingung waere die
+   Bewegung laengst vorbei, bevor jemand so weit gescrollt hat. .is-in
+   setzt der Beobachter aus main.js erst, wenn der Block ins Bild kommt.
+   Klappt jemand ihn spaeter zu und wieder auf, wechselt [open] und
+   dieselbe Regel greift erneut.
+
+   Reihenfolge: die beiden Karten kommen hoch, die dunkle etwas spaeter,
+   darin zeichnen sich die Haekchen und die Betraege schieben sich von
+   rechts nach, zum Schluss die Fusskarte. */
+.pi.is-in[open] .pi__karte{ animation:piKarte .55s var(--ease-hero) both; }
+.pi.is-in[open] .pi__karte--dunkel{ animation-delay:.1s; }
+.pi.is-in[open] .pi__fuss{ animation:piKarte .55s var(--ease-hero) .55s both; }
+.pi.is-in[open] .pi__karte--hell li{ animation:piZeile .5s var(--ease-hero) both; animation-delay:calc(var(--i) * 50ms + 150ms); }
+.pi.is-in[open] .pi__karte--dunkel li{ animation:piZeile .5s var(--ease-hero) both; animation-delay:calc(var(--i) * 50ms + 260ms); }
+@keyframes piKarte{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:none; } }
+@keyframes piZeile{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:none; } }
+
+/* Der Haken wird gezeichnet, statt einfach dazustehen. Der Pfad ist rund
+   25 Einheiten lang, deshalb 26 als Strichlaenge: etwas mehr, damit am
+   Ende nichts stehen bleibt. */
+.pi.is-in[open] .pi__karte--hell li svg path{
+  stroke-dasharray:26; stroke-dashoffset:26;
+  animation:piHaken .45s var(--ease) both;
+  animation-delay:calc(var(--i) * 50ms + 260ms);
+}
+@keyframes piHaken{ to{ stroke-dashoffset:0; } }
+
+/* Der Betrag setzt kurz nach seiner Zeile ein und schiebt sich von rechts
+   an seinen Platz. So liest man erst den Posten, dann den Preis. */
+.pi.is-in[open] .pi__p{
+  animation:piBetrag .55s var(--ease-hero) both;
+  animation-delay:calc(var(--i) * 50ms + 400ms);
+}
+@keyframes piBetrag{ from{ opacity:0; transform:translateX(16px); } to{ opacity:1; transform:none; } }
+
+/* Einmal wandert ein Lichtschimmer ueber die dunkle Karte. */
+.pi__karte--dunkel::after{
+  content:""; position:absolute; inset:-10% -30%; pointer-events:none; z-index:2;
+  background:linear-gradient(104deg,
+    rgba(195,166,234,0) 38%, rgba(195,166,234,.14) 50%, rgba(195,166,234,0) 62%);
+  transform:translateX(-120%);
+}
+.pi.is-in[open] .pi__karte--dunkel::after{ animation:piGlanz 1.6s var(--ease) .5s both; }
+@keyframes piGlanz{ from{ transform:translateX(-120%); } to{ transform:translateX(120%); } }
+
+@media (max-width:900px){
+  .pi__grid{ grid-template-columns:1fr; }
+  .pi__fuss{ grid-template-columns:1fr; gap:1.1rem; }
+}
+@media (max-width:520px){
+  .pi__karte--dunkel li{ grid-template-columns:1fr; }
+  .pi__p{ grid-column:1; justify-self:start; margin-top:.15rem; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .pi.is-in[open] .pi__karte,
+  .pi.is-in[open] .pi__fuss,
+  .pi.is-in[open] .pi__karte--hell li,
+  .pi.is-in[open] .pi__karte--dunkel li,
+  .pi.is-in[open] .pi__p,
+  .pi.is-in[open] .pi__karte--dunkel::after{ animation:none; }
+  .pi.is-in[open] .pi__karte--hell li svg path{ animation:none; stroke-dashoffset:0; }
+}

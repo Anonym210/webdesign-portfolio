@@ -203,10 +203,10 @@
     <div class="hero__grid">
       <div>
         <p class="eyebrow">Webdesign für lokale Schweizer Betriebe</p>
-        <h1>Ihre Kunden suchen online.<br><em>Werden Sie gefunden?</em></h1>
+        <h1>Eine Website,<br><em>um die man Sie beneidet.</em></h1>
         <p class="hero__sub">
-          Ich baue Webseiten für lokale Schweizer Betriebe, die über Google mehr
-          Anrufe und Anfragen bekommen wollen. Individuell gestaltet, auf dem Handy
+          Ich baue Webseiten für lokale Betriebe im Raum Zürich und der übrigen
+          Schweiz, die über Google mehr Anrufe und Anfragen bekommen wollen. Individuell gestaltet, auf dem Handy
           genauso gut wie am Rechner, zum Festpreis und ohne Baukasten-Optik.
         </p>
 
@@ -540,7 +540,8 @@
       <h2>Webdesign, das Ihnen Anfragen bringt</h2>
       <p class="lead">
         Von der ersten Skizze bis zur Domain, die auf Ihren Namen läuft. Sie müssen
-        sich um nichts kümmern und bekommen am Ende alle Zugänge.
+        sich um nichts kümmern und bekommen am Ende alle Zugänge. Ich arbeite vom
+        Raum Zürich aus für Betriebe in der ganzen Schweiz.
       </p>
     </div>
 
@@ -698,43 +699,99 @@
     <!-- Das Kleingedruckte gross geschrieben — die Fragen, die sonst erst
          nach der Rechnung kommen. Auf dem Handy zunaechst eingeklappt, damit
          der Weg zum Kontakt kurz bleibt; ab 761 px oeffnet main.js den Block. -->
-    <details class="planinfo reveal" id="planinfo">
+    <!-- Aufklappbare Feinheiten zu den Paketen. Zwei eigene Karten mit
+         Abstand dazwischen: links hell, was ohnehin dabei ist, rechts auf
+         dunklem Grund, was zusaetzlich kostet. Darunter eine dritte,
+         flache Karte mit den drei Saetzen zur Zahlung.
+
+         Bewusst getrennte Karten statt einer geteilten Flaeche: die beiden
+         Seiten sind unterschiedlich lang, und als eigenstaendige Objekte
+         faellt das nicht auf, waehrend eine durchgehende Flaeche mit Kante
+         in der Mitte danach aussaehe, als fehle unten etwas.
+         Aussehen: effects.css Abschnitt 9. Bewegung: effects.js Abschnitt 9. -->
+    <details class="planinfo pi reveal" id="planinfo">
       <summary>Was genau enthalten ist und was nicht<i aria-hidden="true"></i></summary>
-      <div class="planinfo__grid">
-      <div class="planinfo__col">
-        <h3>In jedem Paket enthalten</h3>
-        <ul>
-          <li><b>Gestaltung und Umsetzung:</b> individuell, kein gekauftes Template.</li>
-          <li><b>Einrichtung von Domain, Hosting und SSL:</b> die Verträge laufen auf Ihren Namen.</li>
-          <li><b>Eine E-Mail-Adresse</b> auf Ihrer Domain, eingerichtet und getestet.</li>
-          <li><b>Impressum und Datenschutzerklärung:</b> ich binde geprüfte Vorlagen ein und fülle sie mit Ihren Angaben. Das ist Handwerk, keine Rechtsberatung; die rechtliche Prüfung bleibt bei Ihnen.</li>
-          <li><b>Bildbearbeitung:</b> zuschneiden, aufhellen, fürs Web verkleinern.</li>
-          <li><b>Übergabe aller Zugänge und Dateien</b> nach dem Livegang.</li>
-          <li><b>30 Tage Nachbesserung</b> für alles, was nach dem Livegang auffällt und im Angebot stand.</li>
-        </ul>
-      </div>
 
-      <div class="planinfo__col">
-        <h3>Was nicht enthalten ist und was es kostet</h3>
-        <ul>
-          <li><b>Domain und Hosting selbst:</b> je nach Anbieter rund CHF 8–20 im Monat. Sie zahlen direkt beim Anbieter, ich schlage nichts auf.</li>
-          <li><b>Externe Dienste</b> (Terminbuchung, Shop, Newsletter): Gebühren zahlen Sie direkt beim jeweiligen Anbieter.</li>
-          <li><b>Fotograf oder gekaufte Bilder:</b> nach Aufwand. Lizenzfreie Bilder suche ich kostenlos aus.</li>
-          <li><b>Sprachumschalter für Start und Business:</b> ab CHF 390.– je zusätzliche Sprache. Die Basissprache (Deutsch, Englisch oder Französisch) ist in jedem Paket bereits inklusive, ganz ohne Aufpreis. Für den Umschalter organisiere und prüfe ich die Übersetzung und reiche die Kosten dafür zum Selbstkostenpreis weiter. Oder Sie liefern den Text selbst, dann entfällt dieser Posten.</li>
-          <li><b>Änderungen nach dem Livegang</b> ohne Betreuungspaket: CHF 90.– je angefangene Stunde, vorher angekündigt.</li>
-        </ul>
-      </div>
+      <!-- Diese Huelle wird beim Auf- und Zuklappen in der Hoehe bewegt.
+           Ohne Javascript klappt das <details> ganz normal auf. -->
+      <div class="pi__wrap">
+        <div class="pi__grid">
 
-      <div class="planinfo__col">
-        <h3>Zahlung und Betreuung</h3>
-        <ul>
-          <li><b>Keine Anzahlung.</b> Sie zahlen erst, wenn die Seite online ist und Sie zufrieden sind: eine Rechnung, 30 Tage Zahlungsfrist.</li>
-          <li><b>Ausstieg nach dem ersten Entwurf:</b> Sagen Sie ab, wenn Ihnen die Richtung nicht gefällt. Dann kommt keine Rechnung.</li>
-          <li><b>Betreuungspaket ab CHF 29.– im Monat:</b> Hosting-Überwachung, Sicherungen, Updates und bis zu 30 Minuten Änderungen pro Monat: Texte, Preise, Öffnungszeiten, Bilder austauschen.</li>
-          <li><b>Nach dem ersten Jahr</b> läuft das Betreuungspaket monatlich weiter und ist jederzeit auf Monatsende kündbar. Der Preis bleibt, solange der Umfang gleich bleibt.</li>
-          <li><b>Ohne Betreuungspaket</b> entstehen bei mir keine laufenden Kosten. Die Seite läuft weiter, Sie melden sich nur, wenn etwas ansteht.</li>
-        </ul>
-      </div>
+          <!-- ---------- helle Karte ---------- -->
+          <div class="pi__karte pi__karte--hell">
+            <p class="pi__h">In jedem Paket enthalten</p>
+            <ul>
+              <li style="--i:0">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>Individuelle Gestaltung und Umsetzung</b></div>
+              </li>
+              <li style="--i:1">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>Domain, Hosting und SSL eingerichtet</b><span>Die Verträge laufen auf Ihren Namen.</span></div>
+              </li>
+              <li style="--i:2">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>E-Mail-Adresse auf Ihrer Domain</b></div>
+              </li>
+              <li style="--i:3">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>Impressum und Datenschutzerklärung</b><span>Geprüfte Vorlagen, gefüllt mit Ihren Angaben. Das ist Handwerk, keine Rechtsberatung; die Prüfung bleibt bei Ihnen.</span></div>
+              </li>
+              <li style="--i:4">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>Bilder aufbereitet und eingebaut</b></div>
+              </li>
+              <li style="--i:5">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>Übergabe aller Zugänge und Dateien</b></div>
+              </li>
+              <li style="--i:6">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>30 Tage Nachbesserung nach dem Livegang</b></div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- ---------- dunkle Karte, hier stehen die Betraege ---------- -->
+          <div class="pi__karte pi__karte--dunkel">
+            <p class="pi__h">Was zusätzlich kostet</p>
+            <ul>
+              <li style="--i:0">
+                <b>Domain und Hosting</b>
+                <span class="pi__p">CHF 8–20<small>/Monat</small></span>
+                <span class="pi__n">Direkt beim Anbieter, ich schlage nichts auf.</span>
+              </li>
+              <li style="--i:1">
+                <b>Externe Dienste</b>
+                <span class="pi__p pi__p--soft">beim Anbieter</span>
+                <span class="pi__n">Terminbuchung, Shop oder Newsletter.</span>
+              </li>
+              <li style="--i:2">
+                <b>Fotograf oder gekaufte Bilder</b>
+                <span class="pi__p pi__p--soft">nach Aufwand</span>
+                <span class="pi__n">Lizenzfreie Bilder suche ich kostenlos aus.</span>
+              </li>
+              <li style="--i:3">
+                <b>Jede weitere Sprache</b>
+                <span class="pi__p">ab CHF 390.–</span>
+                <span class="pi__n">Die Basissprache ist in jedem Paket inklusive.</span>
+              </li>
+              <li style="--i:4">
+                <b>Änderungen ohne Betreuungspaket</b>
+                <span class="pi__p">CHF 50.–<small>/Stunde</small></span>
+                <span class="pi__n">Immer vorher angekündigt.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- ---------- flache Karte mit den Zahlungsbedingungen ---------- -->
+          <div class="pi__fuss">
+            <p style="--i:0"><b>Keine Anzahlung.</b> Sie zahlen erst, wenn die Seite online ist und Sie zufrieden sind. Eine Rechnung, 30 Tage Frist.</p>
+            <p style="--i:1"><b>Ausstieg nach dem ersten Entwurf.</b> Gefällt Ihnen die Richtung nicht, sagen Sie ab. Dann kommt keine Rechnung.</p>
+            <p style="--i:2"><b>Betreuung ab CHF 29.– im Monat.</b> Freiwillig und monatlich kündbar. Ohne Paket entstehen bei mir keine laufenden Kosten.</p>
+          </div>
+
+        </div>
       </div>
     </details>
 

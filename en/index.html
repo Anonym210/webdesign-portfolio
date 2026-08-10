@@ -178,10 +178,11 @@
     <div class="hero__grid">
       <div>
         <p class="eyebrow">Web design for local Swiss businesses</p>
-        <h1>Your customers search online.<br><em>Do they find you?</em></h1>
+        <h1>A website<br><em>that makes people envy you.</em></h1>
         <p class="hero__sub">
           
-          I build websites for small Swiss businesses that want more calls and enquiries from Google.
+          I build websites for local businesses in the Zurich area and the rest of Switzerland that
+          want more calls and enquiries from Google.
           Designed from scratch, just as good on a phone as on a desktop, at a fixed price, with no
           template look.
         </p>
@@ -519,7 +520,8 @@
       <p class="lead">
         
         From the first sketch to the domain registered in your name. You need not handle anything, and
-        you receive every login at the end.
+        you receive every login at the end. I work from the Zurich area for businesses across
+        Switzerland.
       </p>
     </div>
 
@@ -678,43 +680,90 @@
     <!-- Das Kleingedruckte gross geschrieben — die Fragen, die sonst erst
          nach der Rechnung kommen. Auf dem Handy zunaechst eingeklappt, damit
          der Weg zum Kontakt kurz bleibt; ab 761 px oeffnet main.js den Block. -->
-    <details class="planinfo reveal" id="planinfo">
+    <!-- Aufklappbare Feinheiten zu den Paketen. Zwei eigene Karten mit
+         Abstand dazwischen: links hell, was ohnehin dabei ist, rechts auf
+         dunklem Grund, was zusaetzlich kostet. Darunter eine dritte, flache
+         Karte mit den Saetzen zur Zahlung. Aufbau und Klassennamen sind in
+         allen drei Sprachfassungen gleich.
+         Aussehen: effects.css Abschnitt 11. Bewegung: effects.js Abschnitt 9. -->
+    <details class="planinfo pi reveal" id="planinfo">
       <summary>Exactly what is included and what is not<i aria-hidden="true"></i></summary>
-      <div class="planinfo__grid">
-      <div class="planinfo__col">
-        <h3>Included in every package</h3>
-        <ul>
-          <li><b>Design and build:</b> bespoke, not a purchased template.</li>
-          <li><b>Domain, hosting and SSL setup:</b> the contracts are in your name.</li>
-          <li><b>One email address</b> on your domain, set up and tested.</li>
-          <li><b>Legal notice and privacy policy:</b> I insert vetted templates and fill them with your details. That is craft, not legal advice; the legal review remains your responsibility.</li>
-          <li><b>Image editing:</b> cropping, brightening, resizing for the web.</li>
-          <li><b>Handover of every login and file</b> after launch.</li>
-          <li><b>30 days of corrections</b> for anything noticed after launch that was part of the quote.</li>
-        </ul>
-      </div>
 
-      <div class="planinfo__col">
-        <h3>What is not included and what it costs</h3>
-        <ul>
-          <li><b>Domain and hosting themselves:</b> roughly CHF 8–20 a month depending on the provider. You pay the provider directly; I add no markup.</li>
-          <li><b>External services</b> (booking, shop, newsletter): you pay those fees directly to the provider concerned.</li>
-          <li><b>Photographer or paid stock images:</b> charged by the hour. Royalty-free images I select at no cost.</li>
-          <li><b>Language switcher for Start and Business:</b> from CHF 390.– per additional language. The base language (German, English or French) is already included in every package at no extra charge. For the switcher I arrange and check the translation and pass the cost on at cost price. Or you supply the text yourself, in which case this item does not apply.</li>
-          <li><b>Changes after launch</b> without a support package: CHF 90.– per hour started, agreed in advance.</li>
-        </ul>
-      </div>
+      <div class="pi__wrap">
+        <div class="pi__grid">
 
-      <div class="planinfo__col">
-        <h3>Payment and support</h3>
-        <ul>
-          <li><b>No deposit.</b> You pay only once the site is live and you are satisfied: one invoice, payable within 30 days.</li>
-          <li><b>Walking away after the first draft:</b> Call it off if you do not like the direction. No invoice follows.</li>
-          <li><b>Support package from CHF 29.– a month:</b> hosting monitoring, backups, updates and up to 30 minutes of changes a month: swapping texts, prices, opening hours or images.</li>
-          <li><b>After the first year</b> the support package continues monthly and can be cancelled at any month's end. The price stays the same as long as the scope does.</li>
-          <li><b>Without a support package</b> there are no ongoing costs on my side. The site keeps running; you get in touch only when something comes up.</li>
-        </ul>
-      </div>
+          <div class="pi__karte pi__karte--hell">
+            <p class="pi__h">Included in every package</p>
+            <ul>
+              <li style="--i:0">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>Bespoke design and build</b></div>
+              </li>
+              <li style="--i:1">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>Domain, hosting and SSL set up</b><span>The contracts are in your name.</span></div>
+              </li>
+              <li style="--i:2">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>One email address on your domain</b></div>
+              </li>
+              <li style="--i:3">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>Legal notice and privacy policy</b><span>Vetted templates filled with your details. That is craft, not legal advice; the review remains your responsibility.</span></div>
+              </li>
+              <li style="--i:4">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>Images prepared and placed</b></div>
+              </li>
+              <li style="--i:5">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>Handover of every login and file</b></div>
+              </li>
+              <li style="--i:6">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>30 days of corrections after launch</b></div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pi__karte pi__karte--dunkel">
+            <p class="pi__h">What costs extra</p>
+            <ul>
+              <li style="--i:0">
+                <b>Domain and hosting</b>
+                <span class="pi__p">CHF 8–20<small>/month</small></span>
+                <span class="pi__n">Paid directly to the provider, I add no markup.</span>
+              </li>
+              <li style="--i:1">
+                <b>External services</b>
+                <span class="pi__p pi__p--soft">at the provider</span>
+                <span class="pi__n">Booking, shop or newsletter.</span>
+              </li>
+              <li style="--i:2">
+                <b>Photographer or paid images</b>
+                <span class="pi__p pi__p--soft">by the hour</span>
+                <span class="pi__n">Royalty-free images I select at no cost.</span>
+              </li>
+              <li style="--i:3">
+                <b>Each additional language</b>
+                <span class="pi__p">from CHF 390.–</span>
+                <span class="pi__n">The base language is included in every package.</span>
+              </li>
+              <li style="--i:4">
+                <b>Changes without a support package</b>
+                <span class="pi__p">CHF 50.–<small>/hour</small></span>
+                <span class="pi__n">Always agreed in advance.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pi__fuss">
+            <p style="--i:0"><b>No deposit.</b> You pay only once the site is live and you are satisfied. One invoice, payable within 30 days.</p>
+            <p style="--i:1"><b>Walk away after the first draft.</b> If you do not like the direction, call it off. No invoice follows.</p>
+            <p style="--i:2"><b>Support from CHF 29.– a month.</b> Optional and cancellable monthly. Without it there are no ongoing costs on my side.</p>
+          </div>
+
+        </div>
       </div>
     </details>
 

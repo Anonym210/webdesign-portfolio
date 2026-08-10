@@ -132,4 +132,90 @@
 
     io.observe(stats);
   }
+
+  /* ---------------------------------------------------------------------
+     9. Der Block "Was genau enthalten ist und was nicht" faehrt beim
+     Aufklappen weich auf statt zu springen. Die Zeilen darin kommen
+     gestaffelt herein, das erledigt effects.css ueber die Klasse [open].
+     Ohne Javascript oder bei reduzierter Bewegung klappt das <details>
+     ganz normal und sofort auf.
+     --------------------------------------------------------------------- */
+  var pi = document.querySelector('.pi');
+  if (pi && !reduce && typeof pi.animate === 'function') {
+    var kopf = pi.querySelector('summary');
+    var huelle = pi.querySelector('.pi__wrap');
+    var lauf = null;
+
+    kopf.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      if (lauf) { lauf.cancel(); }
+
+      // Nur waehrend der Bewegung abschneiden. Danach wieder frei,
+      // sonst kappt die Huelle die Schatten der Karten.
+      huelle.style.overflow = 'hidden';
+
+      var von, bis;
+      if (!pi.open) {
+        pi.open = true;                       // erst oeffnen, dann messen
+        von = 0;
+        bis = huelle.scrollHeight;
+      } else {
+        von = huelle.getBoundingClientRect().height;
+        bis = 0;
+      }
+
+      lauf = huelle.animate(
+        { height: [von + 'px', bis + 'px'] },
+        { duration: bis ? 480 : 330, easing: 'cubic-bezier(.16,1,.3,1)' }
+      );
+      lauf.onfinish = function () {
+        huelle.style.height = '';
+        huelle.style.overflow = '';
+        if (!bis) { pi.open = false; }        // erst am Ende zuklappen
+        lauf = null;
+      };
+    });
+  }
+
+  /* ---------------------------------------------------------------------
+     10. Gleitende Markierung im Kopfmenue.
+
+     main.js setzt beim Scrollen die Klasse is-active um. Vorher sprang
+     damit ein weisser Hintergrund von Link zu Link: der eine blendete
+     aus, der andere ein, was unruhig aussah. Jetzt liegt eine einzelne
+     Pille hinter den Links, die an die neue Stelle faehrt.
+
+     Beobachtet wird das class-Attribut der Links, nicht der Scrollstand.
+     So bleibt diese Datei unabhaengig davon, wie main.js den aktiven
+     Punkt bestimmt.
+     --------------------------------------------------------------------- */
+  var leiste = document.querySelector('.nav');
+  if (leiste && leiste.children.length) {
+    var pille = document.createElement('span');
+    pille.className = 'navpill';
+    leiste.appendChild(pille);
+    leiste.classList.add('nav--pill');
+
+    var linkListe = leiste.querySelectorAll('a[href^="#"]');
+
+    var setzePille = function () {
+      var aktiv = leiste.querySelector('a.is-active');
+      if (!aktiv) { pille.classList.remove('is-da'); return; }
+      pille.style.width = aktiv.offsetWidth + 'px';
+      pille.style.transform = 'translateX(' + aktiv.offsetLeft + 'px) scaleX(1)';
+      pille.classList.add('is-da');
+    };
+
+    // Auf den Klassenwechsel der Links hoeren.
+    if ('MutationObserver' in window) {
+      var wache = new MutationObserver(setzePille);
+      for (var li = 0; li < linkListe.length; li++) {
+        wache.observe(linkListe[li], { attributes: true, attributeFilter: ['class'] });
+      }
+    }
+    window.addEventListener('resize', setzePille, { passive: true });
+    // Schriften koennen die Breiten noch verschieben, deshalb nachfassen.
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(setzePille); }
+    setzePille();
+  }
 })();

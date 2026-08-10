@@ -178,11 +178,11 @@
     <div class="hero__grid">
       <div>
         <p class="eyebrow">Création de sites web pour les entreprises suisses locales</p>
-        <h1>Vos clients cherchent en ligne.<br><em>Vous trouvent-ils ?</em></h1>
+        <h1>Un site web<br><em>qui fera des envieux.</em></h1>
         <p class="hero__sub">
           
-          Je crée des sites web pour les petites entreprises suisses qui souhaitent plus d'appels et de
-          demandes via Google. Conçus sur mesure, aussi soignés sur mobile que sur ordinateur, à prix
+          Je crée des sites web pour les entreprises locales de la région zurichoise et du reste de la
+          Suisse qui souhaitent plus d'appels et de demandes via Google. Conçus sur mesure, aussi soignés sur mobile que sur ordinateur, à prix
           fixe et sans allure de modèle.
         </p>
 
@@ -522,7 +522,8 @@
       <p class="lead">
         
         Du premier croquis au nom de domaine enregistré à votre nom. Vous n'avez à vous occuper de rien
-        et recevez tous les accès à la fin.
+        et recevez tous les accès à la fin. Je travaille depuis la région zurichoise pour des
+        entreprises dans toute la Suisse.
       </p>
     </div>
 
@@ -682,43 +683,90 @@
     <!-- Das Kleingedruckte gross geschrieben — die Fragen, die sonst erst
          nach der Rechnung kommen. Auf dem Handy zunaechst eingeklappt, damit
          der Weg zum Kontakt kurz bleibt; ab 761 px oeffnet main.js den Block. -->
-    <details class="planinfo reveal" id="planinfo">
-      <summary>Ce qui est inclus et ce qui ne l'est pas<i aria-hidden="true"></i></summary>
-      <div class="planinfo__grid">
-      <div class="planinfo__col">
-        <h3>Inclus dans chaque formule</h3>
-        <ul>
-          <li><b>Conception et réalisation :</b> sur mesure, sans modèle acheté.</li>
-          <li><b>Installation du domaine, de l'hébergement et du SSL :</b> les contrats sont établis à votre nom.</li>
-          <li><b>Une adresse e-mail</b> sur votre domaine, configurée et testée.</li>
-          <li><b>Mentions légales et politique de confidentialité :</b> j'intègre des modèles vérifiés et les complète avec vos informations. C'est un travail technique, pas un conseil juridique ; la vérification légale reste à votre charge.</li>
-          <li><b>Retouche d'images :</b> recadrage, éclaircissement, redimensionnement pour le web.</li>
-          <li><b>Remise de tous les accès et fichiers</b> après la mise en ligne.</li>
-          <li><b>30 jours de retouches</b> pour tout ce qui est constaté après la mise en ligne et figurait dans l'offre.</li>
-        </ul>
-      </div>
+    <!-- Aufklappbare Feinheiten zu den Paketen. Zwei eigene Karten mit
+         Abstand dazwischen: links hell, was ohnehin dabei ist, rechts auf
+         dunklem Grund, was zusaetzlich kostet. Darunter eine dritte, flache
+         Karte mit den Saetzen zur Zahlung. Aufbau und Klassennamen sind in
+         allen drei Sprachfassungen gleich.
+         Aussehen: effects.css Abschnitt 11. Bewegung: effects.js Abschnitt 9. -->
+    <details class="planinfo pi reveal" id="planinfo">
+      <summary>Ce qui est compris exactement, et ce qui ne l’est pas<i aria-hidden="true"></i></summary>
 
-      <div class="planinfo__col">
-        <h3>Ce qui n'est pas inclus et à quel prix</h3>
-        <ul>
-          <li><b>Le domaine et l'hébergement eux-mêmes :</b> environ 8 à 20 CHF par mois selon le prestataire. Vous payez directement le prestataire, je ne prends aucune marge.</li>
-          <li><b>Services externes</b> (réservation, boutique, newsletter) : vous réglez ces frais directement au prestataire concerné.</li>
-          <li><b>Photographe ou images payantes :</b> facturé au temps passé. Je sélectionne gratuitement des images libres de droits.</li>
-          <li><b>Sélecteur de langue pour Start et Business :</b> dès 390 CHF par langue supplémentaire. La langue de base (allemand, anglais ou français) est déjà comprise dans chaque formule, sans supplément. Pour le sélecteur, j'organise et vérifie la traduction et vous en répercute le coût au prix coûtant. Ou vous fournissez le texte vous-même, et ce poste disparaît.</li>
-          <li><b>Modifications après la mise en ligne</b> sans formule de suivi : 90 CHF par heure entamée, annoncé au préalable.</li>
-        </ul>
-      </div>
+      <div class="pi__wrap">
+        <div class="pi__grid">
 
-      <div class="planinfo__col">
-        <h3>Paiement et suivi</h3>
-        <ul>
-          <li><b>Aucun acompte.</b> Vous ne payez qu'une fois le site en ligne et à votre satisfaction : une seule facture, payable sous 30 jours.</li>
-          <li><b>Arrêt après la première maquette :</b> Renoncez si la direction prise ne vous convient pas. Aucune facture ne suivra.</li>
-          <li><b>Formule de suivi dès 29 CHF par mois :</b> surveillance de l'hébergement, sauvegardes, mises à jour et jusqu'à 30 minutes de modifications par mois : textes, tarifs, horaires ou images.</li>
-          <li><b>Après la première année</b> la formule de suivi se poursuit mensuellement et peut être résiliée pour la fin de n'importe quel mois. Le prix reste inchangé tant que l'étendue des prestations ne change pas.</li>
-          <li><b>Sans formule de suivi</b> aucun frais récurrent ne m'est dû. Le site continue de fonctionner ; vous me contactez uniquement en cas de besoin.</li>
-        </ul>
-      </div>
+          <div class="pi__karte pi__karte--hell">
+            <p class="pi__h">Compris dans chaque formule</p>
+            <ul>
+              <li style="--i:0">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>Conception et réalisation sur mesure</b></div>
+              </li>
+              <li style="--i:1">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>Domaine, hébergement et SSL configurés</b><span>Les contrats sont à votre nom.</span></div>
+              </li>
+              <li style="--i:2">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>Une adresse e-mail sur votre domaine</b></div>
+              </li>
+              <li style="--i:3">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>Mentions légales et politique de confidentialité</b><span>Des modèles vérifiés, complétés avec vos données. C’est de l’artisanat, pas du conseil juridique ; la vérification vous revient.</span></div>
+              </li>
+              <li style="--i:4">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>Images préparées et intégrées</b></div>
+              </li>
+              <li style="--i:5">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>Remise de tous les accès et fichiers</b></div>
+              </li>
+              <li style="--i:6">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><b>30 jours de retouches après la mise en ligne</b></div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pi__karte pi__karte--dunkel">
+            <p class="pi__h">Ce qui coûte en plus</p>
+            <ul>
+              <li style="--i:0">
+                <b>Domaine et hébergement</b>
+                <span class="pi__p">CHF 8–20<small>/mois</small></span>
+                <span class="pi__n">Payé directement au fournisseur, je ne prends aucune marge.</span>
+              </li>
+              <li style="--i:1">
+                <b>Services externes</b>
+                <span class="pi__p pi__p--soft">chez le fournisseur</span>
+                <span class="pi__n">Prise de rendez-vous, boutique ou newsletter.</span>
+              </li>
+              <li style="--i:2">
+                <b>Photographe ou images payantes</b>
+                <span class="pi__p pi__p--soft">selon le temps passé</span>
+                <span class="pi__n">Les images libres de droits, je les choisis gratuitement.</span>
+              </li>
+              <li style="--i:3">
+                <b>Chaque langue supplémentaire</b>
+                <span class="pi__p">dès CHF 390.–</span>
+                <span class="pi__n">La langue de base est comprise dans chaque formule.</span>
+              </li>
+              <li style="--i:4">
+                <b>Modifications sans formule de suivi</b>
+                <span class="pi__p">CHF 50.–<small>/heure</small></span>
+                <span class="pi__n">Toujours annoncé au préalable.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pi__fuss">
+            <p style="--i:0"><b>Aucun acompte.</b> Vous payez seulement lorsque le site est en ligne et que vous êtes satisfait. Une facture, payable sous 30 jours.</p>
+            <p style="--i:1"><b>Retrait après la première proposition.</b> Si la direction ne vous plaît pas, vous annulez. Aucune facture ne suit.</p>
+            <p style="--i:2"><b>Suivi dès CHF 29.– par mois.</b> Facultatif et résiliable chaque mois. Sans formule, aucun frais courant de mon côté.</p>
+          </div>
+
+        </div>
       </div>
     </details>
 
