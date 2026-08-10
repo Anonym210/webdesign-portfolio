@@ -34,6 +34,11 @@
   --sh-md: 0 20px 45px -22px rgba(20,23,26,.28);
   --sh-lg: 0 46px 90px -40px rgba(20,23,26,.42);
   --ease: cubic-bezier(.22,.61,.36,1);
+  /* Fuer den Hero-Auftritt: sehr schneller Start, langes weiches
+     Auslaufen. Der groesste Teil der Bewegung liegt im ersten
+     Drittel der Zeit — genau das laesst eine Animation teuer
+     wirken statt traege. */
+  --ease-hero: cubic-bezier(.16,1,.3,1);
 }
 
 /* ---------- 2. Reset & Basis ---------- */
@@ -587,6 +592,66 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .reveal[data-delay="1"]{ transition-delay:.08s; }
 .reveal[data-delay="2"]{ transition-delay:.16s; }
 .reveal[data-delay="3"]{ transition-delay:.24s; }
+
+/* ---------- 19b. Hero-Auftritt ----------
+   Die Elemente im Hero treten nacheinander ein: zuerst die Zeile ueber der
+   Ueberschrift, dann die Ueberschrift Wort fuer Wort, danach Fliesstext,
+   Buttons und Fakten. Vier Punkte sind hier wichtig:
+
+   1. Es sind ANIMATIONEN, keine Transitions. Eine Animation mit "both"
+      endet immer im sichtbaren Zustand. Der Text kann also nicht unsichtbar
+      haengenbleiben, wenn das Skript unterwegs abbricht — anders als bei
+      .reveal, das dafuer die js-Klasse braucht.
+   2. Animiert werden ausschliesslich opacity und transform. Beide kosten
+      den Browser fast nichts und veraendern das Layout nicht, die Seite
+      springt also nicht.
+   3. Die Woerter der H1 verpackt main.js (Abschnitt 4b) paarweise in
+      .split__w (die Maske) und .split__i (das bewegte Wort) und setzt die
+      Verzoegerungen. Bleibt das aus, erscheint die Ueberschrift ohne Effekt.
+   4. Bei "prefers-reduced-motion" setzt Abschnitt 22 alle Dauern auf 0,
+      dann ist der ganze Hero sofort da.
+
+   Die Zahlen ergeben zusammen etwa 1,3 Sekunden. Wer sie aendert, sollte
+   die Reihenfolge beibehalten: Ueberschrift zuerst, Fliesstext erst danach. */
+
+@keyframes heroRise{
+  from{ opacity:0; transform:translateY(22px); }
+  to  { opacity:1; transform:none; }
+}
+/* Kein Ein- und Ausblenden: das Wort ist entweder hinter der Maske oder
+   davor. Dieser harte Schnitt ist der ganze Effekt. */
+@keyframes heroWord{
+  from{ transform:translateY(135%); }
+  to  { transform:none; }
+}
+
+.js .hero .eyebrow,
+.js .hero__sub,
+.js .hero__cta,
+.js .hero__facts,
+.js .herowho{ animation:heroRise .9s var(--ease-hero) both; }
+
+.js .hero .eyebrow{ animation-delay:.02s; }
+.js .hero__sub   { animation-delay:.42s; }
+.js .hero__cta   { animation-delay:.50s; }
+.js .hero__facts { animation-delay:.57s; }
+.js .herowho     { animation-delay:.64s; }
+
+/* Die Wortmaske schneidet mit clip-path statt mit overflow:hidden. Das ist
+   hier entscheidend: overflow:hidden wuerde die Grundlinie des Wortes
+   verschieben und die ganze Zeile verrutschen lassen. clip-path fasst den
+   Textfluss nicht an.
+   Die negativen Werte ziehen den Schnitt etwas ueber den Buchstabenkasten
+   hinaus, sonst wuerden Unterlaengen (g, y, p) und die Schraege der
+   Kursivschrift abgeschnitten. Sie sind in em angegeben, damit das bei
+   jeder Schriftgroesse gleich aussieht. */
+.split__w{ display:inline-block; clip-path:inset(-.16em -.12em -.2em -.1em); }
+.split__i{ display:inline-block; }
+.hero h1.is-split .split__i{ animation:heroWord .85s var(--ease-hero) both; }
+
+/* Die Vorschau rechts haengt an .reveal und erschiene sonst zu einem
+   beliebigen Zeitpunkt. Hier bekommt sie ihren Platz in der Reihenfolge. */
+.js .hero .showcase.reveal{ transition-delay:.3s; transition-duration:.9s; }
 
 /* ---------- 20. Rechtstexte ---------- */
 .legal{ padding-block:clamp(7.5rem,13vh,10rem) clamp(4rem,7vw,6.5rem); }

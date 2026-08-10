@@ -114,6 +114,72 @@
     for (var s = 0; s < reveals.length; s++) io.observe(reveals[s]);
   }
 
+  /* ---------- 4b. Hero-Ueberschrift Wort fuer Wort ----------
+     Die Ueberschrift steht vollstaendig und lesbar im HTML. Hier wird sie
+     nur in Woerter zerlegt, damit jedes einzeln einschweben kann.
+
+     - Geschnitten wird ausschliesslich in Textknoten. <br> und <em> bleiben
+       dadurch unangetastet, der Zeilenumbruch und die Kursivschrift der
+       zweiten Zeile bleiben erhalten.
+     - Die Leerzeichen zwischen den Woertern werden als eigene Textknoten
+       wieder eingesetzt, sonst klebten die Woerter aneinander.
+     - Am vorgelesenen Text aendert sich nichts, die Spans sind reine Huellen
+       ohne eigene Bedeutung.
+     - Pro Wort entstehen zwei Spans: aussen die Maske (.split__w), innen
+       das Wort selbst (.split__i). Bewegt wird nur das innere, das aeussere
+       schneidet ab. Deshalb sieht es aus, als kaeme das Wort hinter einer
+       Kante hervor, statt einfach aufzutauchen.
+     - Bei reduzierter Bewegung wird gar nicht erst geschnitten.
+
+     Das Aussehen steht in style.css, Abschnitt 19b. */
+  var heroTitle = document.querySelector('.hero h1');
+  if (heroTitle && !reduced) {
+    var wordIndex = 0;
+
+    var splitWords = function (node) {
+      var kids = Array.prototype.slice.call(node.childNodes);
+      kids.forEach(function (kid) {
+        // Elementknoten (<em>, <br>) behalten wir und gehen hinein.
+        if (kid.nodeType === 1) { splitWords(kid); return; }
+        if (kid.nodeType !== 3) return;
+
+        var parts = kid.nodeValue.split(/(\s+)/);
+        var frag  = document.createDocumentFragment();
+
+        parts.forEach(function (part) {
+          if (part === '') return;
+          if (/^\s+$/.test(part)) {
+            frag.appendChild(document.createTextNode(part));
+            return;
+          }
+          // Alleinstehende Satzzeichen bekommen die Verzoegerung des Wortes
+          // davor und kommen mit ihm zusammen an. Sonst schwebte im
+          // franzoesischen Titel das "?" hinter allem anderen her, weil dort
+          // ein Leerzeichen davorsteht.
+          var alone = !/[0-9A-Za-zÀ-ɏ]/.test(part);
+          var step  = alone && wordIndex > 0 ? wordIndex - 1 : wordIndex;
+
+          var mask = document.createElement('span');
+          mask.className = 'split__w';
+
+          var word = document.createElement('span');
+          word.className = 'split__i';
+          word.textContent = part;
+          word.style.animationDelay = (0.06 + step * 0.055).toFixed(3) + 's';
+
+          mask.appendChild(word);
+          if (!alone) wordIndex++;
+          frag.appendChild(mask);
+        });
+
+        node.replaceChild(frag, kid);
+      });
+    };
+
+    splitWords(heroTitle);
+    heroTitle.classList.add('is-split');
+  }
+
   /* ---------- 5. Aktiver Navigationspunkt ---------- */
   var sections = document.querySelectorAll('main section[id]');
   var navLinks = document.querySelectorAll('.nav a[href^="#"]');
