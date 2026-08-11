@@ -661,10 +661,14 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
    die Woerter die Fuehrung haben. */
 .js .reveal.has-split{ transform:none; transition-duration:.35s; }
 
-/* Ablauf: die Verbindungslinie waechst von links nach rechts mit, die
-   grosse Ziffer kommt kurz davor. Die Verzoegerungen spiegeln die
-   data-delay-Werte der vier Karten, damit Karte und Linie zusammenbleiben.
+/* Ablauf: die vier Karten fallen jetzt in 150ms- statt 80ms-Schritten
+   ein, damit "Schritt fuer Schritt" auch in der Bewegung steckt. Die
+   Verbindungslinie waechst wie zuvor pro Karte von links nach rechts mit,
+   150ms nachdem die jeweilige Karte zu erscheinen beginnt.
    Ab 780 px blendet Abschnitt 21 die Linien aus, dort passiert nichts. */
+.flow__item.reveal[data-delay="1"]{ transition-delay:.15s; }
+.flow__item.reveal[data-delay="2"]{ transition-delay:.3s; }
+.flow__item.reveal[data-delay="3"]{ transition-delay:.45s; }
 .js .flow__item::before{
   opacity:0; transform:translateY(10px);
   transition:opacity .7s var(--ease-hero), transform .7s var(--ease-hero);
@@ -672,9 +676,9 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .js .flow__item.is-in::before{ opacity:.28; transform:none; }
 .js .flow__item::after{ transform:scaleX(0); transform-origin:0 50%; transition:transform .9s var(--ease-hero); }
 .js .flow__item.is-in::after{ transform:scaleX(1); transition-delay:.25s; }
-.js .flow__item.is-in[data-delay="1"]::after{ transition-delay:.33s; }
-.js .flow__item.is-in[data-delay="2"]::after{ transition-delay:.41s; }
-.js .flow__item.is-in[data-delay="3"]::after{ transition-delay:.49s; }
+.js .flow__item.is-in[data-delay="1"]::after{ transition-delay:.4s; }
+.js .flow__item.is-in[data-delay="2"]::after{ transition-delay:.55s; }
+.js .flow__item.is-in[data-delay="3"]::after{ transition-delay:.7s; }
 
 /* Branchenleiste als ruhiges Laufband.
    Die Klasse is-marquee setzt main.js erst, nachdem es die Chips einmal
@@ -905,23 +909,44 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 @media (max-width:720px){
   .mobilebar{
     position:fixed; left:0; right:0; bottom:0; z-index:98;
-    display:grid; grid-template-columns:repeat(3,1fr);
+    display:grid; grid-template-columns:repeat(3,1fr); gap:.35rem;
     background:rgba(255,255,255,.94);
     -webkit-backdrop-filter:saturate(180%) blur(14px); backdrop-filter:saturate(180%) blur(14px);
     border-top:1px solid var(--line);
-    padding-bottom:env(safe-area-inset-bottom, 0px);
+    padding:.5rem .6rem calc(.6rem + env(safe-area-inset-bottom, 0px));
     box-shadow:0 -6px 24px -16px rgba(20,23,26,.4);
   }
   .mobilebar a{
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.2rem;
-    padding:.65rem .3rem .7rem; font-size:.76rem; font-weight:500; color:var(--ink-soft);
-    border-right:1px solid var(--line);
+    border-radius:14px; padding:.5rem .3rem .55rem;
+    font-size:.76rem; font-weight:500; color:var(--ink-soft);
   }
-  .mobilebar a:last-child{ border-right:0; }
   .mobilebar svg{ color:var(--accent); }
-  .mobilebar__cta{ background:var(--accent); color:#fff; }
-  .mobilebar__cta svg{ color:#fff; }
-  body{ padding-bottom:4.7rem; }
+  /* Der Anfrage-Knopf muss "a.mobilebar__cta" heissen, nicht nur
+     ".mobilebar__cta": sonst gewinnt die Regel ".mobilebar a" darueber und
+     die Schrift bleibt grau auf Violett. */
+  .mobilebar a.mobilebar__cta{
+    background:var(--accent); color:#fff; font-weight:600;
+    box-shadow:0 8px 18px -10px var(--accent);
+  }
+
+  /* Das Kuvert im Anfrage-Knopf ist keine Zeichnung, sondern eine Flaeche
+     mit Farbverlauf, aus der die Kuvertform ausgestanzt wird. Nur so laesst
+     sich der Verlauf bewegen: weiss, helles Flieder, wieder weiss. Eine
+     Runde dauert zehn Sekunden. Die Bildbreite ist doppelt so gross wie das
+     Zeichen und der Weg genau eine Musterlaenge, darum springt nichts, wenn
+     die Runde von vorne beginnt. Bei abgeschalteten Animationen (Abschnitt
+     22) steht das Kuvert still. */
+  .mobilebar__kuvert{
+    width:18px; height:18px; display:block;
+    background:linear-gradient(100deg,#fff 0%,#C9AEF2 25%,#fff 50%,#C9AEF2 75%,#fff 100%);
+    background-size:200% 100%;
+    animation:kuvertVerlauf 10s linear infinite;
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8'%3E%3Crect x='2' y='3.5' width='20' height='17' rx='2.6'/%3E%3Cpath d='m2.7 6 9.3 6.6L21.3 6'/%3E%3C/svg%3E") center/contain no-repeat;
+    mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8'%3E%3Crect x='2' y='3.5' width='20' height='17' rx='2.6'/%3E%3Cpath d='m2.7 6 9.3 6.6L21.3 6'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+  @keyframes kuvertVerlauf{ from{ background-position:0 0; } to{ background-position:100% 0; } }
+  body{ padding-bottom:4.95rem; }
   body.is-locked .mobilebar{ display:none; }
   .totop{ display:none; }
 }
