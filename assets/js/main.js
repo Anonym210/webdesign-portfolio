@@ -295,34 +295,6 @@
     });
   }
 
-  /* ---------- 7. Live-Vorschauen skalieren --------------------------------
-     Die eingebettete Website wird in voller Desktopbreite (1440 px) geladen
-     und anschliessend passgenau auf die Kartenbreite herunterskaliert.
-     So sieht man das echte Desktop-Layout statt der Mobilansicht.
-     ---------------------------------------------------------------------- */
-  var previews = document.querySelectorAll('[data-preview]');
-  var BASE_WIDTH = 1440;
-
-  function scalePreviews() {
-    for (var i = 0; i < previews.length; i++) {
-      var box    = previews[i];
-      var frame  = box.querySelector('iframe');
-      if (!frame) continue;
-
-      var scale  = box.clientWidth / BASE_WIDTH;
-      frame.style.transform = 'scale(' + scale + ')';
-      frame.style.height    = (box.clientHeight / scale) + 'px';
-    }
-  }
-
-  if (previews.length) {
-    scalePreviews();
-    window.addEventListener('resize', scalePreviews);
-    window.addEventListener('load', scalePreviews);
-    // Nach dem Laden der Schriften erneut messen
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(scalePreviews);
-  }
-
   /* ---------- 8. Kontaktformular ---------- */
   /* ===== ANPASSEN: Adresse des Formular-Dienstes ==========================
      1. Kostenloses Konto auf formspree.io anlegen

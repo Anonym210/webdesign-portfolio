@@ -389,3 +389,10 @@ picture{ display:contents; }
   background-image:image-set(url("../img/portrait.webp") type("image/webp"),
                              url("../img/portrait.jpg")  type("image/jpeg"));
 }
+
+/* Die Vorschauen der Beispielwebsites sind Standbilder statt eingebetteter
+   Seiten. style.css positioniert dort ein <iframe> absolut; fuer das Bild
+   braucht es nur diese Zeile. Der abdeckende Link darueber bleibt
+   unveraendert, an der Bedienung aendert sich nichts.
+   Neu erzeugen lassen sich die Bilder mit: node tools/vorschaubilder.js */
+.livepreview img{ width:100%; height:100%; object-fit:cover; object-position:top center; display:block; }
