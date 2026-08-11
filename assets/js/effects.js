@@ -111,13 +111,26 @@
       var suf = b.getAttribute('data-suf') || '';
       var start = null;
 
-      if (reduce) { b.textContent = to + suf; return; }
+      // Die Einheit ('%', '/100', 'CHF') kommt in ein eigenes <i>. Nur so
+      // laesst sie sich kleiner setzen als die Zahl davor, sonst wuerde
+      // '96/100' genauso gross stehen wie die 96 und der Blick faende
+      // keinen Halt mehr.
+      var schreibe = function (n) {
+        b.textContent = n;
+        if (suf) {
+          var einheit = document.createElement('i');
+          einheit.textContent = suf;
+          b.appendChild(einheit);
+        }
+      };
+
+      if (reduce) { schreibe(to); return; }
 
       requestAnimationFrame(function step(t) {
         if (start === null) { start = t; }
         var p = Math.min(1, (t - start) / 1300);
         var eased = 1 - Math.pow(1 - p, 3);   // schnell an, weich aus
-        b.textContent = Math.round(to * eased) + suf;
+        schreibe(Math.round(to * eased));
         if (p < 1) { requestAnimationFrame(step); }
       });
     };

@@ -163,6 +163,9 @@
   font-size:clamp(2.6rem,1.6rem + 3vw,4.2rem); line-height:1;
   font-variant-numeric:tabular-nums;
 }
+/* Die Einheit hinter der Zahl, gesetzt von effects.js. Deutlich kleiner
+   und etwas hoeher, damit die Zahl die Hauptrolle behaelt. */
+.fxstat b i{ font-style:normal; font-size:.42em; letter-spacing:.01em; }
 .fxstat span{
   display:block; margin-top:.5rem; font-size:.9rem; color:var(--ink-soft);
   max-width:20ch; margin-inline:auto;
