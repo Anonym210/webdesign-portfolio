@@ -735,6 +735,15 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
   .header__inner{ gap:.75rem; }
 }
 
+/* Auf dem Handy faellt das Browser-Mockup im Hero weg: nach einem Wisch
+   folgen ohnehin die Referenzkacheln mit derselben Beispielseite, das wirkte
+   doppelt. Die Grenze sind dieselben 720 px wie bei der festen Kontaktleiste
+   (Abschnitt 28). Damit das Bild dort gar nicht erst geladen wird, steht im
+   Markup zusaetzlich eine leere Bildquelle fuer Breiten bis 720 px. */
+@media (max-width:720px){
+  .hero .showcase{ display:none; }
+}
+
 @media (max-width:920px){
   .projects{ grid-template-columns:1fr; }
   .plans{ grid-template-columns:1fr; }
