@@ -603,3 +603,8 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
   .demoflag__link{ padding:.28rem .6rem; }
 }
 @media print{ .demoflag{ display:none; } }
+
+/* Die WebP-Huelle darf das Layout nicht veraendern: mit
+   display:contents bleibt das <img> Kind seines urspruenglichen
+   Elternteils, alle Bildregeln greifen unveraendert weiter. */
+picture{ display:contents; }
