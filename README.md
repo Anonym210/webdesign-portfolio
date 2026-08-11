@@ -307,19 +307,21 @@ bereits gebauten Seiten hinzu:
 4. Die neue Karte hinter die bestehenden setzen — oder eine Demo ersetzen,
    sobald Sie genug echte Kundenprojekte haben.
 
-### Statt Screenshot: Live-Vorschau
+### Vorschaubild einer Seite, die mit im Paket liegt
 
-Wenn die Website mit im Paket liegt (wie die Demo), können Sie sie live einbetten —
-das wirkt deutlich stärker als ein Bild:
+Früher stand hier ein `<iframe>` mit der echten Seite. Das kostete über ein
+Megabyte, bevor ein Besucher etwas gesehen hatte, deshalb stehen dort jetzt
+Standbilder. Ein Klick öffnet weiterhin die echte Seite:
 
 ```html
-<div class="livepreview" data-preview>
-  <iframe src="../ordnername/index.html" title="Vorschau" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+<div class="livepreview">
+  <img src="assets/img/vorschau-ordnername.webp" alt="Startseite von …" loading="lazy" width="1440" height="990">
   <a class="livepreview__veil" href="../ordnername/index.html" target="_blank" rel="noopener" aria-label="Website öffnen"></a>
 </div>
 ```
 
-Das JavaScript skaliert die Seite automatisch auf die Kartenbreite herunter.
+Das Bild erzeugt `node tools/vorschaubilder.js` — einmal laufen lassen, dann
+liegen WebP und JPEG in einfacher und doppelter Auflösung in `assets/img/`.
 
 ---
 

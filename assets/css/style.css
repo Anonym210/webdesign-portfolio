@@ -86,8 +86,6 @@ p:last-child{ margin-bottom:0; }
 .wrap{ width:min(100% - 2.5rem, var(--wrap)); margin-inline:auto; }
 .section{ padding:clamp(4.5rem,3rem + 6.5vw,8.5rem) 0; }
 .section--alt{ background:var(--bg-alt); }
-.section--dark{ background:var(--dark); color:rgba(255,255,255,.72); }
-.section--dark h2, .section--dark h3{ color:#fff; }
 /* Nach .section notiert, damit der kleinere Wert die Kurzform ueberschreibt */
 .section--tight{ padding-top:clamp(3rem,5vw,4.5rem); }
 .center{ text-align:center; }
@@ -98,13 +96,11 @@ p:last-child{ margin-bottom:0; }
   color:var(--accent); margin:0 0 1.1rem;
 }
 .eyebrow::before{ content:""; width:22px; height:1px; background:currentColor; }
-.section--dark .eyebrow{ color:var(--accent-lite); }
 
 .lead{ font-size:clamp(1.05rem,1rem + .3vw,1.2rem); color:var(--ink-soft); max-width:60ch; }
 .head .lead{ margin-top:1.2rem; }
 .about__text .lead{ margin-top:1.4rem; }
 .center .lead{ margin-inline:auto; }
-.section--dark .lead{ color:rgba(255,255,255,.68); }
 .muted{ color:var(--ink-mute); }
 
 /* ---------- 4. Buttons ---------- */
@@ -277,7 +273,6 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 }
 .mock__url svg{ flex:none; color:var(--accent); }
 .mock__body{ position:relative; background:var(--bg-alt); }
-.mock__frame{ width:100%; height:100%; border:0; display:block; }
 
 /* Live-Vorschau: Standbild der Beispielwebsite, darueber ein Link, der die
    echte Seite oeffnet. Das Bild selbst formatiert effects.css. */
@@ -297,10 +292,8 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .chip:hover{ border-color:var(--accent); color:var(--accent); transform:translateY(-2px); }
 .chip svg{ color:var(--accent); flex:none; }
 
-/* ---------- 8. Standard-Grids ---------- */
-.grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,4vw,4.5rem); align-items:center; }
+/* ---------- 8. Standard-Grid ---------- */
 .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem; }
-.grid-4{ display:grid; grid-template-columns:repeat(4,1fr); gap:1.4rem; }
 .head{ max-width:660px; margin-bottom:clamp(2.5rem,4vw,3.5rem); }
 .center.head{ margin-inline:auto; }
 
@@ -317,9 +310,6 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 }
 .tile h3{ font-size:1.35rem; }
 .tile p{ color:var(--ink-soft); font-size:.96rem; }
-.section--dark .tile{ background:rgba(255,255,255,.04); border-color:rgba(255,255,255,.1); }
-.section--dark .tile p{ color:rgba(255,255,255,.62); }
-.section--dark .tile__ico{ background:rgba(195,166,234,.14); color:var(--accent-lite); }
 
 /* ---------- 10. Referenzen ---------- */
 .projects{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1.4rem,2.4vw,2rem); }
@@ -339,7 +329,6 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
   border:1px solid var(--line);
 }
 .project__tag--live{ background:var(--accent); color:#fff; border-color:var(--accent); }
-.project__tag--soon{ background:rgba(20,23,26,.82); color:#fff; border-color:transparent; }
 .project__body{ padding:1.7rem 1.8rem 2rem; display:flex; flex-direction:column; gap:.7rem; flex:1; }
 .project__meta{ font-size:.76rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-mute); }
 .project__body h3{ font-size:1.7rem; }
@@ -366,8 +355,6 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .flow__item:last-child::after{ display:none; }
 .flow__item h3{ font-size:1.3rem; margin-bottom:.5rem; }
 .flow__item p{ color:var(--ink-soft); font-size:.95rem; }
-.section--dark .flow__item p{ color:rgba(255,255,255,.6); }
-.section--dark .flow__item::after{ background:linear-gradient(90deg,rgba(255,255,255,.16),transparent); }
 
 /* ---------- 12. Preise ---------- */
 .plans{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; align-items:start; }
@@ -420,8 +407,6 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .promise svg{ flex:none; margin-top:.3rem; color:var(--accent); }
 .promise b{ display:block; font-weight:600; margin-bottom:.15rem; }
 .promise span{ color:var(--ink-soft); font-size:.95rem; }
-.section--dark .promise span{ color:rgba(255,255,255,.6); }
-.section--dark .promise svg{ color:var(--accent-lite); }
 
 /* Versprechen-Kasten in der linken Spalte — schliesst die Leerflaeche
    neben der Aufzaehlung und bringt das staerkste Argument nach vorn. */
@@ -436,13 +421,6 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
   line-height:1.32; color:var(--ink); margin:0 0 .9rem;
 }
 .pledge span{ font-size:.86rem; color:var(--ink-mute); }
-.section--dark .pledge{
-  background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.12);
-  border-left-color:var(--accent-lite); box-shadow:none;
-}
-.section--dark .pledge svg{ color:var(--accent-lite); }
-.section--dark .pledge p{ color:#fff; }
-.section--dark .pledge span{ color:rgba(255,255,255,.5); }
 
 
 /* ---------- 14. FAQ ---------- */
@@ -734,7 +712,6 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 }
 
 @media (max-width:1080px){
-  .grid-4{ grid-template-columns:repeat(2,1fr); }
   .grid-3{ grid-template-columns:repeat(2,1fr); }
   .projects{ grid-template-columns:repeat(2,1fr); }
   .flow{ grid-template-columns:repeat(2,1fr); row-gap:2.4rem; }
@@ -759,7 +736,6 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 }
 
 @media (max-width:920px){
-  .grid-2{ grid-template-columns:1fr; }
   .projects{ grid-template-columns:1fr; }
   .plans{ grid-template-columns:1fr; }
   .plan--featured{ order:-1; }
@@ -767,7 +743,6 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
   .promise{ grid-template-columns:1fr; }
 }
 @media (max-width:620px){
-  .grid-4{ grid-template-columns:1fr; }
   .grid-3{ grid-template-columns:1fr; }
   .already{ grid-template-columns:1fr; }
   .already .btn{ grid-column:1; width:100%; }
@@ -857,11 +832,6 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .planinfo[open] summary i::after{ transform:rotate(0); }
 .planinfo[open] summary{ border-bottom:1px solid var(--line); }
 
-.planinfo__grid{
-  display:grid; grid-template-columns:repeat(3,1fr);
-  gap:2rem; padding:1.8rem 1.7rem 2rem;
-}
-.planinfo__col + .planinfo__col{ border-left:1px solid var(--line); padding-left:2rem; }
 .planinfo h3{
   font-family:var(--sans); font-size:.76rem; font-weight:600; letter-spacing:.14em;
   text-transform:uppercase; color:var(--accent); margin-bottom:1.2rem;
@@ -953,8 +923,6 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 
 /* ---------- 29. Responsive fuer die neuen Bausteine ---------- */
 @media (max-width:1080px){
-  .planinfo__grid{ grid-template-columns:1fr 1fr; }
-  .planinfo__col:nth-child(3){ grid-column:1/-1; }
   .voices{ grid-template-columns:1fr; }
 }
 @media (max-width:920px){
@@ -963,8 +931,6 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
   .about__text p, .about__text .lead{ max-width:none; }
 }
 @media (max-width:760px){
-  .planinfo__grid{ grid-template-columns:1fr; gap:1.8rem; padding:1.4rem 1.4rem 1.7rem; }
-  .planinfo__col + .planinfo__col{ border-left:0; border-top:1px solid var(--line); padding-left:0; padding-top:1.8rem; }
   .planinfo summary{ padding:1.15rem 1.4rem; font-size:.98rem; }
   .herowho{ max-width:none; }
 }
