@@ -42,17 +42,6 @@ Stockfotos — Einzelheiten im Abschnitt zu `demo-restaurant/`.
 | `detail-tuecher.jpg` | Galerie | `photo-1540555700478-4be289fbecef` |
 | `gutschein.jpg` | Gutschein-Banner | `photo-1583416750470-965b2707b355` |
 
-**Reserve** (`demo-massage/assets/img-reserve/`) — aktuell nicht eingebunden,
-kann bei Bedarf getauscht werden:
-
-| Datei | Motiv | Quelle |
-|---|---|---|
-| `detail-oel.jpg` | Hände mit ätherischem Öl | `photo-1515377905703-c4788e51af15` |
-| `raum-warm.jpg` | Behandlungsraum im Abendlicht | `photo-1611920630418-f587fdc3bf94` |
-
-Die vollständige Bild-URL lautet jeweils:
-`https://images.unsplash.com/<Kennung>`
-
 ---
 
 ## Verwendete Bilder — `demo-thai/assets/img/`

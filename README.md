@@ -497,7 +497,7 @@ assets/
 
 demo-massage/             Beispielwebsite AURELIA
 ├── index.html  impressum.html  datenschutz.html
-└── assets/css · js · fonts · img (13 Bilder) · img-reserve (2 Bilder)
+└── assets/css · js · fonts · img (13 Bilder)
 
 demo-thai/                Beispielwebsite SABAI
 ├── index.html  impressum.html  datenschutz.html
