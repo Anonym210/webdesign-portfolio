@@ -165,33 +165,51 @@
     var kopf = block.querySelector('summary');
     if (!kopf) { return; }
     var lauf = null;
+    var zielOffen = block.open;   // wohin die laufende Bewegung will
 
     kopf.addEventListener('click', function (ev) {
       ev.preventDefault();
-      if (lauf) { lauf.cancel(); }
+
+      /* Die Hoehe messen, solange die alte Bewegung noch laeuft: cancel()
+         setzt die Huelle sofort auf ihr natuerliches Mass zurueck, danach
+         waere der Messwert die volle Hoehe und die neue Bewegung wuerde
+         von dort losspringen. */
+      var jetzt = null;
+      if (lauf) {
+        jetzt = huelle.getBoundingClientRect().height;
+        lauf.cancel();
+        lauf = null;
+      } else {
+        /* Laeuft nichts, steht die Wahrheit im DOM. Wichtig, weil main.js
+           den Paketblock auf breiten Schirmen von aussen aufklappt. */
+        zielOffen = block.open;
+      }
+
+      zielOffen = !zielOffen;
 
       // Nur waehrend der Bewegung abschneiden. Danach wieder frei,
       // sonst kappt die Huelle die Schatten der Karten.
       huelle.style.overflow = 'hidden';
 
-      var von, bis;
-      if (!block.open) {
-        block.open = true;                    // erst oeffnen, dann messen
-        von = 0;
-        bis = huelle.scrollHeight;
-      } else {
-        von = huelle.getBoundingClientRect().height;
-        bis = 0;
-      }
+      if (zielOffen) { block.open = true; }   // offen, damit messbar
+
+      var voll = Math.max(huelle.scrollHeight, 1);
+      var von = jetzt !== null ? jetzt
+              : (zielOffen ? 0 : huelle.getBoundingClientRect().height);
+      var bis = zielOffen ? voll : 0;
+
+      /* Die Dauer richtet sich nach dem verbleibenden Weg. Sonst braucht
+         ein Klick mitten in der Bewegung genauso lange wie einer aus dem
+         Stand, obwohl kaum noch Strecke uebrig ist. */
+      var dauer = Math.max(120, Math.round((zielOffen ? 480 : 330) * Math.abs(bis - von) / voll));
 
       lauf = huelle.animate(
         { height: [von + 'px', bis + 'px'] },
-        { duration: bis ? 480 : 330, easing: 'cubic-bezier(.16,1,.3,1)' }
+        { duration: dauer, easing: 'cubic-bezier(.16,1,.3,1)' }
       );
       lauf.onfinish = function () {
-        huelle.style.height = '';
         huelle.style.overflow = '';
-        if (!bis) { block.open = false; }      // erst am Ende zuklappen
+        if (!zielOffen) { block.open = false; }   // erst am Ende zuklappen
         lauf = null;
       };
     });
