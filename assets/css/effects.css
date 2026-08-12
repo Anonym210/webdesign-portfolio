@@ -376,6 +376,34 @@
   .pi.is-in[open] .pi__karte--hell li svg path{ animation:none; stroke-dashoffset:0; }
 }
 
+/* ---------- 12. Betreuung nach dem Livegang ----------
+   Die Hoehe der Karte faehrt ueber effects.js Abschnitt 9 weich auf, dort
+   laeuft dieselbe Mechanik wie beim Block darunter. Hier kommen die vier
+   Zeilen darin gestaffelt nach, damit der Inhalt aufgebaut wird statt als
+   fertiger Block zu erscheinen. Kuerzer getaktet als in der hellen Karte
+   weiter unten, weil es weniger Zeilen sind und der Block sonst nachhinkt.
+
+   Anders als dort haengt die Bewegung nicht an .is-in: die Karte klappt
+   erst auf Klick auf, sie ist zu diesem Zeitpunkt also ohnehin im Bild. */
+.care[open] li{
+  animation:careZeile .45s var(--ease-hero) both;
+  animation-delay:calc(var(--i) * 60ms + 60ms);
+}
+@keyframes careZeile{ from{ opacity:0; transform:translateY(9px); } to{ opacity:1; transform:none; } }
+
+/* Der Haken wird gezeichnet, wie in der hellen Karte weiter unten.
+   piHaken steht in Abschnitt 11. */
+.care[open] li svg path{
+  stroke-dasharray:26; stroke-dashoffset:26;
+  animation:piHaken .45s var(--ease) both;
+  animation-delay:calc(var(--i) * 60ms + 150ms);
+}
+
+@media (prefers-reduced-motion:reduce){
+  .care[open] li{ animation:none; }
+  .care[open] li svg path{ animation:none; stroke-dashoffset:0; }
+}
+
 /* Die WebP-Huelle darf das Layout nicht veraendern: mit
    display:contents bleibt das <img> Kind seines urspruenglichen
    Elternteils, alle Bildregeln greifen unveraendert weiter. */

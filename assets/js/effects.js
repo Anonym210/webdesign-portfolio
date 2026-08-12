@@ -147,16 +147,23 @@
   }
 
   /* ---------------------------------------------------------------------
-     9. Der Block "Was genau enthalten ist und was nicht" faehrt beim
-     Aufklappen weich auf statt zu springen. Die Zeilen darin kommen
-     gestaffelt herein, das erledigt effects.css ueber die Klasse [open].
-     Ohne Javascript oder bei reduzierter Bewegung klappt das <details>
-     ganz normal und sofort auf.
+     9. Aufklappbare Bloecke fahren beim Oeffnen weich in der Hoehe auf,
+     statt zu springen. Betrifft zwei Stellen im Paketbereich: die Karte
+     "Nach dem Livegang: Betreuung" und darunter den Block "Was genau
+     enthalten ist und was nicht". Beide sind <details>, beide bekommen
+     dieselbe Bewegung, damit sich die Seite an einer Stelle nicht anders
+     anfuehlt als an der anderen.
+
+     Die Zeilen darin kommen gestaffelt herein, das erledigt effects.css
+     ueber die Klasse [open], Abschnitte 11 und 12. Ohne Javascript oder
+     bei reduzierter Bewegung klappen die Bloecke ganz normal und sofort
+     auf; <details> braucht kein Skript.
      --------------------------------------------------------------------- */
-  var pi = document.querySelector('.pi');
-  if (pi && !reduce && typeof pi.animate === 'function') {
-    var kopf = pi.querySelector('summary');
-    var huelle = pi.querySelector('.pi__wrap');
+  function weichAufklappen(block, huelle) {
+    if (!block || !huelle || reduce || typeof block.animate !== 'function') { return; }
+
+    var kopf = block.querySelector('summary');
+    if (!kopf) { return; }
     var lauf = null;
 
     kopf.addEventListener('click', function (ev) {
@@ -168,8 +175,8 @@
       huelle.style.overflow = 'hidden';
 
       var von, bis;
-      if (!pi.open) {
-        pi.open = true;                       // erst oeffnen, dann messen
+      if (!block.open) {
+        block.open = true;                    // erst oeffnen, dann messen
         von = 0;
         bis = huelle.scrollHeight;
       } else {
@@ -184,11 +191,17 @@
       lauf.onfinish = function () {
         huelle.style.height = '';
         huelle.style.overflow = '';
-        if (!bis) { pi.open = false; }        // erst am Ende zuklappen
+        if (!bis) { block.open = false; }      // erst am Ende zuklappen
         lauf = null;
       };
     });
   }
+
+  var pi = document.querySelector('.pi');
+  if (pi) { weichAufklappen(pi, pi.querySelector('.pi__wrap')); }
+
+  var care = document.querySelector('.care');
+  if (care) { weichAufklappen(care, care.querySelector('.care__inhalt')); }
 
   /* ---------------------------------------------------------------------
      10. Gleitende Markierung im Kopfmenue.
