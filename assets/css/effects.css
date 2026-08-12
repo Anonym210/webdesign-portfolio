@@ -409,18 +409,6 @@
    Elternteils, alle Bildregeln greifen unveraendert weiter. */
 picture{ display:contents; }
 
-/* Der kleine Portraitkreis im Hero holt sein Bild als Hintergrund aus
-   style.css und damit als JPEG. Ohne diese Zeilen laedt die Seite das
-   Portrait zweimal: einmal als WebP fuer das <picture> im Ueber-mich-Teil
-   und einmal als JPEG hierfuer. image-set nimmt WebP, wo es geht; wo
-   nicht, bleibt die Angabe aus style.css stehen. */
-.herowho__img{
-  background-image:-webkit-image-set(url("../img/portrait.webp") type("image/webp"),
-                                     url("../img/portrait.jpg")  type("image/jpeg"));
-  background-image:image-set(url("../img/portrait.webp") type("image/webp"),
-                             url("../img/portrait.jpg")  type("image/jpeg"));
-}
-
 /* Die Vorschauen der Beispielwebsites sind Standbilder statt eingebetteter
    Seiten. style.css positioniert dort ein <iframe> absolut; fuer das Bild
    braucht es nur diese Zeile. Der abdeckende Link darueber bleibt

@@ -10,6 +10,9 @@
   --bg:          #FAF8F5;
   --bg-alt:      #F3EFF4;
   --line:        #E5DFE7;
+  /* Eine Stufe kraeftiger als --line. Nur fuer Elemente, die allein an
+     ihrer Kontur erkennbar sein muessen, etwa der helle Knopf. */
+  --line-strong: #B7A9C2;
   --ink:         #1F1826;
   --ink-soft:    #5C5266;
   /* Nicht weiter aufhellen: #726B7E erreicht auf --bg gerade die 4.5:1
@@ -115,8 +118,16 @@ p:last-child{ margin-bottom:0; }
 .btn:active{ transform:translateY(0); }
 .btn--accent{ --bg:var(--accent); --bd:var(--accent); }
 .btn--accent:hover{ --bg:var(--accent-deep); --bd:var(--accent-deep); }
-.btn--ghost{ --bg:transparent; --fg:var(--ink); --bd:var(--line); }
-.btn--ghost:hover{ --bg:var(--ink); --fg:#fff; --bd:var(--ink); }
+/* Auf der warmen Grundflaeche verschwand der helle Knopf fast: transparent
+   mit --line als Kontur war kaum vom Hintergrund zu unterscheiden. Jetzt
+   steht er als eigene weisse Flaeche darauf, mit kraeftigerer Kontur und
+   einem weichen Schatten. Beim Hover uebernimmt .btn:hover den groesseren
+   Schatten, deshalb steht hier nur der kleine. */
+.btn--ghost{ --bg:var(--white); --fg:var(--ink); --bd:var(--line-strong); box-shadow:var(--sh-sm); }
+/* Beim Hover fuellt sich der Knopf nur zart violett. Frueher wurde er
+   schwarz; das zog mehr Aufmerksamkeit als der Hauptknopf daneben,
+   obwohl er die Nebenhandlung ist. */
+.btn--ghost:hover{ --bg:var(--accent-soft); --fg:var(--accent-deep); --bd:var(--accent); }
 .btn--light{ --bg:#fff; --fg:var(--ink); --bd:#fff; }
 .btn--outline-light{ --bg:transparent; --fg:#fff; --bd:rgba(255,255,255,.35); }
 .btn--outline-light:hover{ --bg:#fff; --fg:var(--ink); --bd:#fff; }
@@ -247,9 +258,11 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .hero h1 em{ font-style:italic; color:var(--accent); }
 .hero__sub{ max-width:46ch; margin-top:1.4rem; font-size:clamp(1.04rem,1rem + .3vw,1.18rem); color:var(--ink-soft); }
 .hero__cta{ display:flex; flex-wrap:wrap; gap:.75rem; margin-top:2.2rem; }
-.hero__facts{ display:grid; gap:.55rem; margin-top:2rem; font-size:.92rem; color:var(--ink-soft); }
-.hero__facts span{ display:inline-flex; align-items:center; gap:.5rem; }
-.hero__facts svg{ color:var(--accent); flex:none; }
+/* Die deutschen Beschriftungen sind rund 40 px breiter als die englischen
+   und franzoesischen und brachen dadurch als einzige auf zwei Zeilen um.
+   Etwas weniger Innenabstand reicht, damit alle drei Sprachen bis zum
+   Umbruch bei 1140 px nebeneinander stehen. */
+.hero__cta .btn--lg{ padding-inline:1.75rem; }
 
 /* Browser-Mockup im Hero */
 .showcase{ position:relative; z-index:1; }
@@ -279,6 +292,14 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .livepreview{ position:relative; overflow:hidden; }
 .livepreview__veil{ position:absolute; inset:0; cursor:pointer; }
 .hero .livepreview{ aspect-ratio:4/3.4; }
+/* Die Textspalte ist hoeher als das Mockup. Zentriert stand der Kasten
+   deshalb so tief, dass seine Unterkante auf Laptop-Bildschirmen unter dem
+   Falz verschwand. Er haengt jetzt oben an der Zeile und rueckt nur so weit
+   nach unten, wie das Fenster hergibt: der Kasten ist gut 530 px hoch, also
+   bleibt erst ab etwa 690 px Fensterhoehe Luft zum Verschieben, hoechstens
+   6.5rem. So steht er ruhig neben dem Text und ist trotzdem von Anfang an
+   ganz zu sehen. */
+.hero .showcase{ align-self:start; margin-top:clamp(1.5rem,100vh - 690px,6.5rem); }
 
 /* ---------- 7. Logo-/Branchen-Leiste ---------- */
 .branches{ padding:2.6rem 0; border-block:1px solid var(--line); background:var(--white); }
@@ -644,15 +665,11 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 
 .js .hero .eyebrow,
 .js .hero__sub,
-.js .hero__cta,
-.js .hero__facts,
-.js .herowho{ animation:heroRise .9s var(--ease-hero) both; }
+.js .hero__cta{ animation:heroRise .9s var(--ease-hero) both; }
 
 .js .hero .eyebrow{ animation-delay:.02s; }
 .js .hero__sub   { animation-delay:.42s; }
 .js .hero__cta   { animation-delay:.50s; }
-.js .hero__facts { animation-delay:.57s; }
-.js .herowho     { animation-delay:.64s; }
 
 /* Die Wortmaske schneidet mit clip-path statt mit overflow:hidden. Das ist
    hier entscheidend: overflow:hidden wuerde die Grundlinie des Wortes
@@ -775,6 +792,9 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 @media (max-width:1080px){
   .hero__grid{ grid-template-columns:1fr; gap:2.5rem; }
   .hero .livepreview{ aspect-ratio:16/10; }
+  /* Einspaltig steht das Mockup ohnehin unter dem Text, der Abstand kommt
+     dann aus dem Grid-Abstand. */
+  .hero .showcase{ margin-top:0; }
   .already{ grid-template-columns:auto 1fr; row-gap:1.1rem; }
   .already .btn{ grid-column:2; justify-self:start; }
 }
@@ -792,7 +812,7 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 /* Auf dem Handy faellt das Browser-Mockup im Hero weg: nach einem Wisch
    folgen ohnehin die Referenzkacheln mit derselben Beispielseite, das wirkte
    doppelt. Die Grenze sind dieselben 720 px wie bei der festen Kontaktleiste
-   (Abschnitt 28). Damit das Bild dort gar nicht erst geladen wird, steht im
+   (Abschnitt 27). Damit das Bild dort gar nicht erst geladen wird, steht im
    Markup zusaetzlich eine leere Bildquelle fuer Breiten bis 720 px. */
 @media (max-width:720px){
   .hero .showcase{ display:none; }
@@ -841,25 +861,7 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
   .reveal{ opacity:1; transform:none; }
 }
 
-/* ---------- 23. Wer dahintersteckt (Zeile im Hero) ---------- */
-.herowho{
-  display:flex; align-items:center; gap:.9rem; margin-top:2.2rem;
-  padding:.85rem 1.4rem .85rem .85rem; max-width:46ch;
-  background:var(--white); border:1px solid var(--line); border-radius:100px;
-  box-shadow:var(--sh-sm);
-  transition:border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
-}
-.herowho:hover{ border-color:var(--accent); transform:translateY(-2px); box-shadow:var(--sh-md); }
-.herowho__img{
-  width:46px; height:46px; border-radius:50%; flex:none;
-  background:var(--accent-soft) url("../img/portrait.jpg") center 15% / cover no-repeat;
-  color:var(--accent-deep);
-  display:grid; place-items:center; font-weight:600; font-size:.88rem; letter-spacing:.04em;
-}
-.herowho b{ display:block; font-weight:600; font-size:.95rem; color:var(--ink); }
-.herowho > span{ font-size:.85rem; color:var(--ink-soft); line-height:1.45; }
-
-/* ---------- 24. Ueber mich ---------- */
+/* ---------- 23. Ueber mich ---------- */
 .about{ display:grid; grid-template-columns:.85fr 1.15fr; gap:clamp(2rem,4.5vw,4.5rem); align-items:center; }
 .about__photo{ position:relative; margin:0; display:grid; gap:1.1rem; }
 .about__portrait{
@@ -876,7 +878,7 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .about__facts span{ color:var(--ink-soft); font-size:.95rem; }
 .about__cta{ display:flex; flex-wrap:wrap; gap:.75rem; margin-top:2rem; }
 
-/* ---------- 25. Paket-Details ----------
+/* ---------- 24. Paket-Details ----------
    Ein <details>-Element: auf dem Handy eingeklappt, ab 761 px von main.js
    geoeffnet. So beantwortet die Seite alle Preisfragen, ohne dass mobile
    Besucher an einer Textwand vorbeiscrollen muessen. */
@@ -917,7 +919,7 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 }
 .planinfo b{ color:var(--ink); font-weight:600; }
 
-/* ---------- 26. Kundenstimmen ---------- */
+/* ---------- 25. Kundenstimmen ---------- */
 .voices{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
 .voice{
   background:var(--white); border:1px solid var(--line); border-radius:var(--r-xl);
@@ -931,7 +933,7 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .voice figcaption b{ display:block; font-weight:600; font-size:.95rem; color:var(--ink); }
 .voice figcaption span{ font-size:.86rem; color:var(--ink-mute); }
 
-/* ---------- 27. Kontaktkasten und Formularfeinheiten ---------- */
+/* ---------- 26. Kontaktkasten und Formularfeinheiten ---------- */
 .ctbox{
   border:1px solid var(--line); border-radius:var(--r-lg);
   padding:1.4rem 1.5rem; background:var(--white);
@@ -942,7 +944,7 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .cta__row{ display:flex; flex-wrap:wrap; gap:.75rem; justify-content:center; margin-top:2rem; }
 .cta__row .btn{ margin-top:0; }
 
-/* ---------- 28. Feste Kontaktleiste auf dem Handy ----------
+/* ---------- 27. Feste Kontaktleiste auf dem Handy ----------
    Erscheint erst unter 720 px. Damit sie nichts verdeckt, bekommt die Seite
    unten zusaetzlichen Abstand und der Nach-oben-Knopf weicht. */
 .mobilebar{ display:none; }
@@ -991,7 +993,7 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
   .totop{ display:none; }
 }
 
-/* ---------- 29. Responsive fuer die neuen Bausteine ---------- */
+/* ---------- 28. Responsive fuer die neuen Bausteine ---------- */
 @media (max-width:1080px){
   .voices{ grid-template-columns:1fr; }
 }
@@ -1002,14 +1004,13 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 }
 @media (max-width:760px){
   .planinfo summary{ padding:1.15rem 1.4rem; font-size:.98rem; }
-  .herowho{ max-width:none; }
 }
 @media (max-width:620px){
   .cta__row .btn{ flex:1 1 100%; }
   .about__cta .btn{ flex:1 1 100%; }
 }
 
-/* ---------- 24. Seitenuebergaenge ----------
+/* ---------- 29. Seitenuebergaenge ----------
    Beim Wechsel zwischen zwei Seiten dieser Domain blendet der Browser die
    alte Ansicht aus und die neue ein, statt weiss aufzublitzen. Das braucht
    nur diese Regel, und zwar in BEIDEN beteiligten Dokumenten — weil alle
