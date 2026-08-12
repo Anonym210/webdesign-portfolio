@@ -129,6 +129,16 @@ p:last-child{ margin-bottom:0; }
    obwohl er die Nebenhandlung ist. */
 .btn--ghost:hover{ --bg:var(--accent-soft); --fg:var(--accent-deep); --bd:var(--accent); }
 .btn--light{ --bg:#fff; --fg:var(--ink); --bd:#fff; }
+/* Der weisse Knopf steht immer auf dunklem Grund, dort ist der dunkle
+   Schatten aus .btn:hover nicht zu sehen; ohne eigene Regel passierte
+   beim Hover sichtbar nichts. Er faerbt sich jetzt zart violett wie der
+   helle Knopf und bekommt einen weichen Schein, der auf Dunkel wirkt.
+   Zwei unscharfe Lagen ohne Streuung: mit Streuung haette der Schein
+   eine harte Kante und saehe aus wie ein Umriss, nicht wie Licht. */
+.btn--light:hover{
+  --bg:var(--accent-soft); --fg:var(--accent-deep); --bd:var(--accent-soft);
+  box-shadow:0 0 14px rgba(195,166,234,.34), 0 0 38px rgba(195,166,234,.22);
+}
 .btn--outline-light{ --bg:transparent; --fg:#fff; --bd:rgba(255,255,255,.35); }
 .btn--outline-light:hover{ --bg:#fff; --fg:var(--ink); --bd:#fff; }
 .btn--sm{ padding:.65rem 1.25rem; font-size:.86rem; }
@@ -385,6 +395,10 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
   transition:transform .45s var(--ease), box-shadow .45s var(--ease);
 }
 .plan:hover{ transform:translateY(-6px); box-shadow:var(--sh-md); }
+/* Die empfohlene Karte hat im Ruhezustand schon den grossen Schatten.
+   Ohne diese Zeile wuerde .plan:hover ihn auf den mittleren zurueck-
+   setzen, die Karte wirkte beim Hover also flacher statt naeher. */
+.plan--featured:hover{ box-shadow:var(--sh-lg); }
 .plan--featured{ background:var(--dark); color:rgba(255,255,255,.72); border-color:var(--dark); box-shadow:var(--sh-lg); }
 .plan--featured h3{ color:#fff; }
 .plan__flag{
