@@ -475,8 +475,13 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
 .care summary i::after{ transform:rotate(90deg); }
 .care[open] summary i::after{ transform:rotate(0); }
 .care[open] summary{ border-bottom:1px solid var(--line); }
-.care__inhalt{ padding:1.4rem 1.8rem 1.6rem; }
-.care ul{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:.65rem 1.8rem; }
+/* Der Abstand nach oben und unten sitzt bewusst an der Liste, nicht an der
+   Huelle: die Huelle ist das Element, dessen Hoehe beim Zuklappen auf 0
+   faehrt, und mit box-sizing:border-box kann sie nie kleiner werden als ihr
+   eigenes Polster. Mit Polster blieb sie bei 48 px stehen und sprang den
+   Rest. Seitlich stoert es nicht, das zaehlt nicht zur Hoehe. */
+.care__inhalt{ padding-inline:1.8rem; }
+.care ul{ list-style:none; margin:0; padding:1.4rem 0 1.6rem; display:grid; grid-template-columns:1fr 1fr; gap:.65rem 1.8rem; }
 .care li{ display:flex; gap:.7rem; align-items:flex-start; font-size:.95rem; color:var(--ink-soft); }
 .care li svg{ flex:none; margin-top:.3rem; color:var(--accent); }
 /* Der Zusatz hinter dem Betrag. Steht bewusst in der Kopfzeile und nicht
@@ -848,8 +853,8 @@ body.is-locked .totop{ opacity:0; visibility:hidden; }
      erklaert, was die Zeile nicht schon sagt. */
   .care summary{ padding:1.2rem 1.3rem; gap:.9rem; }
   .care__ico{ display:none; }
-  .care__inhalt{ padding:1.2rem 1.3rem 1.4rem; }
-  .care ul{ grid-template-columns:1fr; }
+  .care__inhalt{ padding-inline:1.3rem; }
+  .care ul{ grid-template-columns:1fr; padding-block:1.2rem 1.4rem; }
   .flow{ grid-template-columns:1fr; }
   .flow__item::after{ display:none; }
   .form__grid{ grid-template-columns:1fr; }
