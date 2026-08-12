@@ -59,7 +59,8 @@ rechtlich massgebend.
 - Bezahlung: keine Anzahlung; eine Rechnung erst nach Livegang, 30 Tage Frist,
   Banküberweisung oder TWINT. Ausstieg nach dem ersten Entwurf ohne Rechnung.
 - Laufende Kosten: Domain/Hosting ca. CHF 8–20/Monat direkt beim Anbieter;
-  optionales Betreuungspaket ab CHF 29.–/Monat, monatlich kündbar.
+  optionales Betreuungspaket für CHF 29.–/Monat inkl. einer Stunde für
+  Änderungen, monatlich kündbar. Änderungen ohne Paket: CHF 30.–/Stunde.
 - Eigentum: Domain, Hosting, Zugänge und Dateien gehören dem Kunden.
 - Cookie-Banner: standardmässig nicht nötig, kein Tracking, keine
   Werbedienste, keine extern geladenen Schriften.

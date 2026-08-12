@@ -133,7 +133,7 @@ eingebettet — in Chrome und Edge funktioniert das auch per Doppelklick (getest
 | `index.html` | Der Markenname **Envy Web** ist bereits überall eingetragen. Falls Sie ihn später ändern: „Envy Web“, „ENVY“ und den Logo-Buchstaben „E“ ersetzen |
 | `index.html` | Telefon **076 522 05 25**, WhatsApp sowie Ort und Region (Dübendorf / Grossraum Zürich) sind eingetragen |
 | `index.html` | Falls die Nummer wechselt: `tel:+41765220525` und `https://wa.me/41765220525` anpassen (WhatsApp-Format: `41` + Nummer ohne führende 0) |
-| `index.html` | Abschnitt **Pakete**: Preise prüfen. Eingetragen sind CHF 890.– / CHF 1'690.– / ab CHF 2'900.– sowie Betreuung ab CHF 29.–/Monat — marktübliche Werte für Einzelunternehmer in der Schweiz |
+| `index.html` | Abschnitt **Pakete**: Preise prüfen. Eingetragen sind CHF 890.– / CHF 1'690.– / ab CHF 2'900.–, Betreuung CHF 29.–/Monat (1 Std. inkl.) und CHF 30.–/Stunde für Änderungen ohne Paket. Bewusst am unteren Rand des Schweizer Markts, solange noch keine Referenzen mit Kundenstimmen live sind |
 | `impressum.html` | Adresse ist eingetragen (**Pflicht** nach Art. 3 Abs. 1 lit. s UWG). Es ist hinterlegt, dass keine MWST-Pflicht besteht |
 | `datenschutz.html` | Vollständig ausgefüllt: Abschnitt 1 (Adresse), Abschnitt 7 (Hoster: GitHub Pages). Der Text richtet sich nach revDSG und nennt Formspree als Auftragsbearbeiter |
 | Favicon / Logo | Der Buchstabe „E“ steht an drei Stellen: im `<link rel="icon">` im Kopf und zweimal als `<span class="brand__mark">E</span>` |
@@ -252,7 +252,7 @@ einzeln aufnimmt.
 
 **Was jetzt dreifach existiert — bei jeder Änderung alle drei anfassen:**
 
-- Preise (890 / 1'690 / 2'900, Betreuung 29.–, Sprache 390.–)
+- Preise (890 / 1'690 / 2'900, Betreuung 29.– mit 1 Std., Stundensatz 30.–, Sprache 390.–)
 - Telefonnummer, WhatsApp-Link, E-Mail-Adresse
 - alle Texte der Startseite
 - die FAQ — **und zwar doppelt je Sprache:** sichtbar *und* als `FAQPage`-Strukturdaten
