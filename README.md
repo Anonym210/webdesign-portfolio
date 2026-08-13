@@ -14,6 +14,8 @@
                         die Demos regeln ihr "noindex" selbst (siehe unten)
 📄 404.html           → eigene Fehlerseite (GitHub Pages nutzt sie automatisch)
 📄 sitemap.xml
+📄 favicon.svg        → Seitensymbol; jede Demo hat ihr eigenes im Unterordner
+📄 favicon.ico        → dasselbe Symbol als Rueckfallebene (16/32/48 Pixel)
 📄 CREDITS.md         → Bildquellen und Lizenzen
 ```
 
@@ -487,6 +489,9 @@ en/                       dieselben drei Seiten auf Englisch (nutzen ../assets/)
 fr/                       dieselben drei Seiten auf Französisch
 uebersicht.html           interne Projektübersicht, noindex
 robots.txt  sitemap.xml  llms.txt  .nojekyll
+favicon.svg  favicon.ico   Seitensymbol als echte Dateien — als data:-URI im
+                          HTML kann Google es nicht crawlen und zeigt statt-
+                          dessen eine graue Weltkugel im Suchergebnis
 assets/
 ├── css/style.css          Alle Stile, oben in :root die Farben
 ├── css/fonts.css          Lokale @font-face-Regeln
