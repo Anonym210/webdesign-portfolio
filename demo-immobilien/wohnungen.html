@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wohnungen mieten | ARVEN Immobilien Musterstadt</title>
+<meta name="description" content="Freie Mietwohnungen aus dem eigenen Bestand von ARVEN Immobilien: sanierte Alt- und Neubauwohnungen in Musterstadt und Musterdorf, direkt bei der Eigentümerin.">
+<meta name="theme-color" content="#1A2429">
+<!-- Beispielwebsite: darf nicht wie ein echtes Unternehmen in der Suche erscheinen -->
+<meta name="robots" content="noindex, nofollow">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wohnungen aus dem eigenen Bestand.">
+<meta property="og:description" content="Sanierte Mietwohnungen in Musterstadt und Umgebung, vermietet ohne Verwaltung dazwischen.">
+<meta property="og:image" content="https://envyweb.ch/demo-immobilien/assets/img/g-wohnen-hell.jpg">
+<meta property="og:locale" content="de_CH">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://envyweb.ch/demo-immobilien/wohnungen.html">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<!-- Schriften: lokal eingebunden, keine Verbindung zu Google -->
+<link rel="preload" href="assets/fonts/instrumentserif-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrumentserifi-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrumentsans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css?v=20260816h">
+
+<link rel="stylesheet" href="assets/css/style.css?v=20260816h">
+
+<!-- Laeuft die Seite als Vorschau in einem Rahmen? Diese Pruefung muss VOR
+     dem ersten Rendern stehen, sonst blitzt die Kennzeichnung kurz auf. -->
+<script>
+  (function () {
+    var e = true;
+    try { e = window.self !== window.top; } catch (x) { e = true; }
+    if (e) document.documentElement.className += ' embedded';
+  })();
+  document.documentElement.className += ' js';
+  window.addEventListener('error', function () {
+    document.documentElement.className = document.documentElement.className.replace(/\bjs\b/, '');
+  });
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Zum Inhalt springen</a>
+
+<!-- ===================== KOPF ===================== -->
+<header class="header" id="header">
+  <div class="wrap header__in">
+    <a class="brand" href="index.html" aria-label="Zur Startseite von ARVEN Immobilien">
+      <span class="brand__mark" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.6"><path d="M12 27 24 16l12 11" stroke-linejoin="miter"/><path d="M12 34h24"/></svg>
+      </span>
+      <span class="brand__txt">
+        <span class="brand__name">ARVEN</span>
+        <span class="brand__sub">Immobilien</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="projekte.html">Projekte</a>
+      <a href="wohnungen.html" aria-current="page">Wohnungen</a>
+      <a href="journal.html">Journal</a>
+      <a href="ueber-uns.html">Über uns</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+
+    <a class="btn btn--sm" href="verkaufen.html">Liegenschaft anbieten</a>
+
+    <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobilemenu">
+      <i></i><i></i>
+    </button>
+  </div>
+</header>
+
+<nav class="mobilemenu" id="mobilemenu" aria-label="Mobile Navigation">
+  <a href="index.html">Startseite</a>
+  <a href="projekte.html">Projekte</a>
+  <a href="wohnungen.html" aria-current="page">Wohnungen</a>
+  <a href="journal.html">Journal</a>
+  <a href="ueber-uns.html">Über uns</a>
+  <a href="kontakt.html">Kontakt</a>
+  <a class="btn btn--full" href="verkaufen.html">Liegenschaft anbieten</a>
+</nav>
+
+<main id="main">
+
+<!-- ===================== SEITENKOPF ===================== -->
+<section class="pagehero pagehero--rule pagehero--zwei">
+  <span class="pagehero__ghost" aria-hidden="true">31</span>
+  <div class="wrap">
+    <p class="eyebrow rise">Wohnungen mieten</p>
+    <h1 class="rise" data-d="1">Vermietet von<br>der <em>Eigentümerin.</em></h1>
+    <p class="lead rise" data-d="1">
+      Einunddreissig Wohnungen in unserem Bestand, alle in Häusern, die wir
+      selbst saniert haben. Keine Verwaltung dazwischen: Wer hier mietet,
+      hat dieselbe Ansprechpartnerin wie beim Wasserhahn, der tropft.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== BESTAND ===================== -->
+<section class="band">
+  <div class="wrap">
+    <div class="grid-head">
+      <div>
+        <p class="eyebrow rise">Aktuell ausgeschrieben</p>
+        <h2 class="rise" data-d="1">Fünf Wohnungen,<br>drei davon <em>frei.</em></h2>
+      </div>
+      <div class="rise" data-d="1">
+        <div class="filter" role="group" aria-label="Wohnungen nach Zimmerzahl filtern">
+          <button data-filter="alle" aria-pressed="true">Alle</button>
+          <button data-filter="z25" aria-pressed="false">2.5 Zimmer</button>
+          <button data-filter="z35" aria-pressed="false">3.5 Zimmer</button>
+          <button data-filter="z45" aria-pressed="false">4.5 Zimmer</button>
+        </div>
+        <p class="filter__stand" id="filterStand" aria-live="polite"
+           data-einheit-ein="Wohnung" data-einheit-mehr="Wohnungen">5 Wohnungen</p>
+      </div>
+    </div>
+
+        <ul class="oliste rise">
+      <li data-status="z35">
+        <a class="oliste__link" href="wohnung-kirchweg.html">
+          <span class="oliste__nr" aria-hidden="true">01</span>
+          <span class="oliste__ort">Musterstadt · Altstadt</span>
+          <span class="oliste__tit">3.5 Zimmer am Kirchweg</span>
+          <span class="oliste__daten">
+            <span class="oliste__spec">3.5 Zimmer · 84 m² · saniert 2024</span>
+            <span class="oliste__note">Frei ab 1. Oktober 2026</span>
+          </span>
+          <span class="oliste__wert"><small>CHF</small>1'980<small class="je">/Mt.</small></span>
+          <span class="oliste__stand">Frei ab Oktober</span>
+          <span class="oliste__pfeil"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+        <picture class="oliste__bild"><source srcset="assets/img/g-wohnen-grau-600.avif 600w, assets/img/g-wohnen-grau-1200.avif 1200w, assets/img/g-wohnen-grau.avif 1800w" type="image/avif" sizes="(max-width:860px) 92vw, 340px"><source srcset="assets/img/g-wohnen-grau-600.webp 600w, assets/img/g-wohnen-grau-1200.webp 1200w, assets/img/g-wohnen-grau.webp 1800w" type="image/webp" sizes="(max-width:860px) 92vw, 340px"><img src="assets/img/g-wohnen-grau.jpg" alt="Wohnraum mit Sofa, hellen Vorhängen und dunklem Riemenboden" loading="lazy" width="1800" height="1200" srcset="assets/img/g-wohnen-grau-600.jpg 600w, assets/img/g-wohnen-grau-1200.jpg 1200w, assets/img/g-wohnen-grau.jpg 1800w" sizes="(max-width:860px) 92vw, 340px"></picture>
+      </li>
+      <li data-status="z45">
+        <a class="oliste__link" href="wohnung-feldweg.html">
+          <span class="oliste__nr" aria-hidden="true">02</span>
+          <span class="oliste__ort">Musterdorf · Zentrum</span>
+          <span class="oliste__tit">4.5 Zimmer Residenz Feldweg</span>
+          <span class="oliste__daten">
+            <span class="oliste__spec">4.5 Zimmer · 112 m² · saniert 2023</span>
+            <span class="oliste__note">Frei ab 1. Dezember 2026</span>
+          </span>
+          <span class="oliste__wert"><small>CHF</small>2'450<small class="je">/Mt.</small></span>
+          <span class="oliste__stand">Frei ab Dezember</span>
+          <span class="oliste__pfeil"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+        <picture class="oliste__bild"><source srcset="assets/img/g-wohnen-leder-600.avif 600w, assets/img/g-wohnen-leder-1200.avif 1200w, assets/img/g-wohnen-leder.avif 1800w" type="image/avif" sizes="(max-width:860px) 92vw, 340px"><source srcset="assets/img/g-wohnen-leder-600.webp 600w, assets/img/g-wohnen-leder-1200.webp 1200w, assets/img/g-wohnen-leder.webp 1800w" type="image/webp" sizes="(max-width:860px) 92vw, 340px"><img src="assets/img/g-wohnen-leder.jpg" alt="Wohnraum mit Ledersofa und raumhoher Verglasung zum Balkon" loading="lazy" width="1800" height="1200" srcset="assets/img/g-wohnen-leder-600.jpg 600w, assets/img/g-wohnen-leder-1200.jpg 1200w, assets/img/g-wohnen-leder.jpg 1800w" sizes="(max-width:860px) 92vw, 340px"></picture>
+      </li>
+      <li data-status="z25">
+        <a class="oliste__link" href="wohnung-lindenhof.html">
+          <span class="oliste__nr" aria-hidden="true">03</span>
+          <span class="oliste__ort">Musterstadt · Lindenhof</span>
+          <span class="oliste__tit">2.5 Zimmer am Lindenhof</span>
+          <span class="oliste__daten">
+            <span class="oliste__spec">2.5 Zimmer · 61 m² · saniert 2026</span>
+            <span class="oliste__note">Frei ab sofort</span>
+          </span>
+          <span class="oliste__wert"><small>CHF</small>1'520<small class="je">/Mt.</small></span>
+          <span class="oliste__stand oliste__stand--sale">Sofort frei</span>
+          <span class="oliste__pfeil"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+        <picture class="oliste__bild"><source srcset="assets/img/g-zimmer-600.avif 600w, assets/img/g-zimmer-1200.avif 1200w, assets/img/g-zimmer.avif 1800w" type="image/avif" sizes="(max-width:860px) 92vw, 340px"><source srcset="assets/img/g-zimmer-600.webp 600w, assets/img/g-zimmer-1200.webp 1200w, assets/img/g-zimmer.webp 1800w" type="image/webp" sizes="(max-width:860px) 92vw, 340px"><img src="assets/img/g-zimmer.jpg" alt="Ruhiger Wohnraum mit weissen Wänden, Sofa und Kommode" loading="lazy" width="1800" height="1200" srcset="assets/img/g-zimmer-600.jpg 600w, assets/img/g-zimmer-1200.jpg 1200w, assets/img/g-zimmer.jpg 1800w" sizes="(max-width:860px) 92vw, 340px"></picture>
+      </li>
+      <li data-status="z35">
+        <span class="oliste__link oliste__link--tot">
+          <span class="oliste__nr" aria-hidden="true">04</span>
+          <span class="oliste__ort">Musterstadt · Buchenweg</span>
+          <span class="oliste__tit">3.5 Zimmer am Buchenweg</span>
+          <span class="oliste__daten">
+            <span class="oliste__spec">3.5 Zimmer · 89 m² · saniert 2024</span>
+            <span class="oliste__note">Warteliste geführt</span><span class="oliste__note">Nicht verfügbar, das Haus steht auf <a href="projekt-buchenweg.html">der Projektseite</a>.</span>
+          </span>
+          <span class="oliste__wert"><small>CHF</small>2'080<small class="je">/Mt.</small></span>
+          <span class="oliste__stand">Vermietet</span>
+          
+        </span>
+        <picture class="oliste__bild"><source srcset="assets/img/g-bad-stein-600.avif 600w, assets/img/g-bad-stein-1200.avif 1200w, assets/img/g-bad-stein.avif 1800w" type="image/avif" sizes="(max-width:860px) 92vw, 340px"><source srcset="assets/img/g-bad-stein-600.webp 600w, assets/img/g-bad-stein-1200.webp 1200w, assets/img/g-bad-stein.webp 1800w" type="image/webp" sizes="(max-width:860px) 92vw, 340px"><img src="assets/img/g-bad-stein.jpg" alt="Bad mit freistehender Wanne und dunklem Feinsteinzeug" loading="lazy" width="1800" height="1200" srcset="assets/img/g-bad-stein-600.jpg 600w, assets/img/g-bad-stein-1200.jpg 1200w, assets/img/g-bad-stein.jpg 1800w" sizes="(max-width:860px) 92vw, 340px"></picture>
+      </li>
+      <li data-status="z45">
+        <span class="oliste__link oliste__link--tot">
+          <span class="oliste__nr" aria-hidden="true">05</span>
+          <span class="oliste__ort">Musterstadt · Halden</span>
+          <span class="oliste__tit">4.5 Zimmer Attika Haldenstrasse</span>
+          <span class="oliste__daten">
+            <span class="oliste__spec">4.5 Zimmer · 118 m² · saniert 2022</span>
+            <span class="oliste__note">Vertrag in Vorbereitung</span><span class="oliste__note">Nicht verfügbar, das Haus steht auf <a href="projekt-halden.html">der Projektseite</a>.</span>
+          </span>
+          <span class="oliste__wert"><small>CHF</small>2'890<small class="je">/Mt.</small></span>
+          <span class="oliste__stand">Reserviert</span>
+          
+        </span>
+        <picture class="oliste__bild"><source srcset="assets/img/g-wohnen-hell-600.avif 600w, assets/img/g-wohnen-hell-1200.avif 1200w, assets/img/g-wohnen-hell.avif 1800w" type="image/avif" sizes="(max-width:860px) 92vw, 340px"><source srcset="assets/img/g-wohnen-hell-600.webp 600w, assets/img/g-wohnen-hell-1200.webp 1200w, assets/img/g-wohnen-hell.webp 1800w" type="image/webp" sizes="(max-width:860px) 92vw, 340px"><img src="assets/img/g-wohnen-hell.jpg" alt="Attikawohnung mit raumhoher Verglasung und Treppe ins Wohngeschoss" loading="lazy" width="1800" height="1200" srcset="assets/img/g-wohnen-hell-600.jpg 600w, assets/img/g-wohnen-hell-1200.jpg 1200w, assets/img/g-wohnen-hell.jpg 1800w" sizes="(max-width:860px) 92vw, 340px"></picture>
+      </li>
+    </ul>
+
+    <p class="bestand__hinweis rise">
+      Frei werdende Wohnungen schreiben wir zuerst hier aus, nicht auf den
+      Portalen. Wer auf der Warteliste steht, erhält eine E-Mail, sobald
+      etwas Passendes dazukommt, im Schnitt fünf bis sieben Mal pro Jahr.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== ABLAUF ===================== -->
+<section class="band band--soft">
+  <div class="wrap">
+    <div class="grid-head">
+      <div>
+        <p class="eyebrow rise">So läuft es ab</p>
+        <h2 class="rise" data-d="1">Vier Schritte<br>bis zum <em>Schlüssel.</em></h2>
+      </div>
+      <p class="lead rise" data-d="1">
+        Wir vermieten selbst. Das heisst: keine Massenbesichtigung, keine
+        Bewerbungsmappe mit dreissig Seiten, keine Absage ohne Begründung.
+      </p>
+    </div>
+
+    <ol class="steps">
+      <li class="rise"><span class="steps__nr">01</span>
+        <h3>Anfrage</h3>
+        <p>
+          Über das Formular auf der Wohnungsseite oder per Telefon. Sagen
+          Sie uns kurz, wer einziehen würde und ab wann.
+        </p>
+      </li>
+      <li class="rise" data-d="1"><span class="steps__nr">02</span>
+        <h3>Besichtigung</h3>
+        <p>
+          Einzeln, nicht in der Gruppe. Nehmen Sie sich vierzig Minuten,
+          wir zeigen auch den Keller, die Waschküche und die Nebenkosten­abrechnung
+          des Vorjahres.
+        </p>
+      </li>
+      <li class="rise" data-d="2"><span class="steps__nr">03</span>
+        <h3>Unterlagen</h3>
+        <p>
+          Aktueller Betreibungsregisterauszug, Ausweiskopie und ein
+          Einkommensnachweis. Mehr nicht, keine Referenzen von früheren
+          Vermietern, keine Fragen zu Krankheit oder Familienplanung.
+        </p>
+      </li>
+      <li class="rise" data-d="3"><span class="steps__nr">04</span>
+        <h3>Entscheid</h3>
+        <p>
+          Innerhalb von fünf Arbeitstagen, mit einer echten Begründung,
+          auch bei einer Absage. Kaution: zwei Monatsmieten auf ein
+          Mietzinsdepot nach Art. 257e OR.
+        </p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===================== HALTUNG ===================== -->
+<section class="band">
+  <div class="wrap">
+    <div class="story story--klebe">
+      <div class="story__fig veilimg">
+        <picture><source srcset="assets/img/interieur-480.avif 480w, assets/img/interieur-1200.avif 1200w, assets/img/interieur-2000.avif 2000w, assets/img/interieur.avif 2600w" type="image/avif" sizes="(max-width:860px) 92vw, 660px"><source srcset="assets/img/interieur-480.webp 480w, assets/img/interieur-1200.webp 1200w, assets/img/interieur-2000.webp 2000w, assets/img/interieur.webp 2600w" type="image/webp" sizes="(max-width:860px) 92vw, 660px"><img src="assets/img/interieur.jpg" alt="Sanierter Wohnraum mit Holzboden, hellen Wänden und grossem Fenster" loading="lazy" width="2600" height="1733" srcset="assets/img/interieur-480.jpg 480w, assets/img/interieur-1200.jpg 1200w, assets/img/interieur-2000.jpg 2000w, assets/img/interieur.jpg 2600w" sizes="(max-width:860px) 92vw, 660px"></picture>
+      </div>
+      <div class="story__copy">
+        <p class="eyebrow rise">Was Mieten bei uns bedeutet</p>
+        <h2 class="rise" data-d="1">Wir behalten die<br>Häuser, die wir <em>sanieren.</em></h2>
+        <p class="rise" data-d="1">
+          Der grösste Teil unseres Bestands ist nicht zum Verkauf gedacht.
+          Das verändert die Rechnung: Eine Küche, die zwanzig Jahre hält,
+          ist für uns günstiger als eine, die acht Jahre hält, auch wenn
+          sie beim Einbau mehr kostet. Sie merken das an den Details, für
+          die sonst niemand Geld ausgibt.
+        </p>
+        <ul class="merkliste rise" data-d="2">
+          <li><b>Mietzinserhöhungen</b> nur bei tatsächlichen Kostensteigerungen, nie zum Referenzzinssatz-Termin „weil man kann“</li>
+          <li><b>Reparaturen</b> gehen an Jasmin Brunner, nicht an ein Callcenter, Rückruf am selben Tag</li>
+          <li><b>Kleinreparaturen bis CHF 200</b> übernehmen wir, auch wenn der Mietvertrag Sie verpflichten würde</li>
+          <li><b>Nebenkostenabrechnung</b> mit Belegen, unaufgefordert, jedes Jahr im März</li>
+        </ul>
+        <p class="rise" data-d="2">
+          <a class="tlink" href="ueber-uns.html">Wer dahintersteckt</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABSCHLUSS ===================== -->
+<section class="cta">
+  <div class="wrap cta__in">
+    <div>
+      <p class="eyebrow">Nichts Passendes dabei?</p>
+      <h2>Auf die Liste,<br>ohne <em>Newsletter.</em></h2>
+      <p class="lead">
+        Schreiben Sie uns, was Sie suchen, Zimmerzahl, Gegend, Zeitpunkt.
+        Wir melden uns, wenn etwas frei wird, und sonst gar nicht. Die
+        Liste ist keine Werbeliste: Sie erhalten nur Wohnungen, die auf
+        Ihre Angaben passen.
+      </p>
+    </div>
+    <div class="cta__act">
+      <a class="btn btn--light" href="kontakt.html">Auf die Warteliste</a>
+      <a class="btn btn--lightghost" href="projekte.html">Unsere Häuser ansehen</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FUSS ===================== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <a class="brand" href="index.html">
+          <span class="brand__mark" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.6"><path d="M12 27 24 16l12 11" stroke-linejoin="miter"/><path d="M12 34h24"/></svg>
+          </span>
+          <span class="brand__txt">
+            <span class="brand__name">ARVEN</span>
+            <span class="brand__sub">Immobilien</span>
+          </span>
+        </a>
+        <p>
+          Ankauf, Sanierung, Vermietung und Verkauf von Wohnliegenschaften
+          in Musterstadt und Umgebung. Inhabergeführt seit 2011.
+        </p>
+      </div>
+      <div>
+        <p class="footer__h">Unternehmen</p>
+        <ul>
+          <li><a href="projekte.html">Projekte</a></li>
+          <li><a href="wohnungen.html">Wohnungen mieten</a></li>
+          <li><a href="journal.html">Journal</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__h">Leistungen</p>
+        <ul>
+          <li><a href="verkaufen.html">Liegenschaft verkaufen</a></li>
+          <li><a href="ueber-uns.html#arbeitsweise">Sanierung</a></li>
+          <li><a href="wohnungen.html">Vermietung</a></li>
+          <li><a href="projekte.html?stand=verkauf">Objekte im Verkauf</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__h">Kontakt</p>
+        <ul>
+          <li>Bahnhofstrasse 24<br>8002 Musterstadt</li>
+          <li><a href="tel:+41442345678">044 234 56 78</a></li>
+          <li><a href="mailto:kontakt@arven-immobilien.ch">kontakt@arven-immobilien.ch</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="footer__legal">
+      Portfolio-Demonstration: Unternehmen, Personen, Immobilien, Preise und
+      Kennzahlen sind frei erfunden. Das Kontaktformular übermittelt keine
+      Daten. Die Fotos zeigen keine der beschriebenen Liegenschaften.
+    </p>
+
+    <div class="footer__bot">
+      <span>© <span id="year">2026</span> ARVEN Immobilien AG</span>
+      <nav aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<button class="totop" id="totop" aria-label="Nach oben">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script src="assets/js/main.js?v=20260816h"></script>
+
+<!-- ===================================================================
+     Demo-Plakette: kleine, aufklappbare Kennzeichnung als Portfolio-
+     Demonstration. In der eingebetteten Vorschau der Verkaufsseite wird
+     sie ausgeblendet, dort steht die Kennzeichnung bereits daneben.
+     =================================================================== -->
+<div class="demobadge" id="demobadge">
+  <button class="demobadge__knopf" id="demoKnopf" aria-expanded="false" aria-controls="demoPanel">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-5M12 8h.01"/></svg>
+    Demo
+  </button>
+  <div class="demobadge__panel" id="demoPanel" hidden>
+    <b>Portfolio-Demonstration:</b> Unternehmen, Personen, Immobilien,
+    Preise und Kennzahlen sind frei erfunden. Das Kontaktformular
+    übermittelt keine Daten.
+    <a href="../index.html">Diese Website gestalten lassen</a>
+  </div>
+</div>
+
+</body>
+</html>

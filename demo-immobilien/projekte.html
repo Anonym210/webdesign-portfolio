@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projekte | ARVEN Immobilien</title>
+<meta name="description" content="Sanierte Häuser und Wohnungen von ARVEN Immobilien: aktuelle Objekte im Verkauf, vermieteter Bestand und abgeschlossene Projekte in Musterstadt und Umgebung.">
+<meta name="theme-color" content="#F7F7F5">
+<!-- Beispielwebsite: darf nicht wie ein echtes Unternehmen in der Suche erscheinen -->
+<meta name="robots" content="noindex, nofollow">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Projekte | ARVEN Immobilien">
+<meta property="og:description" content="Aktuelle Objekte, vermieteter Bestand und abgeschlossene Sanierungen.">
+<meta property="og:image" content="https://envyweb.ch/demo-immobilien/assets/img/hero.jpg">
+<meta property="og:locale" content="de_CH">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://envyweb.ch/demo-immobilien/projekte.html">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<!-- Schriften: lokal eingebunden, keine Verbindung zu Google -->
+<link rel="preload" href="assets/fonts/instrumentserif-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrumentserifi-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrumentsans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css?v=20260816h">
+<link rel="stylesheet" href="assets/css/style.css?v=20260816h">
+
+<!-- Laeuft die Seite als Vorschau in einem Rahmen? Diese Pruefung muss VOR
+     dem ersten Rendern stehen, sonst blitzt die Kennzeichnung kurz auf. -->
+<script>
+  (function () {
+    var e = true;
+    try { e = window.self !== window.top; } catch (x) { e = true; }
+    if (e) document.documentElement.className += ' embedded';
+  })();
+  document.documentElement.className += ' js';
+  window.addEventListener('error', function () {
+    document.documentElement.className = document.documentElement.className.replace(/\bjs\b/, '');
+  });
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Zum Inhalt springen</a>
+
+<!-- ===================== KOPF ===================== -->
+<header class="header" id="header">
+  <div class="wrap header__in">
+    <a class="brand" href="index.html" aria-label="Zur Startseite von ARVEN Immobilien">
+      <span class="brand__mark" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.6"><path d="M12 27 24 16l12 11" stroke-linejoin="miter"/><path d="M12 34h24"/></svg>
+      </span>
+      <span class="brand__txt">
+        <span class="brand__name">ARVEN</span>
+        <span class="brand__sub">Immobilien</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="projekte.html" aria-current="page">Projekte</a>
+      <a href="wohnungen.html">Wohnungen</a>
+      <a href="journal.html">Journal</a>
+      <a href="ueber-uns.html">Über uns</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+
+    <a class="btn btn--sm" href="verkaufen.html">Liegenschaft anbieten</a>
+
+    <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobilemenu">
+      <i></i><i></i>
+    </button>
+  </div>
+</header>
+
+<nav class="mobilemenu" id="mobilemenu" aria-label="Mobile Navigation">
+  <a href="index.html">Startseite</a>
+  <a href="projekte.html" aria-current="page">Projekte</a>
+  <a href="wohnungen.html">Wohnungen</a>
+  <a href="journal.html">Journal</a>
+  <a href="ueber-uns.html">Über uns</a>
+  <a href="kontakt.html">Kontakt</a>
+  <a class="btn btn--full" href="verkaufen.html">Liegenschaft anbieten</a>
+</nav>
+
+<main id="main">
+
+<!-- ===================== SEITENKOPF ===================== -->
+<section class="pagehero pagehero--rule pagehero--zwei">
+  <span class="pagehero__ghost" aria-hidden="true">24</span>
+  <div class="wrap">
+    <p class="eyebrow rise">Projekte</p>
+    <h1 class="rise" data-d="1">Gebaut, nicht<br><em>versprochen.</em></h1>
+    <p class="lead rise" data-d="1">
+      Vierundzwanzig Liegenschaften seit 2011, die meisten davon heute in
+      unserem eigenen Bestand. Eine Auswahl, nach Stand sortierbar.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== RASTER ===================== -->
+<section class="band">
+  <div class="wrap">
+    <div class="grid-head rise">
+      <div class="filter" role="group" aria-label="Projekte filtern">
+        <button data-filter="alle" aria-pressed="true">Alle</button>
+        <button data-filter="verkauf" aria-pressed="false">Im Verkauf</button>
+        <button data-filter="vermietet" aria-pressed="false">Vermietet</button>
+        <button data-filter="abgeschlossen" aria-pressed="false">Abgeschlossen</button>
+      </div>
+      <p class="filter__stand" id="filterStand" aria-live="polite">6 Projekte</p>
+    </div>
+
+        <ul class="oliste rise">
+      <li data-status="verkauf">
+        <a class="oliste__link" href="projekt-stadthaus.html">
+          <span class="oliste__nr" aria-hidden="true">01</span>
+          <span class="oliste__ort">Musterstadt · Seefeld</span>
+          <span class="oliste__tit">Stadthaus mit Anbau</span>
+          <span class="oliste__daten">
+            <span class="oliste__spec">6.5 Zimmer · 182 m² · saniert 2025</span>
+            <span class="oliste__note">Bezugsbereit</span>
+          </span>
+          <span class="oliste__wert"><small>CHF</small>1'480'000</span>
+          <span class="oliste__stand oliste__stand--sale">Im Verkauf</span>
+          <span class="oliste__pfeil"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+        <picture class="oliste__bild"><source srcset="assets/img/projekt-stadthaus-480.avif 480w, assets/img/projekt-stadthaus-900.avif 900w, assets/img/projekt-stadthaus-1800.avif 1800w, assets/img/projekt-stadthaus.avif 2600w" type="image/avif" sizes="(max-width:860px) 92vw, 340px"><source srcset="assets/img/projekt-stadthaus-480.webp 480w, assets/img/projekt-stadthaus-900.webp 900w, assets/img/projekt-stadthaus-1800.webp 1800w, assets/img/projekt-stadthaus.webp 2600w" type="image/webp" sizes="(max-width:860px) 92vw, 340px"><img src="assets/img/projekt-stadthaus.jpg" alt="Saniertes Stadthaus mit Holzkubus-Anbau und Gartenweg" loading="lazy" width="2600" height="1950" srcset="assets/img/projekt-stadthaus-480.jpg 480w, assets/img/projekt-stadthaus-900.jpg 900w, assets/img/projekt-stadthaus-1800.jpg 1800w, assets/img/projekt-stadthaus.jpg 2600w" sizes="(max-width:860px) 92vw, 340px"></picture>
+      </li>
+      <li data-status="vermietet">
+        <a class="oliste__link" href="projekt-feldweg.html">
+          <span class="oliste__nr" aria-hidden="true">02</span>
+          <span class="oliste__ort">Musterdorf · Zentrum</span>
+          <span class="oliste__tit">Residenz Feldweg</span>
+          <span class="oliste__daten">
+            <span class="oliste__spec">6 Wohnungen · 540 m² · saniert 2023</span>
+            <span class="oliste__note">Im eigenen Bestand · Warteliste über das Kontaktformular</span>
+          </span>
+          <span class="oliste__wert">2023</span>
+          <span class="oliste__stand">Vermietet</span>
+          <span class="oliste__pfeil"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+        <picture class="oliste__bild"><source srcset="assets/img/projekt-mfh-480.avif 480w, assets/img/projekt-mfh-900.avif 900w, assets/img/projekt-mfh-1800.avif 1800w, assets/img/projekt-mfh.avif 2600w" type="image/avif" sizes="(max-width:860px) 92vw, 340px"><source srcset="assets/img/projekt-mfh-480.webp 480w, assets/img/projekt-mfh-900.webp 900w, assets/img/projekt-mfh-1800.webp 1800w, assets/img/projekt-mfh.webp 2600w" type="image/webp" sizes="(max-width:860px) 92vw, 340px"><img src="assets/img/projekt-mfh.jpg" alt="Saniertes Mehrfamilienhaus mit hellem Klinker und dunkler Holzverkleidung" loading="lazy" width="2600" height="1950" srcset="assets/img/projekt-mfh-480.jpg 480w, assets/img/projekt-mfh-900.jpg 900w, assets/img/projekt-mfh-1800.jpg 1800w, assets/img/projekt-mfh.jpg 2600w" sizes="(max-width:860px) 92vw, 340px"></picture>
+      </li>
+      <li data-status="abgeschlossen">
+        <a class="oliste__link" href="projekt-kirchweg.html">
+          <span class="oliste__nr" aria-hidden="true">03</span>
+          <span class="oliste__ort">Musterstadt · Altstadt</span>
+          <span class="oliste__tit">Altbau am Kirchweg</span>
+          <span class="oliste__daten">
+            <span class="oliste__spec">3.5 Zimmer · 92 m² · saniert 2024</span>
+            <span class="oliste__note">Übergeben in 51 Tagen</span>
+          </span>
+          <span class="oliste__wert">2024</span>
+          <span class="oliste__stand">Verkauft</span>
+          <span class="oliste__pfeil"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+        <picture class="oliste__bild"><source srcset="assets/img/projekt-altbau-480.avif 480w, assets/img/projekt-altbau-900.avif 900w, assets/img/projekt-altbau-1800.avif 1800w, assets/img/projekt-altbau.avif 2600w" type="image/avif" sizes="(max-width:860px) 92vw, 340px"><source srcset="assets/img/projekt-altbau-480.webp 480w, assets/img/projekt-altbau-900.webp 900w, assets/img/projekt-altbau-1800.webp 1800w, assets/img/projekt-altbau.webp 2600w" type="image/webp" sizes="(max-width:860px) 92vw, 340px"><img src="assets/img/projekt-altbau.jpg" alt="Heller Altbau-Wohnraum mit Fischgrätparkett nach der Sanierung" loading="lazy" width="2600" height="1950" srcset="assets/img/projekt-altbau-480.jpg 480w, assets/img/projekt-altbau-900.jpg 900w, assets/img/projekt-altbau-1800.jpg 1800w, assets/img/projekt-altbau.jpg 2600w" sizes="(max-width:860px) 92vw, 340px"></picture>
+      </li>
+      <li data-status="abgeschlossen">
+        <a class="oliste__link" href="projekt-buchenweg.html">
+          <span class="oliste__nr" aria-hidden="true">04</span>
+          <span class="oliste__ort">Beispielwil · Dorfrand</span>
+          <span class="oliste__tit">Landhaus Buchenweg</span>
+          <span class="oliste__daten">
+            <span class="oliste__spec">5.5 Zimmer · 168 m² · saniert 2022</span>
+            <span class="oliste__note">Verkauft an eine junge Familie</span>
+          </span>
+          <span class="oliste__wert">2022</span>
+          <span class="oliste__stand">Verkauft</span>
+          <span class="oliste__pfeil"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+        <picture class="oliste__bild"><source srcset="assets/img/projekt-landhaus-480.avif 480w, assets/img/projekt-landhaus-900.avif 900w, assets/img/projekt-landhaus-1800.avif 1800w, assets/img/projekt-landhaus.avif 2600w" type="image/avif" sizes="(max-width:860px) 92vw, 340px"><source srcset="assets/img/projekt-landhaus-480.webp 480w, assets/img/projekt-landhaus-900.webp 900w, assets/img/projekt-landhaus-1800.webp 1800w, assets/img/projekt-landhaus.webp 2600w" type="image/webp" sizes="(max-width:860px) 92vw, 340px"><img src="assets/img/projekt-landhaus.jpg" alt="Freistehendes Giebelhaus mit Hecke im Morgennebel" loading="lazy" width="2600" height="1950" srcset="assets/img/projekt-landhaus-480.jpg 480w, assets/img/projekt-landhaus-900.jpg 900w, assets/img/projekt-landhaus-1800.jpg 1800w, assets/img/projekt-landhaus.jpg 2600w" sizes="(max-width:860px) 92vw, 340px"></picture>
+      </li>
+      <li data-status="abgeschlossen">
+        <a class="oliste__link" href="projekt-halden.html">
+          <span class="oliste__nr" aria-hidden="true">05</span>
+          <span class="oliste__ort">Musterstadt · Halden</span>
+          <span class="oliste__tit">Haus am Hang</span>
+          <span class="oliste__daten">
+            <span class="oliste__spec">7.5 Zimmer · 224 m² · saniert 2021</span>
+            <span class="oliste__note">Unser Titelbild, verkauft 2021</span>
+          </span>
+          <span class="oliste__wert">2021</span>
+          <span class="oliste__stand">Verkauft</span>
+          <span class="oliste__pfeil"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+        <picture class="oliste__bild"><source srcset="assets/img/projekt-halden-480.avif 480w, assets/img/projekt-halden-900.avif 900w, assets/img/projekt-halden-1800.avif 1800w, assets/img/projekt-halden.avif 2600w" type="image/avif" sizes="(max-width:860px) 92vw, 340px"><source srcset="assets/img/projekt-halden-480.webp 480w, assets/img/projekt-halden-900.webp 900w, assets/img/projekt-halden-1800.webp 1800w, assets/img/projekt-halden.webp 2600w" type="image/webp" sizes="(max-width:860px) 92vw, 340px"><img src="assets/img/projekt-halden.jpg" alt="Saniertes Wohnhaus mit Holzfassade am Abend, warm beleuchtete Räume" loading="lazy" width="2600" height="1950" srcset="assets/img/projekt-halden-480.jpg 480w, assets/img/projekt-halden-900.jpg 900w, assets/img/projekt-halden-1800.jpg 1800w, assets/img/projekt-halden.jpg 2600w" sizes="(max-width:860px) 92vw, 340px"></picture>
+      </li>
+      <li data-status="vermietet">
+        <a class="oliste__link" href="projekt-lindenhof.html">
+          <span class="oliste__nr" aria-hidden="true">06</span>
+          <span class="oliste__ort">Musterstadt</span>
+          <span class="oliste__tit">Wohnhaus Lindenhof</span>
+          <span class="oliste__daten">
+            <span class="oliste__spec">3 Wohnungen · 240 m² · fertig 2025</span>
+            <span class="oliste__note">Im eigenen Bestand · unsere Fallstudie</span>
+          </span>
+          <span class="oliste__wert">2025</span>
+          <span class="oliste__stand">Vermietet</span>
+          <span class="oliste__pfeil"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+        <picture class="oliste__bild"><source srcset="assets/img/g-kueche-loft-600.avif 600w, assets/img/g-kueche-loft-1200.avif 1200w, assets/img/g-kueche-loft.avif 1800w" type="image/avif" sizes="(max-width:860px) 92vw, 340px"><source srcset="assets/img/g-kueche-loft-600.webp 600w, assets/img/g-kueche-loft-1200.webp 1200w, assets/img/g-kueche-loft.webp 1800w" type="image/webp" sizes="(max-width:860px) 92vw, 340px"><img src="assets/img/g-kueche-loft.jpg" alt="Offene Wohnküche mit heller Kochinsel und Holzfronten" loading="lazy" decoding="async" width="1800" height="1200" srcset="assets/img/g-kueche-loft-600.jpg 600w, assets/img/g-kueche-loft-1200.jpg 1200w, assets/img/g-kueche-loft.jpg 1800w" sizes="(max-width:860px) 92vw, 340px"></picture>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== FALLSTUDIE ===================== -->
+<section class="band band--soft">
+  <div class="wrap">
+    <p class="idx rise"><b>04</b> Fallstudie</p>
+    <div class="head rise" data-d="1">
+      <p class="eyebrow">Wohnhaus Lindenhof</p>
+      <h2>Von der Baustelle<br>zum <em>Zuhause.</em></h2>
+    </div>
+
+    <div class="case rise" data-d="2">
+      <div class="case__pair" data-vergleich>
+        <figure>
+          <picture><source srcset="assets/img/sanierung-600.avif 600w, assets/img/sanierung-1200.avif 1200w, assets/img/sanierung-2000.avif 2000w, assets/img/sanierung.avif 2600w" type="image/avif" sizes="(max-width:1300px) 100vw, 1300px"><source srcset="assets/img/sanierung-600.webp 600w, assets/img/sanierung-1200.webp 1200w, assets/img/sanierung-2000.webp 2000w, assets/img/sanierung.webp 2600w" type="image/webp" sizes="(max-width:1300px) 100vw, 1300px"><img src="assets/img/sanierung.jpg" alt="Entkernter Raum in der Rohbauphase, abgestützte Decke und aufgebrochener Boden" loading="lazy" width="2600" height="1733" srcset="assets/img/sanierung-600.jpg 600w, assets/img/sanierung-1200.jpg 1200w, assets/img/sanierung-2000.jpg 2000w, assets/img/sanierung.jpg 2600w" sizes="(max-width:1300px) 100vw, 1300px"></picture>
+          <figcaption>Rohbauphase</figcaption>
+        </figure>
+        <figure>
+          <picture><source srcset="assets/img/interieur-480.avif 480w, assets/img/interieur-1200.avif 1200w, assets/img/interieur-2000.avif 2000w, assets/img/interieur.avif 2600w" type="image/avif" sizes="(max-width:1300px) 100vw, 1300px"><source srcset="assets/img/interieur-480.webp 480w, assets/img/interieur-1200.webp 1200w, assets/img/interieur-2000.webp 2000w, assets/img/interieur.webp 2600w" type="image/webp" sizes="(max-width:1300px) 100vw, 1300px"><img src="assets/img/interieur.jpg" alt="Fertiger Wohnraum mit Nussbaumwand, offener Küche und bodentiefen Fenstern" loading="lazy" width="2600" height="1733" srcset="assets/img/interieur-480.jpg 480w, assets/img/interieur-1200.jpg 1200w, assets/img/interieur-2000.jpg 2000w, assets/img/interieur.jpg 2600w" sizes="(max-width:1300px) 100vw, 1300px"></picture>
+          <figcaption>Nach Abschluss</figcaption>
+        </figure>
+      </div>
+      <div class="case__body">
+        <div>
+          <p>
+            <strong>Ausgangslage:</strong> Ein Wohnhaus aus 1932, zuletzt zwanzig
+            Jahre unbewohnt. Feuchte Kellerwände, Elektrik aus den Sechzigern,
+            aber ein intaktes Dachwerk und Mauern, wie man sie heute nicht
+            mehr bekommt.
+          </p>
+          <p>
+            <strong>Eingriff:</strong> Entkernung bis auf den Rohbau, neue Haustechnik,
+            Wärmedämmung von innen, drei Wohnungen statt einer. Fischgrätparkett
+            und Stuck blieben, wo sie zu retten waren.
+          </p>
+          <p>
+            <strong>Ergebnis:</strong> Drei Mietwohnungen, alle innerhalb eines
+            Monats vergeben. Das Haus bleibt im Bestand, wie die meisten
+            unserer Projekte.
+          </p>
+          <a class="tlink" href="projekt-lindenhof.html" style="margin-top:.4rem;">
+            Zur Projektseite
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <dl class="case__facts">
+          <div><dt>Baujahr</dt><dd>1932</dd></div>
+          <div><dt>Übernahme</dt><dd>2024</dd></div>
+          <div><dt>Bauzeit</dt><dd>9 Monate</dd></div>
+          <div><dt>Wohnfläche</dt><dd>240 m²</dd></div>
+          <div><dt>Einheiten</dt><dd>3 Wohnungen</dd></div>
+          <div><dt>Stand</dt><dd>Vermietet</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== APPELL ===================== -->
+<section class="cta">
+  <div class="wrap cta__in">
+    <div class="rise">
+      <h2>Das nächste Projekt<br><em>könnte Ihres sein.</em></h2>
+      <p>
+        Wir suchen laufend Häuser und Mehrfamilienhäuser mit Substanz in
+        Musterstadt und Umgebung. Auch mit Renovationsstau, auch vermietet.
+      </p>
+    </div>
+    <div class="cta__act rise" data-d="1">
+      <a class="btn btn--light" href="kontakt.html">Liegenschaft anbieten</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FUSSBEREICH ===================== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <a class="brand" href="index.html">
+          <span class="brand__mark" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.6"><path d="M12 27 24 16l12 11" stroke-linejoin="miter"/><path d="M12 34h24"/></svg>
+          </span>
+          <span class="brand__txt">
+            <span class="brand__name">ARVEN</span>
+            <span class="brand__sub">Immobilien</span>
+          </span>
+        </a>
+        <p>
+          Ankauf, Sanierung, Vermietung und Verkauf von Wohnliegenschaften
+          in Musterstadt und Umgebung. Inhabergeführt seit 2011.
+        </p>
+      </div>
+      <div>
+        <p class="footer__h">Unternehmen</p>
+        <ul>
+          <li><a href="projekte.html">Projekte</a></li>
+          <li><a href="wohnungen.html">Wohnungen mieten</a></li>
+          <li><a href="journal.html">Journal</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__h">Leistungen</p>
+        <ul>
+          <li><a href="verkaufen.html">Liegenschaft verkaufen</a></li>
+          <li><a href="ueber-uns.html#arbeitsweise">Sanierung</a></li>
+          <li><a href="wohnungen.html">Vermietung</a></li>
+          <li><a href="projekte.html?stand=verkauf">Objekte im Verkauf</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__h">Kontakt</p>
+        <ul>
+          <li>Bahnhofstrasse 24<br>8002 Musterstadt</li>
+          <li><a href="tel:+41442345678">044 234 56 78</a></li>
+          <li><a href="mailto:kontakt@arven-immobilien.ch">kontakt@arven-immobilien.ch</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="footer__legal">
+      Portfolio-Demonstration: Unternehmen, Personen, Immobilien, Preise und
+      Kennzahlen sind frei erfunden. Das Kontaktformular übermittelt keine
+      Daten. Die Fotos zeigen keine der beschriebenen Liegenschaften.
+    </p>
+
+    <div class="footer__bot">
+      <span>© <span id="year">2026</span> ARVEN Immobilien AG</span>
+      <nav aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<button class="totop" id="totop" aria-label="Nach oben">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script src="assets/js/main.js?v=20260816h"></script>
+
+<!-- ===================================================================
+     Demo-Plakette: kleine, aufklappbare Kennzeichnung als Portfolio-
+     Demonstration. In der eingebetteten Vorschau der Verkaufsseite wird
+     sie ausgeblendet, dort steht die Kennzeichnung bereits daneben.
+     =================================================================== -->
+<div class="demobadge" id="demobadge">
+  <button class="demobadge__knopf" id="demoKnopf" aria-expanded="false" aria-controls="demoPanel">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-5M12 8h.01"/></svg>
+    Demo
+  </button>
+  <div class="demobadge__panel" id="demoPanel" hidden>
+    <b>Portfolio-Demonstration:</b> Unternehmen, Personen, Immobilien,
+    Preise und Kennzahlen sind frei erfunden. Das Kontaktformular
+    übermittelt keine Daten.
+    <a href="../index.html">Diese Website gestalten lassen</a>
+  </div>
+</div>
+
+</body>
+</html>

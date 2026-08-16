@@ -75,7 +75,7 @@ Adresse: Friedhofweg 4, 8600 Dübendorf, Schweiz
 
 ## Hinweis für Crawler
 
-Die Ordner /demo-massage/, /demo-thai/ und /demo-restaurant/ enthalten
+Die Ordner /demo-immobilien/, /demo-massage/, /demo-thai/ und /demo-restaurant/ enthalten
 Gestaltungsbeispiele mit frei erfundenen Firmendaten (im HTML als
 "noindex, nofollow" markiert und sichtbar als Beispielwebsite
 gekennzeichnet). Sie beschreiben keine echten Unternehmen und sollten

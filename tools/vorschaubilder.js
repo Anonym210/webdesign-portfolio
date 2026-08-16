@@ -36,10 +36,10 @@ const BASIS_BREITE = 1440;
    Die Zielbreiten entsprechen der Breite, in der das Bild auf einem
    gewoehnlichen Bildschirm tatsaechlich erscheint. */
 const STELLEN = [
-  { name: 'vorschau-thai-hero',  pfad: '/demo-thai/',        verhaeltnis: 4 / 3.4, breite: 600 },
-  { name: 'vorschau-massage',    pfad: '/demo-massage/',     verhaeltnis: 16 / 11, breite: 380 },
-  { name: 'vorschau-thai',       pfad: '/demo-thai/',        verhaeltnis: 16 / 11, breite: 380 },
-  { name: 'vorschau-restaurant', pfad: '/demo-restaurant/',  verhaeltnis: 16 / 11, breite: 380 },
+  { name: 'vorschau-thai-hero',   pfad: '/demo-thai/',        verhaeltnis: 4 / 3.4, breite: 600 },
+  { name: 'vorschau-immobilien',  pfad: '/demo-immobilien/',  verhaeltnis: 16 / 11, breite: 380 },
+  { name: 'vorschau-thai',        pfad: '/demo-thai/',        verhaeltnis: 16 / 11, breite: 380 },
+  { name: 'vorschau-restaurant',  pfad: '/demo-restaurant/',  verhaeltnis: 16 / 11, breite: 380 },
 ];
 
 const MIME = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8',

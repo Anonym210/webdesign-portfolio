@@ -1,0 +1,2573 @@
+/* =========================================================================
+   ARVEN — Immobilien AG
+   Ankauf, Sanierung, Vermietung und Verkauf. Mehrseitiger Auftritt —
+   die einzige Demo im Portfolio, die nicht als Onepager gebaut ist.
+
+   Gestaltungsidee: das ruhige Selbstverstaendnis eines Architekturbueros.
+   Wie die uebrigen Demos traegt eine Serife (Newsreader) die Ueberschriften
+   und setzt kursive Akzentwoerter; die Flaechen bleiben kuehl — Papier,
+   Schieferblau, dazu Kupfer als Farbe der Sanierung in kleinen Dosen.
+
+   Farben und Schriften zentral in :root.
+   ========================================================================= */
+
+/* ---------- 1. Tokens ---------- */
+:root{
+  /* Grundflaeche: Lehm und Sand statt Papierweiss. Die Flaeche traegt
+     schon Farbe, deshalb kommen die Akzente sparsam dazu. */
+  --paper:   #EDE6DA;
+  --paper-2: #E4DACA;
+  --paper-3: #D9CCB8;
+
+  /* Text: warmes Dunkelbraun, nicht Schwarz — sonst kippt die Flaeche
+     ins Schmutzige. */
+  --ink:      #2A2118;
+  --ink-soft: rgba(42,33,24,.78);
+  --ink-mute: rgba(42,33,24,.62);
+
+  /* Erster Akzent: gebrannter Ton. Traegt Knoepfe, Verweise und die
+     kursiven Akzentwoerter in den Ueberschriften. */
+  --clay:      #8C3B1E;
+  --clay-deep: #6B2B13;
+  --clay-soft: rgba(140,59,30,.10);
+
+  /* Heller Gegenpart fuer dunkle Flaechen */
+  --sand: #D9A066;
+
+  /* Zweiter Akzent: Ocker. Etiketten, Ziffern, kleine Marken. */
+  --ocker:      #C2724A;
+  --ocker-soft: rgba(194,114,74,.14);
+
+  /* Dunkles Band: warmes Schattenbraun, kein Blauschwarz */
+  --deep:   #241B12;
+  --deep-2: #32251A;
+
+  /* Knochenweiss auf dunklem Grund */
+  --bone: #F4EFE4;
+
+  --line:      rgba(42,33,24,.20);
+  --line-soft: rgba(42,33,24,.10);
+  --line-inv:      rgba(244,239,228,.20);
+  --line-inv-soft: rgba(244,239,228,.10);
+
+  --display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --body:    "Instrument Sans", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --wrap: 1240px;
+  --ease: cubic-bezier(.22,.61,.36,1);
+  --shadow: 0 30px 60px -34px rgba(36,27,18,.38);
+}
+
+/* ---------- 2. Uebergaenge zwischen den Seiten ----------
+   Der Auftritt hat mehrere Seiten; die View-Transition-API blendet sie
+   weich ineinander. Browser ohne Unterstuetzung wechseln einfach hart —
+   das ist der normale Seitenwechsel, kein Fehler. */
+@view-transition{ navigation: auto; }
+::view-transition-old(root){ animation:vtOut .28s var(--ease) both; }
+::view-transition-new(root){ animation:vtIn  .34s var(--ease) both; }
+@keyframes vtOut{ to{ opacity:0; } }
+@keyframes vtIn{ from{ opacity:0; transform:translateY(10px); } }
+
+/* ---------- 3. Reset ---------- */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; overflow-x:clip; }
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink-soft);
+  font-family:var(--body);
+  font-size:clamp(1rem,.96rem + .2vw,1.06rem);
+  font-weight:400;
+  line-height:1.68;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+/* Sprungziele landen sonst unter der fixierten Kopfzeile */
+[id]{ scroll-margin-top:6.5rem; }
+body.is-locked{ overflow:hidden; }
+img{ max-width:100%; height:auto; display:block; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; }
+/* ol gehoert mit in den Reset: <ol class="steps"> behielte sonst die
+   Browser-Einrueckung und den Dezimalmarker — sichtbar als grauer
+   Streifen links neben der ersten Karte. */
+ul,ol{ list-style:none; margin:0; padding:0; }
+figure,blockquote{ margin:0; }
+h1,h2,h3,h4{
+  font-family:var(--display); font-weight:400; line-height:1.06;
+  letter-spacing:-.012em; margin:0; color:var(--ink); text-wrap:balance;
+  font-variation-settings:"opsz" 60;
+}
+h1{ font-size:clamp(2.7rem,1.4rem + 5.2vw,5.9rem); line-height:1.02; }
+h2{ font-size:clamp(1.9rem,1.35rem + 2.4vw,3.3rem); }
+h3{ font-size:clamp(1.18rem,1.08rem + .4vw,1.4rem); }
+/* Kursive Akzentwoerter — dieselbe Geste wie bei AURELIA, SABAI und AVERA:
+   genau ein <em> je Ueberschrift, mehr wuerde die Wirkung verbrauchen. */
+/* Kursive Akzentwoerter — dieselbe Geste wie bei AURELIA, SABAI und AVERA:
+   genau ein <em> je Ueberschrift. Die Kursive von Instrument Serif ist
+   deutlich schmaler als die Aufrechte, deshalb darf sie etwas groesser
+   laufen, sonst wirkt das Wort kleiner als seine Nachbarn. */
+h1 em,h2 em,h3 em{
+  font-style:italic; font-weight:400; color:var(--clay);
+  font-size:1.06em; letter-spacing:.004em;
+}
+.on-deep h1 em,.on-deep h2 em,.band--deep h2 em{ color:var(--sand); }
+p{ margin:0 0 1.05em; }
+p:last-child{ margin-bottom:0; }
+strong{ font-weight:500; color:var(--ink); }
+::selection{ background:var(--clay); color:var(--paper); }
+:focus-visible{ outline:2px solid var(--clay); outline-offset:3px; }
+
+.skip{
+  position:absolute; left:-9999px; top:0; z-index:300;
+  background:var(--clay); color:var(--paper); padding:.8rem 1.3rem;
+  font-size:.75rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase;
+}
+.skip:focus{ left:1rem; top:1rem; }
+
+/* Ein Hauch gemeinsamer Bildton, dezenter als eine Tonung: zieht Fotos aus
+   verschiedenen Quellen auf eine Linie. */
+.story__fig img,.object__fig img,.case__pair img{ filter:sepia(.12) saturate(1.04); }
+
+/* Bildmitte je Motiv.
+   Bei einem liegenden Ausschnitt entscheidet die Mitte darueber, was
+   uebrig bleibt. Beim Landhaus steht das Haus rechts unten im Bild; mit
+   der Vorgabe „Mitte“ blieb davon nur das Dach zwischen Baumwipfeln
+   stehen. Diese Regeln ruecken den Ausschnitt auf das Gebaeude. */
+img[src$="projekt-landhaus.jpg"]{ object-position:72% 72%; }
+img[src$="projekt-halden.jpg"],
+img[src$="hero-1024.jpg"]{ object-position:50% 58%; }
+img[src$="projekt-mfh.jpg"]{ object-position:50% 42%; }
+img[src$="g-aussen-abend.jpg"]{ object-position:58% 50%; }
+img[src$="sanierung.jpg"]{ object-position:60% 50%; }
+
+/* ---------- 4. Layout ---------- */
+.wrap{ width:min(100% - 2.5rem, var(--wrap)); margin-inline:auto; }
+/* Bei 9rem oben und unten standen auf breiten Schirmen fast 300 Pixel
+   Papier zwischen zwei Abschnitten. Luft soll trennen, nicht leer wirken. */
+.band{ padding:clamp(4rem,2.6rem + 5.4vw,6.8rem) 0; position:relative; }
+.band--soft{ background:var(--paper-2); }
+.band--deep{ background:var(--deep); color:rgba(244,239,228,.72); }
+
+/* ---------- 5b. Farbumkehr in dunklen Flaechen ----------
+   Sehr viele Bausteine setzen ihre Textfarbe hart auf --ink, --ink-soft
+   oder --ink-mute. Das ist auf Papiergrund richtig und in einer dunklen
+   Flaeche fatal: .merkliste, .lead und andere standen dort dunkelbraun
+   auf dunkelbraun und waren nicht zu lesen.
+
+   Hier werden deshalb die Token selbst umdefiniert. Alles, was var(--ink)
+   benutzt, dreht damit mit — ohne dass hundert Einzelregeln angefasst
+   werden muessen. Dasselbe fuer die Linienfarben, die sonst unsichtbar
+   waeren.
+
+   --deep und --bone bleiben absichtlich unangetastet: Knoepfe wie
+   .btn--light setzen ihre Schrift auf var(--deep) und muessen dunkel auf
+   hellem Grund bleiben. */
+.band--deep,
+.cta,
+.story__copy:not(.story__copy--paper){
+  --ink:      var(--bone);
+  --ink-soft: rgba(244,239,228,.74);
+  --ink-mute: rgba(244,239,228,.56);
+  --line:      var(--line-inv);
+  --line-soft: var(--line-inv-soft);
+}
+
+/* Der Ton der Akzente traegt auf dunklem Grund nicht mehr: gebranntes
+   Rot vor Schattenbraun ist zu wenig Unterschied. Auf dunkel uebernimmt
+   der helle Gegenpart. */
+.band--deep,
+.cta,
+.story__copy:not(.story__copy--paper){
+  --clay:  var(--sand);
+  --ocker: var(--sand);
+}
+/* Knoepfe behalten ihre eigene Logik: ein .btn--accent in einer dunklen
+   Flaeche soll weiterhin die volle Tonflaeche zeigen, nicht Sand. */
+.band--deep .btn--accent,
+.cta .btn--accent,
+.story__copy .btn--accent{ --bg:#8C3B1E; --bd:#8C3B1E; --fg:var(--bone); }
+.band--deep h2,.band--deep h3{ color:var(--bone); }
+.band--deep .eyebrow{ color:var(--sand); }
+.band--deep .lead{ color:rgba(244,239,228,.72); }
+
+.idx{
+  display:flex; align-items:baseline; gap:.9rem; margin:0 0 2.2rem;
+  font-size:.68rem; font-weight:500;
+  letter-spacing:.28em; text-transform:uppercase; color:var(--ink-mute);
+}
+.idx b{
+  font-family:var(--display); font-style:italic; font-weight:400;
+  font-size:1.15rem; letter-spacing:0; color:var(--clay);
+}
+.idx::after{ content:""; flex:1; height:1px; background:var(--line); max-width:9rem; align-self:center; }
+.band--deep .idx{ color:rgba(244,239,228,.5); }
+.band--deep .idx b{ color:var(--sand); }
+.band--deep .idx::after{ background:var(--line-inv); }
+
+.eyebrow{
+  display:inline-flex; align-items:center; gap:.75rem; margin:0 0 1.3rem;
+  font-size:.7rem; font-weight:500;
+  letter-spacing:.26em; text-transform:uppercase; color:var(--clay);
+}
+.eyebrow::before{ content:""; width:26px; height:1px; background:currentColor; opacity:.8; }
+.center .eyebrow{ justify-content:center; }
+
+.lead{ font-size:clamp(1.05rem,1rem + .35vw,1.2rem); color:var(--ink-soft); max-width:56ch; }
+.center .lead{ margin-inline:auto; }
+.head{ max-width:62ch; margin-bottom:clamp(2.4rem,4vw,3.8rem); }
+.center{ text-align:center; }
+.center.head{ margin-inline:auto; }
+.muted{ color:var(--ink-mute); }
+
+/* ---------- 5. Schaltflaechen ---------- */
+.btn{
+  --bg:var(--clay); --fg:var(--bone); --bd:var(--clay);
+  display:inline-flex; align-items:center; justify-content:center; gap:.7rem;
+  font-size:.72rem; font-weight:500;
+  letter-spacing:.18em; text-transform:uppercase;
+  padding:1.08rem 2rem; border:1px solid var(--bd); background:var(--bg); color:var(--fg);
+  border-radius:2px;
+  transition:background-color .4s var(--ease), border-color .4s var(--ease),
+             color .4s var(--ease), transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.btn:hover{ --bg:var(--clay-deep); --bd:var(--clay-deep); transform:translateY(-2px); box-shadow:var(--shadow); }
+.btn--ghost{ --bg:transparent; --fg:var(--ink); --bd:var(--line); }
+.btn--ghost:hover{ --bg:var(--ink); --fg:var(--paper); --bd:var(--ink); }
+.btn--light{ --bg:var(--bone); --fg:var(--deep); --bd:var(--bone); }
+.btn--light:hover{ --bg:var(--sand); --bd:var(--sand); --fg:var(--deep); }
+.btn--lightghost{ --bg:transparent; --fg:var(--bone); --bd:var(--line-inv); }
+.btn--lightghost:hover{ --bg:var(--bone); --fg:var(--deep); --bd:var(--bone); }
+.btn--sm{ padding:.72rem 1.3rem; font-size:.65rem; }
+.btn--full{ width:100%; }
+.btn[disabled]{ opacity:.55; cursor:default; transform:none; box-shadow:none; }
+
+.tlink{
+  display:inline-flex; align-items:center; gap:.6rem;
+  font-size:.72rem; font-weight:500;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--clay); padding-bottom:.4rem; position:relative;
+}
+.tlink::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:1px;
+  background:currentColor; opacity:.4; transform-origin:left;
+  transition:opacity .35s var(--ease), transform .35s var(--ease);
+}
+.tlink:hover::after{ opacity:1; transform:scaleX(1.04); }
+.tlink svg{ transition:transform .35s var(--ease); }
+.tlink:hover svg{ transform:translateX(3px); }
+.tlink--light{ color:var(--sand); }
+
+/* ---------- 6. Kopfzeile ---------- */
+.header{
+  position:fixed; inset:0 0 auto; z-index:120;
+  padding:1.4rem 0;
+  transition:background-color .45s var(--ease), padding .45s var(--ease),
+             border-color .45s var(--ease), backdrop-filter .45s var(--ease);
+  border-bottom:1px solid transparent;
+}
+.header.is-stuck{
+  padding:.8rem 0;
+  background:rgba(244,239,228,.92);
+  -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
+  border-bottom-color:var(--line-soft);
+}
+.header__in{ display:flex; align-items:center; justify-content:space-between; gap:1.5rem; }
+
+.brand{ display:flex; align-items:center; gap:.8rem; }
+/* Quadrat mit Giebelzeichen statt rundem Monogramm: AURELIA, SABAI und
+   AVERA tragen alle einen Buchstaben im Kreis — und alle drei Marken
+   beginnen wie ARVEN mit A. Ein Bildzeichen loest die Verwechslung und
+   traegt zugleich das Thema. Farben stehen hier, nicht im SVG, damit
+   dunkle Flaechen sie umkehren koennen (das SVG erbt via currentColor). */
+.brand__mark{
+  width:38px; height:38px; flex:none; display:grid; place-items:center;
+  background:var(--clay); color:var(--bone); border-radius:3px;
+}
+.brand__txt{ display:flex; flex-direction:column; }
+.brand__name{
+  font-size:1rem; font-weight:600;
+  letter-spacing:.3em; color:var(--ink); line-height:1;
+}
+.brand__sub{
+  margin-top:.4rem; font-size:.6rem; font-weight:500;
+  letter-spacing:.24em; text-transform:uppercase; color:var(--ink-mute); line-height:1;
+}
+
+.nav{ display:flex; align-items:center; gap:2rem; margin-left:auto; }
+.nav a{
+  position:relative; font-size:.72rem; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft);
+  transition:color .3s var(--ease);
+}
+.nav a::after{
+  content:""; position:absolute; left:0; right:0; bottom:-.5rem; height:1px;
+  background:var(--clay); transform:scaleX(0); transform-origin:right;
+  transition:transform .4s var(--ease);
+}
+.nav a:hover,.nav a[aria-current="page"]{ color:var(--ink); }
+.nav a:hover::after,.nav a[aria-current="page"]::after{ transform:scaleX(1); transform-origin:left; }
+
+/* Auf der Startseite liegt die Kopfzeile zunaechst auf dem dunklen
+   Buehnenbild — bis zum ersten Scrollen traegt sie helle Schrift. */
+.header--onhero:not(.is-stuck) .brand__name{ color:var(--bone); }
+.header--onhero:not(.is-stuck) .brand__sub{ color:rgba(244,239,228,.6); }
+.header--onhero:not(.is-stuck) .brand__mark{ background:var(--bone); color:var(--clay-deep); }
+.header--onhero:not(.is-stuck) .nav a{ color:rgba(244,239,228,.78); }
+.header--onhero:not(.is-stuck) .nav a:hover,
+.header--onhero:not(.is-stuck) .nav a[aria-current="page"]{ color:var(--bone); }
+.header--onhero:not(.is-stuck) .nav a::after{ background:var(--sand); }
+.header--onhero:not(.is-stuck) .btn{ --bg:var(--bone); --fg:var(--deep); --bd:var(--bone); }
+.header--onhero:not(.is-stuck) .burger{ border-color:var(--line-inv); }
+.header--onhero:not(.is-stuck) .burger i{ background:var(--bone); }
+
+/* Bei OFFENEM Menue liegt der Kopf auf Papier - dunkle Zeichen,
+   egal ob die Seite mit hellem Buehnenkopf startet (.header--onhero). */
+.header.menu-open{ background:transparent; border-bottom-color:transparent; }
+.header.menu-open .brand__mark{ background:var(--clay); color:var(--bone); }
+.header.menu-open .brand__name{ color:var(--ink); }
+.header.menu-open .brand__sub{ color:var(--ink-mute); }
+.header.menu-open .burger{ border-color:var(--line); }
+.header.menu-open .burger i{ background:var(--ink); }
+
+.burger{
+  display:none; width:44px; height:44px; place-items:center;
+  border:1px solid var(--line); border-radius:2px;
+}
+.burger i{
+  display:block; width:16px; height:1.5px; background:var(--ink);
+  transition:transform .35s var(--ease), opacity .25s var(--ease), background-color .3s var(--ease);
+}
+.burger i + i{ margin-top:5px; }
+.burger[aria-expanded="true"] i:first-child{ transform:translateY(3.5px) rotate(45deg); }
+.burger[aria-expanded="true"] i:last-child{ transform:translateY(-3.5px) rotate(-45deg); }
+body.is-locked .burger i{ background:var(--ink); }
+
+/* Das mobile Menue liegt unter dem Header, damit der Burger anklickbar bleibt */
+.mobilemenu{
+  position:fixed; inset:0; z-index:110;
+  display:flex; flex-direction:column; justify-content:center; gap:.3rem;
+  padding:6rem 2rem 3rem; background:var(--paper);
+  opacity:0; visibility:hidden; transition:opacity .4s var(--ease), visibility .4s;
+}
+.mobilemenu.is-open{ opacity:1; visibility:visible; }
+.mobilemenu a{
+  font-family:var(--display); font-size:1.9rem; font-weight:400;
+  letter-spacing:-.01em; color:var(--ink);
+  padding:.45rem 0; border-bottom:1px solid var(--line-soft);
+  opacity:0; transform:translateY(14px);
+  transition:opacity .5s var(--ease), transform .5s var(--ease);
+}
+.mobilemenu.is-open a{ opacity:1; transform:none; }
+.mobilemenu a[aria-current="page"]{ color:var(--clay); font-style:italic; }
+/* Der Knopf steht im Menue zwischen lauter 1.9rem-Eintraegen und wuerde
+   deren Groesse erben — hier zurueck auf Knopfmass, sonst bricht die
+   Beschriftung um und sitzt linksbuendig im Feld. */
+.mobilemenu .btn{
+  margin-top:2rem; font-family:var(--body); color:var(--bone);
+  font-size:.72rem; letter-spacing:.18em; text-align:center;
+  padding:1.15rem 1.6rem; border-bottom:0;
+}
+
+/* ---------- 7. Buehne der Startseite ---------- */
+.hero{
+  position:relative; min-height:100svh; display:flex; align-items:flex-end;
+  padding:9rem 0 clamp(2.5rem,5vw,4rem); overflow:hidden;
+  background:var(--deep);
+}
+.hero__img{
+  position:absolute; inset:-8% 0; width:100%; height:116%;
+  object-fit:cover; object-position:50% 62%;
+  /* Das JavaScript verschiebt das Bild beim Scrollen minimal (Parallax);
+     die Reserve von 8 % oben und unten verhindert blanke Raender. */
+}
+.hero::before{
+  content:""; position:absolute; inset:0; z-index:1;
+  background:linear-gradient(to top, rgba(16,22,26,.9) 0%, rgba(16,22,26,.45) 45%, rgba(16,22,26,.12) 72%, rgba(16,22,26,.55) 100%);
+}
+.hero__in{ position:relative; z-index:2; color:rgba(244,239,228,.8); }
+.hero__kicker{
+  display:inline-flex; align-items:center; gap:.75rem; margin:0 0 1.6rem;
+  font-size:.7rem; font-weight:500;
+  letter-spacing:.3em; text-transform:uppercase; color:var(--sand);
+}
+.hero__kicker::before{ content:""; width:26px; height:1px; background:currentColor; }
+.hero h1{ color:var(--bone); margin-bottom:1.6rem; max-width:13ch; }
+.hero h1 em{ color:var(--sand); }
+.hero .lead{ max-width:46ch; color:rgba(244,239,228,.82); }
+.hero__cta{ display:flex; flex-wrap:wrap; align-items:center; gap:1.5rem; margin-top:2.6rem; }
+
+/* Zeilen-Vorhang: jede Zeile der Hauptzeile faehrt aus einer Maske hoch.
+   Ohne JavaScript (kein .js am html) steht alles sofort da. */
+.line{ display:block; overflow:hidden; padding-bottom:.08em; margin-bottom:-.08em; }
+.line > span{ display:block; }
+.js .line > span{ transform:translateY(115%); animation:lineUp .9s var(--ease) forwards; }
+.js .line:nth-child(2) > span{ animation-delay:.12s; }
+.js .line:nth-child(3) > span{ animation-delay:.24s; }
+@keyframes lineUp{ to{ transform:none; } }
+.js .hero__kicker,.js .hero .lead,.js .hero__cta,.js .hero__meta,.js .hero .seal{
+  opacity:0; animation:softIn .9s var(--ease) forwards;
+}
+.js .hero .lead{ animation-delay:.35s; }
+.js .hero__cta{ animation-delay:.5s; }
+.js .hero__meta{ animation-delay:.65s; }
+.js .hero .seal{ animation-delay:.8s; }
+@keyframes softIn{ from{ opacity:0; transform:translateY(18px); } to{ opacity:1; transform:none; } }
+
+.hero__meta{
+  display:flex; flex-wrap:wrap; gap:1.3rem 2.6rem; margin-top:clamp(3rem,6vw,4.5rem);
+  padding-top:1.6rem; border-top:1px solid var(--line-inv);
+  font-size:.67rem; font-weight:500;
+  letter-spacing:.22em; text-transform:uppercase; color:rgba(244,239,228,.72);
+}
+.hero__meta span{ display:inline-flex; align-items:center; gap:.7rem; }
+.dot{
+  width:6px; height:6px; border-radius:50%; background:var(--sand); flex:none;
+  box-shadow:0 0 0 0 rgba(143,178,191,.5); animation:pulse 2.8s infinite;
+}
+@keyframes pulse{
+  70%{ box-shadow:0 0 0 8px rgba(143,178,191,0); }
+  100%{ box-shadow:0 0 0 0 rgba(143,178,191,0); }
+}
+
+/* Drehendes Siegel — die runde Geste, die AVERAs Philosophie-Stempel und
+   den Monogramm-Kreisen der anderen Demos antwortet. Text laeuft auf
+   einer Kreisbahn und dreht langsam; das Giebelzeichen steht still. */
+.seal{
+  position:absolute; right:clamp(1rem,4vw,4rem); bottom:8.2rem; z-index:2;
+  width:132px; height:132px; display:grid; place-items:center;
+}
+.seal > *{ grid-area:1/1; }
+.seal svg{ width:100%; height:100%; overflow:visible; }
+.js .seal .seal__ring{ animation:sealSpin 28s linear infinite; transform-origin:50% 50%; }
+@keyframes sealSpin{ to{ transform:rotate(360deg); } }
+.seal text{
+  font-family:var(--body); font-size:8.4px; font-weight:500;
+  letter-spacing:.32em; text-transform:uppercase; fill:rgba(244,239,228,.75);
+}
+.seal__markico{ color:var(--bone); }
+
+/* ---------- 8. Kopf der Unterseiten ---------- */
+.pagehero{ padding:clamp(8rem,7rem + 4vw,11.5rem) 0 clamp(3.4rem,5vw,5rem); position:relative; overflow:hidden; }
+.pagehero h1{ max-width:14ch; }
+.pagehero .lead{ margin-top:1.6rem; }
+
+/* Zweispaltiger Kopf: der Titel darf gross werden, weil der Vorspann
+   daneben steht statt darunter. Fusszeilenbuendig, damit beide auf
+   derselben Grundlinie enden. */
+@media (min-width:961px){
+  .pagehero--zwei .wrap{
+    display:grid; align-items:end;
+    grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
+    grid-template-areas:"kicker ." "titel vorspann";
+    column-gap:clamp(2.5rem,6vw,6rem);
+  }
+  .pagehero--zwei .eyebrow{ grid-area:kicker; }
+  .pagehero--zwei h1{ grid-area:titel; max-width:none; }
+  .pagehero--zwei .lead{ grid-area:vorspann; margin-top:0; padding-bottom:.7rem; }
+}
+/* Geisterzahl im Hintergrund gibt jeder Unterseite eine eigene Ziffer —
+   kursive Serife, nur als Kontur. */
+.pagehero__ghost{
+  /* Sitzt unten rechts und laeuft bewusst aus dem Bild — als angeschnittene
+     Ziffer, nicht als Wasserzeichen hinter dem Vorspann. */
+  position:absolute; right:-2.5rem; bottom:-28%; z-index:-1;
+  font-family:var(--display); font-style:italic; font-weight:400; line-height:1;
+  font-size:clamp(9rem,22vw,20rem); letter-spacing:-.02em;
+  color:transparent; -webkit-text-stroke:1px rgba(42,33,24,.16);
+  user-select:none; pointer-events:none;
+}
+.pagehero--rule{ border-bottom:1px solid var(--line-soft); }
+
+/* ---------- 9. Kennzahlen ---------- */
+.stats{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem;
+  padding-top:1.7rem; border-top:1px solid var(--line);
+}
+.stats div strong{
+  display:flex; align-items:baseline; gap:.3rem;
+  font-family:var(--display); font-size:clamp(2rem,1.4rem + 1.8vw,3.2rem);
+  font-weight:400; letter-spacing:-.01em; color:var(--ink); line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.stats div strong small{
+  font-size:.5em; font-style:italic; font-weight:400; color:var(--ocker);
+  letter-spacing:0;
+}
+.stats div span{
+  display:block; margin-top:.6rem; font-family:var(--body); font-size:.66rem;
+  font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-mute);
+  line-height:1.7;
+}
+.band--deep .stats{ border-top-color:var(--line-inv); }
+.band--deep .stats div strong{ color:var(--bone); }
+.band--deep .stats div strong small{ color:var(--sand); }
+.band--deep .stats div span{ color:rgba(244,239,228,.55); }
+
+/* ---------- 10. Laufband ----------
+   Grosse Zeile, die langsam durchzieht: kursive Serife im Wechsel mit
+   Konturschrift, dazwischen Kupferpunkte. Das JavaScript verdoppelt den
+   Inhalt fuer die nahtlose Schleife; ohne JavaScript steht die Zeile. */
+.marquee{
+  overflow:hidden; padding:clamp(1.7rem,3vw,2.6rem) 0;
+  border-block:1px solid var(--line-soft); background:var(--paper);
+}
+.marquee__row{ display:flex; width:max-content; }
+.js .marquee__row{ animation:ticker 38s linear infinite; }
+.marquee:hover .marquee__row{ animation-play-state:paused; }
+@keyframes ticker{ to{ transform:translateX(-50%); } }
+.marquee span{
+  display:inline-flex; align-items:center; gap:2.6rem; flex:none;
+  padding-right:2.6rem; white-space:nowrap;
+  font-size:clamp(1.7rem,1.25rem + 2vw,2.9rem); line-height:1.25;
+}
+.marquee em{
+  font-family:var(--display); font-style:italic; font-weight:400;
+  color:var(--ink); letter-spacing:-.01em;
+}
+.marquee b{
+  font-family:var(--body); font-weight:600; letter-spacing:.02em;
+  color:transparent; -webkit-text-stroke:1px var(--ink-mute);
+}
+.marquee i{
+  font-style:normal; width:7px; height:7px; border-radius:50%;
+  background:var(--ocker); flex:none;
+}
+
+/* ---------- 11. Vorgehen ---------- */
+.steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line-soft); }
+.steps article{ padding:2.2rem 1.7rem 2.4rem; background:var(--paper); position:relative; overflow:hidden; }
+/* Auf getoenten Baendern heben sich die Karten hell ab — Ton in Ton
+   verschmolzen sie mit dem Hintergrund und der Abschnitt wirkte leer. */
+.band--soft .steps article{ background:var(--paper); }
+.steps span{
+  display:flex; align-items:center; gap:.9rem; margin-bottom:2.8rem;
+  font-family:var(--display); font-style:italic; font-weight:400;
+  font-size:2.4rem; letter-spacing:0; line-height:1; color:var(--clay);
+}
+.steps span::after{ content:""; flex:1; height:1px; background:var(--line); }
+.steps h3{ margin-bottom:.6rem; }
+.steps p{ font-size:.95rem; margin:0; }
+.steps article::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:2px;
+  background:var(--ocker); transform:scaleX(0); transform-origin:left;
+  transition:transform .6s var(--ease);
+}
+.steps article:hover::after{ transform:scaleX(1); }
+
+/* Beim Ueberfahren hebt sich die Karte einen Hauch, waermt sich an und
+   wirft einen weichen Schatten. Der Schatten ist noetig, weil das Raster
+   nur 1px Fuge hat: ohne ihn saehe das Anheben nach Versehen aus, mit ihm
+   nach Absicht. z-index legt die angehobene Karte ueber ihre Nachbarn,
+   sonst schneidet die naechste Fuge den Schatten ab. */
+.steps article,
+.steps > li{
+  transition:background-color .5s var(--ease),
+             transform .5s var(--ease),
+             box-shadow .5s var(--ease);
+}
+.steps article:hover,
+.steps > li:hover{
+  z-index:2;
+  background:var(--paper-2);
+  transform:translateY(-5px);
+  box-shadow:0 22px 40px -28px rgba(36,27,18,.55);
+}
+.band--soft .steps article:hover,
+.band--soft .steps > li:hover{ background:var(--paper-2); }
+
+/* Die Ziffer tritt mit vor: von Ton auf Ocker, einen Tick weiter gestellt. */
+.steps span,
+.steps__nr{ transition:color .45s var(--ease), letter-spacing .45s var(--ease); }
+.steps article:hover span,
+.steps > li:hover .steps__nr{ color:var(--ocker); letter-spacing:.02em; }
+
+/* Die Linie neben der Ziffer waechst beim Ueberfahren mit. */
+.steps span::after{ transition:background-color .45s var(--ease); }
+.steps article:hover span::after{ background:var(--ocker); }
+
+/* ---------- 12. Geteilte Bildbaender ---------- */
+.story{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); align-items:stretch; }
+.story--flip .story__fig{ order:2; }
+.story__fig{ position:relative; min-height:min(88vh,720px); overflow:hidden; }
+.story__fig img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.story__fig figcaption{
+  position:absolute; left:0; right:0; bottom:0; z-index:1;
+  display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+  padding:1.3rem clamp(1.2rem,2.5vw,2rem);
+  background:linear-gradient(to top, rgba(16,22,26,.78), transparent);
+  font-size:.68rem; font-weight:500;
+  letter-spacing:.2em; text-transform:uppercase; color:rgba(244,239,228,.88);
+}
+.story__copy{
+  display:flex; flex-direction:column; justify-content:center;
+  padding:clamp(3rem,6vw,6rem) clamp(1.5rem,5vw,5rem);
+  background:var(--deep); color:rgba(244,239,228,.72);
+}
+.story__copy h2{ color:var(--bone); }
+.story__copy h2 em{ color:var(--sand); }
+.story__copy .eyebrow{ color:var(--sand); }
+.story__copy .lead{ color:rgba(244,239,228,.72); }
+.story__copy--paper{ background:var(--paper-2); color:var(--ink-soft); }
+.story__copy--paper h2{ color:var(--ink); }
+.story__copy--paper h2 em{ color:var(--clay); }
+.story__copy--paper .eyebrow{ color:var(--clay); }
+.story__copy--paper .lead{ color:var(--ink-soft); }
+.story__notes{ display:flex; flex-wrap:wrap; gap:.7rem; margin:2rem 0 2.4rem; }
+/* Farben ueber die Token, nicht hart: auf Papier dunkel, in dunklen
+   Flaechen drehen die Token von selbst (Abschnitt 5b). Hart verdrahtet
+   standen die Chips auf den Projektseiten hell auf hell — unsichtbar. */
+.story__notes span{
+  padding:.5rem 1.05rem; border:1px solid var(--line); border-radius:100px;
+  font-size:.68rem; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft);
+}
+.story__copy .btn,.story__copy .tlink{ align-self:flex-start; }
+
+/* ---------- 13. Projektkarten ---------- */
+.grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1.2rem,2.5vw,2rem); }
+.grid-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:2rem; flex-wrap:wrap; margin-bottom:clamp(2.4rem,4vw,3.8rem); }
+.grid-head .head{ margin-bottom:0; }
+
+.object{
+  display:flex; flex-direction:column;
+  background:var(--paper); border:1px solid var(--line-soft); border-radius:2px;
+  overflow:hidden;
+  transition:transform .45s var(--ease), box-shadow .45s var(--ease), border-color .45s var(--ease);
+}
+.band--soft .object{ background:var(--paper); }
+.object:hover{ transform:translateY(-4px); box-shadow:var(--shadow); border-color:var(--line); }
+.object__fig{ position:relative; aspect-ratio:4/3; overflow:hidden; background:var(--paper-3); }
+.object__fig img{ width:100%; height:100%; object-fit:cover; transition:transform .8s var(--ease); }
+.object:hover .object__fig img{ transform:scale(1.045); }
+.object__badge{
+  position:absolute; left:.9rem; top:.9rem; z-index:1;
+  padding:.36rem .8rem; border-radius:2px;
+  background:rgba(26,36,41,.88); color:var(--bone);
+  font-size:.66rem; font-weight:500;
+  letter-spacing:.18em; text-transform:uppercase;
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+}
+.object__badge--sale{ background:rgba(140,59,30,.92); }
+.object__badge--rent{ background:rgba(36,27,18,.88); }
+.object__body{ display:flex; flex-direction:column; flex:1; padding:1.6rem 1.5rem 1.5rem; }
+.object__place{
+  font-size:.66rem; font-weight:500;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--clay); margin-bottom:.7rem;
+}
+.object h3{ margin-bottom:1.2rem; }
+/* Eckdaten als Definitionsliste: Vorlesehilfen lesen Bezeichnung und
+   Wert als Paar, und genau diese Struktur erwartet ein Interessent. */
+.object__specs{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+  margin:0 0 1.3rem; background:var(--line-soft);
+  border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft);
+}
+.object__specs > div{ background:var(--paper); padding:.85rem .2rem; text-align:center; }
+.object__specs dt{
+  font-size:.66rem; font-weight:500;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--ink-mute);
+}
+.object__specs dd{
+  margin:.35rem 0 0; font-family:var(--display); font-size:1.08rem;
+  font-weight:400; letter-spacing:0; color:var(--ink);
+}
+.object__foot{ display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin-top:auto; }
+.object__price{ font-family:var(--display); font-size:1.35rem; font-weight:400; letter-spacing:0; color:var(--ink); }
+.object__price small{ font-family:var(--body); font-size:.6rem; font-weight:500; letter-spacing:.14em; color:var(--ink-mute); margin-right:.35rem; }
+.object__state{ font-size:.78rem; color:var(--ink-mute); }
+
+/* Filterzeile der Projektseite */
+.filter{ display:flex; flex-wrap:wrap; gap:.6rem; }
+.filter button{
+  padding:.6rem 1.25rem; border:1px solid var(--line); border-radius:100px;
+  font-size:.67rem; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft);
+  transition:background-color .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
+}
+.filter button:hover{ border-color:var(--clay); color:var(--clay); }
+.filter button[aria-pressed="true"]{ background:var(--clay); border-color:var(--clay); color:var(--bone); }
+/* Der Filter schaltet Karten wie Listenzeilen — beide tragen data-status,
+   deshalb haengt das Ausblenden nicht mehr an der Kartenklasse. */
+[data-status].is-hidden{ display:none; }
+.js [data-status].is-shown{ animation:cardIn .5s var(--ease) both; }
+@keyframes cardIn{ from{ opacity:0; transform:translateY(14px) scale(.98); } }
+
+/* ---------- 14. Fallstudie ---------- */
+.case{ border:1px solid var(--line); border-radius:2px; background:var(--paper); overflow:hidden; box-shadow:var(--shadow); }
+.band--soft .case{ background:var(--paper); }
+.case__pair{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); }
+.case__pair figure{ position:relative; aspect-ratio:3/2; overflow:hidden; }
+.case__pair img{ width:100%; height:100%; object-fit:cover; }
+.case__pair figcaption{
+  position:absolute; left:.9rem; top:.9rem; z-index:1;
+  padding:.36rem .8rem; border-radius:2px;
+  font-size:.6rem; font-weight:500;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--bone);
+  background:rgba(26,36,41,.88);
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+}
+.case__pair figure:first-child figcaption{ background:rgba(165,103,74,.92); }
+/* Feine Innenlinie um den Textteil — zitiert die gedruckte Dokumentation,
+   dieselbe Geste wie die Menuekarte der Restaurant-Demo. */
+.case__body{
+  position:relative;
+  padding:clamp(1.8rem,4vw,3.2rem); display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:clamp(1.8rem,4vw,3.5rem);
+}
+.case__body::before{
+  content:""; position:absolute; inset:12px; border:1px solid var(--line-soft);
+  pointer-events:none;
+}
+.case__facts{ display:grid; gap:1px; background:var(--line-soft); border-block:1px solid var(--line-soft); align-self:start; }
+.case__facts > div{ display:flex; justify-content:space-between; align-items:baseline; gap:1rem; padding:.95rem .2rem; background:var(--paper); }
+.case__facts dt{ font-size:.66rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-mute); }
+.case__facts dd{ margin:0; font-family:var(--display); font-size:1.1rem; font-weight:400; letter-spacing:0; color:var(--ink); }
+
+/* ---------- 14b. Wandel: Vorher gegen Nachher ----------
+   Loest die zwei nebeneinandergestellten Definitionslisten ab. Dort stand
+   viermal „Vorher“ und viermal „Nachher“ untereinander, die Werte flatterten
+   rechtsbuendig aus — viel Flaeche, wenig Aussage.
+
+   Jetzt eine Zeile je Sache: alter Zustand, Pfeil, neuer Zustand. Die
+   Ueberschrift steht einmal oben. Der Pfeil waechst beim Erscheinen mit,
+   das Ergebnis steht im Ton der Sanierung. */
+.wandel{ container-type:inline-size; }
+.wandel__kopf{
+  display:grid; align-items:center;
+  grid-template-columns:minmax(0,1fr) 2.6rem minmax(0,1fr);
+  gap:0 clamp(.6rem,1.5vw,1.2rem);
+  padding:0 0 .85rem; border-bottom:1px solid var(--line);
+  font-size:.62rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--ink-mute);
+}
+.wandel__kopf span:last-child{ grid-column:3; color:var(--clay); }
+
+.wandel__zeile{
+  position:relative;
+  display:grid; align-items:center;
+  grid-template-columns:minmax(0,1fr) 2.6rem minmax(0,1fr);
+  gap:0 clamp(.6rem,1.5vw,1.2rem);
+  padding:1.05rem 0; border-bottom:1px solid var(--line-soft);
+  transition:background-color .4s var(--ease);
+}
+.wandel__zeile:last-child{ border-bottom:1px solid var(--line); }
+.wandel dt,.wandel dd{
+  margin:0; font-family:var(--display);
+  font-size:clamp(1.02rem,.95rem + .3vw,1.22rem); line-height:1.3; letter-spacing:0;
+}
+.wandel dt{ grid-column:1; grid-row:1; color:var(--ink-mute); }
+.wandel dd{ grid-column:3; grid-row:1; color:var(--ink); transition:color .4s var(--ease); }
+
+/* Der Pfeil steckt in den beiden Pseudoelementen der Zeile, damit die Liste
+   sauberes dt/dd-Markup behaelt. Beide liegen ausdruecklich in derselben
+   Rasterzelle: ::before ist die Linie, ::after die Spitze an ihrem Ende. */
+.wandel__zeile::before,
+.wandel__zeile::after{ content:""; grid-column:2; grid-row:1; align-self:center; }
+.wandel__zeile::before{ height:1px; background:var(--line); }
+.wandel__zeile::after{
+  justify-self:end; width:5px; height:5px; rotate:45deg;
+  border-top:1px solid var(--ocker); border-right:1px solid var(--ocker);
+}
+.js .rise .wandel__zeile::before{ transform:scaleX(0); transform-origin:left; }
+.js .rise.is-in .wandel__zeile::before{
+  transform:scaleX(1); transition:transform .7s var(--ease);
+}
+.js .rise .wandel__zeile::after{ opacity:0; }
+.js .rise.is-in .wandel__zeile::after{ opacity:1; transition:opacity .3s var(--ease) .5s; }
+.js .rise.is-in .wandel__zeile:nth-child(2)::before{ transition-delay:.1s; }
+.js .rise.is-in .wandel__zeile:nth-child(3)::before{ transition-delay:.2s; }
+.js .rise.is-in .wandel__zeile:nth-child(4)::before{ transition-delay:.3s; }
+.js .rise.is-in .wandel__zeile:nth-child(5)::before{ transition-delay:.4s; }
+.wandel__zeile:hover{ background:var(--clay-soft); }
+.wandel__zeile:hover dd{ color:var(--clay); }
+
+/* Schmale Spalte: alt und neu untereinander, der Pfeil senkrecht am Rand.
+   Container-Abfrage statt Bildschirmbreite — der Block steht je nach Seite
+   in einer schmalen oder in einer breiten Spalte. */
+@container (max-width: 30rem){
+  .wandel__kopf{ display:none; }
+  .wandel__zeile{
+    grid-template-columns:1.1rem minmax(0,1fr);
+    gap:.2rem .9rem; padding:.95rem 0;
+  }
+  .wandel dt{ grid-column:2; grid-row:1; font-size:.98rem; }
+  .wandel dd{ grid-column:2; grid-row:2; }
+  .wandel__zeile::before{
+    grid-column:1; grid-row:1 / 3;
+    width:1px; height:100%; justify-self:center; align-self:stretch;
+  }
+  .wandel__zeile::after{
+    grid-column:1; grid-row:2;
+    justify-self:center; align-self:end; rotate:135deg;
+  }
+  .js .rise .wandel__zeile::before{ transform:scaleY(0); transform-origin:top; }
+  .js .rise.is-in .wandel__zeile::before{ transform:scaleY(1); }
+}
+
+/* ---------- 14c. Konzeptspalten ----------
+   Materialien und Massnahmen standen als zwei kurze Bloecke im .valu-Raster
+   und liessen darunter eine grosse leere Flaeche stehen. Als geteiltes Feld
+   mit Trennlinie fuellen sie ihren Platz. */
+.konzept{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));
+  gap:0; border:1px solid var(--line-soft); background:var(--paper);
+}
+.band--soft .konzept{ background:var(--paper); }
+.konzept > div{
+  padding:clamp(1.5rem,2.6vw,2.1rem);
+  border-left:1px solid var(--line-soft);
+}
+.konzept > div:first-child{ border-left:0; }
+.konzept h3{
+  font-size:1.06rem; margin-bottom:1.1rem; padding-bottom:.8rem;
+  border-bottom:1px solid var(--line-soft);
+}
+.konzept .story__notes{ margin:0; }
+.konzept .pluslist{ margin-top:0; }
+
+/* ---------- 14d. Bilanz: die Schlussaussage ----------
+   Vorher stand hier eine Ueberschrift mit drei Zeilen Fliesstext in einer
+   halbbreiten Spalte, umgeben von einem vollen Bandabstand — viel Papier,
+   wenig darauf. Jetzt traegt die Aussage selbst die Serife und laeuft
+   neben der Ueberschrift, statt darunter zu verhungern. */
+.bilanz{
+  display:grid; grid-template-columns:minmax(0,.42fr) minmax(0,1fr);
+  gap:clamp(1.6rem,5vw,4.5rem); align-items:start;
+  padding-top:clamp(1.8rem,3.5vw,2.8rem); border-top:1px solid var(--line);
+}
+.bilanz .eyebrow{ margin-bottom:.9rem; }
+.bilanz h2{ font-size:clamp(1.6rem,1.2rem + 1.6vw,2.4rem); }
+.bilanz__text{
+  font-family:var(--display); font-weight:400; letter-spacing:-.004em;
+  font-size:clamp(1.32rem,1.05rem + 1.15vw,2rem); line-height:1.34;
+  color:var(--ink); max-width:26ch; margin:0;
+}
+.bilanz__text em{ font-style:italic; color:var(--clay); }
+@media (max-width:860px){
+  .bilanz{ grid-template-columns:1fr; gap:1.4rem; }
+  .bilanz__text{ max-width:none; }
+}
+
+/* ---------- 14e2. Projektkachel ohne Bild ----------
+   Die Verweise auf andere Projekte zeigten deren Titelbilder — dieselben
+   sechs Fotos, verteilt ueber alle Projektseiten. Als typografische Kachel
+   sagt der Verweis dasselbe, ohne ein Motiv ein zweites Mal zu bringen.
+   Die grosse Serife traegt den Namen, der Stand steht als Marke darueber. */
+.projektkachel{
+  display:flex; flex-direction:column; gap:1.1rem;
+  padding:1.8rem 1.6rem 1.6rem; position:relative; overflow:hidden;
+  background:var(--paper); border:1px solid var(--line-soft); border-radius:2px;
+  transition:background-color .45s var(--ease), border-color .45s var(--ease),
+             transform .45s var(--ease), box-shadow .45s var(--ease);
+}
+.band--soft .projektkachel{ background:var(--paper); }
+.projektkachel:hover{
+  border-color:var(--line); transform:translateY(-4px); box-shadow:var(--shadow);
+}
+.projektkachel::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:2px;
+  background:var(--ocker); transform:scaleX(0); transform-origin:left;
+  transition:transform .55s var(--ease);
+}
+.projektkachel:hover::after{ transform:scaleX(1); }
+.projektkachel__stand{
+  align-self:flex-start; padding:.32rem .75rem; border-radius:2px;
+  background:var(--clay-soft); color:var(--clay);
+  font-size:.62rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase;
+}
+.projektkachel__ort{
+  font-size:.66rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--ink-mute);
+}
+.projektkachel__t{
+  font-family:var(--display); font-size:clamp(1.45rem,1.2rem + .9vw,1.95rem);
+  line-height:1.12; color:var(--ink); margin-top:-.6rem;
+  transition:color .35s var(--ease);
+}
+.projektkachel:hover .projektkachel__t{ color:var(--clay); }
+.projektkachel__m{
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  margin-top:auto; padding-top:1.1rem; border-top:1px solid var(--line-soft);
+  font-size:.68rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--clay);
+}
+.projektkachel__m svg{ flex:none; transition:transform .35s var(--ease); }
+.projektkachel:hover .projektkachel__m svg{ transform:translateX(4px); }
+
+/* ---------- 14e. Weiter-Kachel im Dreierraster ----------
+   „Aehnliche Projekte“ zeigt zwei Karten; die dritte Spalte blieb leer.
+   Statt das Raster zu schrumpfen steht dort jetzt der Weg zur Uebersicht. */
+.weiterkarte{
+  display:flex; flex-direction:column; justify-content:space-between; gap:1.5rem;
+  padding:1.8rem 1.6rem 1.6rem;
+  background:var(--clay-soft); border:1px solid var(--line-soft); border-radius:2px;
+  transition:background-color .45s var(--ease), border-color .45s var(--ease),
+             transform .45s var(--ease), box-shadow .45s var(--ease);
+}
+.weiterkarte:hover{
+  background:var(--ocker-soft); border-color:var(--line);
+  transform:translateY(-4px); box-shadow:var(--shadow);
+}
+.weiterkarte__k{
+  font-size:.66rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--clay);
+}
+.weiterkarte__t{
+  font-family:var(--display); font-size:clamp(1.5rem,1.2rem + 1vw,2.05rem);
+  line-height:1.12; color:var(--ink);
+}
+.weiterkarte__t em{ font-style:italic; color:var(--clay); }
+.weiterkarte__m{
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  padding-top:1rem; border-top:1px solid var(--line-soft);
+  font-size:.68rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-mute);
+}
+.weiterkarte__m svg{ flex:none; color:var(--clay); transition:transform .35s var(--ease); }
+.weiterkarte:hover .weiterkarte__m svg{ transform:translateX(4px); }
+
+/* ---------- 15. Werte ---------- */
+.values{ display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(1.2rem,2.5vw,2rem); }
+.values article{
+  padding:2rem 1.8rem; border:1px solid var(--line-soft); border-radius:2px; background:var(--paper);
+  transition:border-color .4s var(--ease), transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.values article:hover{ border-color:var(--line); transform:translateY(-3px); box-shadow:var(--shadow); }
+.band--soft .values article{ background:var(--paper); }
+.values svg{ color:var(--clay); margin-bottom:1.2rem; }
+.values h3{ margin-bottom:.55rem; }
+.values p{ font-size:.95rem; margin:0; }
+
+/* ---------- 16. Zeitstrahl ---------- */
+.timeline{ position:relative; max-width:44rem; }
+.timeline::before{
+  content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px;
+  background:var(--line);
+}
+.timeline li{ position:relative; padding:0 0 2.2rem 2.4rem; }
+.timeline li:last-child{ padding-bottom:0; }
+.timeline li::before{
+  content:""; position:absolute; left:0; top:6px; width:11px; height:11px;
+  border-radius:50%; background:var(--ocker); border:2px solid var(--paper);
+  box-shadow:0 0 0 1px var(--ocker);
+}
+.timeline b{
+  display:block; font-family:var(--display); font-style:italic; font-weight:400;
+  font-size:1.02rem; letter-spacing:.02em; color:var(--ocker); margin-bottom:.3rem;
+}
+.timeline h3{ margin-bottom:.35rem; }
+.timeline p{ font-size:.95rem; margin:0; max-width:52ch; }
+
+/* ---------- 16b. Zeitablauf als liegender Weg ----------
+   Auf den Projektseiten stand der Ablauf als schmale Spalte links, rechts
+   blieb die halbe Seite leer. Vier Stationen nebeneinander fuellen die
+   Breite und lesen sich wie ein Bauprogramm. Die Punkte sitzen auf einer
+   durchgehenden Linie, die beim Erscheinen von links nach rechts waechst. */
+@media (min-width:861px){
+  .timeline--weg{
+    max-width:none; display:grid; grid-auto-flow:column; grid-auto-columns:1fr;
+    gap:clamp(1.2rem,2.5vw,2.4rem);
+  }
+  /* Die Linie liegt auf Hoehe der Stationspunkte, nicht mehr senkrecht. */
+  .timeline--weg::before{
+    left:0; right:0; top:6px; bottom:auto; width:auto; height:1px;
+    transform-origin:left;
+  }
+  .js .timeline--weg.rise::before{ transform:scaleX(0); }
+  .js .timeline--weg.rise.is-in::before{
+    transform:scaleX(1); transition:transform 1.1s var(--ease) .15s;
+  }
+  .timeline--weg > li{ padding:2.3rem 0 0; }
+  .timeline--weg > li:last-child{ padding-bottom:0; }
+  .timeline--weg > li::before{ top:-1px; left:0; }
+  .timeline--weg p{ max-width:34ch; }
+}
+
+/* ---------- 17. Team ---------- */
+.team{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(1.2rem,2.5vw,2rem); }
+.team article{ text-align:center; padding:2.2rem 1.4rem; border:1px solid var(--line-soft); border-radius:2px; background:var(--paper); }
+.band--soft .team article{ background:var(--paper); }
+/* Monogramme statt Portraets: die Demo kommt ohne Fotos realer Personen
+   aus — dieselbe Linie wie bei den uebrigen Beispielwebsites. */
+.team__mono{
+  width:72px; height:72px; margin:0 auto 1.3rem; display:grid; place-items:center;
+  border-radius:50%; background:var(--clay-soft); color:var(--clay);
+  border:1px solid rgba(53,82,95,.2);
+  font-family:var(--display); font-style:italic; font-size:1.5rem; font-weight:400;
+  letter-spacing:.02em;
+}
+.team h3{ font-size:1.12rem; margin-bottom:.3rem; }
+.team p{ font-size:.62rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-mute); margin:0; }
+
+/* ---------- 18. Häufige Fragen ---------- */
+.faq{ max-width:46rem; display:grid; gap:.8rem; }
+.faq details{ border:1px solid var(--line-soft); border-radius:2px; background:var(--paper); transition:border-color .3s var(--ease); }
+.faq details:hover,.faq details[open]{ border-color:var(--line); }
+.faq summary{
+  list-style:none; cursor:pointer; display:flex; justify-content:space-between;
+  align-items:center; gap:1.5rem; padding:1.15rem 1.4rem;
+  font-family:var(--display); font-size:1.08rem; font-weight:400;
+  letter-spacing:0; color:var(--ink);
+}
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary svg{ flex:none; color:var(--ocker); transition:transform .35s var(--ease); }
+.faq details[open] summary svg{ transform:rotate(45deg); }
+.faq details > p{ padding:0 1.4rem 1.25rem; font-size:.95rem; }
+.js .faq details[open] > p{ animation:faqIn .4s var(--ease); }
+@keyframes faqIn{ from{ opacity:0; transform:translateY(-6px); } }
+
+/* ---------- 19. Formular ---------- */
+.valu{ display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:clamp(2.5rem,6vw,5.5rem); align-items:start; }
+/* Innenlinie wie bei der Menuekarte der Restaurant-Demo: das Formular
+   wird zum Dokument, nicht zur Box. */
+.form{
+  position:relative;
+  padding:clamp(1.9rem,3.5vw,2.8rem); background:var(--paper);
+  border:1px solid var(--line); border-radius:2px; box-shadow:var(--shadow);
+}
+.form::before{
+  content:""; position:absolute; inset:10px; border:1px solid var(--line-soft);
+  pointer-events:none;
+}
+.band--soft .form{ background:var(--paper); }
+.fgrid{ display:grid; grid-template-columns:1fr 1fr; gap:1.15rem; margin-bottom:1.5rem; }
+.field{ display:flex; flex-direction:column; gap:.45rem; }
+.field--full{ grid-column:1 / -1; }
+.field label{
+  font-size:.68rem; font-weight:500;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--ink-mute);
+}
+.field input,.field select,.field textarea{
+  font:inherit; font-size:.97rem; color:var(--ink);
+  padding:.82rem .95rem; background:var(--paper-2); border:1px solid var(--line);
+  border-radius:2px; width:100%;
+  transition:border-color .3s var(--ease), background-color .3s var(--ease);
+}
+.field textarea{ min-height:110px; resize:vertical; }
+.field input:focus,.field select:focus,.field textarea:focus{ border-color:var(--clay); background:var(--paper); outline:none; }
+.field input::placeholder,.field textarea::placeholder{ color:rgba(28,31,34,.35); }
+.field select{ appearance:none; padding-right:2.4rem; cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%2335525F' stroke-width='1.4'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 1rem center;
+}
+.field .err{ font-size:.72rem; letter-spacing:.02em; color:#B4523C; display:none; }
+.field.has-error input,.field.has-error select,.field.has-error textarea{ border-color:#B4523C; }
+.field.has-error .err{ display:block; }
+
+/* Spamfalle — fuer Menschen unsichtbar, aber nicht display:none (Bots pruefen das) */
+.hp{ position:absolute; left:-9999px; width:1px; height:1px; opacity:0; }
+
+.consent{ display:flex; gap:.8rem; align-items:flex-start; font-size:.84rem; line-height:1.6; color:var(--ink-mute); margin-bottom:1.5rem; cursor:pointer; }
+/* Eigenes Kaestchen statt der System-Checkbox: die native Variante ist auf
+   iOS nur ein paar Pixel gross und laesst sich kaum treffen. */
+.consent input[type="checkbox"]{
+  appearance:none; -webkit-appearance:none;
+  flex:none; width:24px; height:24px; margin:0; padding:0;
+  border:1.5px solid var(--ink-mute); border-radius:3px;
+  background-color:var(--paper);
+  background-repeat:no-repeat; background-position:center; background-size:15px 15px;
+  cursor:pointer;
+  transition:background-color .2s ease, border-color .2s ease;
+}
+.consent input[type="checkbox"]:hover{ border-color:var(--clay); }
+.consent input[type="checkbox"]:focus-visible{ outline:2px solid var(--clay); outline-offset:2px; }
+.consent input[type="checkbox"]:checked{
+  background-color:var(--clay); border-color:var(--clay);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F4EFE4' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5 9.5 18 20 6.5'/%3E%3C/svg%3E");
+}
+.consent a{ color:var(--clay); text-decoration:underline; text-underline-offset:2px; }
+.formnote{ margin-top:1rem; text-align:center; font-size:.72rem; letter-spacing:.06em; color:var(--ink-mute); }
+
+.ok,.notok{
+  display:none; align-items:flex-start; gap:.8rem; margin-top:1.4rem;
+  padding:1rem 1.2rem; border:1px solid; border-radius:2px; font-size:.88rem; line-height:1.6;
+  position:relative; z-index:1;
+}
+.ok{ border-color:rgba(53,82,95,.4); background:var(--clay-soft); color:var(--ink); }
+.notok{ border-color:rgba(180,82,60,.45); background:rgba(180,82,60,.08); color:#8A3B2A; }
+.ok.is-visible,.notok.is-visible{ display:flex; }
+.ok svg,.notok svg{ flex:none; margin-top:.2rem; color:var(--clay); }
+.notok svg{ color:#B4523C; }
+.notok a{ color:#8A3B2A; text-decoration:underline; text-underline-offset:2px; }
+.ok b{ font-weight:500; }
+.ok a{ color:var(--clay); text-decoration:underline; text-underline-offset:2px; font-weight:500; }
+
+/* Merkliste neben dem Formular */
+.pluslist{ display:grid; gap:1rem; margin-top:2.2rem; }
+.pluslist li{ display:flex; gap:.85rem; align-items:flex-start; font-size:.97rem; }
+.pluslist svg{ flex:none; margin-top:.3rem; color:var(--ocker); }
+
+/* ---------- 20. Kontakt ---------- */
+.contact__grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+  margin-top:clamp(2.4rem,5vw,3.8rem); background:var(--line-soft);
+}
+.contact__grid > div{ padding:2.1rem 1.8rem; background:var(--paper); }
+.contact__grid span{
+  display:block; margin-bottom:1rem; font-size:.66rem;
+  font-weight:500; letter-spacing:.24em; text-transform:uppercase; color:var(--clay);
+}
+.contact__grid p{ margin:0 0 .8rem; font-size:1.02rem; color:var(--ink); line-height:1.7; }
+.contact__grid small{ font-size:.76rem; letter-spacing:.02em; color:var(--ink-mute); }
+.contact__grid a:not(.tlink){ color:var(--ink); border-bottom:1px solid var(--line); transition:border-color .3s var(--ease); }
+.contact__grid a:not(.tlink):hover{ border-color:var(--clay); }
+
+/* ---------- 21. Appell-Band ---------- */
+.cta{ background:var(--deep); color:rgba(244,239,228,.72); padding:clamp(4rem,7vw,7rem) 0; position:relative; overflow:hidden; }
+/* Grosses Giebelzeichen als Wasserzeichen rechts */
+.cta::before{
+  content:""; position:absolute; right:-4rem; top:50%; transform:translateY(-50%);
+  width:26rem; height:26rem; opacity:.05; pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%23F4EFE4' stroke-width='2'%3E%3Cpath d='M12 27 24 16l12 11'/%3E%3Cpath d='M12 34h24'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.cta__in{ display:grid; grid-template-columns:minmax(0,1.2fr) auto; gap:2.5rem; align-items:center; position:relative; }
+.cta h2{ color:var(--bone); }
+.cta h2 em{ color:var(--sand); }
+.cta p{ margin-top:1.2rem; max-width:52ch; }
+.cta__act{ display:flex; flex-direction:column; gap:1rem; align-items:flex-start; }
+
+/* ---------- 22. Fussbereich ---------- */
+.footer{ background:var(--deep); color:rgba(244,239,228,.6); padding:clamp(3.5rem,6vw,5.5rem) 0 2.5rem; border-top:1px solid var(--line-inv-soft); }
+.footer .brand__mark{ background:var(--bone); color:var(--deep); }
+.footer .brand__name{ color:var(--bone); }
+.footer .brand__sub{ color:rgba(244,239,228,.45); }
+.footer__top{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:2.5rem; padding-bottom:3rem; border-bottom:1px solid rgba(244,239,228,.12); }
+.footer__top p{ max-width:32ch; font-size:.92rem; margin-top:1.3rem; }
+.footer .footer__h{
+  margin:0 0 1.1rem; font-size:.68rem; font-weight:500;
+  letter-spacing:.22em; text-transform:uppercase; color:var(--sand);
+}
+.footer li{ margin-bottom:.6rem; font-size:.92rem; }
+.footer li a{ transition:color .3s var(--ease); }
+.footer li a:hover{ color:var(--bone); }
+.footer__bot{
+  display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem;
+  padding-top:2rem; font-size:.78rem; letter-spacing:.02em; color:rgba(244,239,228,.5);
+}
+.footer__bot nav{ display:flex; gap:1.8rem; }
+.footer__bot a:hover{ color:var(--sand); }
+.footer__legal{ margin-top:1.6rem; font-size:.76rem; line-height:1.7; color:rgba(244,239,228,.5); max-width:70ch; }
+
+/* ---------- 23. Nach oben ---------- */
+.totop{
+  position:fixed; right:1.2rem; bottom:1.2rem; z-index:90;
+  width:46px; height:46px; display:grid; place-items:center;
+  border:1px solid var(--line); border-radius:2px;
+  background:rgba(244,239,228,.9); color:var(--ink);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  opacity:0; visibility:hidden; transform:translateY(10px);
+  transition:opacity .35s var(--ease), visibility .35s, transform .35s var(--ease), background-color .3s var(--ease);
+}
+.totop.is-visible{ opacity:1; visibility:visible; transform:none; }
+.totop:hover{ background:var(--clay); color:var(--bone); border-color:var(--clay); }
+body.is-locked .totop{ opacity:0; visibility:hidden; }
+
+/* ---------- 24. Einblenden beim Scrollen ----------
+   Kuerzer und frueher als die erste Fassung: bei 0.9s Dauer plus bis zu
+   0.6s Staffelung sah man beim normalen Scrollen staendig halbleere
+   Abschnitte — genau das Gegenteil von dem, was die Blende soll. */
+.rise{ opacity:1; }
+.js .rise{ opacity:0; transform:translateY(22px); transition:opacity .65s var(--ease), transform .65s var(--ease); }
+.js .rise.is-in{ opacity:1; transform:none; }
+.js .rise[data-d="1"]{ transition-delay:.08s; }
+.js .rise[data-d="2"]{ transition-delay:.16s; }
+.js .rise[data-d="3"]{ transition-delay:.24s; }
+.js .rise[data-d="4"]{ transition-delay:.32s; }
+.js .rise[data-d="5"]{ transition-delay:.4s; }
+.js .rise[data-d="6"]{ transition-delay:.48s; }
+
+/* Die Messlinien wachsen mit, wenn ihr Abschnitt erscheint — die kleine
+   Geste, die aus „eingeblendet“ ein „gesetzt“ macht. */
+.idx::after,.eyebrow::before{ transform-origin:left center; }
+.js .idx.rise::after,
+.js .rise .eyebrow::before,
+.js .eyebrow.rise::before{ transform:scaleX(0); transition:transform .9s var(--ease) .25s; }
+.js .idx.rise.is-in::after,
+.js .rise.is-in .eyebrow::before,
+.js .eyebrow.rise.is-in::before{ transform:scaleX(1); }
+
+/* ---------- 24a. Zeilenweise Enthuellung der Titel ----------
+   Die grossen Serifentitel fahren zeilenweise aus einer Maske hoch statt
+   als ein Block einzublenden. Das ist der Unterschied zwischen „da ist
+   Text erschienen“ und „da wurde etwas gesetzt“.
+
+   Geschnitten wird an den <br>, die ohnehin im HTML stehen — die
+   Umbrueche sind also dieselben wie ohne JavaScript. Die Maske braucht
+   unten Luft, sonst kappt sie die Unterlaengen von „g“ und „p“ und die
+   Schwaenze der Kursiven; das Polster wird per negativem Aussenabstand
+   wieder aus dem Layout genommen. */
+.zeile{
+  display:block; overflow:hidden;
+  padding-bottom:.16em; margin-bottom:-.16em;
+}
+.zeile__in{ display:block; }
+.js .split .zeile__in{
+  transform:translateY(110%);
+  transition:transform .85s var(--ease);
+}
+.js .split.is-in .zeile__in,
+.js .is-in .split .zeile__in{ transform:none; }
+
+/* Die Zeilen kommen kurz nacheinander, nicht im Gleichschritt. */
+.js .split .zeile:nth-child(1) .zeile__in{ transition-delay:.02s; }
+.js .split .zeile:nth-child(2) .zeile__in{ transition-delay:.1s; }
+.js .split .zeile:nth-child(3) .zeile__in{ transition-delay:.18s; }
+.js .split .zeile:nth-child(4) .zeile__in{ transition-delay:.26s; }
+
+/* Traegt der Block selbst schon eine Zeilenenthuellung, faehrt er nicht
+   zusaetzlich als Ganzes hoch — sonst laegen zwei Bewegungen uebereinander
+   und das Ergebnis wirkt weich statt praezise. Die Blende bleibt. */
+.js .rise.hat-split{ transform:none; }
+
+/* Bild-Vorhang: ueber dem Bild liegt eine Papierflaeche, die beim
+   Erscheinen zur Seite faehrt — das Bild wird "aufgedeckt". */
+.veilimg{ position:relative; overflow:hidden; }
+.veilimg::after{
+  content:""; position:absolute; inset:0; background:var(--paper-3);
+  transform-origin:right; transition:transform 1s var(--ease);
+}
+.js .veilimg:not(.is-in)::after{ transform:scaleX(1); }
+.js .veilimg.is-in::after{ transform:scaleX(0); }
+.js .veilimg img{ transition:transform 1.2s var(--ease), filter .3s; }
+.js .veilimg:not(.is-in) img{ transform:scale(1.08); }
+
+/* ---------- 23c. Zeitleiste mit mitlaufendem Bild ----------
+   Die Stationen brauchten nur die halbe Breite, die andere Haelfte stand
+   leer. Dort steht jetzt das Motiv der gerade gelesenen Station: es klebt
+   waehrend des Scrollens und wechselt weich, sobald die naechste Station
+   die Bildschirmmitte erreicht.
+
+   Ohne JavaScript bleibt das erste Motiv stehen. Das ist kein Verlust:
+   die Stationen tragen den Inhalt, das Bild begleitet ihn nur. */
+.zeitraum{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,.85fr);
+  gap:clamp(2rem,5vw,5rem);
+  align-items:start;
+}
+.zeitbild{
+  position:sticky; top:clamp(5.5rem,14vh,9rem);
+  aspect-ratio:4/5; overflow:hidden;
+  background:var(--paper-3);
+  box-shadow:var(--shadow);
+}
+.zeitbild__f{
+  position:absolute; inset:0; display:block;
+  opacity:0; transform:scale(1.05);
+  transition:opacity 1.1s var(--ease), transform 1.8s var(--ease);
+}
+.zeitbild__f.is-an{ opacity:1; transform:none; }
+.zeitbild__f img{ width:100%; height:100%; object-fit:cover; }
+
+/* Die gerade gelesene Station wird ausgezeichnet, nicht die uebrigen
+   ausgeblendet. Vorher standen alle anderen Stationen auf 40 Prozent
+   Deckkraft: Man sah einen kleinen wachen Text und daneben lauter graue
+   Schemen — unruhig und schlecht lesbar.
+
+   Jetzt bleibt jede Station voll lesbar. Die aktive bekommt eine Linie,
+   die neben ihr herunterlaeuft, einen Punkt mit Hof und den Jahrgang im
+   Ton der Sanierung. Das reicht vollkommen, um zu zeigen, welches Bild
+   gerade wozu gehoert. */
+.zeitraum .timeline > li > *{ opacity:1; }
+.zeitraum .timeline > li{ transition:transform .55s var(--ease); }
+.zeitraum .timeline > li::after{
+  content:""; position:absolute; left:5px; top:1.35rem; bottom:1.5rem; width:1px;
+  background:var(--clay); transform:scaleY(0); transform-origin:top;
+  transition:transform .6s var(--ease);
+}
+.zeitraum .timeline > li.is-wach{ transform:translateX(5px); }
+.zeitraum .timeline > li.is-wach::after{ transform:scaleY(1); }
+.zeitraum .timeline > li::before{
+  transition:background-color .5s var(--ease), box-shadow .5s var(--ease);
+}
+.zeitraum .timeline > li.is-wach::before{
+  background:var(--clay);
+  box-shadow:0 0 0 1px var(--clay), 0 0 0 6px var(--clay-soft);
+}
+.timeline > li b{ transition:color .5s var(--ease); }
+.zeitraum .timeline > li.is-wach b{ color:var(--clay); }
+
+@media (max-width:1040px){
+  /* Schmale Schirme: eine Spalte. Das Bild steht oben und klebt nicht —
+     ein klebendes Bild frisst dort den halben Bildschirm. */
+  .zeitraum{ grid-template-columns:1fr; }
+  .zeitbild{ position:static; order:-1; aspect-ratio:16/10; margin-bottom:2rem; }
+  .zeitraum .timeline > li > *{ opacity:1; }
+  /* Schmale Schirme: keine Auszeichnung, es ist ohnehin nur ein Bild sichtbar */
+  .zeitraum .timeline > li::after{ display:none; }
+  .zeitraum .timeline > li.is-wach{ transform:none; }
+}
+
+/* ---------- 24b. Verlinkte Objektkarte ----------
+   Der Link auf der Ueberschrift deckt ueber ::after die ganze Karte ab. */
+.object--link{ position:relative; }
+.object--link .object__link{ color:inherit; }
+.object--link .object__link::after{ content:""; position:absolute; inset:0; z-index:1; }
+.object--link .object__link:focus-visible{ outline:none; }
+.object--link:has(.object__link:focus-visible){ outline:2px solid var(--clay); outline-offset:3px; }
+.object__more{
+  display:inline-flex; align-items:center; gap:.5rem; margin-top:1.05rem;
+  font-size:.68rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--clay);
+}
+.object__more svg{ transition:transform .35s var(--ease); }
+.object--link:hover .object__more svg{ transform:translateX(3px); }
+
+/* ---------- 24c. Brotkrumen ---------- */
+.crumbs{
+  display:flex; flex-wrap:wrap; gap:.55rem; align-items:center; margin:0 0 1.8rem;
+  font-size:.72rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-mute);
+}
+.crumbs a{ color:var(--clay); padding-bottom:.15rem; border-bottom:1px solid transparent; }
+.crumbs a:hover{ border-bottom-color:var(--clay); }
+.crumbs svg{ opacity:.55; flex:none; }
+
+/* ---------- 24d. Galerie ----------
+   Redaktionelles Raster auf zwoelf Spalten statt Kachelraster: die erste
+   Zeile traegt zwei ungleiche Bilder (7 zu 5), die zweite drei gleiche.
+   Das fuellt jede Zeile vollstaendig — keine verwaisten Luecken — und
+   haelt die Motive in vernuenftiger Groesse. Ein einzelnes Riesenbild
+   ueber zwei Zeilen sprengte vorher jede Seite. */
+.galerie{
+  display:grid; grid-template-columns:repeat(12,1fr);
+  gap:clamp(.8rem,1.6vw,1.4rem);
+}
+.galerie figure{
+  position:relative; overflow:hidden; border-radius:2px;
+  border:1px solid var(--line-soft); aspect-ratio:3/2; background:var(--paper-3);
+  grid-column:span 4;
+}
+/* Fuenf Motive: 7+5 / 4+4+4.
+   Nur das erste Motiv gibt die Zeilenhoehe vor; das zweite ist schmaler und
+   waere mit demselben Seitenverhaeltnis niedriger — darunter klaffte eine
+   Luecke. Ohne eigenes Verhaeltnis zieht es sich auf die Zeilenhoehe. */
+.galerie figure:nth-child(1){ grid-column:span 7; aspect-ratio:16/10; }
+.galerie figure:nth-child(2){ grid-column:span 5; aspect-ratio:auto; }
+/* Vier Motive: 7+5 / 6+6 — sonst bliebe die zweite Zeile ein Drittel leer. */
+.galerie:not(:has(figure:nth-child(5))) figure:nth-child(3),
+.galerie:not(:has(figure:nth-child(5))) figure:nth-child(4){ grid-column:span 6; }
+/* .gross bleibt als Haltepunkt bestehen, wirkt aber nicht mehr als
+   Doppelzeilen-Kachel — die Reihenfolge im HTML steuert das Raster. */
+.galerie figure.gross{ grid-column:span 7; grid-row:auto; }
+.galerie img{ width:100%; height:100%; object-fit:cover; transition:transform .7s var(--ease); filter:sepia(.12) saturate(1.04); }
+.galerie figure:hover img{ transform:scale(1.035); }
+
+/* Aufdecken wie bei .veilimg, aber ohne zusaetzliche Klasse im HTML: eine
+   Papierflaeche faehrt zur Seite weg, die Motive kurz nacheinander. */
+.galerie figure::after{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:var(--paper-3); transform-origin:right;
+  transition:transform .9s var(--ease);
+}
+.band--soft .galerie figure::after{ background:var(--paper-2); }
+.js .galerie figure.rise:not(.is-in)::after{ transform:scaleX(1); }
+.js .galerie figure.rise.is-in::after{ transform:scaleX(0); }
+.js .galerie figure.rise:not(.is-in) img{ transform:scale(1.06); }
+.js .galerie figure.rise:nth-child(2)::after{ transition-delay:.08s; }
+.js .galerie figure.rise:nth-child(3)::after{ transition-delay:.16s; }
+.js .galerie figure.rise:nth-child(4)::after{ transition-delay:.24s; }
+.js .galerie figure.rise:nth-child(5)::after{ transition-delay:.32s; }
+.galerie figcaption{
+  position:absolute; left:0; right:0; bottom:0; padding:.65rem .9rem;
+  background:linear-gradient(to top, rgba(16,22,26,.72), transparent);
+  color:rgba(244,239,228,.92); font-size:.68rem; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase;
+}
+
+/* ---------- 24e. Grundriss ---------- */
+.grundriss{
+  border:1px solid var(--line); border-radius:2px; background:var(--paper);
+  padding:clamp(1.2rem,3vw,2rem); box-shadow:var(--shadow);
+}
+.grundriss svg{ width:100%; height:auto; display:block; }
+.grundriss figcaption{ margin-top:1rem; font-size:.8rem; color:var(--ink-mute); }
+
+/* ---------- 24f. Dialog (Muster-Expose) ---------- */
+.modal{ position:fixed; inset:0; z-index:220; display:grid; place-items:center; padding:1rem; }
+.modal[hidden]{ display:none; }
+.modal__hinter{
+  position:absolute; inset:0; background:rgba(16,22,26,.66);
+  -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); border:0; cursor:default;
+}
+.modal__karte{
+  position:relative; width:min(94vw,46rem); max-height:88vh; overflow:auto;
+  background:var(--paper); border:1px solid var(--line); border-radius:3px;
+  box-shadow:var(--shadow); padding:clamp(1.5rem,3.5vw,2.6rem);
+}
+.modal__zu{
+  position:sticky; top:0; float:right; margin:-.4rem -.4rem 0 0;
+  width:40px; height:40px; display:grid; place-items:center;
+  border:1px solid var(--line); border-radius:2px; background:var(--paper); color:var(--ink);
+  transition:background-color .3s var(--ease), color .3s var(--ease);
+}
+.modal__zu:hover{ background:var(--clay); color:var(--bone); }
+.stempel{
+  display:inline-block; padding:.3rem .75rem; margin-bottom:1.1rem;
+  border:1px solid var(--ocker); border-radius:2px; color:var(--ocker);
+  font-size:.66rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase;
+}
+.expose__kopf{ display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; margin-bottom:1.2rem; }
+.expose p{ font-size:.95rem; }
+
+/* ---------- 24g. Formular: Zweige und Fehlerzusammenfassung ---------- */
+[data-zweig][hidden]{ display:none; }
+.fehlerbox{
+  margin-bottom:1.2rem; padding:1rem 1.2rem; border:1px solid rgba(180,82,60,.5);
+  background:rgba(180,82,60,.08); border-radius:2px; color:#8A3B2A; font-size:.9rem;
+  position:relative; z-index:1;
+}
+.fehlerbox[hidden]{ display:none; }
+.fehlerbox b{ font-weight:600; }
+.fehlerbox ul{ list-style:disc; margin:.45rem 0 0 1.2rem; }
+.fehlerbox a{ color:inherit; text-decoration:underline; text-underline-offset:2px; font-weight:500; }
+.consent.has-error{ color:#8A3B2A; }
+.consent.has-error input[type="checkbox"]{ border-color:#B4523C; }
+.consent .err{ display:none; font-size:.78rem; }
+.consent.has-error .err{ display:block; flex-basis:100%; }
+
+/* Filter: Ergebnisstand */
+.filter__stand{ font-size:.85rem; color:var(--ink-mute); }
+
+/* ---------- 24h. Team mit Biografien ---------- */
+.team{ grid-template-columns:repeat(2,1fr); }
+.team article{ text-align:left; padding:2.1rem 1.9rem; }
+.team__mono{ margin:0 0 1.2rem; }
+.team .team__rolle{ margin:0 0 .9rem; }
+.team .bio{
+  font-family:var(--body); font-size:.95rem; letter-spacing:0; text-transform:none;
+  color:var(--ink-soft); margin:0 0 1rem;
+}
+.team blockquote{
+  padding-left:1rem; border-left:2px solid var(--ocker);
+  font-family:var(--display); font-style:italic; font-size:1.06rem;
+  color:var(--clay); line-height:1.5;
+}
+
+/* =========================================================================
+   29. Bausteine der erweiterten Seiten
+   Verkaufsseite, Mietwohnungen und Journal bringen Muster mit, die es
+   vorher nicht gab. Sie greifen bewusst auf dieselben Tokens zurueck wie
+   der Rest — neue Farben oder Abstaende kommen keine dazu.
+   ========================================================================= */
+
+/* ---------- 29a. Gegenueberstellung (Vermittlung vs. Direktankauf) ---------- */
+.gegen{
+  display:grid; grid-template-columns:1fr 1fr; gap:1px;
+  background:var(--line-soft); border:1px solid var(--line-soft);
+}
+.gegen__sp{ background:var(--paper); padding:clamp(1.8rem,3vw,2.6rem); }
+.band--soft .gegen__sp{ background:var(--paper-2); }
+.gegen__sp--wir{ background:var(--clay-soft); }
+.band--soft .gegen__sp--wir{ background:var(--clay-soft); }
+.gegen__kopf{
+  font-size:.68rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink-mute); margin-bottom:1.6rem; padding-bottom:.9rem;
+  border-bottom:1px solid var(--line-soft);
+}
+.gegen__sp--wir .gegen__kopf{ color:var(--clay); border-bottom-color:rgba(53,82,95,.22); }
+.gegen__liste{ display:grid; gap:.95rem; }
+.gegen__liste li{ position:relative; padding-left:1.7rem; font-size:.95rem; line-height:1.6; }
+.gegen__liste li::before{
+  position:absolute; left:0; top:.05em; font-size:1.05em; line-height:1.5;
+}
+.gegen__liste--minus li{ color:var(--ink-mute); }
+.gegen__liste--minus li::before{ content:"–"; color:var(--ink-mute); }
+.gegen__liste--plus li::before{ content:"+"; color:var(--ocker); font-weight:500; }
+.gegen__fuss{
+  margin-top:1.8rem; max-width:62ch; font-size:.9rem; line-height:1.7;
+  color:var(--ink-mute); padding-left:1.1rem; border-left:2px solid var(--ocker);
+}
+
+/* ---------- 29b. Ablauf als nummerierte Liste ----------
+   Der bestehende .steps-Block arbeitet mit <article>; hier tragen <li>
+   dieselbe Optik, weil ein Ablauf semantisch eine Reihenfolge ist. */
+.steps--5{ grid-template-columns:repeat(5,1fr); }
+.steps > li{
+  list-style:none; padding:2.2rem 1.7rem 2.4rem; background:var(--paper);
+  position:relative; overflow:hidden;
+}
+.band--soft .steps > li{ background:var(--paper); }
+.steps > li::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:2px;
+  background:var(--ocker); transform:scaleX(0); transform-origin:left;
+  transition:transform .6s var(--ease);
+}
+.steps > li:hover::after{ transform:scaleX(1); }
+.steps__nr{ margin-bottom:2.2rem !important; }
+.steps__wer{
+  margin-top:1.1rem !important; padding-top:.8rem; border-top:1px solid var(--line-soft);
+  font-family:var(--body); font-size:.68rem !important; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--ink-mute);
+}
+
+/* ---------- 29c. Ankaufsprofil: passt / passt nicht ---------- */
+.kriterien,.jn{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(1.4rem,3vw,2.6rem); }
+.jn{ margin-top:clamp(2.4rem,4vw,3.4rem); }
+.kriterien__kopf,.jn__kopf{
+  display:flex; align-items:center; gap:.7rem; margin-bottom:1.4rem;
+  font-size:.68rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase;
+}
+.kriterien__kopf::before,.jn__kopf::before{
+  content:""; width:1.35rem; height:1.35rem; border-radius:50%;
+  background-repeat:no-repeat; background-position:center; background-size:.8rem;
+}
+.kriterien__kopf--ja,.jn__kopf--ja{ color:var(--clay); }
+.kriterien__kopf--ja::before,.jn__kopf--ja::before{
+  background-color:var(--clay-soft);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2335525F' stroke-width='3'%3E%3Cpath d='M4 12.5 9.5 18 20 6.5'/%3E%3C/svg%3E");
+}
+.kriterien__kopf--nein,.jn__kopf--nein{ color:var(--ocker); }
+.kriterien__kopf--nein::before,.jn__kopf--nein::before{
+  background-color:var(--ocker-soft);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A5674A' stroke-width='3'%3E%3Cpath d='M6 6l12 12M18 6 6 18'/%3E%3C/svg%3E");
+}
+.kriterien__sp ul,.jn__sp ul{ display:grid; gap:.95rem; }
+.kriterien__sp li,.jn__sp li{
+  position:relative; padding-left:1.3rem; font-size:.95rem; line-height:1.65;
+  color:var(--ink-soft);
+}
+.kriterien__sp li::before,.jn__sp li::before{
+  content:""; position:absolute; left:0; top:.62em;
+  width:.42rem; height:1px; background:var(--ocker);
+}
+.kriterien__sp b,.jn__sp b{ color:var(--ink); font-weight:500; }
+.kriterien__hinweis{
+  margin-top:1.6rem; font-size:.88rem; line-height:1.7; color:var(--ink-mute);
+  padding-top:1.2rem; border-top:1px solid var(--line-soft);
+}
+
+/* ---------- 29d. Listen ohne eingebettetes Symbol ----------
+   .pluslist erwartet ein <svg> je Zeile; diese Fassung setzt das Zeichen
+   selbst und wird dort verwendet, wo der Text aus Daten entsteht. */
+.merkliste{ display:grid; gap:.85rem; margin-top:1.4rem; }
+.merkliste li{
+  position:relative; padding-left:1.3rem; font-size:.93rem; line-height:1.6;
+  color:var(--ink-soft);
+}
+.merkliste li::before{
+  content:""; position:absolute; left:0; top:.6em;
+  width:.42rem; height:1px; background:var(--ocker);
+}
+.merkliste--minus li::before{ background:var(--ink-mute); }
+
+/* ---------- 29e. Grosses Zitat auf dunklem Grund ---------- */
+.grossezitat{ max-width:44rem; margin:0 auto; }
+.grossezitat p{
+  font-family:var(--display); font-size:clamp(1.5rem,3.4vw,2.3rem);
+  line-height:1.32; letter-spacing:-.01em; color:var(--bone);
+}
+.grossezitat p::before{ content:"„"; }
+.grossezitat p::after{ content:"“"; }
+.grossezitat footer{ margin-top:2rem; display:grid; gap:.4rem; }
+.grossezitat footer span{
+  font-size:.68rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(244,239,228,.7);
+}
+.grossezitat__demo{ color:rgba(244,239,228,.42) !important; letter-spacing:.12em !important; }
+
+/* ---------- 29f. Formular mit Randspalte ---------- */
+.formzone{
+  display:grid; grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);
+  gap:clamp(1.6rem,3vw,2.8rem); align-items:start;
+}
+.formaside{
+  padding:clamp(1.6rem,2.6vw,2.2rem); background:var(--paper-2);
+  border:1px solid var(--line-soft);
+}
+.band--soft .formaside{ background:var(--paper); }
+.formaside h3{ font-size:1.15rem; margin-bottom:.7rem; }
+.formaside p{ font-size:.92rem; line-height:1.7; color:var(--ink-mute); }
+.formaside hr{ border:0; border-top:1px solid var(--line-soft); margin:1.8rem 0 1.5rem; }
+.formaside__gross{ margin-top:1.2rem; }
+.formaside__gross a{
+  font-family:var(--display); font-size:1.5rem; color:var(--ink) !important;
+  border-bottom:1px solid var(--line);
+}
+.formaside__gross a:hover{ border-bottom-color:var(--ocker); }
+.formaside__zeit{ margin-top:.5rem; font-size:.72rem !important; letter-spacing:.06em; }
+
+/* ---------- 29g. Feldbeschriftungen ---------- */
+.pflicht,.field__opt{
+  margin-left:.5rem; font-size:.6rem; font-weight:500; letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.pflicht{ color:var(--ocker); }
+.field__opt{ color:var(--ink-mute); }
+.field__hilfe{ font-size:.76rem; line-height:1.55; color:var(--ink-mute); }
+.consent .pflicht{ display:inline-block; }
+
+/* ---------- 29h. Objektkarten: Miete und belegte Einheiten ---------- */
+.object__price .je{ margin-left:.15rem; margin-right:0 !important; letter-spacing:.1em !important; }
+.object--belegt .object__fig img{ filter:grayscale(.55); opacity:.85; }
+.object--belegt h3{ color:var(--ink-mute); }
+.object__hinweis{
+  margin-top:1rem; padding-top:.9rem; border-top:1px solid var(--line-soft);
+  font-size:.8rem; line-height:1.6; color:var(--ink-mute);
+}
+.object__hinweis a{ color:var(--clay); border-bottom:1px solid var(--line); }
+.object__hinweis a:hover{ border-bottom-color:var(--ocker); }
+.bestand__hinweis{
+  margin-top:clamp(2rem,4vw,3rem); max-width:60ch; font-size:.92rem;
+  line-height:1.75; color:var(--ink-mute);
+  padding-left:1.1rem; border-left:2px solid var(--clay);
+}
+
+/* ---------- 29i. Eckdaten einer Wohnung ---------- */
+.eckdaten{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(1.4rem,3vw,2.6rem); }
+.eckdaten__block{
+  padding:clamp(1.6rem,2.6vw,2.2rem); background:var(--paper);
+  border:1px solid var(--line-soft);
+}
+.band--soft .eckdaten__block{ background:var(--paper); }
+.eckdaten__block h3{ font-size:1.2rem; margin-bottom:1.4rem; }
+.eckdaten__liste{ display:grid; }
+.eckdaten__liste > div{
+  display:flex; justify-content:space-between; align-items:baseline; gap:1.2rem;
+  padding:.75rem 0; border-bottom:1px solid var(--line-soft);
+}
+.eckdaten__liste > div:last-child{ border-bottom:0; }
+.eckdaten__liste dt{
+  font-size:.72rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-mute); flex:none;
+}
+.eckdaten__liste dd{ margin:0; font-size:.98rem; color:var(--ink); text-align:right; }
+.eckdaten__liste--geld dd{ font-family:var(--display); font-size:1.12rem; }
+.eckdaten__summe{ border-top:1px solid var(--line) !important; margin-top:.3rem; }
+.eckdaten__summe dt{ color:var(--ink) !important; }
+.eckdaten__summe dd{ font-size:1.4rem !important; color:var(--clay) !important; }
+.eckdaten__fuss{
+  margin-top:1.4rem; font-size:.82rem; line-height:1.7; color:var(--ink-mute);
+}
+
+/* ---------- 29j. Gehzeiten ---------- */
+.wege{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line-soft); }
+.wege li{
+  background:var(--paper-2); padding:1.6rem 1.4rem;
+  display:grid; gap:.5rem; align-content:start;
+}
+.wege__zeit{
+  font-family:var(--display); font-size:1.7rem; line-height:1; color:var(--clay);
+}
+.wege__ziel{ font-size:.88rem; line-height:1.6; color:var(--ink-mute); }
+
+/* ---------- 29k. Verweiskacheln am Seitenende ---------- */
+.weiterlinks{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-soft); }
+.weiter{
+  background:var(--paper); padding:1.9rem 1.6rem 2.1rem; display:grid; gap:.45rem;
+  align-content:start; position:relative; overflow:hidden;
+  transition:background .35s var(--ease);
+}
+.band--soft .weiter{ background:var(--paper-2); }
+.weiter:hover{ background:var(--clay-soft); }
+.weiter::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:2px;
+  background:var(--ocker); transform:scaleX(0); transform-origin:left;
+  transition:transform .5s var(--ease);
+}
+.weiter:hover::after{ transform:scaleX(1); }
+.weiter__k{
+  font-size:.62rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ocker);
+}
+.weiter__t{ font-family:var(--display); font-size:1.25rem; line-height:1.2; color:var(--ink); }
+.weiter__m{ font-size:.82rem; color:var(--ink-mute); }
+
+/* ---------- 29l. Journal: Beitragsliste ---------- */
+.beitraege{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1.4rem,3vw,2.4rem); }
+.beitrag{ display:grid; gap:1.1rem; align-content:start; }
+.beitrag--gross{ grid-column:1 / -1; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+  gap:clamp(1.6rem,3vw,3rem); align-items:center; }
+.beitrag__fig{ display:block; overflow:hidden; }
+.beitrag__fig img{ width:100%; height:100%; object-fit:cover; aspect-ratio:3/2; }
+.beitrag--gross .beitrag__fig img{ aspect-ratio:4/3; }
+.beitrag__meta{
+  display:flex; flex-wrap:wrap; align-items:center; gap:.9rem; margin-bottom:.9rem;
+  font-size:.64rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-mute);
+}
+.beitrag__kat{ color:var(--ocker); }
+.beitrag h2{ font-size:clamp(1.3rem,2.2vw,1.7rem); line-height:1.18; letter-spacing:-.005em; }
+.beitrag--gross h2{ font-size:clamp(1.8rem,3.4vw,2.6rem); }
+.beitrag h2 a{ color:var(--ink); background-image:linear-gradient(var(--ocker),var(--ocker));
+  background-size:0 1px; background-repeat:no-repeat; background-position:0 100%;
+  transition:background-size .45s var(--ease); }
+.beitrag h2 a:hover{ background-size:100% 1px; }
+.beitrag__teaser{ margin-top:.85rem; font-size:.95rem; line-height:1.7; color:var(--ink-mute); }
+.beitrag__autor{
+  margin-top:1.1rem; font-size:.64rem; font-weight:500; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink-mute);
+}
+
+/* ---------- 29m. Journal: Beitragsseite ---------- */
+.titelbild{ margin:0; overflow:clip; border-radius:2px; }
+/* Ohne festes Verhaeltnis lief das Bild in seiner vollen Hoehe (4:3 auf
+   voller Spaltenbreite ergab fast eine Bildschirmhoehe) und drueckte den
+   Text aus dem Blick. Ein liegender Ausschnitt reicht vollkommen. */
+.titelbild img{ width:100%; aspect-ratio:2/1; object-fit:cover; }
+@media (max-width:640px){ .titelbild img{ aspect-ratio:4/3; } }
+.titelbild figcaption{
+  margin-top:.9rem; font-size:.8rem; line-height:1.65; color:var(--ink-mute);
+  max-width:60ch;
+}
+.artikel{ max-width:44rem; }
+.artikel h2{
+  margin-top:clamp(2.6rem,5vw,3.6rem); margin-bottom:1rem;
+  font-size:clamp(1.45rem,2.6vw,1.95rem); line-height:1.2;
+}
+.artikel h2:first-child{ margin-top:0; }
+.artikel h3{ margin-top:2.2rem; margin-bottom:.7rem; font-size:1.15rem; }
+.artikel p{ margin-bottom:1.15rem; font-size:1.02rem; line-height:1.8; color:var(--ink-soft); }
+.artikel b{ color:var(--ink); font-weight:500; }
+.artikel em{ font-style:italic; }
+.artikel ul,.artikel ol.reihenfolge{ display:grid; gap:1rem; margin:1.6rem 0 2rem; }
+.artikel ul li{ position:relative; padding-left:1.5rem; font-size:1rem; line-height:1.75; color:var(--ink-soft); }
+.artikel ul li::before{
+  content:""; position:absolute; left:0; top:.72em; width:.55rem; height:1px;
+  background:var(--ocker);
+}
+.artikel ol.reihenfolge{ counter-reset:schritt; }
+.artikel ol.reihenfolge li{
+  counter-increment:schritt; position:relative; padding-left:2.9rem;
+  font-size:1rem; line-height:1.75; color:var(--ink-soft);
+}
+.artikel ol.reihenfolge li::before{
+  content:counter(schritt); position:absolute; left:0; top:-.1em;
+  font-family:var(--display); font-style:italic; font-size:1.5rem;
+  line-height:1.2; color:var(--clay);
+}
+.artikel blockquote{
+  margin:clamp(2.2rem,4vw,3rem) 0; padding-left:clamp(1.2rem,2.5vw,2rem);
+  border-left:2px solid var(--ocker);
+}
+.artikel blockquote p{
+  font-family:var(--display); font-style:italic;
+  font-size:clamp(1.25rem,2.4vw,1.6rem); line-height:1.4; color:var(--ink);
+  margin-bottom:0;
+}
+.artikel .hinweis{
+  margin-top:2.4rem; padding:1.2rem 1.4rem; background:var(--paper-2);
+  border-left:2px solid var(--clay); font-size:.86rem; line-height:1.7;
+  color:var(--ink-mute);
+}
+
+/* ---------- 29n. Faktenkasten mit Tabelle ---------- */
+.fakten{
+  margin:clamp(2.2rem,4vw,3rem) 0; padding:clamp(1.4rem,2.4vw,2rem);
+  background:var(--paper-2); border:1px solid var(--line-soft);
+}
+.fakten__kopf{
+  font-size:.66rem !important; font-weight:500; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--clay); margin-bottom:1.2rem !important;
+}
+.fakten table{ width:100%; border-collapse:collapse; font-size:.92rem; }
+.fakten caption{
+  caption-side:bottom; margin-top:1rem; text-align:left;
+  font-size:.76rem; line-height:1.6; color:var(--ink-mute);
+}
+.fakten th,.fakten td{
+  text-align:left; padding:.7rem .8rem .7rem 0; border-bottom:1px solid var(--line-soft);
+  vertical-align:top;
+}
+.fakten thead th{
+  font-size:.64rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-mute); border-bottom-color:var(--line);
+}
+.fakten tbody th{ font-weight:500; color:var(--ink); }
+.fakten td{ color:var(--ink-soft); }
+.fakten tbody tr:last-child th,.fakten tbody tr:last-child td{ border-bottom:0; }
+.fakten__liste{ display:grid; gap:.7rem; }
+.fakten__liste li{ position:relative; padding-left:1.4rem; font-size:.93rem; line-height:1.65; color:var(--ink-soft); }
+.fakten__liste li::before{
+  content:""; position:absolute; left:0; top:.62em; width:.45rem; height:1px; background:var(--ocker);
+}
+
+/* ---------- 29o. Autorenkasten ---------- */
+.autor{
+  max-width:44rem; margin-top:clamp(2.6rem,5vw,3.6rem);
+  padding:clamp(1.5rem,2.6vw,2.1rem); border:1px solid var(--line-soft);
+  background:var(--paper-2);
+}
+.autor__k{
+  font-size:.62rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink-mute); margin-bottom:.8rem;
+}
+.autor__n{ font-family:var(--display); font-size:1.3rem; color:var(--ink); }
+.autor__r{
+  margin-top:.2rem; font-size:.64rem; font-weight:500; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ocker);
+}
+.autor__t{ margin-top:1rem; font-size:.93rem; line-height:1.75; color:var(--ink-mute); }
+.autor__demo{
+  margin-top:1rem; padding-top:.9rem; border-top:1px solid var(--line-soft);
+  font-size:.72rem; letter-spacing:.04em; color:var(--ink-mute);
+}
+
+/* ---------- 29p. Kompakte Mietliste auf der Startseite ---------- */
+.mietliste{ border-top:1px solid var(--line); }
+.mietliste li{ border-bottom:1px solid var(--line-soft); }
+.mietliste a{
+  display:grid; align-items:center; gap:.25rem 1.6rem;
+  grid-template-columns:minmax(0,1.7fr) minmax(0,.75fr) minmax(0,.7fr) 1.4rem;
+  /* Ort, Titel und Eckdaten stehen untereinander in der ersten Spalte;
+     Preis, Verfügbarkeit und Pfeil laufen ueber alle drei Zeilen. */
+  grid-template-areas:"ort   preis frei pfeil"
+                      "titel preis frei pfeil"
+                      "daten preis frei pfeil";
+  padding:1.5rem .4rem 1.6rem; position:relative;
+  transition:padding-left .4s var(--ease);
+}
+.mietliste a::before{
+  content:""; position:absolute; left:0; top:0; bottom:0; width:2px;
+  background:var(--ocker); transform:scaleY(0); transform-origin:top;
+  transition:transform .4s var(--ease);
+}
+.mietliste a:hover{ padding-left:1.1rem; }
+.mietliste a:hover::before{ transform:scaleY(1); }
+.mietliste__titel{
+  grid-area:titel; font-family:var(--display); font-size:1.28rem;
+  line-height:1.25; color:var(--ink);
+}
+.mietliste__ort{
+  grid-area:ort; font-size:.64rem; font-weight:500; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--ocker);
+}
+.mietliste__daten{ grid-area:daten; font-size:.85rem; color:var(--ink-mute); }
+.mietliste__preis{
+  grid-area:preis; font-family:var(--display); font-size:1.28rem; color:var(--ink);
+}
+.mietliste__preis small{
+  font-family:var(--body); font-size:.58rem; font-weight:500; letter-spacing:.14em;
+  color:var(--ink-mute);
+}
+.mietliste__preis small:first-child{ margin-right:.35rem; }
+.mietliste__frei{
+  grid-area:frei; font-size:.66rem; font-weight:500; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--clay);
+}
+.mietliste__pfeil{ grid-area:pfeil; color:var(--clay); justify-self:end; }
+
+/* =========================================================================
+   30. Objektliste statt Kartenraster
+   Ein Kartenraster sagt „hier sind Produkte“. Eine Liste mit Linien sagt
+   „hier ist ein Bestand“ — das trifft die Sache besser und erlaubt viel
+   groessere Titel.
+
+   Das Bild steht fest in der Zeile, links neben dem Titel, und ist von
+   Anfang an sichtbar. Eine Immobilienliste ohne Bilder verlangt Vertrauen,
+   bevor sie etwas zeigt — bei Wohnungen die falsche Reihenfolge. Beim
+   Erscheinen faehrt ein Vorhang zur Seite weg (dasselbe Prinzip wie
+   .veilimg), beim Ueberfahren zieht das Motiv sachte auf.
+   ========================================================================= */
+.oliste{ position:relative; border-top:1px solid var(--line); }
+.oliste > li{
+  position:relative;
+  display:grid;
+  grid-template-columns:clamp(7rem,10vw,9.5rem) minmax(0,1fr);
+  align-items:center; column-gap:clamp(1.1rem,2vw,1.9rem);
+  border-bottom:1px solid var(--line-soft);
+  transition:background .5s var(--ease);
+}
+.oliste > li:last-child{ border-bottom:1px solid var(--line); }
+/* Warmer Hauch unter der Zeile, auf der der Zeiger steht. Laeuft nach
+   rechts aus, damit die Linienstruktur der Liste erhalten bleibt. */
+.oliste > li:hover{
+  background:linear-gradient(90deg, rgba(140,59,30,.055), rgba(140,59,30,.014) 45%, transparent 78%);
+}
+
+.oliste__link{
+  position:relative; z-index:2; display:grid; align-items:center;
+  grid-template-columns:2.6rem minmax(0,1.4fr) minmax(0,.95fr) 8.5rem 1.4rem;
+  grid-template-areas:"nr ort daten wert pfeil" "nr tit daten stand pfeil";
+  gap:.15rem clamp(.9rem,1.6vw,1.6rem); padding:1.6rem .2rem 1.7rem;
+  /* transform statt padding-left: verschiebt ohne neues Layout und laeuft
+     dadurch auch auf schwachen Geraeten fluessig. */
+  transition:transform .55s var(--ease), color .3s var(--ease);
+}
+.oliste__link:hover{ transform:translateX(.55rem); }
+
+.oliste__nr{
+  grid-area:nr; align-self:start; padding-top:.35rem;
+  font-size:.66rem; font-weight:500; letter-spacing:.18em; color:var(--ocker);
+}
+.oliste__ort{
+  grid-area:ort; font-size:.64rem; font-weight:500; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--ink-mute);
+}
+.oliste__tit{
+  grid-area:tit; font-family:var(--display); font-size:clamp(1.5rem,1.1rem + 1.3vw,2.15rem);
+  line-height:1.06; letter-spacing:-.004em; color:var(--ink);
+  transition:color .3s var(--ease);
+}
+.oliste__link:hover .oliste__tit{ color:var(--clay); }
+.oliste__daten{
+  grid-area:daten; align-self:center; display:grid; gap:.2rem;
+  font-size:.86rem; line-height:1.45; color:var(--ink-mute);
+}
+.oliste__spec{ color:var(--ink-soft); }
+.oliste__note{ font-size:.78rem; color:var(--ink-mute); }
+.oliste__note a{ color:var(--clay); border-bottom:1px solid var(--line); }
+.oliste__wert{
+  grid-area:wert; justify-self:end; text-align:right;
+  font-family:var(--display); font-size:1.5rem; line-height:1; color:var(--ink);
+}
+.oliste__wert small{
+  font-family:var(--body); font-size:.58rem; font-weight:500; letter-spacing:.14em;
+  color:var(--ink-mute); margin-right:.35rem;
+}
+.oliste__wert small.je{ margin-right:0; margin-left:.2rem; }
+.oliste__stand{
+  grid-area:stand; justify-self:end; text-align:right; margin-top:.35rem;
+  font-size:.62rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-mute);
+}
+.oliste__stand--sale{ color:var(--clay); }
+.oliste__pfeil{
+  grid-area:pfeil; justify-self:end; color:var(--clay); opacity:0;
+  transform:translateX(-6px); transition:opacity .35s var(--ease), transform .35s var(--ease);
+}
+.oliste__link:hover .oliste__pfeil{ opacity:1; transform:none; }
+
+/* Zeilen ohne Ziel (vermietet, reserviert) */
+.oliste__link--tot{ cursor:default; }
+.oliste__link--tot:hover{ transform:none; }
+/* Vermietet oder reserviert: das Motiv tritt zurueck, bleibt aber lesbar. */
+.oliste > li:has(.oliste__link--tot) .oliste__bild img{ filter:grayscale(.5) brightness(.99); }
+.oliste > li:has(.oliste__link--tot):hover{ background:none; }
+.oliste > li:has(.oliste__link--tot):hover .oliste__bild img{ transform:none; }
+.oliste__link--tot .oliste__tit{ color:var(--ink-mute); }
+.oliste__link--tot:hover .oliste__tit{ color:var(--ink-mute); }
+.oliste__hinweis{
+  grid-area:daten; align-self:center; font-size:.82rem; color:var(--ink-mute);
+}
+.oliste__hinweis a{ color:var(--clay); border-bottom:1px solid var(--line); }
+
+/* Die Vorschau: liegt ueber der Liste, faengt keine Klicks ab und wird
+   nur von JavaScript bewegt. Ohne JavaScript bleibt sie unsichtbar —
+   die Zeile ist dann trotzdem vollstaendig lesbar. */
+.oliste__bild{
+  /* <picture> ist von Haus aus display:contents und erzeugt dann gar keine
+     Box — deshalb ausdruecklich auf block stellen. */
+  display:block;
+  /* Im HTML steht das Bild nach dem Verweis; order holt es nach vorn, ohne
+     dass die Reihenfolge im Quelltext geaendert werden muss. */
+  order:-1;
+  position:relative; overflow:hidden;
+  aspect-ratio:4/3; background:var(--paper-3);
+  box-shadow:0 16px 30px -22px rgba(36,27,18,.55);
+  transition:box-shadow .6s var(--ease);
+}
+/* Der Vorhang: liegt anfangs ueber dem Bild und faehrt nach rechts weg. */
+.oliste__bild::after{
+  content:""; position:absolute; inset:0; z-index:2;
+  background:var(--paper); transform-origin:right center;
+  transition:transform 1s var(--ease);
+}
+.js .oliste:not(.is-in) .oliste__bild::after{ transform:scaleX(1); }
+.js .oliste.is-in  .oliste__bild::after{ transform:scaleX(0); }
+.oliste__bild img{
+  width:100%; height:100%; object-fit:cover;
+  transition:transform 1.2s var(--ease), filter .6s var(--ease);
+}
+.js .oliste:not(.is-in) .oliste__bild img{ transform:scale(1.1); }
+.oliste > li:hover .oliste__bild{ box-shadow:0 24px 42px -22px rgba(36,27,18,.68); }
+.oliste > li:hover .oliste__bild img{ transform:scale(1.07); }
+
+/* Die Zeilen kommen nacheinander, nicht alle auf einmal. Gestaffelt ueber
+   nth-child, damit im HTML nichts markiert werden muss. */
+.oliste > li:nth-child(1) .oliste__bild::after{ transition-delay:.05s; }
+.oliste > li:nth-child(2) .oliste__bild::after{ transition-delay:.13s; }
+.oliste > li:nth-child(3) .oliste__bild::after{ transition-delay:.21s; }
+.oliste > li:nth-child(4) .oliste__bild::after{ transition-delay:.29s; }
+.oliste > li:nth-child(5) .oliste__bild::after{ transition-delay:.37s; }
+.oliste > li:nth-child(6) .oliste__bild::after{ transition-delay:.45s; }
+.oliste > li:nth-child(7) .oliste__bild::after{ transition-delay:.53s; }
+.oliste > li:nth-child(8) .oliste__bild::after{ transition-delay:.61s; }
+
+/* ---------- 30b. Klebende Bildspalte ----------
+   In langen Abschnitten bleibt das Bild stehen, waehrend der Text daneben
+   weiterlaeuft. Nur ab Tabletbreite: darunter stehen die beiden ohnehin
+   uebereinander, dort waere Kleben sinnlos.
+
+   Wichtig: NUR das Bild bekommt align-self:start (Bedingung fuers Kleben).
+   Die Textspalte streckt sich auf die volle Zeilenhoehe — sonst endete
+   die dunkle Flaeche vor dem Bild und darunter klaffte ein Papierloch. */
+@media (min-width:1041px){
+  /* KEIN klebendes Bild mehr.
+     Ein Bild, das nur bildschirmhoch ist, kann eine hoehere Spalte nicht
+     ausfuellen: Unter dem Foto blieb bis zu 167 Pixel blankes Papier
+     stehen, waehrend die dunkle Textflaeche daneben weiterlief. Genau
+     diese schiefe Unterkante ist mehrfach aufgefallen.
+
+     Jetzt fuellt das Foto seine Spalte vollstaendig (absolut gesetzt,
+     object-fit:cover). Bild und Text sind damit auf jeder Fensterbreite,
+     bei jeder Texthoehe und an jeder Scrollposition exakt gleich hoch.
+     Die Bewegung im Bild kommt weiterhin von der scrollgesteuerten
+     Parallaxe in Abschnitt 31c, die ohne Hoehenunterschied auskommt. */
+  .story--klebe .story__fig{
+    position:relative; align-self:stretch;
+    height:auto; min-height:100svh;
+  }
+  .story--klebe .story__fig img{
+    position:absolute; inset:0;
+    width:100%; height:100%; object-fit:cover;
+  }
+  .story--klebe .story__fig figcaption{ position:absolute; inset:auto 0 0 0; }
+  .story--klebe .story__copy{
+    min-height:100svh;
+    padding-block:clamp(4rem,8vw,7rem);
+  }
+}
+
+/* ---------- 30c. Grosse Kursive im Fliesstext ----------
+   Instrument Serif traegt jetzt auch die Zwischenrufe im Journal. */
+.artikel blockquote p{ font-size:clamp(1.5rem,2.8vw,2.1rem); line-height:1.25; }
+.grossezitat p{ font-size:clamp(1.7rem,3.8vw,2.7rem); line-height:1.2; }
+.mietliste__titel,.mietliste__preis{ font-size:1.4rem; }
+.beitrag h2{ line-height:1.04; }
+.beitrag--gross h2{ font-size:clamp(2rem,3.8vw,3rem); }
+
+/* ---------- 30d. Beitragsseite: Metaleiste und Textspalte ---------- */
+.artikelzone{ display:grid; gap:clamp(2rem,4vw,3rem); }
+.artikelrail{ display:grid; gap:1.4rem; align-content:start; }
+.rail__paar{ display:grid; gap:.2rem; }
+.rail__k{
+  font-size:.62rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--ocker); margin:0;
+}
+.rail__v{ font-size:.92rem; color:var(--ink-soft); margin:0; }
+.rail__v--gross{ font-family:var(--display); font-size:1.25rem; color:var(--ink); }
+.artikelrail hr{ border:0; border-top:1px solid var(--line-soft); margin:.4rem 0; }
+
+@media (min-width:1041px){
+  .artikelzone{
+    grid-template-columns:minmax(0,13rem) minmax(0,46rem);
+    justify-content:center; column-gap:clamp(3rem,6vw,6rem);
+  }
+  .artikelrail{ position:sticky; top:6.5rem; }
+  .artikel{ max-width:none; }
+  /* Faktenkaesten duerfen aus der Textspalte ausbrechen */
+  .artikel .fakten{ margin-inline:clamp(0rem,-2vw,-2.5rem); }
+}
+@media (max-width:1040px){
+  .artikelrail{
+    grid-auto-flow:column; grid-auto-columns:max-content; gap:2rem;
+    padding-bottom:1.6rem; border-bottom:1px solid var(--line-soft);
+    overflow-x:auto;
+  }
+}
+.artikelzone .autor{ margin-top:clamp(2.6rem,5vw,3.6rem); max-width:none; }
+
+/* ---------- 25. Schmale Bildschirme ---------- */
+@media (max-width:1180px){
+  .seal{ display:none; }
+  .nav{ gap:1.5rem; }
+  .steps--5{ grid-template-columns:repeat(3,1fr); }
+}
+@media (max-width:1040px){
+  .steps{ grid-template-columns:1fr 1fr; }
+  .steps--5{ grid-template-columns:1fr 1fr; }
+  .beitraege{ grid-template-columns:1fr 1fr; }
+  .formzone{ grid-template-columns:1fr; }
+  .grid-3{ grid-template-columns:1fr 1fr; }
+  .story{ grid-template-columns:1fr; }
+  .story--flip .story__fig{ order:0; }
+  .story__fig{ min-height:min(60vh,460px); }
+  .valu{ grid-template-columns:1fr; }
+  .footer__top{ grid-template-columns:1fr 1fr; }
+  .case__body{ grid-template-columns:1fr; }
+  .cta__in{ grid-template-columns:1fr; }
+  .pagehero__ghost{ font-size:clamp(10rem,26vw,18rem); }
+}
+@media (max-width:860px){
+  .nav{ display:none; }
+  /* Ohne Zeiger gibt es kein Ueberfahren: das Bild steht fest in der Zeile */
+  /* Eine Spalte: das Bild steht oben, darunter die Angaben */
+  .oliste > li{
+    grid-template-columns:1fr; row-gap:1rem;
+    padding:1.5rem 0 1.7rem;
+  }
+  .oliste > li:hover{ background:none; }
+  .oliste__link{
+    grid-template-columns:1fr auto;
+    grid-template-areas:"ort ort" "tit tit" "daten daten" "wert stand";
+    gap:.4rem 1rem; padding:0;
+  }
+  .oliste__link:hover{ transform:none; }
+  .oliste__nr,.oliste__pfeil{ display:none; }
+  .oliste__wert{ justify-self:start; text-align:left; }
+  .oliste__stand{ justify-self:end; margin-top:0; align-self:center; }
+  .oliste__bild{ aspect-ratio:16/10; box-shadow:none; }
+  .oliste > li:hover .oliste__bild img{ transform:none; }
+  .oliste__hinweis{ grid-area:daten; }
+  .gegen{ grid-template-columns:1fr; }
+  .kriterien,.jn,.eckdaten{ grid-template-columns:1fr; }
+  .wege{ grid-template-columns:1fr 1fr; }
+  .weiterlinks{ grid-template-columns:1fr; }
+  .beitrag--gross{ grid-template-columns:1fr; }
+  .burger{ display:grid; }
+  .header .btn{ display:none; }
+  .contact__grid{ grid-template-columns:1fr; }
+  .stats{ grid-template-columns:1fr 1fr; gap:1.6rem 1.2rem; }
+  .hero{ align-items:flex-end; }
+  .values{ grid-template-columns:1fr; }
+}
+@media (max-width:640px){
+  .fgrid{ grid-template-columns:1fr; }
+  .steps--5{ grid-template-columns:1fr; }
+  .mietliste a{
+    grid-template-columns:1fr auto;
+    grid-template-areas:"ort ort" "titel titel" "daten daten" "preis frei";
+    gap:.45rem 1rem;
+  }
+  .mietliste__pfeil{ display:none; }
+  .mietliste__frei{ justify-self:end; }
+  .beitraege{ grid-template-columns:1fr; }
+  .wege{ grid-template-columns:1fr; }
+  .wege li{ display:flex; align-items:baseline; gap:1rem; }
+  /* Tabellen im Journal duerfen scrollen, die Seite selbst nie */
+  .fakten{ overflow-x:auto; }
+  .fakten table{ min-width:29rem; }
+  /* Schmale Schirme: alles auf halbe Breite, das Leitmotiv ueber beide
+     Spalten. Die Zwoelferteilung von oben wird dafuer zurueckgesetzt. */
+  .galerie figure,
+  .galerie figure.gross,
+  .galerie figure:nth-child(2),
+  .galerie:not(:has(figure:nth-child(5))) figure:nth-child(3),
+  .galerie:not(:has(figure:nth-child(5))) figure:nth-child(4){
+    grid-column:span 6; aspect-ratio:3/2;
+  }
+  .galerie figure:nth-child(1){ grid-column:span 12; aspect-ratio:16/9; }
+  .team{ grid-template-columns:1fr; }
+  .steps{ grid-template-columns:1fr; }
+  .grid-3{ grid-template-columns:1fr; }
+  .team{ grid-template-columns:1fr; }
+  .case__pair{ grid-template-columns:1fr; }
+  .hero__cta{ gap:1.1rem; }
+  .hero__cta .btn{ width:100%; }
+  .footer__top{ grid-template-columns:1fr; }
+  .stats{ grid-template-columns:1fr; }
+  .stats div{ display:flex; align-items:baseline; gap:.9rem; }
+  .stats div span{ margin-top:0; }
+}
+
+/* =========================================================================
+   31. Feinschliff und Bewegung
+   Buendel kleiner Effekte, die den Auftritt lebendig machen, ohne laut zu
+   werden. Alles progressive enhancement: Browser ohne die jeweilige
+   Faehigkeit zeigen schlicht den Zustand ohne Bewegung.
+   ========================================================================= */
+
+/* ---------- 31a. Buehnenbild: langsames Heranfahren ----------
+   Die Skalierung laeuft ueber die eigenstaendige scale-Eigenschaft,
+   damit sie dem JavaScript-Parallax (transform:translateY) nicht in die
+   Quere kommt. */
+.js .hero__img{ scale:1.1; animation:heroZoom 2.6s var(--ease) forwards; }
+@keyframes heroZoom{ to{ scale:1; } }
+
+/* ---------- 31b. Schaltflaechen: Lichtstreif beim Ueberfahren ---------- */
+.btn{ position:relative; overflow:hidden; }
+.btn::before{
+  content:""; position:absolute; top:0; bottom:0; left:-70%; width:45%;
+  background:linear-gradient(105deg, transparent, rgba(255,255,255,.22), transparent);
+  transform:skewX(-18deg);
+  transition:left .001s;
+  pointer-events:none;
+}
+.btn:hover::before{ left:130%; transition:left .55s var(--ease); }
+
+/* ---------- 31c. Bilder wandern sanft im Rahmen ----------
+   Scroll-getriebene Parallaxe ohne JavaScript: das Motiv ist etwas hoeher
+   als sein Rahmen und faehrt beim Scrollen langsam durch. Nur dort, wo
+   das Bild fest im Rahmen haengt (absolute bzw. object-fit:cover), und
+   ueber die eigenstaendige translate-Eigenschaft, damit die vorhandenen
+   transform-Uebergaenge (Vorhang, Zoom) unangetastet bleiben. */
+@supports (animation-timeline: view()){
+  /* Nur die freistehenden Bildbaender bekommen ein groesseres Motiv, das im
+     Rahmen wandert. In den geteilten Abschnitten (.story--klebe) waere jede
+     Aenderung an Hoehe oder Versatz ein Risiko fuer die Unterkante — dort
+     wandert deshalb nur der Bildausschnitt, die Box bleibt unangetastet. */
+  .story:not(.story--klebe) .story__fig img{
+    height:112%; top:-6%;
+    animation:innerPar linear both;
+    animation-timeline:view();
+  }
+  .story--klebe .story__fig img{
+    animation:klebePar linear both;
+    animation-timeline:view();
+  }
+  .beitrag--gross .beitrag__fig img,
+  .titelbild img{
+    animation:innerParSoft linear both;
+    animation-timeline:view();
+  }
+  .titelbild{ overflow:clip; }
+}
+@keyframes innerPar{ from{ translate:0 -2.5%; } to{ translate:0 2.5%; } }
+/* Wandert nur der Ausschnitt: Groesse und Position der Box bleiben gleich,
+   eine Luecke an der Unterkante ist damit ausgeschlossen. */
+@keyframes klebePar{ from{ object-position:50% 34%; } to{ object-position:50% 66%; } }
+@keyframes innerParSoft{ from{ translate:0 -6px; scale:1.06; } to{ translate:0 6px; scale:1.06; } }
+
+/* ---------- 31d. Haeufige Fragen: weiches Auf- und Zuklappen ---------- */
+:root{ interpolate-size:allow-keywords; }
+.faq details::details-content{
+  opacity:0; block-size:0; overflow-y:clip;
+  transition:content-visibility .45s allow-discrete,
+             opacity .4s var(--ease), block-size .45s var(--ease);
+}
+.faq details[open]::details-content{ opacity:1; block-size:auto; }
+
+/* ---------- 31e. Journal: Lesefortschritt ----------
+   Duenne Tonlinie oben, die mit dem Scrollen waechst — nur auf
+   Beitragsseiten (erkennbar an der Artikelzone). */
+@supports (animation-timeline: scroll()){
+  body:has(.artikelzone)::before{
+    content:""; position:fixed; top:0; left:0; right:0; height:3px; z-index:260;
+    background:linear-gradient(90deg,var(--clay),var(--ocker));
+    transform-origin:left; transform:scaleX(0);
+    animation:leseFortschritt linear both;
+    animation-timeline:scroll(root);
+  }
+}
+@keyframes leseFortschritt{ to{ transform:scaleX(1); } }
+
+/* ---------- 31f. Appell-Band: das Wasserzeichen atmet ---------- */
+.cta::before{ animation:ctaDrift 12s ease-in-out infinite alternate; }
+@keyframes ctaDrift{ from{ translate:0 -12px; } to{ translate:0 12px; } }
+
+/* ---------- 31g. Team: Monogramm fuellt sich beim Ueberfahren ---------- */
+.team article{ transition:border-color .4s var(--ease), transform .4s var(--ease), box-shadow .4s var(--ease); }
+.team article:hover{ border-color:var(--line); transform:translateY(-4px); box-shadow:var(--shadow); }
+.team__mono{ transition:background-color .45s var(--ease), color .45s var(--ease), border-color .45s var(--ease); }
+.team article:hover .team__mono{ background:var(--clay); color:var(--bone); border-color:var(--clay); }
+
+/* ---------- 31h. Formular: ruhiger Fokusring ---------- */
+.field input:focus,.field select:focus,.field textarea:focus{
+  box-shadow:0 0 0 3px var(--clay-soft);
+}
+
+/* ---------- 31i. Journal: Initiale im ersten Absatz ---------- */
+.artikel > p:first-of-type::first-letter{
+  float:left; padding:.08em .12em 0 0;
+  font-family:var(--display); font-size:3.1em; line-height:.82;
+  color:var(--clay);
+}
+
+/* ---------- 31j. Seitenwechsel: Kopf- und Fusszeile bleiben stehen ----------
+   Die View-Transition blendet nur den Inhalt; die fixierte Kopfzeile und
+   der Fussbereich behalten ihren Platz und springen nicht mit. */
+.header{ view-transition-name:site-header; }
+.footer{ view-transition-name:site-footer; }
+
+/* ---------- 31k. Nach-oben-Knopf: kleiner Hub ---------- */
+.totop:hover{ transform:translateY(-3px); }
+
+/* ---------- 31l. Kontakt: Randspalte begleitet das Formular ---------- */
+@media (min-width:1041px){
+  .valu--sticky > div:first-child{ position:sticky; top:6.5rem; }
+}
+
+/* ---------- 31q. Vorspanntexte bauen sich wortweise auf ----------
+   Die grossen Titel fahren zeilenweise aus einer Maske hoch; die Absaetze
+   darunter standen bisher einfach da. Jedes Wort kommt jetzt einen Hauch
+   nach seinem Vorgaenger, von unten und leicht unscharf.
+
+   Die Staffelung ist bewusst kurz und gedeckelt: Wer scrollt, soll den
+   Satz lesen koennen, nicht auf ihn warten. Nach 0,5 Sekunden steht auch
+   der laengste Absatz vollstaendig. */
+.wort{ display:inline-block; will-change:transform; }
+.js .rise .woertlich .wort,
+.js .rise.woertlich .wort{
+  opacity:0; transform:translateY(.5em);
+  filter:blur(3px);
+  transition:opacity .5s var(--ease), transform .55s var(--ease), filter .5s var(--ease);
+  transition-delay:min(calc(var(--i) * 22ms), 500ms);
+}
+.js .rise.is-in .woertlich .wort,
+.js .rise.is-in.woertlich .wort{
+  opacity:1; transform:none; filter:blur(0);
+}
+
+/* ---------- 31r. Grosse Titel setzen sich ----------
+   Die Zeilen fahren nicht nur hoch, sie ziehen sich dabei auch aus einer
+   etwas weiteren Laufweite zusammen. Das liest sich, als haette jemand
+   den Satz gesetzt, statt ihn einzublenden. */
+.js .split .zeile__in{ letter-spacing:.04em; }
+.js .split.is-in .zeile__in,
+.js .is-in .split .zeile__in{
+  letter-spacing:inherit;
+  transition:transform .85s var(--ease), letter-spacing 1.1s var(--ease);
+}
+
+/* ---------- 31s. Felder: Lichtschein folgt dem Zeiger ----------
+   Ueber jedem Feld liegt ein weicher Schein, dessen Mitte dem Mauszeiger
+   folgt (die Koordinaten setzt main.js als --mx/--my). Er erscheint erst
+   beim Ueberfahren und verschwindet sanft wieder — auf Tastatur und
+   Fingertipp bleibt alles wie zuvor, dort waere ein Zeigerlicht sinnlos. */
+.steps article,
+.steps > li,
+.values article,
+.projektkachel,
+.weiterkarte,
+.team article{ position:relative; }
+.steps article::before,
+.steps > li::before,
+.values article::before,
+.projektkachel::before,
+.weiterkarte::before,
+.team article::before{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:radial-gradient(16rem 16rem at var(--mx,50%) var(--my,50%),
+             rgba(140,59,30,.13), transparent 68%);
+  opacity:0; transition:opacity .5s var(--ease);
+}
+.steps article:hover::before,
+.steps > li:hover::before,
+.values article:hover::before,
+.projektkachel:hover::before,
+.weiterkarte:hover::before,
+.team article:hover::before{ opacity:1; }
+/* Der Inhalt muss ueber dem Schein liegen */
+.steps article > *,
+.steps > li > *,
+.values article > *,
+.projektkachel > *,
+.weiterkarte > *,
+.team article > *{ position:relative; z-index:1; }
+
+/* ---------- 31t. Felder treten einzeln ein ----------
+   Auf der Startseite ist der ganze Viererblock ein einziger Ausloeser;
+   die vier Felder erschienen deshalb im selben Augenblick. Jetzt kommt
+   eines nach dem anderen, leicht aus der Tiefe. */
+.js .steps.rise > article,
+.js .values.rise > article,
+.js .grid-3.rise > *{
+  opacity:0; transform:translateY(20px) scale(.98);
+  transition:opacity .6s var(--ease), transform .6s var(--ease);
+}
+.js .steps.rise.is-in > article,
+.js .values.rise.is-in > article,
+.js .grid-3.rise.is-in > *{ opacity:1; transform:none; }
+.js .steps.rise.is-in > article:nth-child(2),
+.js .values.rise.is-in > article:nth-child(2){ transition-delay:.09s; }
+.js .steps.rise.is-in > article:nth-child(3),
+.js .values.rise.is-in > article:nth-child(3){ transition-delay:.18s; }
+.js .steps.rise.is-in > article:nth-child(4),
+.js .values.rise.is-in > article:nth-child(4){ transition-delay:.27s; }
+
+/* ---------- 31n. Zeilen kommen nacheinander ----------
+   Vergleichszeilen, Stationen und Objektzeilen erschienen bisher alle im
+   selben Augenblick. Ein kurzer Versatz laesst den Abschnitt sich setzen,
+   statt aufzublitzen. Die Verzoegerungen bleiben klein: Wer scrollt, soll
+   nicht auf Text warten muessen. */
+.js .rise .wandel__zeile,
+.js .rise.timeline--weg > li,
+.js .rise .oliste > li{
+  opacity:0; transform:translateY(12px);
+  transition:opacity .55s var(--ease), transform .55s var(--ease);
+}
+.js .rise.is-in .wandel__zeile,
+.js .rise.is-in.timeline--weg > li,
+.js .rise.is-in .oliste > li{ opacity:1; transform:none; }
+.js .rise.is-in .wandel__zeile:nth-child(1),
+.js .rise.is-in.timeline--weg > li:nth-child(1){ transition-delay:.05s; }
+.js .rise.is-in .wandel__zeile:nth-child(2),
+.js .rise.is-in.timeline--weg > li:nth-child(2){ transition-delay:.13s; }
+.js .rise.is-in .wandel__zeile:nth-child(3),
+.js .rise.is-in.timeline--weg > li:nth-child(3){ transition-delay:.21s; }
+.js .rise.is-in .wandel__zeile:nth-child(4),
+.js .rise.is-in.timeline--weg > li:nth-child(4){ transition-delay:.29s; }
+.js .rise.is-in .wandel__zeile:nth-child(5),
+.js .rise.is-in.timeline--weg > li:nth-child(5){ transition-delay:.37s; }
+
+/* ---------- 31o. Kennzahlen ruecken einzeln nach ---------- */
+.js .stats.rise > div{ opacity:0; transform:translateY(14px); transition:opacity .6s var(--ease), transform .6s var(--ease); }
+.js .stats.rise.is-in > div{ opacity:1; transform:none; }
+.js .stats.rise.is-in > div:nth-child(2){ transition-delay:.09s; }
+.js .stats.rise.is-in > div:nth-child(3){ transition-delay:.18s; }
+.js .stats.rise.is-in > div:nth-child(4){ transition-delay:.27s; }
+
+/* ---------- 31p. Objektkarten heben sich nacheinander ---------- */
+.js .grid-3 > .rise[data-d="2"]{ transition-delay:.1s; }
+.js .grid-3 > .rise[data-d="3"]{ transition-delay:.2s; }
+
+/* ---------- 31m. Fallstudie: Vorher/Nachher-Regler ----------
+   Aus den zwei nebeneinanderliegenden Motiven wird ein Wisch-Vergleich:
+   ein unsichtbarer Schieberegler liegt ueber dem Bildpaar, das vordere
+   Motiv wird an der Reglerposition beschnitten. Maus, Touch und Tastatur
+   kommen gratis vom nativen <input type="range">. Ohne JavaScript bleibt
+   das schlichte Nebeneinander — kein Verlust, nur weniger Spiel. */
+.case__pair.is-vergleich{
+  position:relative; display:block; aspect-ratio:16/9; overflow:hidden;
+  --pos:50%;
+}
+.case__pair.is-vergleich figure{ position:absolute; inset:0; aspect-ratio:auto; }
+.case__pair.is-vergleich figure:first-child{
+  z-index:1;
+  clip-path:inset(0 calc(100% - var(--pos)) 0 0);
+}
+/* nth-child statt last-child: nach dem Einhaengen von Linie und Regler
+   ist das zweite Motiv nicht mehr das letzte Kind. */
+.case__pair.is-vergleich figure:nth-child(2) figcaption{ left:auto; right:.9rem; }
+/* Die Beschriftung des vorderen Motivs gehoert ueber das hintere Bild,
+   sonst schwebt „Nach Abschluss“ ueber der Rohbauaufnahme. */
+.case__pair.is-vergleich figure:first-child figcaption{ z-index:2; }
+
+/* Hinweis am Griff: verschwindet, sobald jemand den Regler bewegt hat. */
+.vergleich__hinweis{
+  position:absolute; left:var(--pos); top:50%; z-index:2;
+  translate:-50% calc(-50% + 2.4rem);
+  padding:.3rem .7rem; border-radius:100px;
+  background:rgba(26,36,41,.82); color:var(--bone);
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+  font-size:.6rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase;
+  pointer-events:none; white-space:nowrap;
+  transition:opacity .4s var(--ease);
+}
+.case__pair.is-benutzt .vergleich__hinweis{ opacity:0; }
+.vergleich__linie{
+  position:absolute; top:0; bottom:0; left:var(--pos); z-index:2; width:2px;
+  margin-left:-1px; background:var(--bone);
+  box-shadow:0 0 16px rgba(16,22,26,.4);
+  pointer-events:none;
+}
+.vergleich__griff{
+  position:absolute; top:50%; left:50%; translate:-50% -50%;
+  width:44px; height:44px; border-radius:50%;
+  background:var(--bone); color:var(--deep);
+  display:grid; place-items:center;
+  box-shadow:0 10px 26px -8px rgba(16,22,26,.55);
+  transition:scale .3s var(--ease);
+}
+.case__pair.is-vergleich:hover .vergleich__griff{ scale:1.08; }
+/* Sanftes Pochen, solange niemand den Regler angefasst hat */
+.js .case__pair.is-vergleich:not(.is-benutzt) .vergleich__griff{
+  animation:griffPuls 2.6s var(--ease) infinite;
+}
+@keyframes griffPuls{
+  0%,100%{ box-shadow:0 10px 26px -8px rgba(16,22,26,.55), 0 0 0 0 rgba(244,239,228,.5); }
+  60%{ box-shadow:0 10px 26px -8px rgba(16,22,26,.55), 0 0 0 12px rgba(244,239,228,0); }
+}
+.case__pair.is-vergleich input[type="range"]{
+  position:absolute; inset:0; z-index:3; width:100%; height:100%;
+  margin:0; opacity:0; cursor:ew-resize;
+  -webkit-appearance:none; appearance:none;
+}
+.case__pair.is-vergleich:has(input:focus-visible){
+  outline:2px solid var(--clay); outline-offset:3px;
+}
+@media (max-width:640px){
+  .case__pair.is-vergleich{ aspect-ratio:4/3; }
+}
+
+/* ---------- 26. Reduzierte Bewegung ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+  .js .rise{ opacity:1; transform:none; }
+  .js .line > span{ transform:none; animation:none; }
+  .js .hero__kicker,.js .hero .lead,.js .hero__cta,.js .hero__meta,.js .hero .seal{ opacity:1; animation:none; }
+  .js .marquee__row{ animation:none; }
+  .js .seal .seal__ring{ animation:none; }
+  .js .veilimg::after{ display:none; }
+  .js .veilimg img{ transform:none !important; }
+  .js .galerie figure::after{ display:none; }
+  .js .galerie figure.rise:not(.is-in) img{ transform:none; }
+  .js .rise .wandel__zeile,
+  .js .rise.timeline--weg > li,
+  .js .rise .oliste > li,
+  .js .stats.rise > div{ opacity:1; transform:none; }
+  .js .rise .woertlich .wort,
+  .js .rise.woertlich .wort{ opacity:1; transform:none; filter:none; }
+  .js .split .zeile__in{ letter-spacing:inherit; }
+  .js .case__pair.is-vergleich:not(.is-benutzt) .vergleich__griff{ animation:none; }
+  .js .steps.rise > article,
+  .js .values.rise > article,
+  .js .grid-3.rise > *{ opacity:1; transform:none; }
+  .steps article::before,
+  .steps > li::before,
+  .values article::before,
+  .projektkachel::before,
+  .weiterkarte::before,
+  .team article::before{ display:none; }
+  .zeitraum .timeline > li::after{ display:none; }
+  .zeitraum .timeline > li.is-wach{ transform:none; }
+  .js .rise .wandel__zeile::before,
+  .js .timeline--weg.rise::before{ transform:none !important; }
+  .js .rise .wandel__zeile::after{ opacity:1; }
+  .js .split .zeile__in{ transform:none !important; }
+  .zeile{ padding-bottom:0; margin-bottom:0; }
+  ::view-transition-old(root),::view-transition-new(root){ animation:none; }
+  /* Feinschliff-Effekte aus Abschnitt 31 stillegen */
+  .js .hero__img{ scale:1; animation:none; }
+  .story__fig img{ height:100%; top:0; animation:none; translate:none; }
+  .beitrag--gross .beitrag__fig img,.titelbild img{ animation:none; translate:none; }
+  .cta::before{ animation:none; translate:none; }
+  .btn::before{ display:none; }
+  body:has(.artikelzone)::before{ animation:none; }
+  .js .idx.rise::after,
+  .js .rise .eyebrow::before,
+  .js .eyebrow.rise::before{ transform:none; transition:none; }
+}
+
+/* ---------- 27. Demo-Plakette ----------
+   Kleine, aufklappbare Kennzeichnung als Portfolio-Demonstration.
+   Liegt ueber allem, verdeckt aber zusammengeklappt nichts Wichtiges.
+   In der eingebetteten Vorschau der Verkaufsseite ausgeblendet -
+   dort steht die Kennzeichnung bereits neben dem Rahmen. */
+.demobadge{ position:fixed; left:1rem; bottom:1rem; z-index:200; font-family:var(--body); }
+.embedded .demobadge{ display:none; }
+body.is-locked .demobadge{ display:none; }
+@media print{ .demobadge{ display:none; } }
+
+.demobadge__knopf{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.5rem .95rem; border-radius:100px;
+  background:rgba(26,36,41,.94); color:rgba(244,239,228,.92);
+  border:1px solid rgba(244,239,228,.18);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  font-size:.74rem; font-weight:500; letter-spacing:.08em;
+  box-shadow:0 12px 30px -14px rgba(0,0,0,.6);
+  transition:background-color .3s var(--ease);
+}
+.demobadge__knopf:hover{ background:rgba(36,57,63,.97); }
+.demobadge__knopf svg{ color:var(--sand); flex:none; }
+
+.demobadge__panel{
+  position:absolute; left:0; bottom:calc(100% + .65rem);
+  width:min(88vw, 24rem); padding:1.05rem 1.2rem;
+  background:rgba(26,36,41,.97); color:rgba(244,239,228,.88);
+  border:1px solid rgba(244,239,228,.16); border-radius:12px;
+  box-shadow:0 18px 44px -18px rgba(0,0,0,.7);
+  font-size:.82rem; line-height:1.6;
+}
+.demobadge__panel[hidden]{ display:none; }
+.demobadge__panel b{ color:var(--bone); font-weight:600; }
+.demobadge__panel a{
+  display:inline-block; margin-top:.55rem; color:var(--sand);
+  text-decoration:underline; text-underline-offset:2px; font-weight:500;
+}
+
+/* ---------- 28. Rechtstexte (Impressum, Datenschutz) ---------- */
+.legal{ padding:clamp(8rem,12vw,11rem) 0 clamp(4rem,7vw,7rem); }
+.legal__in{ max-width:74ch; }
+.legal h1{ font-size:clamp(2.1rem,1.6rem + 2.4vw,3.4rem); margin-bottom:1.2rem; }
+.legal h2{ font-size:clamp(1.35rem,1.2rem + .75vw,1.8rem); margin:2.7rem 0 .9rem; }
+.legal h3{ font-size:1.08rem; margin:1.8rem 0 .6rem; }
+.legal p,.legal li{ font-size:.98rem; }
+.legal ul{ list-style:disc; padding-left:1.3rem; margin:0 0 1.05em; }
+.legal ol{ list-style:decimal; padding-left:1.3rem; margin:0 0 1.05em; }
+.legal li{ margin-bottom:.4rem; }
+.legal a{ color:var(--clay); text-decoration:underline; text-underline-offset:2px; }
+.legal__note{
+  margin-bottom:2.5rem; padding:1.1rem 1.3rem;
+  border:1px solid var(--line); border-radius:2px; background:var(--clay-soft);
+  font-size:.88rem; line-height:1.6; color:var(--ink);
+}
+.legal__back{ margin-top:3rem; }
+
+/* Die WebP-Huelle darf das Layout nicht veraendern: mit
+   display:contents bleibt das <img> Kind seines urspruenglichen
+   Elternteils, alle Bildregeln greifen unveraendert weiter. */
+picture{ display:contents; }

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARVEN Immobilien | Ankauf, Sanierung und Vermietung in Musterstadt</title>
+<meta name="description" content="ARVEN kauft Liegenschaften mit Substanz, saniert sie mit regionalem Handwerk und vermietet oder verkauft sie wieder. Musterstadt und Umgebung, seit 2011.">
+<meta name="theme-color" content="#1A2429">
+<!-- Beispielwebsite: darf nicht wie ein echtes Unternehmen in der Suche erscheinen -->
+<meta name="robots" content="noindex, nofollow">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="ARVEN Immobilien | Wir geben Häusern ein zweites Leben.">
+<meta property="og:description" content="Ankauf, Sanierung, Vermietung und Verkauf aus einer Hand, in Musterstadt und Umgebung, seit 2011.">
+<meta property="og:image" content="https://envyweb.ch/demo-immobilien/assets/img/hero.jpg">
+<meta property="og:locale" content="de_CH">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://envyweb.ch/demo-immobilien/index.html">
+
+<!-- Favicon als eigene Datei: Suchmaschinen koennen ein Icon nur
+     anzeigen, wenn es unter einer eigenen Adresse abrufbar ist.
+     Liegt auf dieser Domain, also kein fremder Request. -->
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<!-- Schriften: lokal eingebunden, keine Verbindung zu Google -->
+<link rel="preload" href="assets/fonts/instrumentserif-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrumentserifi-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrumentsans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css?v=20260816h">
+
+<link rel="stylesheet" href="assets/css/style.css?v=20260816h">
+
+<!-- Strukturierte Daten fuer Google (RealEstateAgent / Organization)
+     ------------------------------------------------------------------
+     BEWUSST AUSKOMMENTIERT: Diese Website ist ein Gestaltungsbeispiel.
+     Firma, Adresse, Telefonnummer, Objekte und Kennzahlen sind erfunden,
+     als strukturierte Daten wuerden sie ein Unternehmen vortaeuschen,
+     das es nicht gibt.
+
+     Fuer eine echte Kundenwebsite den Block einkommentieren und mit den
+     tatsaechlichen Daten fuellen:
+
+     {
+       "@context": "https://schema.org""@type": "RealEstateAgent""name": "ARVEN Immobilien AG""description": "Ankauf, Sanierung, Vermietung und Verkauf von Wohnliegenschaften in Musterstadt und Umgebung.""image": "assets/img/hero.jpg""address": {
+         "@type": "PostalAddress""streetAddress": "Bahnhofstrasse 24""postalCode": "8002""addressLocality": "Musterstadt""addressCountry": "CH"
+       }"telephone": "+41 44 234 56 78""email": "kontakt@arven-immobilien.ch""areaServed": "Musterstadt und Umgebung""foundingDate": "2011""openingHoursSpecification": [
+         { "@type": "OpeningHoursSpecification""dayOfWeek": ["Monday""Tuesday""Wednesday""Thursday""Friday"]"opens": "08:30""closes": "18:00" }
+       ]
+     }
+     ------------------------------------------------------------------ -->
+<!-- Laeuft die Seite als Vorschau in einem Rahmen? Diese Pruefung muss VOR
+     dem ersten Rendern stehen, sonst blitzt die Kennzeichnung kurz auf. -->
+<script>
+  (function () {
+    var e = true;
+    try { e = window.self !== window.top; } catch (x) { e = true; }
+    if (e) document.documentElement.className += ' embedded';
+  })();
+  // Auftritts-Animationen nur, wenn JavaScript wirklich laeuft, sonst bliebe
+  // bei deaktiviertem JavaScript ein Teil der Seite unsichtbar.
+  document.documentElement.className += ' js';
+  window.addEventListener('error', function () {
+    document.documentElement.className = document.documentElement.className.replace(/\bjs\b/, '');
+  });
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Zum Inhalt springen</a>
+
+<!-- ===================== KOPF ===================== -->
+<header class="header header--onhero" id="header">
+  <div class="wrap header__in">
+    <a class="brand" href="index.html" aria-label="Zur Startseite von ARVEN Immobilien">
+      <span class="brand__mark" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.6"><path d="M12 27 24 16l12 11" stroke-linejoin="miter"/><path d="M12 34h24"/></svg>
+      </span>
+      <span class="brand__txt">
+        <span class="brand__name">ARVEN</span>
+        <span class="brand__sub">Immobilien</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="projekte.html">Projekte</a>
+      <a href="wohnungen.html">Wohnungen</a>
+      <a href="journal.html">Journal</a>
+      <a href="ueber-uns.html">Über uns</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+
+    <a class="btn btn--sm" href="verkaufen.html">Liegenschaft anbieten</a>
+
+    <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobilemenu">
+      <i></i><i></i>
+    </button>
+  </div>
+</header>
+
+<nav class="mobilemenu" id="mobilemenu" aria-label="Mobile Navigation">
+  <a href="index.html" aria-current="page">Startseite</a>
+  <a href="projekte.html">Projekte</a>
+  <a href="wohnungen.html">Wohnungen</a>
+  <a href="journal.html">Journal</a>
+  <a href="ueber-uns.html">Über uns</a>
+  <a href="kontakt.html">Kontakt</a>
+  <a class="btn btn--full" href="verkaufen.html">Liegenschaft anbieten</a>
+</nav>
+
+<main id="main">
+
+<!-- ===================== BUEHNE ===================== -->
+<section class="hero" id="top">
+  <picture><source srcset="assets/img/hero-480.avif 480w, assets/img/hero-768.avif 768w, assets/img/hero-1024.avif 1024w, assets/img/hero-1600.avif 1600w, assets/img/hero-2400.avif 2400w, assets/img/hero.avif 3000w" type="image/avif" sizes="100vw"><source srcset="assets/img/hero-480.webp 480w, assets/img/hero-768.webp 768w, assets/img/hero-1024.webp 1024w, assets/img/hero-1600.webp 1600w, assets/img/hero-2400.webp 2400w, assets/img/hero.webp 3000w" type="image/webp" sizes="100vw"><img class="hero__img" src="assets/img/hero.jpg" alt="Saniertes Wohnhaus mit Holzfassade und beleuchtetem Wohnraum in der Abenddämmerung" fetchpriority="high" width="3000" height="1688" srcset="assets/img/hero-480.jpg 480w, assets/img/hero-768.jpg 768w, assets/img/hero-1024.jpg 1024w, assets/img/hero-1600.jpg 1600w, assets/img/hero-2400.jpg 2400w, assets/img/hero.jpg 3000w" sizes="100vw"></picture>
+  <div class="wrap hero__in">
+    <p class="hero__kicker">Musterstadt · Seit 2011</p>
+    <h1>
+      <span class="line"><span>Wir geben</span></span>
+      <span class="line"><span>Häusern ein</span></span>
+      <span class="line"><span><em>zweites Leben.</em></span></span>
+    </h1>
+    <p class="lead">
+      ARVEN kauft Liegenschaften mit Substanz, saniert sie mit
+      regionalem Handwerk und vermietet oder verkauft sie wieder,
+      sorgfältig, langfristig und aus einer Hand.
+    </p>
+    <div class="hero__cta">
+      <a class="btn btn--light" href="verkaufen.html">Liegenschaft anbieten</a>
+      <a class="tlink tlink--light" href="projekte.html">
+        Projekte ansehen
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+    </div>
+    <div class="hero__meta">
+      <span><i class="dot" aria-hidden="true"></i> Ein Objekt im Verkauf</span>
+      <span>Musterstadt und Umgebung</span>
+      <span>Eigenes Kapital · Keine Vermittlerkette</span>
+    </div>
+  </div>
+
+  <!-- Drehendes Siegel, antwortet auf die runden Monogramme der uebrigen
+       Demos. Nur Schmuck, deshalb fuer Vorlesehilfen unsichtbar. -->
+  <div class="seal" aria-hidden="true">
+    <svg viewBox="0 0 132 132">
+      <g class="seal__ring">
+        <defs><path id="sealcirc" d="M66,66 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/></defs>
+        <text textLength="326"><textPath href="#sealcirc">Ankauf · Sanierung · Vermietung · Verkauf ·&#160;</textPath></text>
+      </g>
+      <circle cx="66" cy="66" r="34" fill="none" stroke="rgba(247,246,242.3)" stroke-width="1"/>
+      <g class="seal__markico" fill="none" stroke="currentColor" stroke-width="2.6">
+        <path d="M55 70 66 60l11 10" stroke-linejoin="miter"/>
+        <path d="M55 76h22"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- ===================== DAS UNTERNEHMEN ===================== -->
+<section class="band">
+  <div class="wrap">
+    <p class="idx rise"><b>01</b> Das Unternehmen</p>
+    <div class="head rise" data-d="1">
+      <p class="eyebrow">Wer wir sind</p>
+      <h2>Wir kaufen, was andere<br><em>abschreiben.</em></h2>
+      <p class="lead" style="margin-top:1.5rem;">
+        Das müde Mehrfamilienhaus, die Erbschaft mit Renovationsstau, der
+        Altbau, an den sich niemand herantraut: Genau dort beginnt unsere
+        Arbeit. Wir übernehmen Liegenschaften direkt von der Eigentümerschaft,
+        sanieren sie mit eigener Bauleitung und behalten die meisten
+        im Bestand, statt sie weiterzureichen.
+      </p>
+    </div>
+
+    <div class="stats rise" data-d="2">
+      <!-- Im HTML steht der Endwert: ohne JavaScript zeigt die Seite die
+           richtige Zahl, das Skript setzt sie erst beim Hochzaehlen auf 0. -->
+      <div>
+        <strong><b data-to="24">24</b></strong>
+        <span>Projekte<br>realisiert</span>
+      </div>
+      <div>
+        <strong><b data-to="14800">14'800</b><small>m²</small></strong>
+        <span>Wohnfläche<br>saniert</span>
+      </div>
+      <div>
+        <strong><b data-to="31">31</b></strong>
+        <span>Wohnungen im<br>eigenen Bestand</span>
+      </div>
+      <div>
+        <strong><b data-to="15">15</b><small>Jahre</small></strong>
+        <span>am Markt<br>seit 2011</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LAUFBAND ===================== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__row">
+    <span><em>Ankaufen</em> <i></i> <b>Sanieren</b> <i></i> <em>Vermieten</em> <i></i> <b>Verkaufen</b> <i></i></span>
+  </div>
+</div>
+
+<!-- ===================== VORGEHEN ===================== -->
+<section class="band band--soft">
+  <div class="wrap">
+    <p class="idx rise"><b>02</b> Vorgehen</p>
+    <div class="head rise" data-d="1">
+      <p class="eyebrow">Vom Ankauf bis zur Übergabe</p>
+      <h2>Vier Schritte.<br><em>Eine Verantwortung.</em></h2>
+      <p class="lead" style="margin-top:1.5rem;">
+        Zwischen dem ersten Gespräch und dem Kaufvertrag liegen bei uns
+        Wochen, keine Monate, weil wir mit eigenem Kapital kaufen und
+        niemanden fragen müssen.
+      </p>
+    </div>
+
+    <div class="steps rise" data-d="2">
+      <article>
+        <span>01</span>
+        <h3>Erkennen</h3>
+        <p>Wir prüfen Lage, Bausubstanz und Potenzial: vor Ort, nicht am Bildschirm. Innerhalb von zwei Arbeitstagen wissen Sie, ob Ihre Liegenschaft zu uns passt.</p>
+      </article>
+      <article>
+        <span>02</span>
+        <h3>Übernehmen</h3>
+        <p>Direktkauf ohne Vermittlerkette: ein faires Angebot, ein Notartermin, keine Provision. Auf Wunsch mit Rückmietrecht für die bisherige Bewohnerschaft.</p>
+      </article>
+      <article>
+        <span>03</span>
+        <h3>Sanieren</h3>
+        <p>Eigene Bauleitung, Handwerksbetriebe aus der Region, energetische Erneuerung mit Augenmass, die Substanz bleibt, die Technik kommt nach.</p>
+      </article>
+      <article>
+        <span>04</span>
+        <h3>Bewirtschaften</h3>
+        <p>Die meisten Häuser behalten wir und vermieten sie selbst. Was wir verkaufen, übergeben wir bezugsbereit, mit dokumentierter Sanierung.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SANIERUNG ===================== -->
+<section class="story story--klebe" aria-labelledby="sanierung-titel">
+  <figure class="story__fig veilimg">
+    <picture><source srcset="assets/img/plan-480.avif 480w, assets/img/plan-1200.avif 1200w, assets/img/plan-2000.avif 2000w, assets/img/plan.avif 2600w" type="image/avif" sizes="(max-width:1300px) 100vw, 1300px"><source srcset="assets/img/plan-480.webp 480w, assets/img/plan-1200.webp 1200w, assets/img/plan-2000.webp 2000w, assets/img/plan.webp 2600w" type="image/webp" sizes="(max-width:1300px) 100vw, 1300px"><img src="assets/img/plan.jpg" alt="Hände zeichnen mit Massstab und Stift an einem Gebäudeplan" loading="lazy" width="2600" height="1300" srcset="assets/img/plan-480.jpg 480w, assets/img/plan-1200.jpg 1200w, assets/img/plan-2000.jpg 2000w, assets/img/plan.jpg 2600w" sizes="(max-width:1300px) 100vw, 1300px"></picture>
+    <figcaption>
+      <span>Bestandesaufnahme Lindenhof</span>
+      <span>Musterstadt · vor dem ersten Schlag</span>
+    </figcaption>
+  </figure>
+
+  <div class="story__copy">
+    <p class="eyebrow rise">Sanierung</p>
+    <h2 class="rise" data-d="1" id="sanierung-titel">Substanz sieht man erst,<br><em>wenn man hinschaut.</em></h2>
+    <p class="lead rise" data-d="1" style="margin-top:1.5rem;">
+      Ein Haus aus 1932 hat Wände, die heute niemand mehr so baut und 
+      Leitungen, die niemand mehr so lassen darf. Unsere Sanierungen trennen
+      das eine vom anderen: erhalten, was Bestand hat, erneuern, was
+      Bewohnerinnen und Bewohner täglich brauchen.
+    </p>
+    <div class="story__notes rise" data-d="2">
+      <span>Eigene Bauleitung</span>
+      <span>Handwerk aus der Region</span>
+      <span>Energetisch erneuert</span>
+    </div>
+    <a class="tlink tlink--light rise" data-d="2" href="ueber-uns.html">
+      So arbeiten wir
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== PROJEKTE ===================== -->
+<section class="band">
+  <div class="wrap">
+    <p class="idx rise"><b>03</b> Projekte</p>
+    <div class="grid-head rise" data-d="1">
+      <div class="head">
+        <p class="eyebrow">Ausgewählte Arbeiten</p>
+        <h2>Drei von <em>vierundzwanzig.</em></h2>
+      </div>
+      <a class="tlink" href="projekte.html">
+        Alle Projekte
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+    </div>
+
+    <div class="grid-3">
+
+      <article class="object object--link rise" data-d="1">
+        <div class="object__fig veilimg">
+          <span class="object__badge object__badge--sale">Im Verkauf</span>
+          <picture><source srcset="assets/img/projekt-stadthaus-480.avif 480w, assets/img/projekt-stadthaus-900.avif 900w, assets/img/projekt-stadthaus-1800.avif 1800w, assets/img/projekt-stadthaus.avif 2600w" type="image/avif" sizes="(max-width:860px) 92vw, 660px"><source srcset="assets/img/projekt-stadthaus-480.webp 480w, assets/img/projekt-stadthaus-900.webp 900w, assets/img/projekt-stadthaus-1800.webp 1800w, assets/img/projekt-stadthaus.webp 2600w" type="image/webp" sizes="(max-width:860px) 92vw, 660px"><img src="assets/img/projekt-stadthaus.jpg" alt="Saniertes Stadthaus mit Holzkubus-Anbau und Gartenweg" loading="lazy" width="2600" height="1950" srcset="assets/img/projekt-stadthaus-480.jpg 480w, assets/img/projekt-stadthaus-900.jpg 900w, assets/img/projekt-stadthaus-1800.jpg 1800w, assets/img/projekt-stadthaus.jpg 2600w" sizes="(max-width:860px) 92vw, 660px"></picture>
+        </div>
+        <div class="object__body">
+          <p class="object__place">Musterstadt · Seefeld</p>
+          <h3><a class="object__link" href="projekt-stadthaus.html">Stadthaus mit Anbau</a></h3>
+          <dl class="object__specs">
+            <div><dt>Zimmer</dt><dd>6.5</dd></div>
+            <div><dt>Fläche</dt><dd>182 m²</dd></div>
+            <div><dt>Saniert</dt><dd>2025</dd></div>
+          </dl>
+          <p class="object__foot">
+            <span class="object__price"><small>CHF</small>1'480'000</span>
+          </p>
+          <span class="object__more">
+            Projekt ansehen
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </article>
+
+      <article class="object object--link rise" data-d="2">
+        <div class="object__fig veilimg">
+          <span class="object__badge object__badge--rent">Vermietet</span>
+          <picture><source srcset="assets/img/projekt-mfh-480.avif 480w, assets/img/projekt-mfh-900.avif 900w, assets/img/projekt-mfh-1800.avif 1800w, assets/img/projekt-mfh.avif 2600w" type="image/avif" sizes="(max-width:860px) 92vw, 660px"><source srcset="assets/img/projekt-mfh-480.webp 480w, assets/img/projekt-mfh-900.webp 900w, assets/img/projekt-mfh-1800.webp 1800w, assets/img/projekt-mfh.webp 2600w" type="image/webp" sizes="(max-width:860px) 92vw, 660px"><img src="assets/img/projekt-mfh.jpg" alt="Saniertes Mehrfamilienhaus mit hellem Klinker und dunkler Holzverkleidung" loading="lazy" width="2600" height="1950" srcset="assets/img/projekt-mfh-480.jpg 480w, assets/img/projekt-mfh-900.jpg 900w, assets/img/projekt-mfh-1800.jpg 1800w, assets/img/projekt-mfh.jpg 2600w" sizes="(max-width:860px) 92vw, 660px"></picture>
+        </div>
+        <div class="object__body">
+          <p class="object__place">Musterdorf · Zentrum</p>
+          <h3><a class="object__link" href="projekt-feldweg.html">Residenz Feldweg</a></h3>
+          <dl class="object__specs">
+            <div><dt>Wohnungen</dt><dd>6</dd></div>
+            <div><dt>Fläche</dt><dd>540 m²</dd></div>
+            <div><dt>Saniert</dt><dd>2023</dd></div>
+          </dl>
+          <p class="object__foot">
+            <span class="object__state">Im eigenen Bestand</span>
+          </p>
+          <span class="object__more">
+            Projekt ansehen
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </article>
+
+      <article class="object object--link rise" data-d="3">
+        <div class="object__fig veilimg">
+          <span class="object__badge">Verkauft</span>
+          <picture><source srcset="assets/img/projekt-altbau-480.avif 480w, assets/img/projekt-altbau-900.avif 900w, assets/img/projekt-altbau-1800.avif 1800w, assets/img/projekt-altbau.avif 2600w" type="image/avif" sizes="(max-width:860px) 92vw, 660px"><source srcset="assets/img/projekt-altbau-480.webp 480w, assets/img/projekt-altbau-900.webp 900w, assets/img/projekt-altbau-1800.webp 1800w, assets/img/projekt-altbau.webp 2600w" type="image/webp" sizes="(max-width:860px) 92vw, 660px"><img src="assets/img/projekt-altbau.jpg" alt="Heller Altbau-Wohnraum mit Fischgrätparkett nach der Sanierung" loading="lazy" width="2600" height="1950" srcset="assets/img/projekt-altbau-480.jpg 480w, assets/img/projekt-altbau-900.jpg 900w, assets/img/projekt-altbau-1800.jpg 1800w, assets/img/projekt-altbau.jpg 2600w" sizes="(max-width:860px) 92vw, 660px"></picture>
+        </div>
+        <div class="object__body">
+          <p class="object__place">Musterstadt · Altstadt</p>
+          <h3><a class="object__link" href="projekt-kirchweg.html">Altbau am Kirchweg</a></h3>
+          <dl class="object__specs">
+            <div><dt>Zimmer</dt><dd>3.5</dd></div>
+            <div><dt>Fläche</dt><dd>92 m²</dd></div>
+            <div><dt>Saniert</dt><dd>2024</dd></div>
+          </dl>
+          <p class="object__foot">
+            <span class="object__state">Übergeben in 51 Tagen</span>
+          </p>
+          <span class="object__more">
+            Projekt ansehen
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ZU VERMIETEN ===================== -->
+<section class="band band--soft" id="vermieten">
+  <div class="wrap">
+    <div class="grid-head">
+      <div>
+        <p class="eyebrow rise">Zu vermieten</p>
+        <h2 class="rise" data-d="1">Drei Wohnungen<br>sind gerade <em>frei.</em></h2>
+      </div>
+      <p class="lead rise" data-d="1">
+        Einunddreissig Wohnungen halten wir im eigenen Bestand, vermietet
+        ohne Verwaltung dazwischen. Frei werdende Einheiten schreiben wir
+        zuerst hier aus, nicht auf den Portalen.
+      </p>
+    </div>
+
+    <ul class="mietliste rise" data-d="1">
+      <li>
+        <a href="wohnung-lindenhof.html">
+          <span class="mietliste__ort">Musterstadt · Lindenhof</span>
+          <span class="mietliste__titel">2.5 Zimmer am Lindenhof</span>
+          <span class="mietliste__daten">61 m² · Erdgeschoss mit Sitzplatz</span>
+          <span class="mietliste__preis"><small>CHF</small>1'520<small>/Mt.</small></span>
+          <span class="mietliste__frei">Sofort frei</span>
+          <svg class="mietliste__pfeil" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </li>
+      <li>
+        <a href="wohnung-kirchweg.html">
+          <span class="mietliste__ort">Musterstadt · Altstadt</span>
+          <span class="mietliste__titel">3.5 Zimmer am Kirchweg</span>
+          <span class="mietliste__daten">84 m² · Altbau von 1908, saniert 2024</span>
+          <span class="mietliste__preis"><small>CHF</small>1'980<small>/Mt.</small></span>
+          <span class="mietliste__frei">Ab 1. Oktober</span>
+          <svg class="mietliste__pfeil" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </li>
+      <li>
+        <a href="wohnung-feldweg.html">
+          <span class="mietliste__ort">Musterdorf · Zentrum</span>
+          <span class="mietliste__titel">4.5 Zimmer Residenz Feldweg</span>
+          <span class="mietliste__daten">112 m² · Balkon nach Süden, Lift</span>
+          <span class="mietliste__preis"><small>CHF</small>2'450<small>/Mt.</small></span>
+          <span class="mietliste__frei">Ab 1. Dezember</span>
+          <svg class="mietliste__pfeil" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </li>
+    </ul>
+
+    <p class="rise" data-d="2" style="margin-top:2rem;">
+      <a class="tlink" href="wohnungen.html">
+        Alle fünf Wohnungen ansehen
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </p>
+  </div>
+</section>
+
+<!-- ===================== JOURNAL ===================== -->
+<section class="band" id="journal">
+  <div class="wrap">
+    <div class="grid-head">
+      <div>
+        <p class="eyebrow rise">Journal</p>
+        <h2 class="rise" data-d="1">Was wir gelernt<br>haben, <em>aufgeschrieben.</em></h2>
+      </div>
+      <p class="lead rise" data-d="1">
+        Kein Blog mit Neuigkeiten, sondern vier längere Texte zu den Fragen,
+        die uns am häufigsten gestellt werden, mit Zahlen aus unseren
+        eigenen Projekten.
+      </p>
+    </div>
+
+    <div class="weiterlinks rise" data-d="1">
+      <a class="weiter" href="journal-sanierungskosten.html">
+        <span class="weiter__k">Kosten</span>
+        <span class="weiter__t">Was eine Altbausanierung wirklich kostet</span>
+        <span class="weiter__m">6 Minuten · Matthias Keller</span>
+      </a>
+      <a class="weiter" href="journal-energie.html">
+        <span class="weiter__k">Energie</span>
+        <span class="weiter__t">Erst die Hülle, dann die Heizung</span>
+        <span class="weiter__m">7 Minuten · Matthias Keller</span>
+      </a>
+      <a class="weiter" href="journal-kaufvertrag.html">
+        <span class="weiter__k">Recht</span>
+        <span class="weiter__t">Vier Sätze, die im Vertrag fehlen</span>
+        <span class="weiter__m">5 Minuten · Silvan Odermatt</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== APPELL ===================== -->
+<section class="cta">
+  <div class="wrap cta__in">
+    <div class="rise">
+      <h2>Sie besitzen eine Liegenschaft<br><em>mit Vergangenheit?</em></h2>
+      <p>
+        Renovationsstau ist für uns kein Mangel, sondern der Anfang.
+        Erzählen Sie uns von Ihrem Haus, Sie erhalten eine persönliche Rückmeldung
+        innerhalb von zwei Arbeitstagen, kostenlos und diskret.
+      </p>
+    </div>
+    <div class="cta__act rise" data-d="1">
+      <a class="btn btn--light" href="verkaufen.html">Liegenschaft anbieten</a>
+      <a class="tlink tlink--light" href="ueber-uns.html">
+        Wer dahintersteht
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FUSSBEREICH ===================== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <a class="brand" href="index.html">
+          <span class="brand__mark" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.6"><path d="M12 27 24 16l12 11" stroke-linejoin="miter"/><path d="M12 34h24"/></svg>
+          </span>
+          <span class="brand__txt">
+            <span class="brand__name">ARVEN</span>
+            <span class="brand__sub">Immobilien</span>
+          </span>
+        </a>
+        <p>
+          Ankauf, Sanierung, Vermietung und Verkauf von Wohnliegenschaften
+          in Musterstadt und Umgebung. Inhabergeführt seit 2011.
+        </p>
+      </div>
+      <div>
+        <p class="footer__h">Unternehmen</p>
+        <ul>
+          <li><a href="projekte.html">Projekte</a></li>
+          <li><a href="wohnungen.html">Wohnungen mieten</a></li>
+          <li><a href="journal.html">Journal</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__h">Leistungen</p>
+        <ul>
+          <li><a href="verkaufen.html">Liegenschaft verkaufen</a></li>
+          <li><a href="ueber-uns.html#arbeitsweise">Sanierung</a></li>
+          <li><a href="wohnungen.html">Vermietung</a></li>
+          <li><a href="projekte.html?stand=verkauf">Objekte im Verkauf</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__h">Kontakt</p>
+        <ul>
+          <li>Bahnhofstrasse 24<br>8002 Musterstadt</li>
+          <li><a href="tel:+41442345678">044 234 56 78</a></li>
+          <li><a href="mailto:kontakt@arven-immobilien.ch">kontakt@arven-immobilien.ch</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="footer__legal">
+      Portfolio-Demonstration: Unternehmen, Personen, Immobilien, Preise und
+      Kennzahlen sind frei erfunden. Das Kontaktformular übermittelt keine
+      Daten. Die Fotos zeigen keine der beschriebenen Liegenschaften.
+    </p>
+
+    <div class="footer__bot">
+      <span>© <span id="year">2026</span> ARVEN Immobilien AG</span>
+      <nav aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<button class="totop" id="totop" aria-label="Nach oben">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script src="assets/js/main.js?v=20260816h"></script>
+
+<!-- ===================================================================
+     Demo-Plakette: kleine, aufklappbare Kennzeichnung als Portfolio-
+     Demonstration. In der eingebetteten Vorschau der Verkaufsseite wird
+     sie ausgeblendet, dort steht die Kennzeichnung bereits daneben.
+     =================================================================== -->
+<div class="demobadge" id="demobadge">
+  <button class="demobadge__knopf" id="demoKnopf" aria-expanded="false" aria-controls="demoPanel">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-5M12 8h.01"/></svg>
+    Demo
+  </button>
+  <div class="demobadge__panel" id="demoPanel" hidden>
+    <b>Portfolio-Demonstration:</b> Unternehmen, Personen, Immobilien,
+    Preise und Kennzahlen sind frei erfunden. Das Kontaktformular
+    übermittelt keine Daten.
+    <a href="../index.html">Diese Website gestalten lassen</a>
+  </div>
+</div>
+
+</body>
+</html>

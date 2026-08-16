@@ -1,7 +1,8 @@
 # Bildnachweise & Lizenzen
 
-Die Fotos der beiden Massage-Demos stammen von **[Unsplash](https://unsplash.com)**
-und stehen unter der [Unsplash-Lizenz](https://unsplash.com/de/lizenz).
+Die Fotos der beiden Massage-Demos und der Immobilien-Demo stammen von
+**[Unsplash](https://unsplash.com)** und stehen unter der
+[Unsplash-Lizenz](https://unsplash.com/de/lizenz).
 Die Motive der Restaurant-Demo sind **eigens erzeugte Bilder** und keine
 Stockfotos — Einzelheiten im Abschnitt zu `demo-restaurant/`.
 
@@ -64,6 +65,54 @@ gemeinsamen warmen Ton bringt.
 
 ---
 
+## Verwendete Bilder — `demo-immobilien/assets/img/`
+
+| Datei | Verwendung auf der Seite | Quelle (Unsplash-CDN) |
+|---|---|---|
+| `hero.jpg` | Startbild der Startseite | `photo-1600585154340-be6161a56a0c` |
+| `projekt-halden.jpg` | Projektkarte „Haus am Hang“ (gleiches Motiv wie Hero) | `photo-1600585154340-be6161a56a0c` |
+| `interieur.jpg` | Fallstudie „Nach Abschluss“ | `photo-1600607687939-ce8a6c25118c` |
+| `projekt-stadthaus.jpg` | Projektkarte „Stadthaus mit Anbau“ | `photo-1600047509807-ba8f99d2cdde` |
+| `projekt-mfh.jpg` | Projektkarte „Residenz Feldweg“ | `photo-1545324418-cc1a3fa10c00` |
+| `projekt-landhaus.jpg` | Projektkarte „Landhaus Buchenweg“ | `photo-1449844908441-8829872d2607` |
+| `projekt-altbau.jpg` | Projektkarte „Altbau am Kirchweg“ | `photo-1493809842364-78817add7ffb` |
+| `sanierung.jpg` | Fallstudie „Rohbauphase“ (Vorher/Nachher-Regler) | `photo-1634586648651-f1fb9ec10d90` |
+| `altbau-leerstand.jpg` | Journal „Sanierungskosten“ (Titelbild und Beitragskarte) | `photo-1444419988131-046ed4e5ffd6` |
+| `plan.jpg` | Über uns „Arbeitsweise“, Journal „Kaufvertrag“ (Beschnitt ohne Gesicht) | `photo-1503387762-592deb58ef4e` |
+| `buero.jpg` | Über uns „Wer wir sind“ | `photo-1497366216548-37526070297c` |
+
+`sanierung` und `altbau-leerstand` liegen als WebP und JPEG vor (ohne AVIF).
+Jedes Motiv liegt zusätzlich als WebP und AVIF daneben; grosse Bilder
+haben zusätzliche Breitenvarianten für `srcset` (Hero: 480/768/1024/1600,
+Galerie: 600/1200, Karten: 480).
+
+Die Bereiche **Wohnungen** und **Journal** verwenden bewusst dieselben
+Motive weiter, statt neue Stockfotos aufzunehmen: Eine Mietwohnung liegt
+in einem Haus, das auf der Projektseite steht — dieselbe Küche dort und
+hier ist deshalb stimmig und nicht sparsam. Die Zuordnung folgt dem, was
+auf dem Foto tatsächlich zu sehen ist: Der Altbau von 1908 bekommt das
+klassische Bad mit Standwaschtisch, die Sanierung von 2023 die
+raumhohe Verglasung.
+
+Galerie-Motive der Projekt-Detailseiten (alle Unsplash):
+
+| Datei | Quelle (Unsplash-CDN) |
+|---|---|
+| `g-kueche-eiche` | `photo-1600585152220-90363fe7e115` |
+| `g-bad-stein` | `photo-1600566752355-35792bedcfea` |
+| `g-treppe` | `photo-1502005229762-cf1b2da7c5d6` |
+| `g-zimmer` | `photo-1513694203232-719a280e022f` |
+| `g-bad-hell` | `photo-1584622650111-993a426fbf0a` |
+| `g-kueche-loft` | `photo-1600607686527-6fb886090705` |
+| `g-bad-altbau` | `photo-1560448075-bb485b067938` |
+| `g-wohnen-grau` | `photo-1600121848594-d8644e57abab` |
+| `g-wohnen-hell` | `photo-1600566753086-00f18fb6b3ea` |
+| `g-wohnen-leder` | `photo-1600210492493-0946911123ea` |
+| `g-aussen-abend` | `photo-1600585154526-990dced4db0d` |
+| `g-aussen-kubus` | `photo-1600047509358-9dc75507daeb` |
+
+---
+
 ## Verwendete Bilder — `demo-restaurant/assets/img/`
 
 Diese drei Motive stammen **nicht** von einem Stockdienst. Sie wurden mit
@@ -96,6 +145,8 @@ Dokumentation ist keine Rechtsberatung.
 | [Marcellus](https://fonts.google.com/specimen/Marcellus) | Überschriften Demo-Thai | SIL Open Font License 1.1 |
 | [Karla](https://fonts.google.com/specimen/Karla) | Fliesstext Demo-Thai | SIL Open Font License 1.1 |
 | [Bodoni Moda](https://fonts.google.com/specimen/Bodoni+Moda) | Überschriften Demo-Restaurant | SIL Open Font License 1.1 |
+| [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif) | Überschriften Demo-Immobilien | SIL Open Font License 1.1 |
+| [Instrument Sans](https://fonts.google.com/specimen/Instrument+Sans) | Fliesstext Demo-Immobilien (eigene Kopie unter `demo-immobilien/assets/fonts/`) | SIL Open Font License 1.1 |
 
 Alle Schriften sind frei für kommerzielle Nutzung und dürfen auch lokal
 auf dem eigenen Server abgelegt werden (siehe README, Abschnitt „Schriften lokal einbinden“).

@@ -6,7 +6,10 @@
 📄 impressum.html     → Rechtstexte der Verkaufsseite
 📄 datenschutz.html
 📁 assets/            → CSS, JavaScript, Schriften und Bilder der Verkaufsseite
+📁 demo-immobilien/   → Beispielwebsite „ARVEN Immobilien“ (22 Seiten)
 📁 demo-massage/      → Beispielwebsite „AURELIA Massage & Wellness“
+                        (seit August 2026 nicht mehr auf der Verkaufsseite
+                        verlinkt, bleibt aber erreichbar)
 📁 demo-thai/         → Beispielwebsite „SABAI Thai Massage“
 📁 demo-restaurant/   → Beispielwebsite „AVERA Contemporary Dining“
 📄 uebersicht.html    → Interne Projektübersicht (noindex, nicht verlinkt)
@@ -57,9 +60,10 @@ Nicht anfassen: die Adressen in `demo-massage/`, `demo-thai/` und
 | | |
 |---|---|
 | **Live-Adresse (Verkaufsseite)** | https://envyweb.ch/ |
-| Beispiel AURELIA | https://envyweb.ch/demo-massage/ |
+| Beispiel ARVEN | https://envyweb.ch/demo-immobilien/ |
 | Beispiel SABAI | https://envyweb.ch/demo-thai/ |
 | Beispiel AVERA | https://envyweb.ch/demo-restaurant/ |
+| Beispiel AURELIA (nicht mehr verlinkt) | https://envyweb.ch/demo-massage/ |
 | Projektübersicht (intern) | https://envyweb.ch/uebersicht.html |
 | **Code** | https://github.com/Anonym210/webdesign-portfolio |
 
@@ -180,6 +184,15 @@ Alternativen zeigen können.
 | Aufbau | Bildhero, Karten, Galerie | Bildhero, grosse Bild-Text-Blöcke, dunkles Teakband |
 | Stimmung | hell und leicht | warm, dunkel, abendlich |
 
+**Die vier Bausteine, die den Auftritt tragen:**
+
+| Baustein | Klasse | Was er tut |
+|---|---|---|
+| Objektliste | `.oliste` | Projekte und Wohnungen stehen als Liste mit Linien statt als Kartenraster — das erlaubt viel grössere Titel und wirkt wie ein Bestandsverzeichnis. Das Bild erscheint beim Überfahren und folgt dem Zeiger (`main.js`, Abschnitt 12). Ohne Zeiger — also auf dem Handy — steht es fest in der Zeile. |
+| Klebende Bildspalte | `.story--klebe` | Das Bild bleibt stehen, während der Text daneben weiterläuft. Nur ab 1041 px, darunter stehen beide ohnehin übereinander. |
+| Redaktionsspalte | `.artikelzone` | Beitragsseiten haben links eine klebende Metaleiste (Thema, Datum, Lesezeit, Autor) und rechts die Textspalte. |
+| Zweispaltiger Kopf | `.pagehero--zwei` | Titel links gross, Vorspann rechts unten auf derselben Grundlinie. Wird nur auf Seiten gesetzt, deren Kopf sonst nichts weiter enthält. |
+
 **Gestalterische Kniffe, die Sie übernehmen können:**
 
 - Alle Fotos tragen die Klasse `warm` (`filter: sepia(.14) saturate(1.06)`).
@@ -236,7 +249,81 @@ Fassung ist ein statischer Nachbau im Stil der übrigen Demos.
 
 ---
 
-## 2.5 Sprachen pflegen (Deutsch / Englisch / Französisch)
+### 2.5 Demo-Immobilien-Website
+
+Die vierte Demo ist ein **Immobilienunternehmen** (Ankauf → Sanierung →
+Vermietung/Verkauf) — und die einzige, die **nicht als Onepager** gebaut ist.
+Sie ersetzt AURELIA im Referenzen-Raster der Verkaufsseite.
+
+**Die 22 Seiten im Überblick:**
+
+| Bereich | Dateien |
+|---|---|
+| Start | `index.html` |
+| Projekte | `projekte.html` + 6 Detailseiten `projekt-*.html` |
+| Wohnungen mieten | `wohnungen.html` + 3 Detailseiten `wohnung-*.html` |
+| Journal | `journal.html` + 4 Fachbeiträge `journal-*.html` |
+| Verkaufen | `verkaufen.html` (Landingpage für Eigentümerschaften) |
+| Firma | `ueber-uns.html`, `kontakt.html` |
+| Rechtstexte | `impressum.html`, `datenschutz.html` |
+
+| Unterschied | übrige Demos | ARVEN |
+|---|---|---|
+| Aufbau | Onepager | 22 Seiten mit eigener Navigation |
+| Grundton | warm (Bronze, Gold, Messing) | Lehm und Sand, Terrakotta und Ocker |
+| Schriften | Cormorant / Marcellus / Bodoni | Instrument Serif + Instrument Sans |
+| Formular | Termin/Reservation | drei Fassungen: Ankaufsanfrage, Preiseinschätzung, Besichtigung |
+| Besonderes | — | Objektliste mit Bildvorschau am Zeiger, klebende Bildspalte, Redaktionsspalte im Journal, Objektfilter, Zahlen-Zähler, Laufband, Seitenübergänge |
+
+**Wo was gepflegt wird:**
+
+- **Navigation** steht in jeder Seite im `<header>` und im `<nav class="mobilemenu">`.
+  Kommt ein Eintrag dazu, muss er in beiden stehen — und im Fussbereich.
+- **Wohnungen** sind statisches HTML in `wohnungen.html` (Übersichtskarte)
+  und der zugehörigen `wohnung-*.html`. Eine Wohnung, die weg ist, wird zur
+  „vermietet“-Karte: Klasse `object--belegt` statt `object--link`, und der
+  Link im `<h3>` fällt weg.
+- **Journalbeiträge** bestehen aus der Kachel in `journal.html` und der
+  eigenen Seite. Der Fliesstext liegt in `<div class="artikel">` — die
+  Bausteine dort (`.fakten` für Tabellen, `blockquote`, `ol.reihenfolge`)
+  reichen für die meisten Texte aus.
+- **Filterzähler**: Die Einheit steht am Element selbst
+  (`data-einheit-ein="Wohnung" data-einheit-mehr="Wohnungen"`), damit
+  dieselbe JavaScript-Funktion Projekte und Wohnungen zählen kann.
+
+**Gestalterische Kniffe, die Sie übernehmen können:**
+
+- Die Seitenübergänge kommen aus zwei Zeilen CSS (`@view-transition`) —
+  Browser ohne Unterstützung wechseln einfach hart, nichts geht kaputt.
+- Wie bei den übrigen Demos trägt **genau ein kursives `<em>`** je
+  Überschrift die Auszeichnung — hier in Terrakotta. Die Kursive von
+  Instrument Serif ist deutlich schmaler als die Aufrechte, deshalb läuft
+  sie im Stylesheet mit `font-size:1.06em`; ohne das wirkt das
+  Akzentwort kleiner als seine Nachbarn.
+- **Instrument Serif hat nur einen Schnitt.** Der Kontrast kommt aus
+  Grösse und Kursive, nicht aus Fettungen. Ein `font-weight:600` auf einer
+  Überschrift würde der Browser rechnen — das Ergebnis sieht schlechter aus
+  als das Original. Deshalb steht in `fonts.css` bewusst kein
+  Gewichtsbereich für die Serife.
+- Jede Unterseite trägt eine grosse **Geisterzahl** im Seitenkopf
+  (`.pagehero__ghost`) — 24 Projekte, 31 Wohnungen, 4 Beiträge, 10 Tage
+  bis zum Angebot.
+- Die Verkaufsseite stellt **Vermittlung und Direktankauf gegenüber**
+  (`.gegen`) und nennt im Fusstext offen den Nachteil des Direktankaufs.
+  Ein eingeräumter Nachteil macht die übrigen Aussagen glaubwürdiger.
+- Der Hinweis unter den Objektkarten („Diese Seite ist unsere Visitenkarte,
+  nicht unser Schaufenster") beantwortet die Frage nach der Objektpflege,
+  bevor ein Interessent sie stellt.
+
+**Farben ändern:** in `demo-immobilien/assets/css/style.css` im Block `:root`.
+Die wichtigsten sind `--clay` (Akzent, gebrannter Ton), `--paper`
+(Grundfläche in Lehm), `--deep` (dunkle Bänder) und `--ocker` (Zweitakzent).
+Die Namen sagen, was sie sind — wer die Farbe wechselt, muss den Namen
+mitwechseln, sonst steht später ein Blau unter dem Namen `--clay`.
+
+---
+
+## 2.6 Sprachen pflegen (Deutsch / Englisch / Französisch)
 
 Die Verkaufsseite gibt es dreimal. **Deutsch ist die Leitfassung** — Änderungen
 immer zuerst dort, dann nachziehen:
@@ -448,6 +535,7 @@ Zeichensätze *latin* und *latin-ext*, damit die Dateien klein bleiben.
 | Website | Schriften |
 |---|---|
 | Verkaufsseite | Instrument Serif, Inter |
+| ARVEN | Instrument Serif, Instrument Sans (eigene Kopie im Demo-Ordner) |
 | AURELIA | Cormorant Garamond, Jost |
 | SABAI | Marcellus, Karla |
 
@@ -500,7 +588,21 @@ assets/
 ├── img/                   social-preview.png, portrait.jpg, später Referenzen
 └── social-preview.html    Quelle für das Vorschaubild
 
-demo-massage/             Beispielwebsite AURELIA
+demo-immobilien/          Beispielwebsite ARVEN (mehrseitig, 12 Seiten)
+├── index.html  projekte.html  ueber-uns.html  kontakt.html
+├── projekt-stadthaus.html   (Detailseite, im Verkauf: Exposé + Grundriss)
+├── projekt-feldweg.html  projekt-kirchweg.html  projekt-buchenweg.html
+├── projekt-halden.html  projekt-lindenhof.html
+├── impressum.html  datenschutz.html
+└── assets/css · js · fonts · img (JPEG + WebP + AVIF, srcset-Varianten)
+
+Die wiederkehrenden Demodaten der ARVEN-Demo (Firma, UID CHE-318.742.965,
+24 Projekte, 31 Wohnungen, sechs Projektdossiers) sind bewusst als
+statisches HTML gepflegt — die Seite funktioniert vollständig ohne
+JavaScript. Meldungstexte, die JavaScript ausgibt, stehen zentral in
+assets/js/main.js, Abschnitt 0.
+
+demo-massage/             Beispielwebsite AURELIA (nicht mehr verlinkt)
 ├── index.html  impressum.html  datenschutz.html
 └── assets/css · js · fonts · img (13 Bilder)
 
